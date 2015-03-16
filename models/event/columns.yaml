@@ -5,12 +5,24 @@
 columns:
     date:
         label: Дата
+        type: date
+        format: j D F
     title:
         label: Название
         relation: performance
         select: title
     time:
         label: Время начала
+    type:
+        label: Тип
+        relation: performance
+        select: type
     published:
         label: Опубликовано
         type: switch
+    created_at:
+        label: Создано
+        type: date
+    updated_at:
+        label: Обновлено
+        type: date

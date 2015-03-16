@@ -19,6 +19,18 @@ class Event extends Model
     protected $guarded = ['*'];
 
     /**
+     * The attributes that should be mutated to dates.
+     * @var array
+     */
+    protected $dates = ['created_at', 'updated_at', 'date'];
+
+    /**
+     * The attributes that should be mutated to timestamps.
+     * @var array
+     */
+    // public $timestamps = ['time'];
+
+    /**
      * @var array Fillable fields
      */
     protected $fillable = [];
@@ -71,6 +83,20 @@ class Event extends Model
             ->where('state', '=', 'archive')
         ;
     }
+
+    /**
+     * Allows filtering for specifc types
+     * @param  Illuminate\Query\Builder  $query      QueryBuilder
+     * @param  array                     $types      List of category ids
+     * @return Illuminate\Query\Builder              QueryBuilder
+     */
+    // public function scopeFilterTypes($query, $type)
+    // {
+    //     return $query->whereHas('type', function($q) use ($type) {
+    //         $q->whereIn('id', $type);
+    //     });
+    // }
+
     /**
      * Sets the "url" attribute with a URL to this object
      * @param string $pageName
