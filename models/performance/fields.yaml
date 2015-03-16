@@ -1,0 +1,79 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+        label: ID
+        hidden: true
+    title:
+        label: Название спектакля
+    slug:
+        label: URL
+    title_html:
+        label: Отформатированное название
+    author:
+        label: Автор
+    content:
+        label: Содержимое
+        type: richeditor
+        size: huge
+    synopsis:
+        label: Синопсис
+        type: richeditor
+    description:
+        label: Описание спектакля
+        type: richeditor
+    authors:
+        label: Авторы
+        type: richeditor
+    state:
+        label: Состояние
+        type: dropdown
+        options:
+            normal: Обычное
+            premiere: Премьера
+            archived: В архиве
+    type:
+        label: Тип
+        type: dropdown
+        options:
+            normal: Обычный
+            child: Детский
+            event: Событие
+    genre:
+        label: Жанр
+    duration:
+        label: Длительность
+        type: datepicker
+        mode: time
+    entracte:
+        label: Антракт
+        type: dropdown
+        options:
+            0: Без антракта
+            1: С одним антрактом
+            2: С двумя антрактами
+    premiere_date:
+        label: Дата премьеры
+        type: datepicker
+        mode: date
+    rate:
+        label: Возрастной рейтинг
+        type: dropdown
+        options:
+            0: 0+
+            6: 6+
+            12: 12+
+            16: 16+
+            18: 18+
+    published:
+        label: Опубликовано
+        type: checkbox
+        default: false
+    playbill:
+        label: Афиша
+        type: fileupload
+    repertoire:
+        label: Репертуар
+        type: fileupload

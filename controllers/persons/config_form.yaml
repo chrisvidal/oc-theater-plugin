@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Person
+
+# Model Form Field configuration
+form: $/abnmt/theater/models/person/fields.yaml
+
+# Model Class name
+modelClass: Abnmt\Theater\Models\Person
+
+# Default redirect location
+defaultRedirect: abnmt/theater/persons
+
+# Create page
+create:
+    title: Create Person
+    redirect: abnmt/theater/persons/update/:id
+    redirectClose: abnmt/theater/persons
+
+# Update page
+update:
+    title: Edit Person
+    redirect: abnmt/theater/persons
+    redirectClose: abnmt/theater/persons
+
+# Preview page
+preview:
+    title: Preview Person

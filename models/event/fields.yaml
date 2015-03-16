@@ -1,0 +1,27 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+        label: ID
+        disabled: true
+        span: left
+    performance:
+        label: Название
+        type: relation
+        nameFrom: title
+    date:
+        label: Дата
+        type: datepicker
+        mode: date
+        span: left
+    time:
+        label: Время начала
+        type: datepicker
+        mode: time
+        default: 19:00
+        span: right
+    published:
+        label: Опубликовано
+        type: checkbox

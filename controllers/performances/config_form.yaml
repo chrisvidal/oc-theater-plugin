@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Performance
+
+# Model Form Field configuration
+form: $/abnmt/theater/models/performance/fields.yaml
+
+# Model Class name
+modelClass: Abnmt\Theater\Models\Performance
+
+# Default redirect location
+defaultRedirect: abnmt/theater/performances
+
+# Create page
+create:
+    title: Create Performance
+    redirect: abnmt/theater/performances/update/:id
+    redirectClose: abnmt/theater/performances
+
+# Update page
+update:
+    title: Edit Performance
+    redirect: abnmt/theater/performances
+    redirectClose: abnmt/theater/performances
+
+# Preview page
+preview:
+    title: Preview Performance

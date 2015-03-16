@@ -1,0 +1,38 @@
+{% set performance = __SELF__.performance %}<!-- Performance -->
+							<nav id="page-navigation" role="navigation" class="secondary-navigation">
+								<ul class="nav-menu">
+									{% for section in performancesMenu %}<!-- {{ section.slug }} -->
+									<li class="nav-menu-item {{ section.active }}"><a href="#{{ section.slug }}">{{ section.title }}</a>
+										<ul class="nav-submenu">
+											{% for performance in section.menu %}<!-- {{ performance.slug }} -->
+											<li class="nav-submenu-item {{ performance.active }}">
+												<a href="{{ performance.url }}">
+													<div class="title">{{ performance.title }}</div>
+													<div class="author">{{ performance.author }}</div>
+												</a>
+											</li>
+											{% endfor %}<!-- /End -->
+										</ul>
+									</li>
+									{% endfor %}<!-- /End -->
+								</ul>
+							</nav>
+							<div class="content {{ performance.slug }}">
+								<div style="" class="title">{{ performance.title }}</div>
+								<div class="author">{{ performance.author }}</div>
+								<div class="description">{{ performance.description }}</div>
+								<div class="add">
+									<!-- <div class="rate">{{ performance.rate }}+</div> -->
+									<p class="premiere-date">Премьера состоялась</br><span class="nowrap">{{ performance.premiere_date }}</span></p>
+									<p class="duration">Длительность спектакля</br><span class="nowrap">{{ performance.duration }}</span></p>
+								</div>
+								<div class="about">
+									{{ performance.content|raw }}
+								</div>
+<!-- 								<dl class="creators">
+									<dt class="role">Режиссёр-постановщик</dt><dd class="name">…</dd>
+								</dl>
+								<h4>Роли и исполнители</h4> -->
+
+							</div>
+

@@ -1,0 +1,24 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    title:
+        label: Название спектакля
+    author:
+        label: Автор
+    state:
+        label: Состояние
+    type:
+        label: Тип
+    duration:
+        label: Длительность
+    entracte:
+        label: Антракт
+    premiere_date:
+        label: Дата премьеры
+    rate:
+        label: Возрастной рейтинг
+    published:
+        label: Опубликовано
+        type: switch

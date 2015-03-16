@@ -1,0 +1,42 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+        label: ID
+        disabled: true
+    title:
+        label: Заголовок
+    slug:
+        label: URL
+    given_name:
+        label: Имя
+    family_name:
+        label: Фамилия
+    bio:
+        label: Биография
+        type: richeditor
+        size: huge
+    grade:
+        label: Звание
+    state:
+        label: В штате
+        type: dropdown
+        options:
+            state: В штате
+            cooperate: Приглашенный
+            director: Художественный руководитель =)
+    gender:
+        label: Пол
+        type: dropdown
+        options:
+            male: Мужской
+            female: Женский
+    published:
+        label: Опубликовано
+        type: checkbox
+        default: false
+    portrait:
+        label: Портрет
+        type: fileupload

@@ -1,0 +1,39 @@
+{% set calendar = __SELF__.playbill %}<!-- Playbill -->
+						{% for performance in calendar %}<!-- {{ performance.slug }} -->
+							<div style="background: url('{{ performance.playbill.path }}');" id="{{ performance.class }}" class="performance {{ performance.active }} {{ performance.slug }}">
+								<div class="container">
+									<div class="ratio">
+										<h3 class="section-header"><a href="{{ 'pages/playbill'|page }}">Афиша</a></h3>
+										<div class="title-block">
+											<div class="author">{{ performance.author }}</div>
+											<div class="title">
+												<a href="{{ performance.url }}">{% if performance.title_html %}{{ performance.title_html|raw }}{% else %}{{ performance.title }}{% endif %}</a>
+											</div>
+										</div>
+										<div class="date-block">
+											<div class="date day {{ performance.dayclass }} "><span>{{ performance.day }}</span></div>
+											<div class="date month {{ performance.month2 }}"><span>{{ performance.month }}</span></div>
+											<div class="date weekday {{ performance.weekday2 }}"><span>{{ performance.weekday }}</span></div>
+											<div class="button-buy"><a href="#">Купить билет</a></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						{% endfor %}<!-- /End -->
+						<div class="calendar">
+							<div class="container">
+								<div class="wraper">
+									<button type="button" data-role="none" class="nav slick-prev" style="display: block;">Назад</button>
+									<div class="slider">
+										{% for performance in calendar %}<!-- {{ performance.slug }} -->
+										<a href="#{{ performance.class }}" class="{{ performance.active }}">
+											<div class="day">{{ performance.day2 }}</div>
+											<div class="weekday {{ performance.weekday2 }}">{{ performance.weekday3 }}</div>
+										</a>
+										{% endfor %}<!-- /End -->
+									</div>
+									<button type="button" data-role="none" class="nav slick-next" style="display: block;">Вперед</button>
+								</div>
+							</div>
+						</div>
+
