@@ -77,7 +77,7 @@ class Calendar extends ComponentBase
             // $performance = Performance::whereId($event->performance_id)->first();
 
             // $event->title = $performance->title;
-            $event->class = $event->date . '-' . $event->slug;
+            $event->class = date( 'Y-m-d', strtotime($event->date)) . '-' . $event->slug;
             // $event->slug = $performance->slug;
             // $event->author = $performance->author;
 
