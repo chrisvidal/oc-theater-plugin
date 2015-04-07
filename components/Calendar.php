@@ -50,6 +50,7 @@ class Calendar extends ComponentBase
         $this->performancePage = $this->page['performancePage'] = $this->property('performancePage');
     }
 
+
     public function onRun()
     {
 
