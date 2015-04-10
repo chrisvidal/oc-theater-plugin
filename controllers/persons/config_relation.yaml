@@ -1,0 +1,30 @@
+# ===================================
+#  Relation Behavior Config
+# ===================================
+
+roles:
+    label: Роли
+    view:
+        list:
+            columns:
+                performance:
+                    label: Спектакль
+                    span: left
+                pivot[role]:
+                    label: Роль
+                    span: right
+    manage:
+        list:
+            columns:
+                performance:
+                    label: Спектакль
+
+    pivot:
+        form:
+            fields:
+                performance:
+                    label: Спектакль
+                    span: left
+                pivot[role]:
+                    label: Роль
+                    span: right

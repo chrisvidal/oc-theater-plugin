@@ -22,6 +22,7 @@ class CreatePerformancesTable extends Migration
             $table->text('synopsis')->nullable();
 
             $table->text('authors')->nullable();
+            $table->text('roles')->nullable();
 
             $table->string('title_html')->nullable();
             $table->string('state')->nullable();

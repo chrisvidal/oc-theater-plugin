@@ -1,0 +1,11 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    performance:
+        label: Спектакль
+        span: left
+    role:
+        label: Роль
+        span: right

@@ -1,0 +1,12 @@
+# ===================================
+#  Relation Behavior Config
+# ===================================
+
+roles:
+    label: Роли
+    view:
+        list: $/abnmt/theater/models/person/roles_columns.yaml
+        toolbarButtons: create|delete
+    manage:
+        form: $/abnmt/theater/models/person/roles_fields.yaml
+        recordsPerPage: 10

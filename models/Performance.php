@@ -13,7 +13,7 @@ class Performance extends Model
      */
     public $table = 'abnmt_theater_performances';
 
-    protected $jsonable = ['authors'];
+    protected $jsonable = ['authors', 'roles'];
 
     /**
      * @var array Guarded fields
@@ -34,7 +34,9 @@ class Performance extends Model
     public $belongsToMany = [];
     public $morphTo = [];
     public $morphOne = [];
-    public $morphMany = [];
+    public $morphMany = [
+        'roles' => ['Abnmt\Models\Person']
+    ];
     public $attachOne = [
         'playbill' => ['System\Models\File'],
         'repertoire' => ['System\Models\File']

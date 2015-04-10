@@ -1,0 +1,18 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+
+fields:
+    roles:
+        label: Роли и исполнители
+        type: repeater
+        prompt: Добавить
+        form:
+            fields:
+                role:
+                    label: Роль
+                    span: left
+                actor:
+                    label: Актер
+                    span: right

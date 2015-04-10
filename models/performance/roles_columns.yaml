@@ -1,0 +1,11 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    role:
+        label: Роль
+        span: left
+    name:
+        label: Актер
+        span: right

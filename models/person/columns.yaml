@@ -3,14 +3,10 @@
 # ===================================
 
 columns:
-    id:
-        label: ID
-    given_name:
-        label: Имя
-    family_name:
-        label: Фамилия
+    title:
+        label: Имя, Фамилия
     state:
         label: В штате
     published:
-        label: Опубликлвано
+        label: Опубликовано
         type: switch

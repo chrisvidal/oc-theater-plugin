@@ -13,6 +13,8 @@ class Person extends Model
      */
     public $table = 'abnmt_theater_people';
 
+    protected $jsonable = ['roles'];
+
     /**
      * @var array Guarded fields
      */
@@ -29,7 +31,9 @@ class Person extends Model
     public $hasOne = [];
     public $hasMany = [];
     public $belongsTo = [];
-    public $belongsToMany = [];
+    public $belongsToMany = [
+        'roles' => ['Abnmt\Theater\Models\Performance']
+    ];
     public $morphTo = [];
     public $morphOne = [];
     public $morphMany = [];
@@ -95,6 +99,12 @@ class Person extends Model
         ];
 
         return $this->url = $controller->pageUrl($pageName, $params);
+    }
+
+
+    public function beforeSave()
+    {
+        $this->title = $this->given_name . " " . $this->family_name;
     }
 
 }

@@ -5,38 +5,49 @@
 fields:
     id:
         label: ID
-        disabled: true
+        hidden: true
+        span: left
     title:
-        label: Заголовок
-    slug:
-        label: URL
-    given_name:
-        label: Имя
+        label: Имя, Фамилия
+        hidden: true
     family_name:
         label: Фамилия
-    bio:
-        label: Биография
-        type: richeditor
-        size: huge
-    grade:
-        label: Звание
+        span: left
+    given_name:
+        label: Имя
+        span: right
+    slug:
+        label: URL
+        span: left
+    published:
+        label: Опубликовано
+        type: checkbox
+        span: right
+        default: false
+    gender:
+        label: Пол
+        type: dropdown
+        span: left
+        options:
+            male: Мужской
+            female: Женский
     state:
         label: В штате
         type: dropdown
+        span: right
         options:
             state: В штате
             cooperate: Приглашенный
             director: Художественный руководитель =)
-    gender:
-        label: Пол
-        type: dropdown
-        options:
-            male: Мужской
-            female: Женский
-    published:
-        label: Опубликовано
-        type: checkbox
-        default: false
+    grade:
+        label: Звание
+    bio:
+        label: Биография
+        type: richeditor
+        size: huge
     portrait:
         label: Портрет
         type: fileupload
+
+    roles:
+        label: Роли в спектаклях

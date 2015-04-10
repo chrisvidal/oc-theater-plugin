@@ -58,6 +58,19 @@ tabs:
                     name:
                         label: Имя
                         span: right
+        roles:
+            tab: Роли и исполнители
+            label: Роли и исполнители
+            type: repeater
+            prompt: Добавить
+            form:
+                fields:
+                    role:
+                        label: Роль
+                        span: left
+                    name:
+                        label: Актер
+                        span: right
         title_html:
             tab: Дополнительно
             label: Отформатированное название
