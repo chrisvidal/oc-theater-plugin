@@ -22,13 +22,7 @@ class Event extends Model
      * The attributes that should be mutated to dates.
      * @var array
      */
-    protected $dates = ['created_at', 'updated_at', 'date'];
-
-    /**
-     * The attributes that should be mutated to timestamps.
-     * @var array
-     */
-    // public $timestamps = ['time'];
+    protected $dates = ['created_at', 'updated_at', 'datetime'];
 
     /**
      * @var array Fillable fields
@@ -83,6 +77,20 @@ class Event extends Model
             ->where('state', '=', 'archive')
         ;
     }
+
+
+    // public function filterFields($fields, $context = null)
+    // {
+    //     if($this->date == null ) {
+    //         $fields->time->hidden = true;
+    //     } else {
+    //         $fields->time->hidden = false;
+    //     }
+    // }
+
+
+    // public function getTimeDefault()
+
 
     /**
      * Allows filtering for specifc types

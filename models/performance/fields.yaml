@@ -2,78 +2,112 @@
 #  Form Field Definitions
 # ===================================
 
+
 fields:
     id:
         label: ID
         hidden: true
+        span: left
     title:
         label: Название спектакля
+        span: left
     slug:
         label: URL
-    title_html:
-        label: Отформатированное название
+        span: right
+        preset:
+            field: title
     author:
         label: Автор
-    content:
-        label: Содержимое
-        type: richeditor
-        size: huge
-    synopsis:
-        label: Синопсис
-        type: richeditor
-    description:
-        label: Описание спектакля
-        type: richeditor
-    authors:
-        label: Авторы
-        type: richeditor
-    state:
-        label: Состояние
-        type: dropdown
-        options:
-            normal: Обычное
-            premiere: Премьера
-            archived: В архиве
     type:
         label: Тип
         type: dropdown
-        options:
-            normal: Обычный
-            child: Детский
-            event: Событие
-    genre:
-        label: Жанр
-    duration:
-        label: Длительность
-        type: datepicker
-        mode: time
-    entracte:
-        label: Антракт
+        span: left
+    state:
+        label: Состояние
         type: dropdown
-        options:
-            0: Без антракта
-            1: С одним антрактом
-            2: С двумя антрактами
-    premiere_date:
-        label: Дата премьеры
-        type: datepicker
-        mode: date
-    rate:
-        label: Возрастной рейтинг
-        type: dropdown
-        options:
-            0: 0+
-            6: 6+
-            12: 12+
-            16: 16+
-            18: 18+
+        span: right
     published:
         label: Опубликовано
-        type: checkbox
+        type: switch
         default: false
-    playbill:
-        label: Афиша
-        type: fileupload
-    repertoire:
-        label: Репертуар
-        type: fileupload
+
+tabs:
+    defaultTab: Основное
+    fields:
+        content:
+            label: Содержимое
+            type: richeditor
+            size: giant
+        synopsis:
+            label: Синопсис
+            type: richeditor
+        description:
+            label: Описание спектакля
+            type: richeditor
+            size: small
+        authors:
+            tab: Авторы
+            label: Авторы
+            type: repeater
+            prompt: Добавить
+            form:
+                fields:
+                    role:
+                        label: Роль
+                        span: left
+                    name:
+                        label: Имя
+                        span: right
+        title_html:
+            tab: Дополнительно
+            label: Отформатированное название
+            type: codeeditor
+            size: tiny
+            language: html
+        genre:
+            tab: Дополнительно
+            label: Жанр
+        duration:
+            tab: Дополнительно
+            label: Длительность
+            type: datepicker
+            mode: time
+            span: left
+        entracte:
+            tab: Дополнительно
+            label: Антракт
+            type: dropdown
+            span: right
+        premiere_date:
+            tab: Дополнительно
+            label: Дата премьеры
+            type: datepicker
+            span: left
+            mode: date
+        rate:
+            tab: Дополнительно
+            label: Возрастной рейтинг
+            type: dropdown
+            span: right
+        playbill:
+            tab: Медиа
+            label: Афиша
+            mode: image
+            span: left
+            type: fileupload
+        repertoire:
+            tab: Медиа
+            label: Репертуар
+            mode: image
+            span: right
+            type: fileupload
+        background:
+            tab: Медиа
+            label: Бэкграунды
+            mode: image
+            type: fileupload
+        featured:
+            tab: Медиа
+            label: Галерея
+            mode: image
+            type: fileupload

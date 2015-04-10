@@ -3,16 +3,14 @@
 # ===================================
 
 columns:
-    date:
-        label: Дата
+    datetime:
+        label: Дата/Время начала
         type: date
-        format: j D F
+        format: j M (D) / G:i
     title:
         label: Название
         relation: performance
         select: title
-    time:
-        label: Время начала
     type:
         label: Тип
         relation: performance

@@ -9,7 +9,7 @@ list: $/abnmt/theater/models/event/columns.yaml
 modelClass: Abnmt\Theater\Models\Event
 
 # List Title
-title: Manage Events
+title: Управление событиями
 
 # Link URL for each record
 recordUrl: abnmt/theater/events/update/:id
@@ -27,9 +27,9 @@ showSetup: true
 showSorting: true
 
 # Default sorting column
-# defaultSort:
-#     column: created_at
-#     direction: desc
+defaultSort:
+    column: datetime
+    direction: desc
 
 # Display checkboxes next to each record
 showCheckboxes: true

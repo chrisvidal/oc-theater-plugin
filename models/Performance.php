@@ -13,6 +13,8 @@ class Performance extends Model
      */
     public $table = 'abnmt_theater_performances';
 
+    protected $jsonable = ['authors'];
+
     /**
      * @var array Guarded fields
      */
@@ -37,7 +39,10 @@ class Performance extends Model
         'playbill' => ['System\Models\File'],
         'repertoire' => ['System\Models\File']
     ];
-    public $attachMany = [];
+    public $attachMany = [
+        'background' => ['System\Models\File'],
+        'featured' => ['System\Models\File'],
+    ];
 
     public function scopeIsPublished($query)
     {
@@ -66,6 +71,39 @@ class Performance extends Model
             ->where('state', '=', 'archived')
         ;
     }
+
+    public function getDropdownOptions($fieldName = null, $keyValue = null)
+    {
+        if ($fieldName == 'entracte')
+            return [
+                0 => 'Без антракта',
+                1 => 'С одним антрактом',
+                2 => 'С двумя антрактами',
+            ];
+        elseif ($fieldName == 'state')
+            return [
+                'normal'   => 'Обычное',
+                'premiere' => 'Премьера',
+                'archived' => 'В архиве',
+            ];
+        elseif ($fieldName == 'type')
+            return [
+                'normal' => 'Обычный',
+                'child'  => 'Детский',
+                'event'  => 'Событие',
+            ];
+        elseif ($fieldName == 'rate')
+            return [
+                0  => '0+',
+                6  => '6+',
+                12 => '12+',
+                16 => '16+',
+                18 => '18+',
+            ];
+        else
+            return ['' => '—'];
+    }
+
 
     /**
      * Sets the "url" attribute with a URL to this object

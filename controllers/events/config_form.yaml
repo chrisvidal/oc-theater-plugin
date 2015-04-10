@@ -3,7 +3,7 @@
 # ===================================
 
 # Record name
-name: Event
+name: Событие
 
 # Model Form Field configuration
 form: $/abnmt/theater/models/event/fields.yaml
@@ -16,16 +16,16 @@ defaultRedirect: abnmt/theater/events
 
 # Create page
 create:
-    title: Create Event
+    title: Новое событие
     redirect: abnmt/theater/events/update/:id
     redirectClose: abnmt/theater/events
 
 # Update page
 update:
-    title: Edit Event
+    title: Изменение события
     redirect: abnmt/theater/events
     redirectClose: abnmt/theater/events
 
 # Preview page
 preview:
-    title: Preview Event
+    title: Просмотр события

@@ -1,6 +1,6 @@
 <?php Block::put('breadcrumb') ?>
     <ul>
-        <li><a href="<?= Backend::url('abnmt/theater/events') ?>">Events</a></li>
+        <li><a href="<?= Backend::url('abnmt/theater/events') ?>">События</a></li>
         <li><?= e($this->pageTitle) ?></li>
     </ul>
 <?php Block::endPut() ?>
@@ -20,28 +20,28 @@
                     data-request="onSave"
                     data-request-data="redirect:0"
                     data-hotkey="ctrl+s, cmd+s"
-                    data-load-indicator="Saving Event..."
+                    data-load-indicator="Сохранение События..."
                     class="btn btn-primary">
-                    <u>S</u>ave
+                    Сохранить
                 </button>
                 <button
                     type="button"
                     data-request="onSave"
                     data-request-data="close:1"
                     data-hotkey="ctrl+enter, cmd+enter"
-                    data-load-indicator="Saving Event..."
+                    data-load-indicator="Сохранение События..."
                     class="btn btn-default">
-                    Save and Close
+                    Сохранить и закрыть
                 </button>
                 <button
                     type="button"
                     class="oc-icon-trash-o btn-icon danger pull-right"
                     data-request="onDelete"
-                    data-load-indicator="Deleting Event..."
-                    data-request-confirm="Do you really want to delete this event?">
+                    data-load-indicator="Удаление События..."
+                    data-request-confirm="Вы действительно хотите удалить это Событие?">
                 </button>
                 <span class="btn-text">
-                    or <a href="<?= Backend::url('abnmt/theater/events') ?>">Cancel</a>
+                    или <a href="<?= Backend::url('abnmt/theater/events') ?>">Отменить</a>
                 </span>
             </div>
         </div>
@@ -51,6 +51,6 @@
 <?php else: ?>
 
     <p class="flash-message static error"><?= e($this->fatalError) ?></p>
-    <p><a href="<?= Backend::url('abnmt/theater/events') ?>" class="btn btn-default">Return to events list</a></p>
+    <p><a href="<?= Backend::url('abnmt/theater/events') ?>" class="btn btn-default">Вернуться к списку Событий</a></p>
 
 <?php endif ?>

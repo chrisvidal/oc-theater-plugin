@@ -10,11 +10,7 @@ class Plugin extends PluginBase
     /**
      * @var array Plugin dependencies
      */
-    public $require = [
-        'RainLab.Blog',
-        'RainLab.Pages',
-        'RainLab.User'
-    ];
+
 
     /**
      * Returns information about this plugin.
@@ -41,7 +37,7 @@ class Plugin extends PluginBase
                 'order'       => 500,
                 'sideMenu' => [
                     'events' => [
-                        'label'       => 'События',
+                        'label'       => 'Афиша',
                         'icon'        => 'icon-calendar',
                         'url'         => \Backend::url('abnmt/theater/events'),
                     ],

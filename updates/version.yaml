@@ -1,3 +1,8 @@
 1.0.1:
   - First version of Theater
-  - create_tables.php
+  - create_events_table.php
+  - create_people_table.php
+  - create_performances_table.php
+  - seed_performances_table.php
+  - seed_persons_table.php
+  - seed_events_table.php
