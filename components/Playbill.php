@@ -58,7 +58,7 @@ class Playbill extends ComponentBase
         $this->prepareVars();
 
         $events = Event::with('performance')
-            ->orderBy('date', 'asc')
+            ->orderBy('datetime', 'asc')
             // ->where('date', '>=', date_create('now'))
             ->get()
         ;
@@ -70,21 +70,21 @@ class Playbill extends ComponentBase
             // $performance = Performance::whereId($event->performance_id)->first();
 
             // $event->title = $performance->title;
-            $event->class = $event->date . '-' . $event->slug;
+            $event->class = $event->datetime . '-' . $event->slug;
             // $event->slug = $performance->slug;
             // $event->author = $performance->author;
 
-            $event->time = date('G:i', strtotime($event->time));
+            $event->time = date('G:i', strtotime($event->datetime));
             $event->duration = date('g:i', strtotime($event->performance->duration));
 
-            $event->day = date( 'j', strtotime($event->date));
-            $event->day2 = date( 'd', strtotime($event->date));
-            $event->month = Date::getMonths($event->date);
-            $event->month2 = date( 'M', strtotime($event->date));
-            $event->month3 = Date::getNormalMonths($event->date);
-            $event->weekday = Date::getWeekday($event->date);
-            $event->weekday2 = date( 'D', strtotime($event->date));
-            $event->weekday3 = Date::getWeekdayShort($event->date);
+            $event->day = date( 'j', strtotime($event->datetime));
+            $event->day2 = date( 'd', strtotime($event->datetime));
+            $event->month = Date::getMonths($event->datetime);
+            $event->month2 = date( 'M', strtotime($event->datetime));
+            $event->month3 = Date::getNormalMonths($event->datetime);
+            $event->weekday = Date::getWeekday($event->datetime);
+            $event->weekday2 = date( 'D', strtotime($event->datetime));
+            $event->weekday3 = Date::getWeekdayShort($event->datetime);
 
             // $event->playbill = $performance->playbill;
             // $event->repertoire = $performance->repertoire;
@@ -96,7 +96,7 @@ class Playbill extends ComponentBase
             // $event->active = $this->active;
             // $this->active = '';
 
-            $this->playbillMonths[$event->month2]['active'] = date('M') == date( 'M', strtotime($event->date)) ? 'active' : '';
+            $this->playbillMonths[$event->month2]['active'] = date('M') == date( 'M', strtotime($event->datetime)) ? 'active' : '';
             $this->playbillMonths[$event->month2]['name'] = $event->month3;
             $this->playbillMonths[$event->month2][$event->performance->type][] = $event;
 
@@ -107,20 +107,20 @@ class Playbill extends ComponentBase
         //     // $performance = Performance::whereId($event->performance_id)->first();
 
         //     // $event->title = $performance->title;
-        //     $event->class = $event->date . '-' . $event->slug;
+        //     $event->class = $event->datetime . '-' . $event->slug;
         //     // $event->slug = $performance->slug;
         //     // $event->author = $performance->author;
 
         //     $event->time = date('G:i', strtotime($event->time));
         //     $event->duration = date('g:i', strtotime($event->performance->duration));
 
-        //     $event->day = date( 'j', strtotime($event->date));
-        //     $event->day2 = date( 'd', strtotime($event->date));
-        //     $event->month = Date::getMonths($event->date);
-        //     $event->month2 = date( 'M', strtotime($event->date));
-        //     $event->weekday = Date::getWeekday($event->date);
-        //     $event->weekday2 = date( 'D', strtotime($event->date));
-        //     $event->weekday3 = Date::getWeekdayShort($event->date);
+        //     $event->day = date( 'j', strtotime($event->datetime));
+        //     $event->day2 = date( 'd', strtotime($event->datetime));
+        //     $event->month = Date::getMonths($event->datetime);
+        //     $event->month2 = date( 'M', strtotime($event->datetime));
+        //     $event->weekday = Date::getWeekday($event->datetime);
+        //     $event->weekday2 = date( 'D', strtotime($event->datetime));
+        //     $event->weekday3 = Date::getWeekdayShort($event->datetime);
 
         //     // $event->playbill = $performance->playbill;
         //     // $event->repertoire = $performance->repertoire;

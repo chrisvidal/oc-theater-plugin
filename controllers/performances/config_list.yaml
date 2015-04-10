@@ -9,7 +9,7 @@ list: $/abnmt/theater/models/performance/columns.yaml
 modelClass: Abnmt\Theater\Models\Performance
 
 # List Title
-title: Manage Performances
+title: Управление спектаклями
 
 # Link URL for each record
 recordUrl: abnmt/theater/performances/update/:id

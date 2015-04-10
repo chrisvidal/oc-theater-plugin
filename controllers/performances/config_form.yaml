@@ -3,7 +3,7 @@
 # ===================================
 
 # Record name
-name: Performance
+name: Спектакль
 
 # Model Form Field configuration
 form: $/abnmt/theater/models/performance/fields.yaml

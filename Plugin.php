@@ -37,7 +37,7 @@ class Plugin extends PluginBase
                 'order'       => 500,
                 'sideMenu' => [
                     'events' => [
-                        'label'       => 'Афиша',
+                        'label'       => 'События',
                         'icon'        => 'icon-calendar',
                         'url'         => \Backend::url('abnmt/theater/events'),
                     ],
