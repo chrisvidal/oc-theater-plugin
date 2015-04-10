@@ -56,12 +56,12 @@ class Calendar extends ComponentBase
 
         $this->prepareVars();
 
-        $events = Event::orderBy('date', 'asc')
+        $events = Event::orderBy('datetime', 'asc')
             ->join('abnmt_theater_performances', 'abnmt_theater_events.performance_id', '=', 'abnmt_theater_performances.id')
             ->with('performance', 'performance.playbill')
             ->where('state', '<>', 'archive')
             ->where('type', '=', 'normal')
-            ->where('date', '>=', date_sub(date_create('now'), date_interval_create_from_date_string('4 days')))
+            ->where('datetime', '>=', date_sub(date_create('now'), date_interval_create_from_date_string('4 days')))
             ->get();
 
         // $test = Event::orderBy('date', 'asc')
@@ -78,23 +78,23 @@ class Calendar extends ComponentBase
             // $performance = Performance::whereId($event->performance_id)->first();
 
             // $event->title = $performance->title;
-            $event->class = date( 'Y-m-d', strtotime($event->date)) . '-' . $event->slug;
+            $event->class = date( 'Y-m-d', strtotime($event->datetime)) . '-' . $event->slug;
             // $event->slug = $performance->slug;
             // $event->author = $performance->author;
 
-            $event->time = date('G:i', strtotime($event->time));
+            $event->time = date('G:i', strtotime($event->datetime));
             $event->duration = date('g:i', strtotime($event->duration));
 
-            $event->day = date( 'j', strtotime($event->date));
+            $event->day = date( 'j', strtotime($event->datetime));
 
             $event->dayclass = (strlen($event->day) == 2 ) ? 'double' : 'single';
 
-            $event->day2 = date( 'd', strtotime($event->date));
-            $event->month = Date::getMonths($event->date);
-            $event->month2 = date( 'M', strtotime($event->date));
-            $event->weekday = Date::getWeekday($event->date);
-            $event->weekday2 = date( 'D', strtotime($event->date));
-            $event->weekday3 = Date::getWeekdayShort($event->date);
+            $event->day2 = date( 'd', strtotime($event->datetime));
+            $event->month = Date::getMonths($event->datetime);
+            $event->month2 = date( 'M', strtotime($event->datetime));
+            $event->weekday = Date::getWeekday($event->datetime);
+            $event->weekday2 = date( 'D', strtotime($event->datetime));
+            $event->weekday3 = Date::getWeekdayShort($event->datetime);
 
             $event->playbill = $event->performance->playbill;
             $event->repertoire = $event->performance->repertoire;
@@ -103,12 +103,12 @@ class Calendar extends ComponentBase
 
             $event->setUrl($this->performancePage, $this->controller);
 
-            if ($event->date >= date('Y-m-d') && $this->active == 'before')
+            if ($event->datetime >= date('Y-m-d') && $this->active == 'before')
             {
                 $this->active = 'active';
                 $event->active = $this->active;
             }
-            elseif ($event->date >= date('Y-m-d') && $this->active == 'active')
+            elseif ($event->datetime >= date('Y-m-d') && $this->active == 'active')
             {
                 $this->active = '';
                 $event->active = $this->active;
