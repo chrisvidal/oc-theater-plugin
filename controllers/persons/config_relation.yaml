@@ -2,29 +2,12 @@
 #  Relation Behavior Config
 # ===================================
 
-roles:
+participations:
     label: Роли
     view:
-        list:
-            columns:
-                performance:
-                    label: Спектакль
-                    span: left
-                pivot[role]:
-                    label: Роль
-                    span: right
+        list: $/abnmt/theater/models/participation/person_columns.yaml
+        toolbarButtons: create|delete
     manage:
-        list:
-            columns:
-                performance:
-                    label: Спектакль
-
-    pivot:
-        form:
-            fields:
-                performance:
-                    label: Спектакль
-                    span: left
-                pivot[role]:
-                    label: Роль
-                    span: right
+        list: $/abnmt/theater/models/participation/person_columns.yaml
+        form: $/abnmt/theater/models/participation/person_fields.yaml
+        recordsPerPage: 25

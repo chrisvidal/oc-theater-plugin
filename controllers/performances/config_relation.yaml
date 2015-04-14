@@ -2,11 +2,12 @@
 #  Relation Behavior Config
 # ===================================
 
-roles:
+participations:
     label: Роли
     view:
-        list: $/abnmt/theater/models/person/roles_columns.yaml
+        list: $/abnmt/theater/models/participation/performance_columns.yaml
         toolbarButtons: create|delete
     manage:
-        form: $/abnmt/theater/models/person/roles_fields.yaml
-        recordsPerPage: 10
+        list: $/abnmt/theater/models/participation/performance_columns.yaml
+        form: $/abnmt/theater/models/participation/performance_fields.yaml
+        recordsPerPage: 17

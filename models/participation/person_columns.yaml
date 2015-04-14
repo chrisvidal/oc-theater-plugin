@@ -3,9 +3,9 @@
 # ===================================
 
 columns:
+    title:
+        label: Роль
     performance:
         label: Спектакль
-        span: left
-    role:
-        label: Роль
-        span: right
+        relation: performance
+        select: title

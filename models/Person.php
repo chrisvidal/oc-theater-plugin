@@ -13,7 +13,7 @@ class Person extends Model
      */
     public $table = 'abnmt_theater_people';
 
-    protected $jsonable = ['roles'];
+    // protected $jsonable = ['roles'];
 
     /**
      * @var array Guarded fields
@@ -29,11 +29,11 @@ class Person extends Model
      * @var array Relations
      */
     public $hasOne = [];
-    public $hasMany = [];
-    public $belongsTo = [];
-    public $belongsToMany = [
-        'roles' => ['Abnmt\Theater\Models\Performance']
+    public $hasMany = [
+        'participations' => ['Abnmt\Theater\Models\Participation']
     ];
+    public $belongsTo = [];
+    public $belongsToMany = [];
     public $morphTo = [];
     public $morphOne = [];
     public $morphMany = [];

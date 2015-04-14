@@ -1,0 +1,14 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    title:
+        label: Роль
+    performance:
+        label: Спектакль
+        type: relation
+        nameFrom: title
+    type:
+        hidden: true
+        default: roles

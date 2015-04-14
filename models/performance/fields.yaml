@@ -35,42 +35,21 @@ tabs:
     defaultTab: Основное
     fields:
         content:
+            tab: Основное
             label: Содержимое
             type: richeditor
             size: giant
         synopsis:
+            tab: Основное
             label: Синопсис
             type: richeditor
         description:
+            tab: Основное
             label: Описание спектакля
             type: richeditor
             size: small
-        authors:
-            tab: Авторы
-            label: Авторы
-            type: repeater
-            prompt: Добавить
-            form:
-                fields:
-                    role:
-                        label: Роль
-                        span: left
-                    name:
-                        label: Имя
-                        span: right
-        roles:
-            tab: Роли и исполнители
-            label: Роли и исполнители
-            type: repeater
-            prompt: Добавить
-            form:
-                fields:
-                    role:
-                        label: Роль
-                        span: left
-                    name:
-                        label: Актер
-                        span: right
+
+
         title_html:
             tab: Дополнительно
             label: Отформатированное название
@@ -102,6 +81,8 @@ tabs:
             label: Возрастной рейтинг
             type: dropdown
             span: right
+
+
         playbill:
             tab: Медиа
             label: Афиша
@@ -124,3 +105,11 @@ tabs:
             label: Галерея
             mode: image
             type: fileupload
+
+        participations:
+            tab: Роли и исполнители
+            type: partial
+            path: $/abnmt/theater/models/performance/_list_participations.htm
+
+
+

@@ -41,13 +41,18 @@ fields:
             director: Художественный руководитель =)
     grade:
         label: Звание
-    bio:
-        label: Биография
-        type: richeditor
-        size: huge
-    portrait:
-        label: Портрет
-        type: fileupload
+tabs:
+    defaultTab: Основное
+    fields:
+        bio:
+            label: Биография
+            type: richeditor
+            size: huge
+        portrait:
+            label: Портрет
+            type: fileupload
 
-    roles:
-        label: Роли в спектаклях
+        participations:
+            tab: Занятость в спектаклях
+            type: partial
+            path: $/abnmt/theater/models/person/_list_participations.htm

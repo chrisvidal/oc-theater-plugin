@@ -13,18 +13,17 @@ class CreatePeopleTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
 
-            $table->string('title')->nullable();
+            $table->string('title');
             $table->string('slug')->index();
 
             $table->string('family_name');
             $table->string('given_name');
-            $table->string('gender');
+            $table->string('gender')->nullable();
+
             $table->string('grade')->nullable();
             $table->string('state')->nullable();
             $table->text('bio')->nullable();
             $table->text('bio_html')->nullable();
-            $table->text('roles')->nullable();
-            $table->text('roles_html')->nullable();
 
             $table->boolean('published')->default(false);
             $table->timestamps();

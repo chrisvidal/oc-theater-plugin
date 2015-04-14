@@ -3,9 +3,10 @@
 # ===================================
 
 columns:
-    role:
+    title:
         label: Роль
-        span: left
-    name:
-        label: Актер
-        span: right
+    person:
+        label: Имя, Фамилия
+        relation: person
+        select: title
+
