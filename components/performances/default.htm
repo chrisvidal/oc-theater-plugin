@@ -22,7 +22,11 @@
 								<div id="{{ section.slug }}" class="section {{ section.active }}">
 									{% for performance in section.performances %}<!-- {{ performance.slug }} -->
 									<div class="performance">
-										<a href="{{ performance.url }}" class="playbill" style="background: url('{{ performance.repertoire.path }}');" title="{{ performance.title }}" alt="{{ performance.title }}"></a>
+										{% if performance.repertoire | length != 0 %}<!-- Background -->
+										<a href="{{ performance.url }}" class="playbill" style="background: url('{{ random(performance.repertoire).path }}');" title="{{ performance.title }}" alt="{{ performance.title }}"></a>
+										{% else %}<!-- No backgrounds -->
+										<a href="{{ performance.url }}" class="playbill" title="{{ performance.title }}" alt="{{ performance.title }}"></a>
+										{% endif %}<!-- /End -->
 										<div class="title-block">
 											<div class="title"><a href="{{ performance.url }}">{{ performance.title }}</a><span class="rate">{{ performance.rate }}+</span></div>
 											<div class="author">{{ performance.author }}</div>
@@ -35,4 +39,3 @@
 								</div>
 								{% endfor %}<!-- /End -->
 							</div>
-

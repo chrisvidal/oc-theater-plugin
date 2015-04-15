@@ -23,12 +23,19 @@ class Performance extends ComponentBase
 
     public function defineProperties()
     {
-        return [
+        return
+        [
             'slug' => [
                 'title'       => 'Заголовок',
                 'description' => 'Название спектакля',
                 'default'     => '{{ :slug }}',
                 'type'        => 'string'
+            ],
+            'performancePage' => [
+                'title'       => 'Страница спектакля',
+                'description' => 'Название страницы для ссылки "перейти". Это свойство используется по умолчанию компонентом.',
+                'type'        => 'dropdown',
+                'default'     => 'performance',
             ],
         ];
     }

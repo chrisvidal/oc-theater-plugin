@@ -13,6 +13,7 @@ class Performances extends ComponentBase
 
     public $performancePage;
 
+    public $test;
 
     public function componentDetails()
     {
@@ -55,6 +56,9 @@ class Performances extends ComponentBase
         $this->performancePage = $this->page['performancePage'] = $this->property('performancePage');
 
         $this->performancesMenu = $this->page['performancesMenu'] = $this->preparePerformancesMenu();
+
+        $this->page['test'] = json_encode($this->preparePerformancesMenu(), JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES );
+
     }
 
     protected function listPerformances()
@@ -62,7 +66,8 @@ class Performances extends ComponentBase
         /*
          * List all the performances
          */
-        $performances = TheaterPerformance::orderBy('premiere_date', 'desc')->get();
+        $performances = TheaterPerformance::orderBy('premiere_date', 'desc')
+            ->get();
 
         /*
          * Add a "url" helper attribute for linking to each performances
@@ -77,7 +82,11 @@ class Performances extends ComponentBase
     protected function preparePerformancesMenu()
     {
 
-        $normal_performance = TheaterPerformance::orderBy('title', 'asc')->isNormal()->get();
+        $normal_performance = TheaterPerformance::orderBy('title', 'asc')
+            ->with('repertoire')
+            ->isNormal()
+            ->get();
+
         $normal_performance->each(function($performance)
         {
             $performance->setUrl($this->performancePage, $this->controller);
@@ -91,7 +100,11 @@ class Performances extends ComponentBase
             'performances' => $normal_performance->sortBy('premiere_date')->reverse(),
         );
 
-        $child_performance = TheaterPerformance::orderBy('title', 'asc')->isChild()->get();
+        $child_performance = TheaterPerformance::orderBy('title', 'asc')
+            ->with('repertoire')
+            ->isChild()
+            ->get();
+
         $child_performance->each(function($performance)
         {
             $performance->setUrl($this->performancePage, $this->controller);
@@ -105,7 +118,11 @@ class Performances extends ComponentBase
             'performances' => $child_performance->sortBy('premiere_date')->reverse(),
         );
 
-        $archive_performance = TheaterPerformance::orderBy('title', 'asc')->isArchive()->get();
+        $archive_performance = TheaterPerformance::orderBy('title', 'asc')
+            ->with('repertoire')
+            ->isArchive()
+            ->get();
+
         $archive_performance->each(function($performance)
         {
             $performance->setUrl($this->performancePage, $this->controller);
@@ -118,9 +135,6 @@ class Performances extends ComponentBase
             'menu' => $archive_performance->sortBy('title'),
             'performances' => $archive_performance->sortBy('premiere_date')->reverse(),
         );
-
-
-
 
 
         return $menu = array($normal, $child, $archive);
