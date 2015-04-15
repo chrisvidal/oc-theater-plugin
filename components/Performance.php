@@ -40,6 +40,11 @@ class Performance extends ComponentBase
         ];
     }
 
+    public function getPerformancePageOptions()
+    {
+        return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
+    }
+
     protected function prepareVars()
     {
         /*
