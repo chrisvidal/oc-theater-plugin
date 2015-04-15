@@ -42,6 +42,11 @@ class Person extends Model
     ];
     public $attachMany = [];
 
+    public function relationExtendQuery($query, $field, $manageMode=null)
+    {
+        return $query->where('type', '=', 'roles');
+    }
+
     public function scopeIsPublished($query)
     {
         return $query

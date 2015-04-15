@@ -40,9 +40,9 @@ class Performance extends Model
     ];
     public $attachOne = [
         'playbill' => ['System\Models\File'],
-        'repertoire' => ['System\Models\File']
     ];
     public $attachMany = [
+        'repertoire' => ['System\Models\File'],
         'background' => ['System\Models\File'],
         'featured' => ['System\Models\File'],
     ];

@@ -8,3 +8,6 @@
   - seed_events_table.php
   - seed_performances_table.php
   - seed_participations_table.php
+1.0.2:
+  - Assign image files
+  - seed_images_table.php

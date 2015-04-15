@@ -57,8 +57,9 @@ class Playbill extends ComponentBase
 
         $this->prepareVars();
 
-        $events = Event::with('performance')
-            ->orderBy('datetime', 'asc')
+        $events = Event::orderBy('datetime', 'asc')
+            ->join('abnmt_theater_performances', 'abnmt_theater_events.performance_id', '=', 'abnmt_theater_performances.id')
+            ->with('performance')
             // ->where('date', '>=', date_create('now'))
             ->get()
         ;

@@ -56,9 +56,9 @@ class SeedRolesTable extends Seeder
 				$description = NULL;
 
 
-			echo mb_convert_encoding($role, "CP866") . "\n";
-			echo mb_convert_encoding($name, "CP866") . "\n";
-			echo mb_convert_encoding($group, "CP866") . "\n";
+			// echo mb_convert_encoding($role, "CP866") . "\n";
+			// echo mb_convert_encoding($name, "CP866") . "\n";
+			// echo mb_convert_encoding($group, "CP866") . "\n";
 
 			$role = [
 				'title' => $role,
@@ -80,19 +80,19 @@ class SeedRolesTable extends Seeder
 
 		if (is_null($post))
 		{
-			echo "NOT FIND! Create...\n";
+			// echo "NOT FIND! Create...\n";
 			return $this->createPerson($name);
 		}
 		else
 		{
-			echo "FIND! Id: " . $post->id . "\n";
+			// echo "FIND! Id: " . $post->id . "\n";
 			return $post->id;
 		}
 	}
 
 	private function createPerson($name)
 	{
-		echo "Create person: " . mb_convert_encoding($name, "CP866") . "\n";
+		// echo "Create person: " . mb_convert_encoding($name, "CP866") . "\n";
 		$person = [
 			'title' => $name,
 			'family_name' => explode(' ', $name)[1],
@@ -109,7 +109,7 @@ class SeedRolesTable extends Seeder
 	{
 		$post = Performance::where('title', '=', $name)->first();
 
-		echo "\n\n\n  " . mb_convert_encoding($name, "CP866") . ": " . $post->id . "\n\n";
+		// echo "\n\n\n  " . mb_convert_encoding($name, "CP866") . ": " . $post->id . "\n\n";
 
 		return $post->id;
 	}
