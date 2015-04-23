@@ -1,0 +1,17 @@
+<?
+
+// $bg = $record->background->all();
+
+// if (count($bg) > 0) {
+// 	foreach ($bg as $key => $image) {
+// 		echo $image->getThumb(50, 50);
+// 		// print_r($image);
+// 	}
+// }
+
+$record->background->each(function($image){
+    echo $image->getThumb(50, 50);
+});
+
+
+?>

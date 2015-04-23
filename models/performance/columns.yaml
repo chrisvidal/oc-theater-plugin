@@ -22,3 +22,16 @@ columns:
     published:
         label: Опубликовано
         type: switch
+    playbill:
+        label: Афиша
+        type: partial
+        sortable: false
+    repertoire:
+        type: partial
+        sortable: false
+    background:
+        type: partial
+        sortable: false
+    featured:
+        type: partial
+        sortable: false

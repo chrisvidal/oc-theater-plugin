@@ -123,4 +123,10 @@ class Performance extends Model
         return $this->url = $controller->pageUrl($pageName, $params);
     }
 
+
+    // public function getPlaybillThumbAttribute()
+    // {
+    //     return '<img src="' . $this->playbill->getThumb('auto', 50) . '" />';
+    // }
+
 }

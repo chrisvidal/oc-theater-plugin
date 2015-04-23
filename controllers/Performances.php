@@ -24,4 +24,20 @@ class Performances extends Controller
 
         BackendMenu::setContext('Abnmt.Theater', 'theater', 'performances');
     }
+
+
+
+
+    public function index($userId = null)
+    {
+        $this->asExtension('ListController')->index();
+    }
+
+    public function listExtendQuery($query)
+    {
+        $query->with(['playbill', 'background']);
+    }
+
+
+
 }
