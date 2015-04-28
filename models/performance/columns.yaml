@@ -27,11 +27,18 @@ columns:
         type: partial
         sortable: false
     repertoire:
+        label: Репертуар
         type: partial
         sortable: false
     background:
+        label: Бэкграунды
         type: partial
         sortable: false
     featured:
+        label: Галерея
+        type: partial
+        sortable: false
+    video:
+        label: Видео
         type: partial
         sortable: false

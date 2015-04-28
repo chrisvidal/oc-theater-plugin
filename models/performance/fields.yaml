@@ -105,6 +105,11 @@ tabs:
             label: Галерея
             mode: image
             type: fileupload
+        video:
+            tab: Медиа
+            label: Видео
+            mode: image
+            type: fileupload
 
         participations:
             tab: Роли и исполнители

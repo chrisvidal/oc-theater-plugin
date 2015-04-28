@@ -2,7 +2,7 @@
 <div>
 <?
 
-$record->background->each(function($image){
+$record->video->each(function($image){
     echo '<img src="' . $image->getThumb('auto', 50) . '" style="inline-block;" >' . "\n";
 });
 

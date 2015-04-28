@@ -45,6 +45,7 @@ class Performance extends Model
         'repertoire' => ['System\Models\File'],
         'background' => ['System\Models\File'],
         'featured' => ['System\Models\File'],
+        'video' => ['System\Models\File'],
     ];
 
     public function scopeIsPublished($query)
@@ -122,11 +123,5 @@ class Performance extends Model
 
         return $this->url = $controller->pageUrl($pageName, $params);
     }
-
-
-    // public function getPlaybillThumbAttribute()
-    // {
-    //     return '<img src="' . $this->playbill->getThumb('auto', 50) . '" />';
-    // }
 
 }

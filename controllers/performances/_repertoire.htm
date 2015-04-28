@@ -1,3 +1,10 @@
-<div data-control="toolbar">
-    Repertoire
+<!-- <div style="white-space: nowrap;" > -->
+<div>
+<?
+
+$record->repertoire->each(function($image){
+    echo '<img src="' . $image->getThumb('auto', 50) . '" style="inline-block;" >' . "\n";
+});
+
+?>
 </div>

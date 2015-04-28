@@ -35,7 +35,7 @@ class Performances extends Controller
 
     public function listExtendQuery($query)
     {
-        $query->with(['playbill', 'background']);
+        $query->with(['playbill', 'background', 'featured', 'video', 'repertoire']);
     }
 
 

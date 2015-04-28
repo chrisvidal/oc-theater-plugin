@@ -13,6 +13,8 @@ class Performance extends ComponentBase
 
     public $active;
 
+    public $test;
+
     public function componentDetails()
     {
         return [
@@ -63,13 +65,34 @@ class Performance extends ComponentBase
         $this->slug = $this->page['slug'] = $this->property('slug');
 
         $this->performance = $this->page['performance'] = $this->loadPerformance();
+
+        $this->page['test'] = json_encode($this->loadPerformance(), JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES );
     }
 
     protected function loadPerformance()
     {
 
         $slug = $this->property('slug');
-        $performance = TheaterPerformance::isPublished()->where('slug', '=', $slug)->first();
+        $performance = TheaterPerformance::isPublished()
+            ->where('slug', '=', $slug)
+            ->with(['background', 'featured', 'video', 'participations', 'participations.person'])
+            ->first();
+
+        if ($performance->featured) {
+
+            $this->addCss('/plugins/abnmt/theater/assets/vendor/photoswipe/photoswipe.css');
+            $this->addCss('/plugins/abnmt/theater/assets/vendor/photoswipe/default-skin/default-skin.css');
+            $this->addJs('/plugins/abnmt/theater/assets/vendor/photoswipe/photoswipe.js');
+            $this->addJs('/plugins/abnmt/theater/assets/vendor/photoswipe/photoswipe-ui-default.js');
+            $this->addJs('/plugins/abnmt/theater/assets/js/performance-gallery.js');
+
+            $performance->featured->each(function($image)
+            {
+                $image['thumb'] = $image->getThumb(null, 177);
+                $image['sizes'] = getimagesize('./' . $image->getPath());
+            });
+        }
+
 
         return $performance;
     }
