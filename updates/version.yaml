@@ -4,10 +4,10 @@
   - create_performances_table.php
   - create_events_table.php
   - create_participations_table.php
-  - seed_people_table.php
-  - seed_events_table.php
-  - seed_performances_table.php
-  - seed_participations_table.php
 1.0.2:
-  - Assign image files
+  - Seeds
+  - seed_people_table.php
+  - seed_performances_table.php
+  - seed_events_table.php
+  - seed_participations_table.php
   - seed_images_table.php

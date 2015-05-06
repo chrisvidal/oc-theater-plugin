@@ -120,4 +120,13 @@ class Event extends Model
         return $this->url = $controller->pageUrl($pageName, $params);
     }
 
+
+    public function beforeSave()
+    {
+        if ($this->datetime == NULL)
+        {
+            return;
+        }
+    }
+
 }

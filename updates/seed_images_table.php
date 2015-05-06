@@ -20,19 +20,17 @@ class SeedImagesTable extends Seeder
             switch ($names[0]) {
                 case 'performance':
                 {
-                    // echo $names[1] . "\n";
                     $this->updateFile($image, $this->findPerformance($names[1]), $names);
                     break;
                 }
                 case 'person':
                 {
-                    // echo $names[1] . "\n";
                     $this->updateFile($image, $this->findPerson($names[1]), $names);
                     break;
                 }
                 default:
                 {
-                    echo "Not find class...\n";
+                    echo "Not find class: " . $names[0] . "\n";
                     break;
                 }
             }
@@ -106,6 +104,12 @@ class SeedImagesTable extends Seeder
                 break;
             case 'featured':
                 $field = "featured";
+                break;
+            case 'video':
+                $field = "video";
+                break;
+            case 'gallery':
+                $field = "gallery";
                 break;
             default:
                 echo "Not find field ";

@@ -91,14 +91,14 @@ class Troupe extends ComponentBase
         // );
 
 
-        $grade_persons = TheaterPerson::orderBy('family_name', 'asc')->isGrade()->get();
+        $grade_persons = TheaterPerson::orderBy('family_name', 'asc')->with(['portrait'])->isGrade()->get();
 
         $grade_persons->each(function($person){
             $person->setUrl($this->personPage, $this->controller);
         });
 
 
-        $state_persons = TheaterPerson::orderBy('family_name', 'asc')->isState()->get();
+        $state_persons = TheaterPerson::orderBy('family_name', 'asc')->with(['portrait'])->isState()->get();
 
         $state_persons->each(function($person){
             $person->setUrl($this->personPage, $this->controller);
@@ -116,7 +116,7 @@ class Troupe extends ComponentBase
         );
 
 
-        $cooperate_persons = TheaterPerson::orderBy('family_name', 'asc')->isCooperate()->get();
+        $cooperate_persons = TheaterPerson::orderBy('family_name', 'asc')->with(['portrait'])->isCooperate()->get();
 
         $cooperate_persons->each(function($person){
             $person->setUrl($this->personPage, $this->controller);
