@@ -14,7 +14,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "cooperate",
 			"gender" => "male",
 			"slug" => "yurii-ageikin",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Филипп Азаров",
@@ -24,7 +24,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "state",
 			"gender" => "male",
 			"slug" => "filipp-azarov",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Алёна Азарова",
@@ -34,7 +34,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "state",
 			"gender" => "female",
 			"slug" => "alyona-azarova",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Семён Афендулов",
@@ -44,7 +44,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "state",
 			"gender" => "male",
 			"slug" => "semyon-afendulov",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Евгений Баранов",
@@ -54,7 +54,7 @@ class SeedPeopleTable extends Seeder
 			"gender" => "male",
 			"grade" => "Заслуженный артист России",
 			"slug" => "evgenii-baranov",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Илья Безрук",
@@ -64,7 +64,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "state",
 			"gender" => "male",
 			"slug" => "ilya-bezruk",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Екатерина Белова",
@@ -74,7 +74,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "state",
 			"gender" => "female",
 			"slug" => "ekaterina-belova",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Сергей Бледных",
@@ -84,7 +84,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "state",
 			"gender" => "male",
 			"slug" => "sergei-blednykh",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Наталья Боярёнок",
@@ -93,7 +93,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "cooperate",
 			"gender" => "female",
 			"slug" => "natalya-boyaryonok",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Ильгиз Булгаков",
@@ -102,7 +102,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "state",
 			"gender" => "male",
 			"slug" => "ilgiz-bulgakov",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Юлия Бурцева",
@@ -112,7 +112,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "state",
 			"gender" => "female",
 			"slug" => "yuliya-burtseva",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Андрей Вергелис",
@@ -121,7 +121,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "cooperate",
 			"gender" => "male",
 			"slug" => "andrei-vergelis",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Станислав Воронецкий",
@@ -131,7 +131,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "state",
 			"gender" => "male",
 			"slug" => "stanislav-voronetskii",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Марк Гаврилов",
@@ -141,7 +141,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "state",
 			"gender" => "male",
 			"slug" => "mark-gavrilov",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Александр Гончарук",
@@ -150,7 +150,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "cooperate",
 			"gender" => "male",
 			"slug" => "aleksandr-goncharuk",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Юлия Горшенина",
@@ -160,7 +160,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "state",
 			"gender" => "female",
 			"slug" => "yuliya-gorshenina",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Кирилл Датешидзе",
@@ -170,7 +170,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "cooperate",
 			"gender" => "male",
 			"slug" => "kirill-dateshidze",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Анна Загребна",
@@ -180,7 +180,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "state",
 			"gender" => "female",
 			"slug" => "anna-zagrebna",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Леонид Зябкин",
@@ -190,7 +190,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "state",
 			"gender" => "male",
 			"slug" => "leonid-zyabkin",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Павел Ивановский",
@@ -200,7 +200,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "cooperate",
 			"gender" => "male",
 			"slug" => "pavel-ivanovskii",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Анатолий Ильченко",
@@ -210,7 +210,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "state",
 			"gender" => "male",
 			"slug" => "anatolii-ilchenko",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Алексей Исполатов",
@@ -220,7 +220,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "state",
 			"gender" => "male",
 			"slug" => "aleksei-ispolatov",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Николай Исполатов",
@@ -230,7 +230,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "state",
 			"gender" => "male",
 			"slug" => "nikolai-ispolatov",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Лариса Климова",
@@ -240,7 +240,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "state",
 			"gender" => "female",
 			"slug" => "larisa-klimova",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Татьяна Кожевникова",
@@ -250,7 +250,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "state",
 			"gender" => "female",
 			"slug" => "tatyana-kozhevnikova",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Юлия Копылова",
@@ -259,7 +259,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "cooperate",
 			"gender" => "female",
 			"slug" => "yuliya-kopylova",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Виктор Костецкий",
@@ -270,7 +270,7 @@ class SeedPeopleTable extends Seeder
 			"gender" => "male",
 			"grade" => "Заслуженный артист России",
 			"slug" => "viktor-kostetskii",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Виталий Кравченко",
@@ -280,7 +280,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "state",
 			"gender" => "male",
 			"slug" => "vitalii-kravchenko",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Екатерина Культина",
@@ -290,7 +290,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "state",
 			"gender" => "female",
 			"slug" => "ekaterina-kultina",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Михаил Левшин",
@@ -301,7 +301,7 @@ class SeedPeopleTable extends Seeder
 			"gender" => "male",
 			"grade" => "Заслуженный деятель искусств России",
 			"slug" => "mikhail-levshin",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Нина Мещанинова",
@@ -312,7 +312,7 @@ class SeedPeopleTable extends Seeder
 			"gender" => "female",
 			"grade" => "Заслуженная артистка России",
 			"slug" => "nina-meschaninova",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Ирина Митюшкина",
@@ -322,7 +322,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "state",
 			"gender" => "female",
 			"slug" => "irina-mityushkina",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Людмила Никитина",
@@ -332,7 +332,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "state",
 			"gender" => "female",
 			"slug" => "lyudmila-nikitina",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Сергей Николаев",
@@ -342,7 +342,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "state",
 			"gender" => "male",
 			"slug" => "sergei-nikolaev",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Мария Осипова",
@@ -352,7 +352,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "cooperate",
 			"gender" => "female",
 			"slug" => "mariya-osipova",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Станислав Осколков",
@@ -361,7 +361,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "cooperate",
 			"gender" => "male",
 			"slug" => "stanislav-oskolkov",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Анастасия Пижель",
@@ -370,7 +370,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "state",
 			"gender" => "female",
 			"slug" => "anastasiya-pizhel",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Валерий Полетаев",
@@ -379,7 +379,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "state",
 			"gender" => "male",
 			"slug" => "valerii-poletaev",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Таисия Попенко",
@@ -390,7 +390,7 @@ class SeedPeopleTable extends Seeder
 			"gender" => "female",
 			"grade" => "Заслуженная артистка России",
 			"slug" => "taisiya-popenko",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Роман Притула",
@@ -400,7 +400,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "state",
 			"gender" => "male",
 			"slug" => "roman-pritula",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Галина Сабурова",
@@ -410,7 +410,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "state",
 			"gender" => "female",
 			"slug" => "galina-saburova",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Максим Сергеев",
@@ -420,7 +420,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "state",
 			"gender" => "male",
 			"slug" => "maksim-sergeev",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Лина Сорокина",
@@ -429,7 +429,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "cooperate",
 			"gender" => "female",
 			"slug" => "lina-sorokina",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Геннадий Спириденков",
@@ -440,7 +440,7 @@ class SeedPeopleTable extends Seeder
 			"gender" => "male",
 			"grade" => "Заслуженный артист России",
 			"slug" => "gennadii-spiridenkov",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Симона Строганова",
@@ -449,7 +449,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "cooperate",
 			"gender" => "female",
 			"slug" => "simona-stroganova",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Сергей Суржин",
@@ -458,7 +458,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "cooperate",
 			"gender" => "male",
 			"slug" => "sergei-surzhin",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Оксана Сурнина",
@@ -468,7 +468,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "state",
 			"gender" => "female",
 			"slug" => "oksana-surnina",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Виталий Такс",
@@ -477,7 +477,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "cooperate",
 			"gender" => "male",
 			"slug" => "vitalii-taks",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Евгений Талашманов",
@@ -486,7 +486,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "state",
 			"gender" => "male",
 			"slug" => "evgenii-talashmanov",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Наталья Терехова",
@@ -496,7 +496,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "state",
 			"gender" => "female",
 			"slug" => "natalya-terekhova",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Елизавета Чернова",
@@ -506,7 +506,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "state",
 			"gender" => "female",
 			"slug" => "elizaveta-chernova",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Александр Шевелёв",
@@ -516,7 +516,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "state",
 			"gender" => "male",
 			"slug" => "aleksandr-shevelyov",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Андрей Шимко",
@@ -526,7 +526,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "cooperate",
 			"gender" => "male",
 			"slug" => "andrei-shimko",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Ольга Яковлева",
@@ -536,7 +536,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "state",
 			"gender" => "female",
 			"slug" => "olga-yakovleva",
-			"published" => 0
+			"published" => 1
 		]);
 		Person::create([
 			"title" => "Роман Якушов",
@@ -546,7 +546,7 @@ class SeedPeopleTable extends Seeder
 			"state" => "state",
 			"gender" => "male",
 			"slug" => "roman-yakushov",
-			"published" => 0
+			"published" => 1
 		]);
 
 		// Grades
