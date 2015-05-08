@@ -65,6 +65,7 @@ class Plugin extends PluginBase
             'Abnmt\Theater\Components\Performances' => 'repertoire',
             'Abnmt\Theater\Components\Person' => 'person',
             'Abnmt\Theater\Components\Troupe' => 'troupe',
+            'Abnmt\Theater\Components\Test' => 'test',
         ];
     }
 }

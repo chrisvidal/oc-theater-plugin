@@ -26,6 +26,19 @@ class Performance extends Model
     protected $fillable = [];
 
     /**
+     * The attributes on which the post list can be ordered
+     * @var array
+     */
+    // public static $allowedSortingOptions = array(
+    //     'title asc' => 'Title (ascending)',
+    //     'title desc' => 'Title (descending)',
+    //     'premiere_date asc' => 'Premiere date (ascending)',
+    //     'premiere_date desc' => 'Premiere date (descending)',
+    // );
+
+
+
+    /**
      * @var array Relations
      */
     public $hasOne = [];
@@ -75,6 +88,45 @@ class Performance extends Model
             ->where('state', '=', 'archived')
         ;
     }
+
+
+
+    // public function scopeListPerformances($query, $options)
+    // {
+
+    //     /*
+    //      * Default options
+    //      */
+    //     extract(array_merge([
+    //         'sort'       => 'premiere_date',
+    //         'published'  => true
+    //     ], $options));
+
+
+    //     if ($published)
+    //         $query->isPublished();
+
+    //     /*
+    //      * Sorting
+    //      */
+    //     if (!is_array($sort)) $sort = [$sort];
+    //     foreach ($sort as $_sort) {
+
+    //         if (in_array($_sort, array_keys(self::$allowedSortingOptions))) {
+    //             $parts = explode(' ', $_sort);
+    //             if (count($parts) < 2) array_push($parts, 'desc');
+    //             list($sortField, $sortDirection) = $parts;
+
+    //             $query->orderBy($sortField, $sortDirection);
+    //         }
+    //     }
+
+
+    //     return $query;
+    // }
+
+
+
 
     public function getDropdownOptions($fieldName = null, $keyValue = null)
     {

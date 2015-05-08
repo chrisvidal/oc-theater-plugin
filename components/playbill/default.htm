@@ -12,7 +12,7 @@
 								<div id="{{ month }}" class="section {{ months.active }}">
 									{% for performance in months.normal %}<!-- {{ performance.slug }} -->
 									<div class="performance">
-										<div class="date-block"><span class="date day">{{ performance.date|date('j') }}</span><span class="date weekday">{{ performance.weekday3 }}</span></div>
+										<div class="date-block"><span class="date day">{{ performance.day }}</span><span class="date weekday">{{ performance.weekday3 }}</span></div>
 										<div class="title-block">
 											<span class="title"><a href="{{ performance.url }}">{{ performance.performance.title }}</a></span>
 											<span class="author">{{ performance.performance.author }}</span>
@@ -24,7 +24,7 @@
 									{% if months.child %}<h3>Детские спектакли</h3>
 									{% for performance in months.child %}<!-- {{ performance.slug }} -->
 									<div class="performance">
-										<div class="date-block"><span class="date day">{{ performance.date|date('j') }}</span><span class="date weekday">{{ performance.weekday3 }}</span></div>
+										<div class="date-block"><span class="date day">{{ performance.day }}</span><span class="date weekday">{{ performance.weekday3 }}</span></div>
 										<div class="title-block">
 											<span class="title"><a href="{{ performance.url }}">{{ performance.performance.title }}</a></span>
 											<span class="author">{{ performance.performance.author }}</span>
@@ -40,7 +40,7 @@
 									<h3>{{ months.name }}</h3>
 									{% for performance in months.child %}<!-- {{ performance.slug }} -->
 									<div class="performance">
-										<div class="date-block"><span class="date day">{{ performance.date|date('j') }}</span><span class="date weekday">{{ performance.weekday3 }}</span></div>
+										<div class="date-block"><span class="date day">{{ performance.day }}</span><span class="date weekday">{{ performance.weekday3 }}</span></div>
 										<div class="title-block">
 											<span class="title"><a href="{{ performance.url }}">{{ performance.performance.title }}</a></span>
 											<span class="author">{{ performance.performance.author }}</span>

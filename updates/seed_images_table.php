@@ -10,7 +10,7 @@ class SeedImagesTable extends Seeder
 
     public function run()
     {
-        $files = File::all();
+        $files = File::where("field", "=", NULL)->get();
         // print_r($files);
 
         foreach ($files as $image) {
@@ -30,7 +30,7 @@ class SeedImagesTable extends Seeder
                 }
                 default:
                 {
-                    echo "Not find class: " . $names[0] . "\n";
+                    echo "Not find class: " . $image->file_name . "\n";
                     break;
                 }
             }
@@ -85,10 +85,19 @@ class SeedImagesTable extends Seeder
 
     private function updateFile($file, $post, $names)
     {
-        echo " --\n";
-        $file->file_name =  $names[2];
+        // echo " --\n";
+        $name_in  = preg_split("/\./", $names[2]);
 
-        $field = preg_replace("/([0-9-_]+)?\..+/", "", $names[2]);
+        $fname = $name_in[0];
+        $ext   = $name_in[1];
+
+        $field = preg_split("/_/", $fname, 2);
+        $field = preg_replace("/([0-9-]+)/", "", $field[0]);
+
+        $fname = $names[1] . "_" . $names[2];
+
+        $file->file_name =  $fname;
+
         switch ($field) {
             case 'troupe':
                 $field = "portrait";
@@ -109,11 +118,11 @@ class SeedImagesTable extends Seeder
                 $field = "video";
                 break;
             case 'gallery':
-                $field = "gallery";
+                $field = "featured";
                 break;
             default:
-                echo "Not find field ";
-                break;
+                echo "Not find field " . $field . "\n";
+                return;
         }
         $file->field = $field;
 

@@ -7,14 +7,6 @@ use Abnmt\Theater\Models\Performance as TheaterPerformance;
 class Performances extends ComponentBase
 {
 
-    public $performances;
-
-    public $performancesMenu;
-
-    public $performancePage;
-
-    public $test;
-
     public function componentDetails()
     {
         return [
@@ -23,6 +15,10 @@ class Performances extends ComponentBase
         ];
     }
 
+
+    /*
+     * Define Properties
+     */
     public function defineProperties()
     {
         return [
@@ -30,16 +26,62 @@ class Performances extends ComponentBase
                 'title'       => 'Страница спектакля',
                 'description' => 'Название страницы для ссылки "перейти". Это свойство используется по умолчанию компонентом.',
                 'type'        => 'dropdown',
-                'default'     => 'performance',
+                'default'     => 'single/performance',
+            ],
+            'personPage' => [
+                'title'       => 'Страница биографии',
+                'description' => 'Название страницы для ссылки "перейти". Это свойство используется по умолчанию компонентом.',
+                'type'        => 'dropdown',
+                'default'     => 'single/person',
             ],
         ];
     }
 
+
+    /*
+     * Get Properties
+     */
     public function getPerformancePageOptions()
     {
         return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
     }
 
+    public function getPersonPageOptions()
+    {
+        return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
+    }
+
+
+    /*
+     * Registered Propertie vars
+     */
+    public $performancePage;
+    public $personPage;
+
+
+    /*
+     * Registered Main Page var
+     */
+    public $performances;
+
+
+    /*
+     * Prepared Page vars
+     */
+    protected function prepareVars()
+    {
+        /*
+         * URLs
+         */
+        $this->performancePage = $this->page['performancePage'] = $this->property('performancePage');
+        $this->personPage = $this->page['personPage'] = $this->property('personPage');
+
+    }
+
+
+    /*
+     * Run
+     */
     public function onRun()
     {
         $this->prepareVars();
@@ -48,96 +90,79 @@ class Performances extends ComponentBase
 
     }
 
-    protected function prepareVars()
-    {
-        /*
-         * Performance links
-         */
-        $this->performancePage = $this->page['performancePage'] = $this->property('performancePage');
 
-        $this->performancesMenu = $this->page['performancesMenu'] = $this->preparePerformancesMenu();
 
-        $this->page['test'] = json_encode($this->preparePerformancesMenu(), JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES );
-
-    }
 
     protected function listPerformances()
     {
-        /*
-         * List all the performances
-         */
-        $performances = TheaterPerformance::orderBy('premiere_date', 'desc')
-            ->get();
 
         /*
-         * Add a "url" helper attribute for linking to each performances
+         * Get all Performances with relations
          */
-        $performances->each(function($performance){
+        $performances = TheaterPerformance::with(['playbill', 'repertoire', 'background', 'featured', 'video', 'participations', 'participations.person'])->isPublished()->get();
+
+        /*
+         * Add a "URL" helper attribute for linking to each performance and person relation
+         */
+        $performances->each(function($performance)
+        {
             $performance->setUrl($this->performancePage, $this->controller);
+
+            $performance->participations->each(function($role)
+            {
+                $role->person->setUrl($this->personPage, $this->controller);
+            });
+
         });
 
-        return $performances;
+        $normal = $performances->filter(function($performance)
+        {
+            if ($performance->type == 'normal' && $performance->state != 'archived')
+                return $performance;
+        });
+        $child = $performances->filter(function($performance)
+        {
+            if ($performance->type == 'child' && $performance->state != 'archived')
+                return $performance;
+        });
+        $archive = $performances->filter(function($performance)
+        {
+            if ($performance->state == 'archived')
+                return $performance;
+        });
+
+        // $section['menu'] = $items->sortBy('title');
+        // $section['performances'] = $items->sortByDesc('premiere_date');
+        // $section['menu'] = $items;
+        // $section['performances'] = $items;
+
+
+        $data = [
+            'normal' => [
+                'slug' => 'performances',
+                'title' => 'Спектакли',
+                'active' => 'active',
+                'menu' => $normal->sortBy('title')->values(),
+                'performances' => $normal->sortByDesc('premiere_date')->values(),
+            ],
+            'child' => [
+                'slug' => 'child',
+                'title' => 'Детские спектакли',
+                'active' => '',
+                'menu' => $child->sortBy('title')->values(),
+                'performances' => $child->sortByDesc('premiere_date')->values(),
+            ],
+            'archived' => [
+                'slug' => 'archive',
+                'title' => 'Архив',
+                'active' => '',
+                'menu' => $archive->sortBy('title')->values(),
+                'performances' => $archive->sortByDesc('premiere_date')->values(),
+            ]
+        ];
+
+        return $data;
     }
 
-    protected function preparePerformancesMenu()
-    {
-
-        $normal_performance = TheaterPerformance::orderBy('title', 'asc')
-            ->with('repertoire')
-            ->isNormal()
-            ->get();
-
-        $normal_performance->each(function($performance)
-        {
-            $performance->setUrl($this->performancePage, $this->controller);
-        });
-
-        $normal = array(
-            'slug' => 'performances',
-            'title' => 'Спектакли',
-            'active' => 'active',
-            'menu' => $normal_performance->sortBy('title'),
-            'performances' => $normal_performance->sortBy('premiere_date')->reverse(),
-        );
-
-        $child_performance = TheaterPerformance::orderBy('title', 'asc')
-            ->with('repertoire')
-            ->isChild()
-            ->get();
-
-        $child_performance->each(function($performance)
-        {
-            $performance->setUrl($this->performancePage, $this->controller);
-        });
-
-        $child = array(
-            'slug' => 'child',
-            'title' => 'Детские спектакли',
-            'active' => '',
-            'menu' => $child_performance->sortBy('title'),
-            'performances' => $child_performance->sortBy('premiere_date')->reverse(),
-        );
-
-        $archive_performance = TheaterPerformance::orderBy('title', 'asc')
-            ->with('repertoire')
-            ->isArchive()
-            ->get();
-
-        $archive_performance->each(function($performance)
-        {
-            $performance->setUrl($this->performancePage, $this->controller);
-        });
-
-        $archive = array(
-            'slug' => 'archive',
-            'title' => 'Архив',
-            'active' => '',
-            'menu' => $archive_performance->sortBy('title'),
-            'performances' => $archive_performance->sortBy('premiere_date')->reverse(),
-        );
-
-
-        return $menu = array($normal, $child, $archive);
-    }
 
 }
