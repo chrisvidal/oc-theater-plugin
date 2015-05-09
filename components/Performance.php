@@ -127,8 +127,11 @@ class Performance extends ComponentBase
 
             $performance->featured->each(function($image)
             {
-                $image['thumb'] = $image->getThumb(null, 177);
                 $image['sizes'] = getimagesize('./' . $image->getPath());
+                if ($image['sizes'][0] < $image['sizes'][1])
+                    $image['thumb'] = $image->getThumb(177, null);
+                else
+                    $image['thumb'] = $image->getThumb(null, 177);
             });
         }
 

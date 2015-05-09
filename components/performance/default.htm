@@ -1,4 +1,19 @@
 {% set performance = __SELF__.performance %}<!-- Performance -->
+				<div id="performance-page" class="{{ slug }}">
+
+					{% if performance.background %}<!-- Backgrounds -->
+					<div class="bg-container">
+						{% for key, bg in performance.background %}<!-- BG -->
+						<div class="bg bg-{{key+1}}">
+							<img src="{{bg.path}}">
+						</div>
+						{% endfor %}<!-- /End -->
+					</div>
+					<!-- /End -->{% endif %}
+
+					<div class="container">
+						<div class="wrap">
+
 							<nav id="page-navigation" role="navigation" class="secondary-navigation">
 								<ul class="nav-menu">
 									{% for section in performances %}<!-- {{ section.slug }} -->
@@ -72,12 +87,12 @@
 								<div class="gallery">
 									{% for image in performance.featured %}<!-- Image -->
 									<figure class="gallery-item" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-										<a href="{{ image.path }}" itemprop="contentUrl" data-size="{{image.sizes.0}}x{{image.sizes.1}}">
-											<img src="{{ image.thumb }}" itemprop="thumbnail" alt="{{ image.title }}" />
+										<a href="{{ image.path }}" itemprop="contentUrl" data-size="{{image.sizes.0}}x{{image.sizes.1}}" style="background: url({{ image.thumb }}) center no-repeat; background-size: cover;">
+											<img src="{{ image.thumb }}" itemprop="thumbnail" alt="{{ image.title }}">
 										</a>
 										<figcaption itemprop="caption description">{{ image.description }}</figcaption>
 									</figure>
-									<!-- /End -->{% endfor %}
+									{% endfor %}<!-- /End -->
 								</div>
 								<!-- Root element of PhotoSwipe. Must have class pswp. -->
 								<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
@@ -130,6 +145,10 @@
 							</div>
 
 
-<pre>
+<!-- <pre>
 	{{ test|raw }}
-</pre>
+</pre> -->
+
+						</div>
+					</div>
+				</div>
