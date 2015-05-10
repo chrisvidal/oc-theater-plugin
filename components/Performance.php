@@ -10,6 +10,8 @@ class Performance extends ComponentBase
      * Registered Main Page var
      */
     public $performance;
+    public $roles;
+    public $participations_g;
 
     public $active;
 
@@ -96,6 +98,7 @@ class Performance extends ComponentBase
         $this->performance = $this->page['performance'] = $this->loadPerformance();
         $this->performances = $this->page['performances'] = $this->listPerformances();
 
+        // $this->page['roles'] = $this->roles;
         $this->page['test'] = json_encode($this->loadPerformance(), JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES );
     }
 
@@ -112,10 +115,25 @@ class Performance extends ComponentBase
          * Add a "URL" helper attribute for linking to each performance and person relation
          */
 
+        $this->roles = array();
+        $this->participations_g = array();
+
         $performance->participations->each(function($role)
         {
             $role->person->setUrl($this->personPage, $this->controller);
+
+            if ($role['group'] != NULL)
+                $this->roles[$role['group']][] = $role;
+
+            $this->participations_g[$role['title']]['title'] = $role->title;
+            $this->participations_g[$role['title']]['type'] = $role->type;
+            $this->participations_g[$role['title']]['description'] = $role->description;
+            $this->participations_g[$role['title']]['group'] = $role->group;
+            $this->participations_g[$role['title']]['persons'][] = $role->person;
         });
+
+
+
 
         if ($performance->featured) {
 
@@ -135,6 +153,10 @@ class Performance extends ComponentBase
             });
         }
 
+        $performance->roles = $this->roles;
+        $performance->participations_g = $this->participations_g;
+
+        // print_r($this->roles);
 
         return $performance;
     }

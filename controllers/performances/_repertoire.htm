@@ -1,9 +1,9 @@
 <!-- <div style="white-space: nowrap;" > -->
-<div>
+<div style="font-size: 0;">
 <?
 
 $record->repertoire->each(function($image){
-    echo '<img src="' . $image->getThumb('auto', 50) . '" style="inline-block;" >' . "\n";
+    echo '<img src="' . $image->getThumb('auto', 100) . '" style="display:inline-block; margin: 0 1px 1px 0;" >' . "\n";
 });
 
 ?>

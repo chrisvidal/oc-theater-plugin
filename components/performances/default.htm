@@ -8,7 +8,11 @@
 											<li class="nav-submenu-item">
 												<a href="{{ performance.url }}">
 													<div class="title">{{ performance.title }}</div>
+													{% if performance.author | length > 22 %}{% set author = performance.author|split(',') %}
+													<div class="author">{{ author.0 }} и др.</div>
+													{% else %}
 													<div class="author">{{ performance.author }}</div>
+													{% endif %}
 												</a>
 											</li>
 											{% endfor %}<!-- /End -->
@@ -26,9 +30,12 @@
 										<a href="{{ performance.url }}" class="playbill" style="background: url('{{ random(performance.repertoire).path }}');" title="{{ performance.title }}" alt="{{ performance.title }}"></a>
 										{% else %}<!-- No backgrounds -->
 										<a href="{{ performance.url }}" class="playbill" title="{{ performance.title }}" alt="{{ performance.title }}"></a>
-										{% endif %}<!-- /End -->
+										<!-- /End -->{% endif %}
 										<div class="title-block">
-											<div class="title"><a href="{{ performance.url }}">{{ performance.title }}</a><span class="rate">{{ performance.rate }}+</span></div>
+											<div class="title">
+												<a href="{{ performance.url }}">{{ performance.title }}</a>
+												{% if performance.rate %}<span class="rate">{{ performance.rate }}+</span>{% endif %}
+											</div>
 											<div class="author">{{ performance.author }}</div>
 											<div class="description">{{ performance.description }}</div>
 										</div>

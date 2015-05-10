@@ -484,5 +484,172 @@ class SeedPerformancesTable extends Seeder
 			"rate" => "16",
 			"published" => "1",
 		]);
+
+
+
+
+		// ARCHIVE
+		Performance::create([
+			'title' => 'Хочу ребёнка',
+			'slug' => 'hochu-rebyonka',
+			'description' => 'Социальная комедия',
+			'author' => 'З. Третьяков',
+			'state' => 'archived',
+			'type' => 'normal',
+			'premiere_date' => '1991-01-01',
+			'published' => '1',
+		]);
+		Performance::create([
+			'title' => 'Водевиль есть вещь',
+			'slug' => 'vodevil-est-vesh',
+			'description' => 'Спектакль из двух водевилей — «Барская спесь, или Анютины глазки» Д. Ленского и «Беда от нежного сердца» В. Соллогуба',
+			'author' => 'В. Соллогуб, Д. Ленский',
+			'state' => 'archived',
+			'type' => 'normal',
+			'premiere_date' => '1992-01-01',
+			'published' => '1',
+		]);
+		Performance::create([
+			'title' => 'Я никогда не буду француженкой',
+			'slug' => 'ya-nikogda-ne-budu-francuzhenkoj',
+			'description' => 'Спектакль-песня по произведениям российских бардов',
+			'author' => '',
+			'state' => 'archived',
+			'type' => 'normal',
+			'premiere_date' => '1993-01-01',
+			'published' => '1',
+		]);
+		Performance::create([
+			'title' => 'Сказка о четырёх близнецах',
+			'slug' => 'skazka-o-chetyryoh-bliznecah',
+			'description' => 'История о подлинной любви и дружбе по мотивам болгарских сказок',
+			'author' => 'П. Панчев',
+			'state' => 'archived',
+			'type' => 'normal',
+			'premiere_date' => '1997-01-01',
+			'published' => '1',
+		]);
+		Performance::create([
+			'title' => 'Граф Нулин',
+			'slug' => 'graf-nulin',
+			'description' => 'Импровизация на заданную тему с лирическими отступлениями автора и театра',
+			'author' => 'А. Пушкин',
+			'state' => 'archived',
+			'type' => 'normal',
+			'premiere_date' => '1998-01-01',
+			'published' => '1',
+		]);
+		Performance::create([
+			'title' => 'Школьная смехопанорама',
+			'slug' => 'shkolnaya-smehopanorama',
+			'description' => 'Озорные и весёлые истории из школьной жизни',
+			'author' => 'А. Курляндский, А. Успенский, А. Хайт, В. Левенбук',
+			'state' => 'archived',
+			'type' => 'normal',
+			'premiere_date' => '1998-01-01',
+			'published' => '1',
+		]);
+		Performance::create([
+			'title' => 'Соната для шарманки с оркестром',
+			'slug' => 'sonata-dlya-sharmanki-s-orkestrom',
+			'description' => 'Фантазия по пьесам современных петербургских драматургов',
+			'author' => 'А. Соколова, А. Образцов, С. Носов',
+			'state' => 'archived',
+			'type' => 'normal',
+			'premiere_date' => '1999-01-01',
+			'published' => '1',
+		]);
+		Performance::create([
+			'title' => 'Сказ про аптырку',
+			'slug' => 'skaz-pro-aptyrku',
+			'description' => 'Скоморошья фантазия на темы русского сказочного фольклора',
+			'author' => 'С. Кочнев',
+			'state' => 'archived',
+			'type' => 'normal',
+			'premiere_date' => '1999-01-01',
+			'published' => '1',
+		]);
+		Performance::create([
+			'title' => 'Чехов на диване',
+			'slug' => 'chehov-na-divane',
+			'description' => 'История одного наваждения',
+			'author' => 'М. Берман-Цикиновский',
+			'state' => 'archived',
+			'type' => 'normal',
+			'premiere_date' => '2000-01-01',
+			'published' => '1',
+		]);
+		Performance::create([
+			'title' => 'Картофельный эльф',
+			'slug' => 'kartofelnyj-elf',
+			'description' => 'Драма',
+			'author' => 'В. Набоков',
+			'state' => 'archived',
+			'type' => 'normal',
+			'premiere_date' => '2001-01-01',
+			'published' => '1',
+		]);
+		Performance::create([
+			'title' => 'Венецианский купец',
+			'slug' => 'venecianskij-kupec',
+			'description' => 'Трагикомедия в 2-х частях',
+			'author' => 'Уильям Шекспир',
+			'state' => 'archived',
+			'type' => 'normal',
+			'premiere_date' => '2002-01-01',
+			'published' => '1',
+		]);
+		Performance::create([
+			'title' => 'Декамерон',
+			'slug' => 'dekameron',
+			'description' => 'Особенности итальянской кухни в условиях русской пиццерии',
+			'author' => '',
+			'state' => 'archived',
+			'type' => 'normal',
+			'premiere_date' => '2003-01-01',
+			'published' => '1',
+		]);
+		Performance::create([
+			'title' => 'Смех в темноте',
+			'slug' => 'smeh-v-temnote',
+			'description' => 'Драма в двух действиях',
+			'author' => 'В. Набоков',
+			'state' => 'archived',
+			'type' => 'normal',
+			'premiere_date' => '2004-01-01',
+			'published' => '1',
+		]);
+		Performance::create([
+			'title' => 'Все кошки серы',
+			'slug' => 'vse-koshki-sery',
+			'description' => 'История любви в одном действии',
+			'author' => 'А. Образцов',
+			'state' => 'archived',
+			'type' => 'normal',
+			'premiere_date' => '2004-01-01',
+			'published' => '1',
+		]);
+		Performance::create([
+			'title' => 'А-ка-кий',
+			'slug' => 'a-ka-kij',
+			'description' => '<p>Театральная версия Г. Васильева пьесы Н. В. Гоголя «Шинель»</p>',
+			'author' => 'Николай Гоголь',
+			'state' => 'archived',
+			'type' => 'normal',
+			'premiere_date' => '2005-01-01',
+			'published' => '1',
+		]);
+		Performance::create([
+			'title' => 'Татуированная роза',
+			'slug' => 'tatuirovannaya-roza',
+			'description' => 'Драматическое шоу в 2-х частях',
+			'author' => 'Т. Уильямс',
+			'state' => 'archived',
+			'type' => 'normal',
+			'premiere_date' => '2006-01-01',
+			'published' => '1',
+		]);
+
+
 	}
 }

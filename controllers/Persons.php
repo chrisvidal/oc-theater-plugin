@@ -24,4 +24,17 @@ class Persons extends Controller
 
         BackendMenu::setContext('Abnmt.Theater', 'theater', 'persons');
     }
+
+
+
+
+    public function index($userId = null)
+    {
+        $this->asExtension('ListController')->index();
+    }
+
+    public function listExtendQuery($query)
+    {
+        $query->with(['portrait']);
+    }
 }

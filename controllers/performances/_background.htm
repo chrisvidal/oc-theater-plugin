@@ -1,9 +1,9 @@
 <!-- <div style="white-space: nowrap;" > -->
-<div>
+<div style="font-size: 0;">
 <?
 
 $record->background->each(function($image){
-    echo '<img src="' . $image->getThumb('auto', 50) . '" style="inline-block;" >' . "\n";
+    echo '<img src="' . $image->getThumb('auto', 33) . '" style="display:inline-block; margin: 0 1px 1px 0;" >' . "\n";
 });
 
 ?>

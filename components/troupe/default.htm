@@ -27,7 +27,9 @@
 									<div class="person">
 										<div class="portret">
 											<a href="{{ person.url }}">
+												{% if person.portrait.path %}
 												<img src="{{ person.portrait.path }}" width="100%" height="auto">
+												{% endif %}
 												<!-- <img src="/themes/komedianty/content/person/{{ person.slug }}/troupe.jpg" width="100%" height="auto"> -->
 											</a>
 										</div>

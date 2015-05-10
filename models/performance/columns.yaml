@@ -3,6 +3,10 @@
 # ===================================
 
 columns:
+    repertoire:
+        label: Репертуар
+        type: partial
+        sortable: false
     title:
         label: Название спектакля
     author:
@@ -19,15 +23,8 @@ columns:
         label: Дата премьеры
     rate:
         label: Возрастной рейтинг
-    published:
-        label: Опубликовано
-        type: switch
     playbill:
         label: Афиша
-        type: partial
-        sortable: false
-    repertoire:
-        label: Репертуар
         type: partial
         sortable: false
     background:
@@ -38,7 +35,11 @@ columns:
         label: Галерея
         type: partial
         sortable: false
+        with: 100px
     video:
         label: Видео
         type: partial
         sortable: false
+    published:
+        label: Опубликовано
+        type: switch

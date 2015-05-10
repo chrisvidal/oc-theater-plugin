@@ -23,7 +23,11 @@
 											<li class="nav-submenu-item {{ performance.active }}">
 												<a href="{{ performance.url }}">
 													<div class="title">{{ performance.title }}</div>
+													{% if performance.author | length > 22 %}{% set author = performance.author|split(',') %}
+													<div class="author">{{ author.0 }} и др.</div>
+													{% else %}
 													<div class="author">{{ performance.author }}</div>
+													{% endif %}
 												</a>
 											</li>
 											{% endfor %}<!-- /End -->
@@ -47,35 +51,67 @@
 									{{ performance.content|raw }}
 								</div>
 
-								{% if performance.participations %}<!-- Participations -->
+								{% if performance.participations | length != 0 %}<!-- Participations -->
 								<h4>Создатели</h4>
 								<dl class="creators">
 									{% for creator in performance.participations %}{% if creator.type == 'creators' %}<!-- Creator -->
 									<dt class="role">{{ creator.title }}</dt>
 									<dd class="name">
 										{{ creator.person.grade }}
+										{% if creator.person.published %}
 										<a href="{{ creator.person.url }}">{{ creator.person.title }}</a>
+										{% else %}
+										{{ creator.person.title }}
+										{% endif %}
 										{{ creator.description }}
 									</dd>
 									{% endif %}{% endfor %}<!-- /End -->
 								</dl>
 
 								<h4>Роли и исполнители</h4>
+								{% if performance.roles | length > 0 %}{% for group, roles in performance.roles %}
+								<h5>{{ group }}</h5>
 								<dl class="roles">
-									{% for actor in performance.participations %}{% if actor.type == 'roles' %}<!-- Role -->
+									{% for actor in roles %}<!-- Role -->
 									<dt class="role">
 										{{ actor.title }}
 										{% if actor.description %}<em>({{ actor.description }})</em>{% endif %}
 									</dt>
 									<dd class="name">
 										{{ actor.person.grade }}
+										{% if actor.person.published %}
 										<a href="{{ actor.person.url }}">{{ actor.person.title }}</a>
+										{% else %}
+										{{ actor.person.title }}
+										{% endif %}
+									</dd>
+									{% endfor %}<!-- /End -->
+								</dl>
+								{% endfor %}<!-- /End -->
+								{% else %}
+								<dl class="roles">
+									{% for actor in performance.participations_g %}{% if actor.type == 'roles' %}<!-- Role -->
+									<dt class="role">
+										{{ actor.title }}
+										{% if actor.description %}<em>({{ actor.description }})</em>{% endif %}
+									</dt>
+									<dd class="name">{% for key, person in actor.persons %}
+										{% if key != 0 %} / {% endif %}
+										{{ person.grade }}
+										{% if person.published %}
+										<a href="{{ person.url }}">{{ person.title }}</a>
+										{% else %}
+										{{ person.title }}
+										{% endif %}
+										{% endfor %}
 									</dd>
 									{% endif %}{% endfor %}<!-- /End -->
 								</dl>
+								{% endif %}
 								<!-- /End -->{% endif %}
 
-								{% if performance.video %}<!-- Video -->
+								{% if performance.video | length != 0%}<!-- Video -->
+								<h4>Видео</h4>
 								<div class="video">
 									{% for video in performance.video %}<!-- Image -->
 									<img src="{{video.path}}" alt="">
@@ -83,7 +119,8 @@
 								</div>
 								<!-- /End -->{% endif %}
 
-								{% if performance.featured %}<!-- Gallery -->
+								{% if performance.featured | length != 0%}<!-- Gallery -->
+								<h4>Галерея</h4>
 								<div class="gallery">
 									{% for image in performance.featured %}<!-- Image -->
 									<figure class="gallery-item" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">

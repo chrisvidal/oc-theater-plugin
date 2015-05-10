@@ -3,6 +3,10 @@
 # ===================================
 
 columns:
+    portrait:
+        label: Портрет
+        type: partial
+        sortable: false
     title:
         label: Имя, Фамилия
     state:
