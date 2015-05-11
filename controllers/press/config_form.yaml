@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Press
+
+# Model Form Field configuration
+form: $/abnmt/theater/models/press/fields.yaml
+
+# Model Class name
+modelClass: Abnmt\Theater\Models\Press
+
+# Default redirect location
+defaultRedirect: abnmt/theater/press
+
+# Create page
+create:
+    title: Create Press
+    redirect: abnmt/theater/press/update/:id
+    redirectClose: abnmt/theater/press
+
+# Update page
+update:
+    title: Edit Press
+    redirect: abnmt/theater/press
+    redirectClose: abnmt/theater/press
+
+# Preview page
+preview:
+    title: Preview Press

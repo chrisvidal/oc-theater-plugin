@@ -1,0 +1,34 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    title:
+        label: Название
+        span: left
+    slug:
+        label: URL
+        span: right
+    source:
+        label: Источник
+        span: left
+    source_author:
+        label: Автор
+        span: right
+    source_date:
+        label: Дата
+        type: datepicker
+        mode: date
+        span: left
+    source_link:
+        label: Ссылка
+        span: right
+
+tabs:
+    defaultTab: Основное
+    fields:
+        content:
+            tab: Основное
+            label: Содержимое
+            type: richeditor
+            size: giant

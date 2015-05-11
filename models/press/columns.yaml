@@ -1,0 +1,18 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    title:
+        label: Название
+        searchable: true
+    slug:
+        label: URL
+    source:
+        label: Источник
+        searchable: true
+    source_author:
+        label: Автор
+        searchable: true
+    source_date:
+        label: Дата публикации

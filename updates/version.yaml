@@ -11,3 +11,7 @@
   - seed_events_table.php
   - seed_participations_table.php
   - seed_images_table.php
+1.0.3:
+  - Press
+  - create_press_table.php
+  - seed_press_table.php

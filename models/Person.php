@@ -62,6 +62,7 @@ class Person extends Model
             ->whereNotNull('grade')
             ->where('state', '<>', 'director')
             ->where('state', '<>', 'cooperate')
+            ->where('state', '<>', 'not')
         ;
     }
     public function scopeIsState($query)
@@ -72,6 +73,7 @@ class Person extends Model
             ->where('grade', '=', NULL)
             ->where('state', '<>', 'director')
             ->where('state', '<>', 'cooperate')
+            ->where('state', '<>', 'not')
         ;
     }
     public function scopeIsCooperate($query)

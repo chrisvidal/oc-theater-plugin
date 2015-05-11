@@ -51,6 +51,11 @@ class Plugin extends PluginBase
                         'icon'        => 'icon-users',
                         'url'         => \Backend::url('abnmt/theater/persons'),
                     ],
+                    'press' => [
+                        'label'       => 'Пресса',
+                        'icon'        => 'icon-newspaper-o',
+                        'url'         => \Backend::url('abnmt/theater/press'),
+                    ],
                 ],
             ]
         ];

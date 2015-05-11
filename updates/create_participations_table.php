@@ -17,14 +17,14 @@ class CreateParticipationsTable extends Migration
 
             $table->string('type')->nullable();
 
-            $table->string('group')->nullable();
+            $table->string('group')->nullable()->default(null);
 
             $table->integer('performance_id');
             $table->integer('person_id');
 
             $table->integer('sort_order')->nullable();
 
-            $table->text('description')->nullable();
+            $table->text('description')->nullable()->default(null);
 
             $table->timestamps();
         });

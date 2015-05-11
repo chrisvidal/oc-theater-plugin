@@ -1,8 +1,58 @@
 {% set person = __SELF__.person %}<!-- Person -->
+							<nav id="page-navigation" role="navigation" class="secondary-navigation">
+								<ul class="nav-menu">
+									<li class="nav-menu-item"><a href="#hudozhestvennyj-rukovoditel">Художественный руководитель</a>
+										<ul class="nav-submenu">
+											<li class="nav-submenu-item">
+												<a href="/person/mikhail-levshin">
+													<div class="title">Михаил Левшин</div>
+												</a>
+											</li>
+										</ul>
+									</li>
+									{% for section in personsMenu %}<!-- {{ section.slug }} -->
+									<li class="nav-menu-item {{section.active}} "><a href="#{{ section.slug }}">{{ section.title }}</a>
+										<ul class="nav-submenu">
+											{% for person in section.menu %}<!-- {{ person.slug }} -->
+											<li class="nav-submenu-item">
+												<a href="{{ person.url }}">
+													<div class="title">{{ person.title }}</div>
+												</a>
+											</li>
+											{% endfor %}<!-- /End -->
+										</ul>
+									</li>
+									{% endfor %}<!-- /End -->
+								</ul>
+							</nav>
 							<div class="content">
-								<div class="grade">{{ person.grade }}</div>
-								<div class="title">{{ person.title }}</div>
-								<div class="portret"></div>
-								<div class="bio">{{ person.bio|raw }}</div>
+								<div class="portrait">
+									<img src="{{ person.portrait.path }}" alt="">
+								</div>
+								<div class="container">
+									<div class="grade">{{ person.grade }}</div>
+									<div class="title">{{ person.title }}</div>
+									<div class="bio">{{ person.bio|raw }}</div>
+
+									{% if person.roles | length > 0 %}
+									<h4>Роли в спектаклях</h4>
+									<dl class="roles">
+										{% for performance, roles in person.roles %}<!-- Role -->
+										<dt class="performance">
+											<a href="{{roles.url}}">{{ performance }}</a>
+										</dt>
+										<dd class="role">
+											{% for key, role in roles.roles %}
+											{% if key != 0 %} / {% endif %}
+											{{ role }}
+											{% endfor %}
+										</dd>
+										{% endfor %}<!-- /End -->
+									</dl>
+									{% endif %}<!-- /End -->
+
+
+								</div>
 							</div>
 
+<pre>{{ test|raw }}</pre>

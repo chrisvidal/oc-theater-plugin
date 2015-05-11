@@ -124,7 +124,7 @@
 								<div class="gallery">
 									{% for image in performance.featured %}<!-- Image -->
 									<figure class="gallery-item" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-										<a href="{{ image.path }}" itemprop="contentUrl" data-size="{{image.sizes.0}}x{{image.sizes.1}}" style="background: url({{ image.thumb }}) center no-repeat; background-size: cover;">
+										<a href="{{ image.path }}" itemprop="contentUrl" data-size="{{image.sizes.0}}x{{image.sizes.1}}" style="background: url({{ image.thumb }}) center no-repeat;">
 											<img src="{{ image.thumb }}" itemprop="thumbnail" alt="{{ image.title }}">
 										</a>
 										<figcaption itemprop="caption description">{{ image.description }}</figcaption>
