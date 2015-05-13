@@ -15,7 +15,11 @@
 										<div class="date-block"><span class="date day">{{ performance.day }}</span><span class="date weekday">{{ performance.weekday3 }}</span></div>
 										<div class="title-block">
 											<span class="title"><a href="{{ performance.url }}">{{ performance.performance.title }}</a></span>
+											{% if performance.performance.author != null %}
 											<span class="author">{{ performance.performance.author }}</span>
+											{% else performance.performance.description %}
+											<span class="description">{{ performance.performance.description }}</span>
+											{% endif %}
 										</div>
 										<div class="other"><span class="rate">{{ performance.performance.rate }}+</span> </div>
 										<div class="meta"><span class="duration">длительность {{ performance.duration }},</span><span class="start-time">начало в {{ performance.time }}</span> </div>

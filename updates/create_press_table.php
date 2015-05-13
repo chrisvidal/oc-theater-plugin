@@ -24,11 +24,27 @@ class CreatePressTable extends Migration
             $table->boolean('published')->default(false);
             $table->timestamps();
         });
+
+        Schema::create('abnmt_theater_press_relations', function($table)
+        {
+            $table->engine = 'InnoDB';
+            $table->increments('id');
+
+            $table->integer('press_id');
+
+            $table->integer('press_relation_id');
+            $table->string('press_relation_type');
+
+            $table->string('description')->nulable()->default(null);
+
+            $table->timestamps();
+        });
     }
 
     public function down()
     {
         Schema::dropIfExists('abnmt_theater_press');
+        Schema::dropIfExists('abnmt_theater_press_relations');
     }
 
 }
