@@ -36,9 +36,9 @@ class Press extends Model
     public $attachOne = [];
     public $attachMany = [];
 
-    public $morphedByMany = [
-        'performance' => ['Abnmt\Theater\Models\Performance', 'name' => 'press_relation'],
-        'person' => ['Abnmt\Theater\Models\Person', 'name' => 'press_relation'],
-    ];
+    // public $morphedByMany = [
+    //     'performance' => ['Abnmt\Theater\Models\Performance', 'name' => 'press_relation'],
+    //     'person' => ['Abnmt\Theater\Models\Person', 'name' => 'press_relation'],
+    // ];
 
 }

@@ -61,9 +61,9 @@ class Performance extends Model
         'video' => ['System\Models\File'],
     ];
 
-    public $morphToMany = [
-        'press' => ['Abnmt\Theater\Models\Press', 'name' => 'press_relation']
-    ];
+    // public $morphToMany = [
+    //     'press' => ['Abnmt\Theater\Models\Press', 'name' => 'press_relation']
+    // ];
 
 
     public function scopeIsPublished($query)

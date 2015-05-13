@@ -43,9 +43,9 @@ class Person extends Model
     public $attachMany = [];
 
 
-    public $morphToMany = [
-        'press' => ['Abnmt\Theater\Models\Press', 'name' => 'press_relation']
-    ];
+    // public $morphToMany = [
+    //     'press' => ['Abnmt\Theater\Models\Press', 'name' => 'press_relation']
+    // ];
 
     public function relationExtendQuery($query, $field, $manageMode=null)
     {
