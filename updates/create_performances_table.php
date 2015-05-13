@@ -16,7 +16,7 @@ class CreatePerformancesTable extends Migration
             $table->string('title');
             $table->string('slug')->index();
 
-            $table->text('description')->nullable();
+            $table->string('description')->nullable();
             $table->string('author')->nullable();
             $table->text('content')->nullable();
             $table->text('synopsis')->nullable();
@@ -27,7 +27,7 @@ class CreatePerformancesTable extends Migration
             $table->string('title_html')->nullable();
             $table->string('state')->nullable();
             $table->string('type')->nullable();
-            $table->string('genre')->nullable();
+            // $table->string('genre')->nullable();
             $table->time('duration')->nullable();
             $table->smallInteger('entracte')->nullable();
             $table->date('premiere_date')->nullable();

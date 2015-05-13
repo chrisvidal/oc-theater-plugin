@@ -17,7 +17,7 @@
 											<span class="title"><a href="{{ performance.url }}">{{ performance.performance.title }}</a></span>
 											{% if performance.performance.author != null %}
 											<span class="author">{{ performance.performance.author }}</span>
-											{% else performance.performance.description %}
+											{% elseif performance.performance.description %}
 											<span class="description">{{ performance.performance.description }}</span>
 											{% endif %}
 										</div>

@@ -46,7 +46,6 @@ tabs:
         description:
             tab: Основное
             label: Описание спектакля
-            type: richeditor
             size: small
 
 
@@ -56,9 +55,6 @@ tabs:
             type: codeeditor
             size: tiny
             language: html
-        genre:
-            tab: Дополнительно
-            label: Жанр
         duration:
             tab: Дополнительно
             label: Длительность

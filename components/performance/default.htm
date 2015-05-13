@@ -39,8 +39,7 @@
 							<div class="content {{ performance.slug }}">
 								<div style="" class="title">{{ performance.title }}</div>
 								{% if performance.author %}<div class="author">{{ performance.author }}</div><!-- /End -->{% endif %}
-								{% if performance.description %}<div class="description">{{ performance.description }}</div><!-- /End -->{% endif %}
-								{% if performance.genre %}<div class="description">{{ performance.genre }}</div><!-- /End -->{% endif %}
+								{% if performance.description %}<div class="description{% if performance.author == null %} alone{% endif %}">{{ performance.description }}</div><!-- /End -->{% endif %}
 								<div class="add">
 									<!-- <div class="rate">{{ performance.rate }}+</div> -->
 									<p class="premiere-date">Премьера состоялась</br><span class="nowrap">{{ performance.premiere_date }}</span></p>
@@ -59,9 +58,9 @@
 									<dd class="name">
 										{{ creator.person.grade }}
 										{% if creator.person.published %}
-										<a href="{{ creator.person.url }}">{{ creator.person.title }}</a>
+										<a href="{{ creator.person.url }}" style="white-space:nowrap">{{ creator.person.title }}</a>
 										{% else %}
-										{{ creator.person.title }}
+										<span style="white-space:nowrap">{{ creator.person.title }}</span>
 										{% endif %}
 										{{ creator.description }}
 									</dd>
@@ -80,9 +79,9 @@
 									<dd class="name">
 										{{ actor.person.grade }}
 										{% if actor.person.published %}
-										<a href="{{ actor.person.url }}">{{ actor.person.title }}</a>
+										<a href="{{ actor.person.url }}" style="white-space:nowrap">{{ actor.person.title }}</a>
 										{% else %}
-										{{ actor.person.title }}
+										<span style="white-space:nowrap">{{ actor.person.title }}</span>
 										{% endif %}
 									</dd>
 									{% endfor %}<!-- /End -->
@@ -92,16 +91,16 @@
 								<dl class="roles">
 									{% for actor in performance.participations_g %}{% if actor.type == 'roles' %}<!-- Role -->
 									<dt class="role">
-										{{ actor.title }}
+										<span style="white-space:nowrap">{{ actor.title }}</span>
 										{% if actor.description %}<em>({{ actor.description }})</em>{% endif %}
 									</dt>
 									<dd class="name">{% for key, person in actor.persons %}
 										{% if key != 0 %} / {% endif %}
 										{{ person.grade }}
 										{% if person.published %}
-										<a href="{{ person.url }}">{{ person.title }}</a>
+										<a href="{{ person.url }}" style="white-space:nowrap">{{ person.title }}</a>
 										{% else %}
-										{{ person.title }}
+										<span style="white-space:nowrap">{{ person.title }}</span>
 										{% endif %}
 										{% endfor %}
 									</dd>
@@ -110,8 +109,22 @@
 								{% endif %}
 								<!-- /End -->{% endif %}
 
+								<!-- Press -->
+								<h4>Пресса</h4>
+								<div class="press">
+									<ul class="press-list">
+										<!-- Role -->
+										<li><a href="">Статья №1 о с пектакле «{{ performance.title }}»</a></li>
+										<li><a href="">Статья №2 о с пектакле «{{ performance.title }}»</a></li>
+										<li><a href="">Статья №3 о с пектакле «{{ performance.title }}»</a></li>
+										<!-- /End -->
+									</ul>
+									<a href="">Все статьи о с пектакле «{{ performance.title }}»</a>
+								</div>
+								<!-- /End -->
+
 								{% if performance.video | length != 0%}<!-- Video -->
-								<h4>Видео</h4>
+								<h4>Видео-релиз</h4>
 								<div class="video">
 									{% for video in performance.video %}<!-- Image -->
 									<img src="{{video.path}}" alt="">
