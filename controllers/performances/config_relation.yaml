@@ -11,3 +11,8 @@ participations:
         list: $/abnmt/theater/models/participation/performance_columns.yaml
         form: $/abnmt/theater/models/participation/performance_fields.yaml
         recordsPerPage: 17
+
+presses:
+    label: Пресса
+    list: $/abnmt/theater/models/press/columns.yaml
+    form: $/abnmt/theater/models/press/fields.yaml

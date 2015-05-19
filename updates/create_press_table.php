@@ -32,12 +32,12 @@ class CreatePressTable extends Migration
 
             $table->integer('press_id');
 
-            $table->integer('press_relation_id');
-            $table->string('press_relation_type');
+            $table->integer('relation_id');
+            $table->string('relation_type');
 
             $table->string('description')->nulable()->default(null);
 
-            $table->timestamps();
+            // $table->timestamps();
         });
     }
 

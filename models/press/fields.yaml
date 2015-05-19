@@ -32,3 +32,50 @@ tabs:
             label: Содержимое
             type: richeditor
             size: giant
+
+        # persons:
+        #     tab: Отношения
+        #     label: Люди
+        #     type: partial
+        #     path: $/abnmt/theater/models/press/_list_persons.htm
+        # performances:
+        #     tab: Отношения
+        #     label: Спектакли
+        #     type: partial
+        #     path: $/abnmt/theater/models/press/_list_performances.htm
+
+        persons:
+            tab: Отношения
+            label: Люди
+            type: relation
+            mode: dropdown
+            nameFrom: title
+            options:
+                nameColumn: title
+        performances:
+            tab: Отношения
+            label: Спектакли
+            type: relation
+            mode: dropdown
+            nameFrom: title
+            options:
+                nameColumn: title
+                sort: title
+
+        categories:
+            tab: Категории
+            label: Категории
+            type: relation
+            mode: dropdown
+            options:
+                nameColumn: name
+                sort: title
+
+
+        # relations:
+        #     tab: Отношения
+        #     label: Отношения
+        #     type: relation
+        #     mode: dropdown
+        #     options:
+        #         nameColumn: title

@@ -33,19 +33,31 @@ class Person extends Model
         'participations' => ['Abnmt\Theater\Models\Participation']
     ];
     public $belongsTo = [];
-    public $belongsToMany = [];
+    public $belongsToMany = [
+        // 'presses' => ['Abnmt\Theater\Models\Press',
+        //     'table' => 'abnmt_theater_press_relations',
+        //     'name' => 'relation',
+        // ],
+    ];
     public $morphTo = [];
     public $morphOne = [];
-    public $morphMany = [];
+    // public $morphMany = [
+    //     // 'press' => ['Abnmt\Theater\Models\Press', 'name' => 'press_relation']
+    // ];
     public $attachOne = [
         'portrait' => ['System\Models\File'],
     ];
     public $attachMany = [];
 
 
-    // public $morphToMany = [
-    //     'press' => ['Abnmt\Theater\Models\Press', 'name' => 'press_relation']
-    // ];
+    public $morphToMany = [
+        'presses' => ['Abnmt\Theater\Models\Press',
+            'table' => 'abnmt_theater_press_relations',
+            'name' => 'relation',
+        ],
+    ];
+
+
 
     public function relationExtendQuery($query, $field, $manageMode=null)
     {

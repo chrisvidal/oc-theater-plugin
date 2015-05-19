@@ -99,7 +99,7 @@ class Performances extends ComponentBase
         /*
          * Get all Performances with relations
          */
-        $performances = TheaterPerformance::with(['playbill', 'repertoire', 'background', 'featured', 'video', 'participations', 'participations.person'])->isPublished()->get();
+        $performances = TheaterPerformance::with(['playbill', 'repertoire', 'background', 'featured', 'video', 'participations', 'participations.person', 'presses'])->isPublished()->get();
 
         /*
          * Add a "URL" helper attribute for linking to each performance and person relation

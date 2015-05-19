@@ -96,7 +96,7 @@ class Person extends ComponentBase
     {
 
         $slug = $this->property('slug');
-        $person = TheaterPerson::isPublished()->where('slug', '=', $slug)->with(['portrait', 'participations', 'participations.performance'])->first();
+        $person = TheaterPerson::isPublished()->where('slug', '=', $slug)->with(['portrait', 'participations', 'participations.performance', 'presses'])->first();
 
         $person->participations->each(function($participation){
 

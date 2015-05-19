@@ -4,17 +4,17 @@
 
 columns:
     repertoire:
-        label: Репертуар
+        label: Обложка
         type: partial
         sortable: false
     title:
         label: Название спектакля
     author:
         label: Автор
-    state:
-        label: Состояние
-    type:
-        label: Тип
+    # state:
+    #     label: Состояние
+    # type:
+    #     label: Тип
     duration:
         label: Длительность
     entracte:
@@ -31,15 +31,15 @@ columns:
         label: Бэкграунды
         type: partial
         sortable: false
-    featured:
-        label: Галерея
-        type: partial
-        sortable: false
-        with: 100px
+    # featured:
+    #     label: Галерея
+    #     type: partial
+    #     sortable: false
+    #     with: 100px
     video:
         label: Видео
         type: partial
         sortable: false
-    published:
-        label: Опубликовано
-        type: switch
+    # published:
+    #     label: Опубликовано
+    #     type: switch

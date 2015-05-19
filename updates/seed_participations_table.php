@@ -66,7 +66,9 @@ class SeedRolesTable extends Seeder
 				'person_id' => $person_id,
 				'description' => $description,
 				'group' => $group,
-				'type' => $type
+				'type' => $type,
+				'performance_title' => $performance['title'],
+				'person_name' => $name,
 			];
 
 			Participation::create($role);

@@ -3,23 +3,22 @@
 # ===================================
 
 # Model List Column configuration
-list: $/abnmt/theater/models/person/columns.yaml
-filter: $/abnmt/theater/models/person/_config_filter.yaml
+list: $/abnmt/theater/models/category/columns.yaml
 
 # Model Class name
-modelClass: Abnmt\Theater\Models\Person
+modelClass: Abnmt\Theater\Models\Category
 
 # List Title
-title: Управление персоналиями
+title: Manage Categories
 
 # Link URL for each record
-recordUrl: abnmt/theater/persons/update/:id
+recordUrl: abnmt/theater/categories/update/:id
 
 # Message to display if the list is empty
 noRecordsMessage: backend::lang.list.no_records
 
 # Records to display per page
-recordsPerPage: 100
+recordsPerPage: 20
 
 # Displays the list column set up button
 showSetup: true
@@ -28,9 +27,9 @@ showSetup: true
 showSorting: true
 
 # Default sorting column
-defaultSort:
-    column: state
-    direction: desc
+# defaultSort:
+#     column: created_at
+#     direction: desc
 
 # Display checkboxes next to each record
 # showCheckboxes: true

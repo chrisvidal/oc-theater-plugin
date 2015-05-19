@@ -56,3 +56,14 @@ tabs:
             tab: Занятость в спектаклях
             type: partial
             path: $/abnmt/theater/models/person/_list_participations.htm
+
+        presses:
+            label: Пресса
+            tab: Пресса
+            type: relation
+            mode: dropdown
+            nameFrom: title
+            options:
+                nameColumn: title
+            # type: partial
+            # path: $/abnmt/theater/models/person/_list_press.htm

@@ -112,5 +112,13 @@ tabs:
             type: partial
             path: $/abnmt/theater/models/performance/_list_participations.htm
 
-
-
+        presses:
+            tab: Пресса
+            label: Пресса
+            type: relation
+            mode: dropdown
+            nameFrom: title
+            options:
+                nameColumn: title
+            # type: partial
+            # path: $/abnmt/theater/models/performance/_list_press.htm

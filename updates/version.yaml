@@ -15,3 +15,6 @@
   - Press
   - create_press_table.php
   - seed_press_table.php
+1.0.4:
+  - Categories
+  - create_categories_table.php

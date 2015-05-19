@@ -26,6 +26,9 @@ class CreateParticipationsTable extends Migration
 
             $table->text('description')->nullable()->default(null);
 
+            $table->string('performance_title')->nullable()->default(null);
+            $table->string('person_name')->nullable()->default(null);
+
             $table->timestamps();
         });
     }

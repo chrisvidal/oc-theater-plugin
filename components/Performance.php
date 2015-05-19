@@ -108,7 +108,7 @@ class Performance extends ComponentBase
         $slug = $this->property('slug');
         $performance = TheaterPerformance::isPublished()
             ->where('slug', '=', $slug)
-            ->with(['background', 'featured', 'video', 'participations', 'participations.person'])
+            ->with(['background', 'featured', 'video', 'participations', 'participations.person', 'presses'])
             ->first();
 
         /*

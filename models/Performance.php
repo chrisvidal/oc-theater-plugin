@@ -49,8 +49,9 @@ class Performance extends Model
     public $belongsToMany = [];
     public $morphTo = [];
     public $morphOne = [];
-    public $morphMany = [
-    ];
+    // public $morphMany = [
+    //     // 'press' => ['Abnmt\Theater\Models\Press', 'name' => 'press_relation']
+    // ];
     public $attachOne = [
         'playbill' => ['System\Models\File'],
     ];
@@ -61,9 +62,12 @@ class Performance extends Model
         'video' => ['System\Models\File'],
     ];
 
-    // public $morphToMany = [
-    //     'press' => ['Abnmt\Theater\Models\Press', 'name' => 'press_relation']
-    // ];
+    public $morphToMany = [
+        'presses' => ['Abnmt\Theater\Models\Press',
+            'table' => 'abnmt_theater_press_relations',
+            'name' => 'relation',
+        ],
+    ];
 
 
     public function scopeIsPublished($query)

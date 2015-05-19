@@ -109,19 +109,17 @@
 								{% endif %}
 								<!-- /End -->{% endif %}
 
-								<!-- Press -->
+								{% if performance.presses | length > 0 %}<!-- Press -->
 								<h4>Пресса</h4>
 								<div class="press">
 									<ul class="press-list">
-										<!-- Role -->
-										<li><a href="">Статья №1 о с пектакле «{{ performance.title }}»</a></li>
-										<li><a href="">Статья №2 о с пектакле «{{ performance.title }}»</a></li>
-										<li><a href="">Статья №3 о с пектакле «{{ performance.title }}»</a></li>
-										<!-- /End -->
+										{% for article in performance.presses %}<!-- Article -->
+										<li>«<a href="{{ article.url }}">{{ article.title }}</a>» / {{ article.source }}</li>
+										{% endfor %}<!-- /End -->
 									</ul>
 									<a href="">Все статьи о с пектакле «{{ performance.title }}»</a>
 								</div>
-								<!-- /End -->
+								<!-- /End -->{% endif %}
 
 								{% if performance.video | length != 0%}<!-- Video -->
 								<h4>Видео-релиз</h4>
