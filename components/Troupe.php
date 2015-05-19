@@ -24,6 +24,12 @@ class Troupe extends ComponentBase
     public function defineProperties()
     {
         return [
+            'slug' => [
+                'title'       => 'Заголовок',
+                'description' => 'Имя',
+                'default'     => '{{ :slug }}',
+                'type'        => 'string'
+            ],
             'personPage' => [
                 'title'       => 'Страница биографии',
                 'description' => 'Название страницы для ссылки "перейти". Это свойство используется по умолчанию компонентом.',

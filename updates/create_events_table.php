@@ -8,6 +8,9 @@ class CreateEventsTable extends Migration
 
     public function up()
     {
+
+        Schema::dropIfExists('abnmt_theater_events');
+
         Schema::create('abnmt_theater_events', function($table)
         {
             $table->engine = 'InnoDB';

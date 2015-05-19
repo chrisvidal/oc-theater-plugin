@@ -1,0 +1,19 @@
+<?php
+
+$this->result = array();
+
+if($record->persons):
+	$record->persons->each(function($person){
+		$this->result[] = $person->title;
+	});
+endif;
+if($record->performances):
+	$record->performances->each(function($performance){
+		$this->result[] = $performance->title;
+	});
+endif;
+
+
+echo(join(", ", $this->result));
+// print_r($this->result);
+?>

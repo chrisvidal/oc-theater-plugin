@@ -6,8 +6,12 @@ use October\Rain\Database\Updates\Migration;
 class CreatePerformancesTable extends Migration
 {
 
+
     public function up()
     {
+
+        Schema::dropIfExists('abnmt_theater_performances');
+
         Schema::create('abnmt_theater_performances', function($table)
         {
             $table->engine = 'InnoDB';

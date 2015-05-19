@@ -30,45 +30,9 @@ class Press extends Model
     public $hasMany = [];
     public $belongsTo = [];
     public $belongsToMany = [];
-    // public $morphTo = [
-    //     'relations' => ['table' => 'abnmt_theater_press_relations'],
-    // ];
     public $morphOne = [];
-    // public $morphMany = [
-    //     'relations' => ['table' => 'abnmt_theater_press_relations'],
-    //     // 'performance' => ['Abnmt\Theater\Models\Performance', 'name' => 'press_relation'],
-    //     // 'person' => ['Abnmt\Theater\Models\Person', 'name' => 'press_relation'],
-    // ];
     public $attachOne = [];
     public $attachMany = [];
-
-
-
-    // public $morphToMany = [
-    //     // 'relations' => ['table' => 'abnmt_theater_press_relations'],
-    //     // 'performance' => ['Abnmt\Theater\Models\Performance', 'name' => 'press_relation'],
-    //     // 'person' => ['Abnmt\Theater\Models\Person', 'name' => 'press_relation'],
-    // ];
-    // public $morphedByMany = [
-    //     'performances' => ['Abnmt\Theater\Models\Performance', 'table' => 'abnmt_theater_press_relations', 'name' => 'relation'],
-    //     'persons' => ['Abnmt\Theater\Models\Person', 'table' => 'abnmt_theater_press_relations', 'name' => 'relation'],
-    // ];
-    // public $morphedByMany = [
-    //     // 'relations' => ['table' => 'abnmt_theater_press_relations'],
-    // ];
-
-    // public $morphMany = [
-    //     // 'relations' => ['table' => 'abnmt_theater_press_relations'],
-    //     'performances' => ['Abnmt\Theater\Models\Performance',
-    //         'table' => 'abnmt_theater_press_relations',
-    //         'name' => 'press_relation'
-    //     ],
-    //     'persons' => ['Abnmt\Theater\Models\Person',
-    //         'table' => 'abnmt_theater_press_relations',
-    //         'name' => 'press_relation'
-    //     ],
-    // ];
-
     public $morphToMany = [
         'categories'    => ['Abnmt\Theater\Models\Category',
             'name'  => 'object',
@@ -86,5 +50,34 @@ class Press extends Model
             'table' => 'abnmt_theater_press_relations',
         ],
     ];
+
+
+    /**
+     * Scopes
+     */
+    public function scopeIsPublished($query)
+    {
+        return $query
+            ->whereNotNull('published')
+            ->where('published', '=', 1)
+        ;
+    }
+
+
+
+    /**
+     * Sets the "url" attribute with a URL to this object
+     * @param string $pageName
+     * @param Cms\Classes\Controller $controller
+     */
+    public function setUrl($pageName, $controller)
+    {
+        $params = [
+            'id' => $this->id,
+            'slug' => $this->slug,
+        ];
+
+        return $this->url = $controller->pageUrl($pageName, $params);
+    }
 
 }

@@ -113,7 +113,7 @@
 								<h4>Пресса</h4>
 								<div class="press">
 									<ul class="press-list">
-										{% for article in performance.presses %}<!-- Article -->
+										{% for article in performance.presses|slice(0, 3) %}<!-- Article -->
 										<li>«<a href="{{ article.url }}">{{ article.title }}</a>» / {{ article.source }}</li>
 										{% endfor %}<!-- /End -->
 									</ul>
@@ -193,9 +193,7 @@
 							</div>
 
 
-<!-- <pre>
-	{{ test|raw }}
-</pre> -->
+<!-- <pre>{{ test|raw }}</pre> -->
 
 						</div>
 					</div>

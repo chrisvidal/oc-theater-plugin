@@ -8,6 +8,10 @@ class CreateCategoriesTable extends Migration
 
     public function up()
     {
+
+        Schema::dropIfExists('abnmt_theater_categories');
+        Schema::dropIfExists('abnmt_theater_object_categories');
+
         Schema::create('abnmt_theater_categories', function($table)
         {
             $table->engine = 'InnoDB';

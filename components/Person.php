@@ -9,12 +9,6 @@ class Person extends ComponentBase
 
     public $person;
 
-    /*
-     * Registered Propertie vars
-     */
-    public $performancePage;
-    public $personPage;
-
     public $personsMenu;
 
     public $active;
@@ -51,32 +45,64 @@ class Person extends ComponentBase
                 'type'        => 'dropdown',
                 'default'     => 'single/performance',
             ],
+            'pressPage' => [
+                'title'       => 'Страница прессы',
+                'description' => 'Название страницы для ссылки "перейти". Это свойство используется по умолчанию компонентом.',
+                'type'        => 'dropdown',
+                'default'     => 'single/press',
+            ],
         ];
     }
 
 
     /*
-     * Get Properties
+     * Registered Page Template Links Properties
+     */
+    public $performancePage;
+    public $personPage;
+    public $pressPage;
+
+    /*
+     * Get Page Template Links Properties
      */
     public function getPerformancePageOptions()
     {
         return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
     }
+
     public function getPersonPageOptions()
+    {
+        return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
+    }
+
+    public function getPressPageOptions()
     {
         return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
     }
 
 
 
+    /*
+     * Prepared Page vars
+     */
     protected function prepareVars()
     {
         /*
-         * Performance links
+         * Template Links
          */
         $this->performancePage = $this->page['performancePage'] = $this->property('performancePage');
-        $this->personPage = $this->page['personPage'] = $this->property('personPage');
+        $this->personPage      = $this->page['personPage']      = $this->property('personPage');
+        $this->pressPage       = $this->page['pressPage']       = $this->property('pressPage');
+
+        /*
+         * Prepare Slug
+         */
+        $this->slug            = $this->page['slug']            = $this->property('slug');
+
     }
+
+
+
 
     public function onRun()
     {
@@ -106,6 +132,12 @@ class Person extends ComponentBase
                 $this->roles[$participation->performance->title]['roles'][] = $participation->title;
                 $this->roles[$participation->performance->title]['url'] = $participation->performance->url;
             }
+
+        });
+
+        $person->presses->each(function($press){
+
+            $press->setUrl($this->pressPage, $this->controller);
 
         });
 

@@ -8,6 +8,10 @@ class CreatePressTable extends Migration
 
     public function up()
     {
+
+        Schema::dropIfExists('abnmt_theater_press');
+        Schema::dropIfExists('abnmt_theater_press_relations');
+
         Schema::create('abnmt_theater_press', function($table)
         {
             $table->engine = 'InnoDB';

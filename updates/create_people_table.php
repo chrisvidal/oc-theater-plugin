@@ -8,6 +8,9 @@ class CreatePeopleTable extends Migration
 
     public function up()
     {
+
+        Schema::dropIfExists('abnmt_theater_people');
+
         Schema::create('abnmt_theater_people', function($table)
         {
             $table->engine = 'InnoDB';

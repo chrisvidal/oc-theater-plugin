@@ -30,11 +30,10 @@ class Performance extends ComponentBase
      */
     public function defineProperties()
     {
-        return
-        [
+        return [
             'slug' => [
                 'title'       => 'Заголовок',
-                'description' => 'Название спектакля',
+                'description' => 'Имя',
                 'default'     => '{{ :slug }}',
                 'type'        => 'string'
             ],
@@ -50,11 +49,24 @@ class Performance extends ComponentBase
                 'type'        => 'dropdown',
                 'default'     => 'single/person',
             ],
+            'pressPage' => [
+                'title'       => 'Страница прессы',
+                'description' => 'Название страницы для ссылки "перейти". Это свойство используется по умолчанию компонентом.',
+                'type'        => 'dropdown',
+                'default'     => 'single/press',
+            ],
         ];
     }
 
     /*
-     * Get Properties
+     * Registered Page Template Links Properties
+     */
+    public $performancePage;
+    public $personPage;
+    public $pressPage;
+
+    /*
+     * Get Page Template Links Properties
      */
     public function getPerformancePageOptions()
     {
@@ -66,11 +78,10 @@ class Performance extends ComponentBase
         return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
     }
 
-    /*
-     * Registered Propertie vars
-     */
-    public $performancePage;
-    public $personPage;
+    public function getPressPageOptions()
+    {
+        return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
+    }
 
 
 
@@ -80,20 +91,23 @@ class Performance extends ComponentBase
     protected function prepareVars()
     {
         /*
-         * Performance links
+         * Template Links
          */
         $this->performancePage = $this->page['performancePage'] = $this->property('performancePage');
-        $this->personPage = $this->page['personPage'] = $this->property('personPage');
+        $this->personPage      = $this->page['personPage']      = $this->property('personPage');
+        $this->pressPage       = $this->page['pressPage']       = $this->property('pressPage');
 
-        // $this->performancesMenu = $this->page['performancesMenu'] = $this->preparePerformancesMenu();
+        /*
+         * Prepare Slug
+         */
+        $this->slug            = $this->page['slug']            = $this->property('slug');
+
     }
 
     public function onRun()
     {
 
         $this->prepareVars();
-
-        $this->slug = $this->page['slug'] = $this->property('slug');
 
         $this->performance = $this->page['performance'] = $this->loadPerformance();
         $this->performances = $this->page['performances'] = $this->listPerformances();
@@ -132,7 +146,13 @@ class Performance extends ComponentBase
             $this->participations_g[$role['title']]['persons'][] = $role->person;
         });
 
+        $performance->presses = $performance->presses->sortByDesc('source_date');
 
+        $performance->presses->each(function($press){
+
+            $press->setUrl($this->pressPage, $this->controller);
+
+        });
 
 
         if ($performance->featured) {

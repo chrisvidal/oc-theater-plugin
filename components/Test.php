@@ -22,6 +22,12 @@ class Test extends ComponentBase
     public function defineProperties()
     {
         return [
+            'slug' => [
+                'title'       => 'Заголовок',
+                'description' => 'Имя',
+                'default'     => '{{ :slug }}',
+                'type'        => 'string'
+            ],
             'performancePage' => [
                 'title'       => 'Страница спектакля',
                 'description' => 'Название страницы для ссылки "перейти". Это свойство используется по умолчанию компонентом.',

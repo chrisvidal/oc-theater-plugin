@@ -6,8 +6,8 @@ columns:
     title:
         label: Название
         searchable: true
-    slug:
-        label: URL
+    # slug:
+    #     label: URL
     source:
         label: Источник
         searchable: true
@@ -16,3 +16,17 @@ columns:
         searchable: true
     source_date:
         label: Дата публикации
+    relations:
+        label: Отношения
+        type: partial
+        sortable: false
+    # performances:
+    #     label: Спектакли
+    #     type: relation
+    #     relation: performances
+    #     select: title
+    # persons:
+    #     label: Люди
+    #     type: relation
+    #     relation: persons
+    #     select: title

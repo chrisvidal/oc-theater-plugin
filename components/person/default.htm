@@ -51,8 +51,21 @@
 									</dl>
 									{% endif %}<!-- /End -->
 
+								{% if person.presses | length > 0 %}<!-- Press -->
+								<h4>Пресса</h4>
+								<div class="press">
+									<ul class="press-list">
+										{% for article in person.presses %}<!-- Article -->
+										<li>«<a href="{{ article.url }}">{{ article.title }}</a>» / {{ article.source }}</li>
+										{% endfor %}<!-- /End -->
+									</ul>
+									<a href="">Все статьи о с пектакле «{{ performance.title }}»</a>
+								</div>
+								<!-- /End -->{% endif %}
+
+
 
 								</div>
 							</div>
 
-<pre>{{ test|raw }}</pre>
+<!-- <pre>{{ test|raw }}</pre> -->
