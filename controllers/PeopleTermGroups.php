@@ -4,9 +4,9 @@ use BackendMenu;
 use Backend\Classes\Controller;
 
 /**
- * Taxonomy Groups Back-end Controller
+ * People Term Groups Back-end Controller
  */
-class TaxonomyGroups extends Controller
+class PeopleTermGroups extends Controller
 {
     public $implement = [
         'Backend.Behaviors.FormController',
@@ -22,6 +22,6 @@ class TaxonomyGroups extends Controller
     {
         parent::__construct();
 
-        BackendMenu::setContext('Abnmt.Theater', 'theater', 'taxonomygroups');
+        BackendMenu::setContext('Abnmt.Theater', 'theater', 'peopletermgroups');
     }
 }

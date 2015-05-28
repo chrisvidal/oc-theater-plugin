@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: People Term Group
+
+# Model Form Field configuration
+form: $/abnmt/theater/models/peopletermgroup/fields.yaml
+
+# Model Class name
+modelClass: Abnmt\Theater\Models\PeopleTermGroup
+
+# Default redirect location
+defaultRedirect: abnmt/theater/peopletermgroups
+
+# Create page
+create:
+    title: Create People Term Group
+    redirect: abnmt/theater/peopletermgroups/update/:id
+    redirectClose: abnmt/theater/peopletermgroups
+
+# Update page
+update:
+    title: Edit People Term Group
+    redirect: abnmt/theater/peopletermgroups
+    redirectClose: abnmt/theater/peopletermgroups
+
+# Preview page
+preview:
+    title: Preview People Term Group

@@ -1,14 +1,15 @@
 # ===================================
-#  List Column Definitions
+#  Form Field Definitions
 # ===================================
 
-columns:
-    id:
-        label: ID
-        searchable: true
+fields:
     title:
         label: Название
+        span: left
     slug:
-        label: Слаг
+        label: URL
+        span: right
+        preset:
+            field: title
     description:
         label: Описание

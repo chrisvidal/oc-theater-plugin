@@ -56,11 +56,11 @@ class Plugin extends PluginBase
                         'icon'  => 'icon-newspaper-o',
                         'url'   => \Backend::url('abnmt/theater/press'),
                     ],
-                    'taxonomygroups' => [
-                        'label' => 'Категории',
-                        'icon'  => 'icon-sitemap',
-                        'url'   => \Backend::url('abnmt/theater/taxonomygroups'),
-                    ],
+                    // 'taxonomygroups' => [
+                    //     'label' => 'Категории',
+                    //     'icon'  => 'icon-sitemap',
+                    //     'url'   => \Backend::url('abnmt/theater/taxonomygroups'),
+                    // ],
                 ],
             ],
         ];

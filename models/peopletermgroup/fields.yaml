@@ -3,9 +3,6 @@
 # ===================================
 
 fields:
-    id:
-        label: ID
-        disabled: true
     title:
         label: Название
         span: left

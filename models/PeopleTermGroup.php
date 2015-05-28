@@ -3,15 +3,15 @@
 use Model;
 
 /**
- * TaxonomyGroup Model
+ * PeopleTermGroup Model
  */
-class TaxonomyGroup extends Model
+class PeopleTermGroup extends Model
 {
 
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'abnmt_theater_taxonomy_groups';
+    public $table = 'abnmt_theater_people_term_groups';
 
     /**
      * @var array Guarded fields
@@ -28,7 +28,7 @@ class TaxonomyGroup extends Model
      */
     public $hasOne = [];
     public $hasMany = [
-        'taxonomies' => ['Abnmt\Theater\Models\Taxonomy']
+        'peopleterms' => ['Abnmt\Theater\Models\PeopleTerm'],
     ];
     public $belongsTo = [];
     public $belongsToMany = [];

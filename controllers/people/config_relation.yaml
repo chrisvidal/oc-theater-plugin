@@ -17,6 +17,11 @@ press:
     list: $/abnmt/theater/models/press/columns.yaml
     form: $/abnmt/theater/models/press/fields.yaml
 
+terms:
+    label: Категории
+    list: $/abnmt/theater/models/peopleterms/columns.yaml
+    form: $/abnmt/theater/models/peopleterms/fields.yaml
+
 # presses:
 #     label: Пресса
 #     view:

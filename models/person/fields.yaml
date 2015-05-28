@@ -72,3 +72,12 @@ tabs:
                 nameColumn: title
             # type: partial
             # path: $/abnmt/theater/models/person/_list_press.htm
+
+        terms:
+            label: Категории
+            tab: Категории
+            type: relation
+            mode: dropdown
+            nameFrom: title
+            options:
+                nameColumn: title

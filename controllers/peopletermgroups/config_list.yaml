@@ -3,16 +3,16 @@
 # ===================================
 
 # Model List Column configuration
-list: $/abnmt/theater/models/taxonomygroup/columns.yaml
+list: $/abnmt/theater/models/peopletermgroup/columns.yaml
 
 # Model Class name
-modelClass: Abnmt\Theater\Models\TaxonomyGroup
+modelClass: Abnmt\Theater\Models\PeopleTermGroup
 
 # List Title
-title: Manage Taxonomy Groups
+title: Manage People Term Groups
 
 # Link URL for each record
-recordUrl: abnmt/theater/taxonomygroups/update/:id
+recordUrl: abnmt/theater/peopletermgroups/update/:id
 
 # Message to display if the list is empty
 noRecordsMessage: backend::lang.list.no_records

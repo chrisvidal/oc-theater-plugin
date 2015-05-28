@@ -3,15 +3,15 @@
 use Model;
 
 /**
- * Taxonomy Model
+ * PeopleTerm Model
  */
-class Taxonomy extends Model
+class PeopleTerm extends Model
 {
 
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'abnmt_theater_taxonomies';
+    public $table = 'abnmt_theater_people_terms';
 
     /**
      * @var array Guarded fields

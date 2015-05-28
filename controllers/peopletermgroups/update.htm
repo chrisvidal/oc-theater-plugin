@@ -1,6 +1,6 @@
 <?php Block::put('breadcrumb') ?>
     <ul>
-        <li><a href="<?= Backend::url('abnmt/theater/taxonomygroups') ?>">Taxonomy Groups</a></li>
+        <li><a href="<?= Backend::url('abnmt/theater/peopletermgroups') ?>">People Term Groups</a></li>
         <li><?= e($this->pageTitle) ?></li>
     </ul>
 <?php Block::endPut() ?>
@@ -9,10 +9,8 @@
 
     <?= Form::open(['class' => 'layout-item stretch layout-column']) ?>
 
-        <!-- <div class="layout-row"> -->
         <?= $this->formRender() ?>
-        <?= $this->relationRender('taxonomies') ?>
-        <!-- </div> -->
+        <?= $this->relationRender('peopleterms') ?>
 
         <div class="form-buttons">
             <div class="loading-indicator-container">
@@ -21,7 +19,7 @@
                     data-request="onSave"
                     data-request-data="redirect:0"
                     data-hotkey="ctrl+s, cmd+s"
-                    data-load-indicator="Saving TaxonomyGroup..."
+                    data-load-indicator="Saving PeopleTermGroup..."
                     class="btn btn-primary">
                     <u>S</u>ave
                 </button>
@@ -30,7 +28,7 @@
                     data-request="onSave"
                     data-request-data="close:1"
                     data-hotkey="ctrl+enter, cmd+enter"
-                    data-load-indicator="Saving TaxonomyGroup..."
+                    data-load-indicator="Saving PeopleTermGroup..."
                     class="btn btn-default">
                     Save and Close
                 </button>
@@ -38,11 +36,11 @@
                     type="button"
                     class="oc-icon-trash-o btn-icon danger pull-right"
                     data-request="onDelete"
-                    data-load-indicator="Deleting TaxonomyGroup..."
-                    data-request-confirm="Do you really want to delete this taxonomygroup?">
+                    data-load-indicator="Deleting PeopleTermGroup..."
+                    data-request-confirm="Do you really want to delete this peopletermgroup?">
                 </button>
                 <span class="btn-text">
-                    or <a href="<?= Backend::url('abnmt/theater/taxonomygroups') ?>">Cancel</a>
+                    or <a href="<?= Backend::url('abnmt/theater/peopletermgroups') ?>">Cancel</a>
                 </span>
             </div>
         </div>
@@ -52,6 +50,6 @@
 <?php else: ?>
 
     <p class="flash-message static error"><?= e($this->fatalError) ?></p>
-    <p><a href="<?= Backend::url('abnmt/theater/taxonomygroups') ?>" class="btn btn-default">Return to taxonomy groups list</a></p>
+    <p><a href="<?= Backend::url('abnmt/theater/peopletermgroups') ?>" class="btn btn-default">Return to people term groups list</a></p>
 
 <?php endif ?>

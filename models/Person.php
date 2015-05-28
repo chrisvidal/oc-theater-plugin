@@ -31,7 +31,9 @@ class Person extends Model
     /**
      * @var array Relations
      */
-    public $hasOne = [];
+    public $hasOne = [
+        'terms' => ['Abnmt\Theater\Models\PeopleTerm'],
+    ];
     public $hasMany = [
         'participation' => ['Abnmt\Theater\Models\Participation'],
     ];
