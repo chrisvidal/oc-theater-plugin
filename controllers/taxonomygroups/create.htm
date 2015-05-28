@@ -1,6 +1,6 @@
 <?php Block::put('breadcrumb') ?>
     <ul>
-        <li><a href="<?= Backend::url('abnmt/theater/press') ?>">Пресса</a></li>
+        <li><a href="<?= Backend::url('abnmt/theater/taxonomygroups') ?>">Taxonomy Groups</a></li>
         <li><?= e($this->pageTitle) ?></li>
     </ul>
 <?php Block::endPut() ?>
@@ -19,21 +19,21 @@
                     type="submit"
                     data-request="onSave"
                     data-hotkey="ctrl+s, cmd+s"
-                    data-load-indicator="Создание…"
+                    data-load-indicator="Creating TaxonomyGroup..."
                     class="btn btn-primary">
-                    Создать
+                    Create
                 </button>
                 <button
                     type="button"
                     data-request="onSave"
                     data-request-data="close:1"
                     data-hotkey="ctrl+enter, cmd+enter"
-                    data-load-indicator="Создание…"
+                    data-load-indicator="Creating TaxonomyGroup..."
                     class="btn btn-default">
-                    Создать и Закрыть
+                    Create and Close
                 </button>
                 <span class="btn-text">
-                    или <a href="<?= Backend::url('abnmt/theater/press') ?>">Отмена</a>
+                    or <a href="<?= Backend::url('abnmt/theater/taxonomygroups') ?>">Cancel</a>
                 </span>
             </div>
         </div>
@@ -43,6 +43,6 @@
 <?php else: ?>
 
     <p class="flash-message static error"><?= e($this->fatalError) ?></p>
-    <p><a href="<?= Backend::url('abnmt/theater/press') ?>" class="btn btn-default">Вернуться к списку…</a></p>
+    <p><a href="<?= Backend::url('abnmt/theater/taxonomygroups') ?>" class="btn btn-default">Return to taxonomy groups list</a></p>
 
 <?php endif ?>

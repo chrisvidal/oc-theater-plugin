@@ -40,11 +40,11 @@ class Press extends Model
     public $morphOne = [];
     public $morphMany = [];
     public $morphToMany = [
-        'categories' => ['Abnmt\Theater\Models\Category',
-            'name'  => 'object',
-            'table' => 'abnmt_theater_object_categories',
-            'order' => 'name',
-        ],
+        // 'categories' => ['Abnmt\Theater\Models\Category',
+        //     'name'  => 'object',
+        //     'table' => 'abnmt_theater_object_categories',
+        //     'order' => 'name',
+        // ],
     ];
     public $morphedByMany = [
         'performances' => ['Abnmt\Theater\Models\Performance',

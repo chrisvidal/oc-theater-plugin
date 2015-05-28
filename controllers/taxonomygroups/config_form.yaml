@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Taxonomy Group
+
+# Model Form Field configuration
+form: $/abnmt/theater/models/taxonomygroup/fields.yaml
+
+# Model Class name
+modelClass: Abnmt\Theater\Models\TaxonomyGroup
+
+# Default redirect location
+defaultRedirect: abnmt/theater/taxonomygroups
+
+# Create page
+create:
+    title: Create Taxonomy Group
+    redirect: abnmt/theater/taxonomygroups/update/:id
+    redirectClose: abnmt/theater/taxonomygroups
+
+# Update page
+update:
+    title: Edit Taxonomy Group
+    redirect: abnmt/theater/taxonomygroups
+    redirectClose: abnmt/theater/taxonomygroups
+
+# Preview page
+preview:
+    title: Preview Taxonomy Group

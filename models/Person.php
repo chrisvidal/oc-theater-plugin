@@ -32,7 +32,7 @@ class Person extends Model
      * @var array Relations
      */
     public $hasOne = [
-        'terms' => ['Abnmt\Theater\Models\PeopleTerm'],
+        // 'terms' => ['Abnmt\Theater\Models\PeopleTerm'],
     ];
     public $hasMany = [
         'participation' => ['Abnmt\Theater\Models\Participation'],
@@ -48,6 +48,14 @@ class Person extends Model
             'table' => 'abnmt_theater_press_relations',
             'name'  => 'relation',
         ],
+        // 'person-grade' => ['Abnmt\Theater\Models\Taxonomy',
+        //     'table' => 'abnmt_theater_taxonomy_relations',
+        //     'name'  => 'object',
+        // ],
+        // 'person-state' => ['Abnmt\Theater\Models\Taxonomy',
+        //     'table' => 'abnmt_theater_taxonomy_relations',
+        //     'name'  => 'object',
+        // ],
     ];
     public $morphedByMany = [];
 

@@ -9,19 +9,19 @@
 #     defaultSort: name
 #     showSorting: true
 
-performances:
-    label: Спектакли
-    list: $/abnmt/theater/models/performance/columns_min.yaml
-    form: $/abnmt/theater/models/performance/fields.yaml
-    defaultSort: title
-    showSorting: true
+# performances:
+#     label: Спектакли
+#     list: $/abnmt/theater/models/performance/columns_min.yaml
+#     form: $/abnmt/theater/models/performance/fields.yaml
+#     defaultSort: title
+#     showSorting: true
 
-people:
-    label: Люди
-    list: $/abnmt/theater/models/person/columns_min.yaml
-    form: $/abnmt/theater/models/person/fields.yaml
-    defaultSort: title
-    showSorting: true
+# people:
+#     label: Люди
+#     list: $/abnmt/theater/models/person/columns_min.yaml
+#     form: $/abnmt/theater/models/person/fields.yaml
+#     defaultSort: title
+#     showSorting: true
 
 # performances:
 #     label: Спектакли

@@ -112,30 +112,30 @@ $taxonomies = array(
 $taxonomy_groups = array(
     [
         'id' => '1',
-        'title' => 'Звания',
+        'title' => 'Звание',
         'slug' => 'person-grade',
         'description' => NULL,
-        'object_type' => NULL,
+        'object_type' => 'Abnmt\Theater\Models\Person',
     ],
     [
         'id' => '2',
-        'title' => 'Состояние спектаклей',
+        'title' => 'Состояние спектакля',
         'slug' => 'performance-state',
         'description' => NULL,
-        'object_type' => NULL,
+        'object_type' => 'Abnmt\Theater\Models\Performance',
     ],
     [
         'id' => '3',
-        'title' => 'Тип спектаклей',
+        'title' => 'Тип спектакля',
         'slug' => 'performance-type',
         'description' => NULL,
-        'object_type' => NULL,
+        'object_type' => 'Abnmt\Theater\Models\Performance',
     ],
     [
         'id' => '4',
         'title' => 'Штат',
         'slug' => 'person-state',
         'description' => NULL,
-        'object_type' => NULL,
+        'object_type' => 'Abnmt\Theater\Models\Person',
     ],
 );

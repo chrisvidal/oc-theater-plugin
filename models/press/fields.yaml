@@ -64,14 +64,14 @@ tabs:
                 nameColumn: title
                 sort: title
 
-        categories:
-            tab: Категории
-            label: Категории
-            type: relation
-            mode: dropdown
-            options:
-                nameColumn: name
-                sort: title
+        # categories:
+        #     tab: Категории
+        #     label: Категории
+        #     type: relation
+        #     mode: dropdown
+        #     options:
+        #         nameColumn: name
+        #         sort: title
 
 
         # relations:

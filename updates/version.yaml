@@ -5,12 +5,12 @@
     - create_news_table.php
     - create_press_table.php
     - create_participation_table.php
-    - create_people_terms_table.php
-    # - create_taxonomies_table.php
+    - create_taxonomies_table.php
+1.0.2:
     - Seed data
     - seed_performances_table.php
     - seed_people_table.php
     # - seed_news_table.php
     - seed_press_table.php
     - seed_participation_table.php
-    # - seed_taxonomies_table.php
+    - seed_taxonomies_table.php

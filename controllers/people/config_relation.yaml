@@ -12,15 +12,15 @@ participation:
         form: $/abnmt/theater/models/participation/person_fields.yaml
         recordsPerPage: 25
 
-press:
-    label: Пресса
-    list: $/abnmt/theater/models/press/columns.yaml
-    form: $/abnmt/theater/models/press/fields.yaml
+# press:
+#     label: Пресса
+#     list: $/abnmt/theater/models/press/columns.yaml
+#     form: $/abnmt/theater/models/press/fields.yaml
 
-terms:
-    label: Категории
-    list: $/abnmt/theater/models/peopleterms/columns.yaml
-    form: $/abnmt/theater/models/peopleterms/fields.yaml
+# terms:
+#     label: Категории
+#     list: $/abnmt/theater/models/peopleterms/columns.yaml
+#     form: $/abnmt/theater/models/peopleterms/fields.yaml
 
 # presses:
 #     label: Пресса
