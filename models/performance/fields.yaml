@@ -120,5 +120,3 @@ tabs:
             nameFrom: title
             options:
                 nameColumn: title
-            # type: partial
-            # path: $/abnmt/theater/models/performance/_list_press.htm

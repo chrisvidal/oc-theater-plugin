@@ -43,9 +43,6 @@ fields:
             director: Художественный руководитель =)
     grade:
         label: Звание
-    # tgrade:
-    #     label: Звание
-    #     type: relation
 tabs:
     defaultTab: Основное
     fields:
@@ -70,14 +67,3 @@ tabs:
             nameFrom: title
             options:
                 nameColumn: title
-            # type: partial
-            # path: $/abnmt/theater/models/person/_list_press.htm
-
-        # terms:
-        #     label: Категории
-        #     tab: Категории
-        #     type: relation
-        #     mode: dropdown
-        #     nameFrom: title
-        #     options:
-        #         nameColumn: title

@@ -1,8 +1,0 @@
-# ===================================
-#  Relation Behavior Config
-# ===================================
-
-taxonomies:
-    label:  Категории
-    list: $/abnmt/theater/models/taxonomy/columns.yaml
-    form: $/abnmt/theater/models/taxonomy/fields.yaml

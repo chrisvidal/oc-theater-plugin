@@ -63,11 +63,6 @@ class Plugin extends PluginBase
                         'icon'  => 'icon-newspaper-o',
                         'url'   => \Backend::url('abnmt/theater/press'),
                     ],
-                    'taxonomygroups' => [
-                        'label' => 'Категории',
-                        'icon'  => 'icon-sitemap',
-                        'url'   => \Backend::url('abnmt/theater/taxonomygroups'),
-                    ],
                 ],
             ],
         ];
@@ -90,53 +85,5 @@ class Plugin extends PluginBase
     //         'Abnmt\Theater\Components\PressArchive' => 'pressArchive',
     //     ];
     // }
-
-
-    public function boot() {
-
-        PeopleController::extendFormFields(function($form, $model, $context){
-
-            if (!$model instanceof PersonModel)
-                return;
-            if (!$model->exists)
-                return;
-
-
-
-            $taxonomy = TaxonomyGroupModel::where('object_type', '=', get_class($model))->get();
-
-            $taxonomy->each(function($term) use ($form, $model){
-
-                $formfields = array();
-
-                $formfields[$term->slug] = [
-                    'label' => $term->title,
-                    'tab' => 'Категории',
-                    'type' => 'relation',
-                    'mode' => 'dropdown',
-                    'nameFrom' => 'title',
-                    'options' => [
-                        'nameColumn' => 'title',
-                    ]
-                ];
-
-                $form->addTabFields($formfields);
-            });
-
-            // $model::extend(function($mod) {
-            //     // $mod->morphToMany[$term->slug] = [
-            //     //     'Abnmt\Theater\Models\Taxonomy',
-            //     //     'table' => 'abnmt_theater_taxonomy_relations',
-            //     //     'name' => 'object',
-            //     // ];
-            //     $mod->morphToMany['person-grade'] = [
-            //         'Abnmt\Theater\Models\Taxonomy',
-            //         'table' => 'abnmt_theater_taxonomy_relations',
-            //         'name' => 'object',
-            //     ];
-            // });
-
-        });
-    }
 
 }
