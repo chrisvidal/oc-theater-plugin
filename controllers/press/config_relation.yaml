@@ -2,12 +2,12 @@
 #  Relation Behavior Config
 # ===================================
 
-categories:
-    label: Категории
-    list: $/abnmt/theater/models/category/columns.yaml
-    form: $/abnmt/theater/models/category/fields.yaml
-    defaultSort: name
-    showSorting: true
+# categories:
+#     label: Категории
+#     list: $/abnmt/theater/models/category/columns.yaml
+#     form: $/abnmt/theater/models/category/fields.yaml
+#     defaultSort: name
+#     showSorting: true
 
 performances:
     label: Спектакли
@@ -16,7 +16,7 @@ performances:
     defaultSort: title
     showSorting: true
 
-persons:
+people:
     label: Люди
     list: $/abnmt/theater/models/person/columns_min.yaml
     form: $/abnmt/theater/models/person/fields.yaml
@@ -33,7 +33,7 @@ persons:
 #         form: $/abnmt/theater/models/performance/fields.yaml
 #         recordsPerPage: 25
 
-# persons:
+# people:
 #     label: Люди
 #     view:
 #         list: $/abnmt/theater/models/person/columns_min.yaml

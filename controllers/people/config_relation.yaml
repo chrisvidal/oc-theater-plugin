@@ -1,0 +1,27 @@
+# ===================================
+#  Relation Behavior Config
+# ===================================
+
+participation:
+    label: Роли
+    view:
+        list: $/abnmt/theater/models/participation/person_columns.yaml
+        toolbarButtons: create|delete
+    manage:
+        list: $/abnmt/theater/models/participation/person_columns.yaml
+        form: $/abnmt/theater/models/participation/person_fields.yaml
+        recordsPerPage: 25
+
+press:
+    label: Пресса
+    list: $/abnmt/theater/models/press/columns.yaml
+    form: $/abnmt/theater/models/press/fields.yaml
+
+# presses:
+#     label: Пресса
+#     view:
+#         list: $/abnmt/theater/models/press/columns.yaml
+#         toolbarButtons: add|remove
+#     manage:
+#         list: $/abnmt/theater/models/press/columns.yaml
+#         form: $/abnmt/theater/models/press/fields.yaml

@@ -1,0 +1,141 @@
+<?php
+
+$taxonomies = array(
+    [
+        'id' => '1',
+        'title' => 'Заслуженный артист России',
+        'slug' => 'zasluzhennyj-artist-rossii',
+        'description' => NULL,
+        'taxonomy_group_id' => '1',
+    ],
+    [
+        'id' => '2',
+        'title' => 'Заслуженная артистка России',
+        'slug' => 'zasluzhennaya-artistka-rossii',
+        'description' => NULL,
+        'taxonomy_group_id' => '1',
+    ],
+    [
+        'id' => '3',
+        'title' => 'Заслуженный деятель исскусств России',
+        'slug' => 'zasluzhennyj-deyatel-isskusstv-rossii',
+        'description' => NULL,
+        'taxonomy_group_id' => '1',
+    ],
+    [
+        'id' => '4',
+        'title' => 'Нормальный',
+        'slug' => 'normal',
+        'description' => NULL,
+        'taxonomy_group_id' => '2',
+    ],
+    [
+        'id' => '5',
+        'title' => 'Премьера',
+        'slug' => 'premiere',
+        'description' => NULL,
+        'taxonomy_group_id' => '2',
+    ],
+    [
+        'id' => '6',
+        'title' => 'В архиве',
+        'slug' => 'archived',
+        'description' => NULL,
+        'taxonomy_group_id' => '2',
+    ],
+    [
+        'id' => '7',
+        'title' => 'Обычный',
+        'slug' => 'normal',
+        'description' => NULL,
+        'taxonomy_group_id' => '3',
+    ],
+    [
+        'id' => '8',
+        'title' => 'Детский',
+        'slug' => 'child',
+        'description' => NULL,
+        'taxonomy_group_id' => '3',
+    ],
+    [
+        'id' => '9',
+        'title' => 'Концерт',
+        'slug' => 'concert',
+        'description' => NULL,
+        'taxonomy_group_id' => '3',
+    ],
+    [
+        'id' => '15',
+        'title' => 'Событие',
+        'slug' => 'event',
+        'description' => NULL,
+        'taxonomy_group_id' => '3',
+    ],
+    [
+        'id' => '10',
+        'title' => 'Художественный руководитель',
+        'slug' => 'hudozhestvennyj-rukovoditel',
+        'description' => NULL,
+        'taxonomy_group_id' => '4',
+    ],
+    [
+        'id' => '11',
+        'title' => 'Актеры',
+        'slug' => 'actors',
+        'description' => NULL,
+        'taxonomy_group_id' => '4',
+    ],
+    [
+        'id' => '12',
+        'title' => 'Приглашенные артисты',
+        'slug' => 'cooperate',
+        'description' => NULL,
+        'taxonomy_group_id' => '4',
+    ],
+    [
+        'id' => '13',
+        'title' => 'Администрация',
+        'slug' => 'administration',
+        'description' => NULL,
+        'taxonomy_group_id' => '4',
+    ],
+    [
+        'id' => '14',
+        'title' => 'Постановочники',
+        'slug' => 'postanovochniki',
+        'description' => NULL,
+        'taxonomy_group_id' => '4',
+    ],
+);
+
+
+$taxonomy_groups = array(
+    [
+        'id' => '1',
+        'title' => 'Звания',
+        'slug' => 'person-grade',
+        'description' => NULL,
+        'object_type' => NULL,
+    ],
+    [
+        'id' => '2',
+        'title' => 'Состояние спектаклей',
+        'slug' => 'performance-state',
+        'description' => NULL,
+        'object_type' => NULL,
+    ],
+    [
+        'id' => '3',
+        'title' => 'Тип спектаклей',
+        'slug' => 'performance-type',
+        'description' => NULL,
+        'object_type' => NULL,
+    ],
+    [
+        'id' => '4',
+        'title' => 'Штат',
+        'slug' => 'person-state',
+        'description' => NULL,
+        'object_type' => NULL,
+    ],
+);

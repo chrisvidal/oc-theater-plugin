@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Новости
+
+# Model Form Field configuration
+form: $/abnmt/theater/models/news/fields.yaml
+
+# Model Class name
+modelClass: Abnmt\Theater\Models\News
+
+# Default redirect location
+defaultRedirect: abnmt/theater/news
+
+# Create page
+create:
+    title: Добавить новость
+    redirect: abnmt/theater/news/update/:id
+    redirectClose: abnmt/theater/news
+
+# Update page
+update:
+    title: Изменить новость
+    redirect: abnmt/theater/news
+    redirectClose: abnmt/theater/news
+
+# Preview page
+preview:
+    title: Просмотр

@@ -1,7 +1,7 @@
 <?php namespace Abnmt\Theater\Updates;
 
-use Schema;
 use October\Rain\Database\Updates\Migration;
+use Schema;
 
 class CreatePressTable extends Migration
 {
@@ -12,8 +12,7 @@ class CreatePressTable extends Migration
         Schema::dropIfExists('abnmt_theater_press');
         Schema::dropIfExists('abnmt_theater_press_relations');
 
-        Schema::create('abnmt_theater_press', function($table)
-        {
+        Schema::create('abnmt_theater_press', function ($table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
 
@@ -29,8 +28,7 @@ class CreatePressTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('abnmt_theater_press_relations', function($table)
-        {
+        Schema::create('abnmt_theater_press_relations', function ($table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
 

@@ -3,7 +3,7 @@
 # ===================================
 
 # Record name
-name: Press
+name: Пресса
 
 # Model Form Field configuration
 form: $/abnmt/theater/models/press/fields.yaml
@@ -16,16 +16,16 @@ defaultRedirect: abnmt/theater/press
 
 # Create page
 create:
-    title: Create Press
+    title: Добавить статью
     redirect: abnmt/theater/press/update/:id
     redirectClose: abnmt/theater/press
 
 # Update page
 update:
-    title: Edit Press
+    title: Редактировать статью
     redirect: abnmt/theater/press
     redirectClose: abnmt/theater/press
 
 # Preview page
 preview:
-    title: Preview Press
+    title: Просмотр

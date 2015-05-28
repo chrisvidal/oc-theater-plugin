@@ -1,20 +1,16 @@
 1.0.1:
-  - First version of Theater
-  - create_people_table.php
-  - create_performances_table.php
-  - create_events_table.php
-  - create_participations_table.php
-1.0.2:
-  - Seeds
-  - seed_people_table.php
-  - seed_performances_table.php
-  - seed_events_table.php
-  - seed_participations_table.php
-  - seed_images_table.php
-1.0.3:
-  - Press
-  - create_press_table.php
-  - seed_press_table.php
-1.0.4:
-  - Categories
-  - create_categories_table.php
+    - First version of Theater
+    - create_performances_table.php
+    - create_people_table.php
+    - create_news_table.php
+    - create_press_table.php
+    - create_participation_table.php
+    - create_taxonomy_groups_table.php
+    - create_taxonomies_table.php
+    - Seed data
+    - seed_performances_table.php
+    - seed_people_table.php
+    # - seed_news_table.php
+    - seed_press_table.php
+    - seed_participation_table.php
+    - seed_taxonomies_table.php

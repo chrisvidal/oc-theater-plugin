@@ -42,7 +42,7 @@ tabs:
         synopsis:
             tab: Основное
             label: Синопсис
-            type: richeditor
+            type: textarea
         description:
             tab: Основное
             label: Описание спектакля
@@ -53,7 +53,7 @@ tabs:
             tab: Дополнительно
             label: Отформатированное название
             type: codeeditor
-            size: tiny
+            size: small
             language: html
         duration:
             tab: Дополнительно
@@ -107,12 +107,12 @@ tabs:
             mode: image
             type: fileupload
 
-        participations:
+        participation:
             tab: Роли и исполнители
             type: partial
-            path: $/abnmt/theater/models/performance/_list_participations.htm
+            path: $/abnmt/theater/models/performance/_list_participation.htm
 
-        presses:
+        press:
             tab: Пресса
             label: Пресса
             type: relation

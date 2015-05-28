@@ -1,10 +1,9 @@
 <?php namespace Abnmt\Theater\Models;
 
 use Model;
-use \October\Rain\Database\Traits\Sortable;
 
 /**
- * Role Model
+ * Participation Model
  */
 class Participation extends Model
 {
@@ -31,7 +30,7 @@ class Participation extends Model
     public $hasMany = [];
     public $belongsTo = [
         'performance' => ['Abnmt\Theater\Models\Performance'],
-        'person' => ['Abnmt\Theater\Models\Person']
+        'person'      => ['Abnmt\Theater\Models\Person'],
     ];
     public $belongsToMany = [];
     public $morphTo = [];

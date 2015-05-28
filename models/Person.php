@@ -13,7 +13,10 @@ class Person extends Model
      */
     public $table = 'abnmt_theater_people';
 
-    // protected $jsonable = ['roles'];
+    /**
+     * @var array JSONable fields
+     */
+    protected $jsonable = [];
 
     /**
      * @var array Guarded fields
@@ -30,40 +33,37 @@ class Person extends Model
      */
     public $hasOne = [];
     public $hasMany = [
-        'participations' => ['Abnmt\Theater\Models\Participation']
+        'participation' => ['Abnmt\Theater\Models\Participation'],
     ];
     public $belongsTo = [];
-    public $belongsToMany = [
-        // 'presses' => ['Abnmt\Theater\Models\Press',
-        //     'table' => 'abnmt_theater_press_relations',
-        //     'name' => 'relation',
-        // ],
-    ];
+    public $belongsToMany = [];
+
     public $morphTo = [];
     public $morphOne = [];
-    // public $morphMany = [
-    //     // 'press' => ['Abnmt\Theater\Models\Press', 'name' => 'press_relation']
-    // ];
+    public $morphMany = [];
+    public $morphToMany = [
+        'press' => ['Abnmt\Theater\Models\Press',
+            'table' => 'abnmt_theater_press_relations',
+            'name'  => 'relation',
+        ],
+    ];
+    public $morphedByMany = [];
+
     public $attachOne = [
         'portrait' => ['System\Models\File'],
     ];
     public $attachMany = [];
 
 
-    public $morphToMany = [
-        'presses' => ['Abnmt\Theater\Models\Press',
-            'table' => 'abnmt_theater_press_relations',
-            'name' => 'relation',
-        ],
-    ];
 
 
+    /**
+     * SCOPES
+     */
 
-    public function relationExtendQuery($query, $field, $manageMode=null)
-    {
-        return $query->where('type', '=', 'roles');
-    }
-
+    /**
+     * Scope IsPublished
+     */
     public function scopeIsPublished($query)
     {
         return $query
@@ -71,44 +71,48 @@ class Person extends Model
             ->where('published', '=', 1)
         ;
     }
+
+    /**
+     * Scope IsGrade
+     */
     public function scopeIsGrade($query)
     {
         return $query
-            ->whereNotNull('published')
-            ->where('published', '=', 1)
             ->whereNotNull('grade')
-            ->where('state', '<>', 'director')
-            ->where('state', '<>', 'cooperate')
-            ->where('state', '<>', 'not')
         ;
     }
+
+    /**
+     * Scope IsState
+     */
     public function scopeIsState($query)
     {
         return $query
-            ->whereNotNull('published')
-            ->where('published', '=', 1)
-            ->where('grade', '=', NULL)
-            ->where('state', '<>', 'director')
-            ->where('state', '<>', 'cooperate')
-            ->where('state', '<>', 'not')
+            ->where('state', '=', 'state')
         ;
     }
+
+    /**
+     * Scope IsCooperate
+     */
     public function scopeIsCooperate($query)
     {
         return $query
-            ->whereNotNull('published')
-            ->where('published', '=', 1)
             ->where('state', '=', 'cooperate')
         ;
     }
-    public function scopeIsDirector($query)
+
+    /**
+     * Scope IsAdministration
+     */
+    public function scopeIsAdministration($query)
     {
         return $query
-            ->whereNotNull('published')
-            ->where('published', '=', 1)
-            ->where('state', '=', 'director')
+            ->where('state', '=', 'administration')
         ;
     }
+
+
 
     /**
      * Sets the "url" attribute with a URL to this object
@@ -118,14 +122,16 @@ class Person extends Model
     public function setUrl($pageName, $controller)
     {
         $params = [
-            'id' => $this->id,
+            'id'   => $this->id,
             'slug' => $this->slug,
         ];
 
         return $this->url = $controller->pageUrl($pageName, $params);
     }
 
-
+    /**
+     * Make title from given and family names
+     */
     public function beforeSave()
     {
         $this->title = $this->given_name . " " . $this->family_name;

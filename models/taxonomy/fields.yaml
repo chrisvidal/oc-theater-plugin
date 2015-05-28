@@ -1,0 +1,18 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+        label: ID
+        disabled: true
+    title:
+        label: Название
+        span: left
+    slug:
+        label: URL
+        span: right
+        preset:
+            field: title
+    description:
+        label: Описание

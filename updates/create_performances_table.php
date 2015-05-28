@@ -1,19 +1,17 @@
 <?php namespace Abnmt\Theater\Updates;
 
-use Schema;
 use October\Rain\Database\Updates\Migration;
+use Schema;
 
 class CreatePerformancesTable extends Migration
 {
-
 
     public function up()
     {
 
         Schema::dropIfExists('abnmt_theater_performances');
 
-        Schema::create('abnmt_theater_performances', function($table)
-        {
+        Schema::create('abnmt_theater_performances', function ($table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
 

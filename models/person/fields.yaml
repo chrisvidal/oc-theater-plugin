@@ -19,6 +19,8 @@ fields:
     slug:
         label: URL
         span: left
+        preset:
+            field: title
     published:
         label: Опубликовано
         type: checkbox
@@ -41,6 +43,9 @@ fields:
             director: Художественный руководитель =)
     grade:
         label: Звание
+    # tgrade:
+    #     label: Звание
+    #     type: relation
 tabs:
     defaultTab: Основное
     fields:
@@ -52,12 +57,12 @@ tabs:
             label: Портрет
             type: fileupload
 
-        participations:
+        participation:
             tab: Занятость в спектаклях
             type: partial
-            path: $/abnmt/theater/models/person/_list_participations.htm
+            path: $/abnmt/theater/models/person/_list_participation.htm
 
-        presses:
+        press:
             label: Пресса
             tab: Пресса
             type: relation

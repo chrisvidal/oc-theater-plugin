@@ -14,8 +14,8 @@ class Performances extends Controller
         'Backend.Behaviors.RelationController',
     ];
 
-    public $formConfig = 'config_form.yaml';
-    public $listConfig = 'config_list.yaml';
+    public $formConfig     = 'config_form.yaml';
+    public $listConfig     = 'config_list.yaml';
     public $relationConfig = 'config_relation.yaml';
 
     public function __construct()
@@ -25,19 +25,21 @@ class Performances extends Controller
         BackendMenu::setContext('Abnmt.Theater', 'theater', 'performances');
     }
 
-
-
-
+    /**
+     * ????
+     */
     public function index($userId = null)
     {
         $this->asExtension('ListController')->index();
     }
 
+    /**
+     * Add Relations to List query
+     * @param $query
+     */
     public function listExtendQuery($query)
     {
         $query->with(['playbill', 'background', 'featured', 'video', 'repertoire']);
     }
-
-
 
 }

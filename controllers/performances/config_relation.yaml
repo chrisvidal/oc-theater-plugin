@@ -2,7 +2,7 @@
 #  Relation Behavior Config
 # ===================================
 
-participations:
+participation:
     label: Роли
     view:
         list: $/abnmt/theater/models/participation/performance_columns.yaml
@@ -10,9 +10,9 @@ participations:
     manage:
         list: $/abnmt/theater/models/participation/performance_columns.yaml
         form: $/abnmt/theater/models/participation/performance_fields.yaml
-        recordsPerPage: 17
+        recordsPerPage: 25
 
-presses:
+press:
     label: Пресса
     list: $/abnmt/theater/models/press/columns.yaml
     form: $/abnmt/theater/models/press/fields.yaml

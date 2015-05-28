@@ -1,7 +1,7 @@
 <?php namespace Abnmt\Theater\Updates;
 
-use Schema;
 use October\Rain\Database\Updates\Migration;
+use Schema;
 
 class CreatePeopleTable extends Migration
 {
@@ -11,8 +11,7 @@ class CreatePeopleTable extends Migration
 
         Schema::dropIfExists('abnmt_theater_people');
 
-        Schema::create('abnmt_theater_people', function($table)
-        {
+        Schema::create('abnmt_theater_people', function ($table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
 

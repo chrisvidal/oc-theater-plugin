@@ -9,6 +9,8 @@ fields:
     slug:
         label: URL
         span: right
+        preset:
+            field: title
     source:
         label: Источник
         span: left
@@ -33,18 +35,18 @@ tabs:
             type: richeditor
             size: giant
 
-        # persons:
+        # people:
         #     tab: Отношения
         #     label: Люди
         #     type: partial
-        #     path: $/abnmt/theater/models/press/_list_persons.htm
+        #     path: $/abnmt/theater/models/press/_list_people.htm
         # performances:
         #     tab: Отношения
         #     label: Спектакли
         #     type: partial
         #     path: $/abnmt/theater/models/press/_list_performances.htm
 
-        persons:
+        people:
             tab: Отношения
             label: Люди
             type: relation

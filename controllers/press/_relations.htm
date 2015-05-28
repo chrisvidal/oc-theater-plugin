@@ -2,8 +2,8 @@
 
 $this->result = array();
 
-if($record->persons):
-	$record->persons->each(function($person){
+if($record->people):
+	$record->people->each(function($person){
 		$this->result[] = $person->title;
 	});
 endif;

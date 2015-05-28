@@ -14,6 +14,11 @@ class Press extends Model
     public $table = 'abnmt_theater_press';
 
     /**
+     * @var array JSONable fields
+     */
+    protected $jsonable = [];
+
+    /**
      * @var array Guarded fields
      */
     protected $guarded = ['*'];
@@ -30,11 +35,12 @@ class Press extends Model
     public $hasMany = [];
     public $belongsTo = [];
     public $belongsToMany = [];
+
+    public $morphTo = [];
     public $morphOne = [];
-    public $attachOne = [];
-    public $attachMany = [];
+    public $morphMany = [];
     public $morphToMany = [
-        'categories'    => ['Abnmt\Theater\Models\Category',
+        'categories' => ['Abnmt\Theater\Models\Category',
             'name'  => 'object',
             'table' => 'abnmt_theater_object_categories',
             'order' => 'name',
@@ -42,18 +48,25 @@ class Press extends Model
     ];
     public $morphedByMany = [
         'performances' => ['Abnmt\Theater\Models\Performance',
-            'name' => 'relation',
+            'name'  => 'relation',
             'table' => 'abnmt_theater_press_relations',
         ],
-        'persons' => ['Abnmt\Theater\Models\Person',
-            'name' => 'relation',
+        'people' => ['Abnmt\Theater\Models\Person',
+            'name'  => 'relation',
             'table' => 'abnmt_theater_press_relations',
         ],
     ];
 
+    public $attachOne = [];
+    public $attachMany = [];
+
 
     /**
-     * Scopes
+     * SCOPES
+     */
+
+    /**
+     * Scope IsPublished
      */
     public function scopeIsPublished($query)
     {
@@ -63,7 +76,31 @@ class Press extends Model
         ;
     }
 
+    /**
+     * Scope GetFrontEnd
+     */
+    public function scopeGetFrontEnd($query, $options)
+    {
 
+        /*
+         * Default options
+         */
+        extract(array_merge([
+            'page'      => 1,
+            'perPage'   => 10,
+            'sort'      => 'source_date',
+            'filter'    => 'all',
+            'published' => true,
+        ], $options));
+
+        $query->orderBy($sort, 'DESC');
+
+        return $query
+            ->whereNotNull('published')
+            ->where('published', '=', 1)
+            ->paginate($perPage, $page)
+        ;
+    }
 
     /**
      * Sets the "url" attribute with a URL to this object
@@ -73,7 +110,7 @@ class Press extends Model
     public function setUrl($pageName, $controller)
     {
         $params = [
-            'id' => $this->id,
+            'id'   => $this->id,
             'slug' => $this->slug,
         ];
 

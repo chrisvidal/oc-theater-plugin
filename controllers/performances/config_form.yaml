@@ -16,16 +16,16 @@ defaultRedirect: abnmt/theater/performances
 
 # Create page
 create:
-    title: Create Performance
+    title: Добавить спектакль
     redirect: abnmt/theater/performances/update/:id
     redirectClose: abnmt/theater/performances
 
 # Update page
 update:
-    title: Edit Performance
+    title: Редактировать спектакль
     redirect: abnmt/theater/performances
     redirectClose: abnmt/theater/performances
 
 # Preview page
 preview:
-    title: Preview Performance
+    title: Просмотр

@@ -19,21 +19,21 @@
                     type="submit"
                     data-request="onSave"
                     data-hotkey="ctrl+s, cmd+s"
-                    data-load-indicator="Creating Performance..."
+                    data-load-indicator="Создание…"
                     class="btn btn-primary">
-                    Create
+                    Создать
                 </button>
                 <button
                     type="button"
                     data-request="onSave"
                     data-request-data="close:1"
                     data-hotkey="ctrl+enter, cmd+enter"
-                    data-load-indicator="Creating Performance..."
+                    data-load-indicator="Создание…"
                     class="btn btn-default">
-                    Create and Close
+                    Создать и закрыть
                 </button>
                 <span class="btn-text">
-                    or <a href="<?= Backend::url('abnmt/theater/performances') ?>">Cancel</a>
+                    или <a href="<?= Backend::url('abnmt/theater/performances') ?>">Отмена</a>
                 </span>
             </div>
         </div>
@@ -43,6 +43,6 @@
 <?php else: ?>
 
     <p class="flash-message static error"><?= e($this->fatalError) ?></p>
-    <p><a href="<?= Backend::url('abnmt/theater/performances') ?>" class="btn btn-default">Return to performances list</a></p>
+    <p><a href="<?= Backend::url('abnmt/theater/performances') ?>" class="btn btn-default">Вернуться к списку…</a></p>
 
 <?php endif ?>

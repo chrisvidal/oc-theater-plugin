@@ -1,0 +1,29 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    title:
+        label: Название
+        span: left
+    slug:
+        label: URL
+        span: right
+
+tabs:
+    defaultTab: Основное
+    fields:
+        excerpt:
+            tab: Основное
+            label: Краткое содержание
+            type: textarea
+            size: small
+        content:
+            tab: Основное
+            label: Содержимое
+            type: richeditor
+            size: giant
+        cover:
+            tab: Медиа
+            label: Обложка
+            type: fileupload

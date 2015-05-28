@@ -1,10 +1,3 @@
-<!-- <div style="white-space: nowrap;" > -->
-<div style="font-size: 0;">
-<?
-
-$record->repertoire->each(function($image){
-    echo '<img src="' . $image->getThumb('auto', 100) . '" style="display:inline-block; margin: 0 1px 1px 0;" >' . "\n";
-});
-
-?>
-</div>
+<? if($record->repertoire): ?>
+<?= '<img src="' . $record->repertoire->getThumb('auto', 100) . '" />' ?>
+<? endif; ?>

@@ -13,7 +13,10 @@ class Performance extends Model
      */
     public $table = 'abnmt_theater_performances';
 
-    // protected $jsonable = ['authors', 'roles'];
+    /**
+     * @var array JSONable fields
+     */
+    protected $jsonable = [];
 
     /**
      * @var array Guarded fields
@@ -36,40 +39,45 @@ class Performance extends Model
     //     'premiere_date desc' => 'Premiere date (descending)',
     // );
 
-
-
     /**
      * @var array Relations
      */
     public $hasOne = [];
     public $hasMany = [
-        'participations' => ['Abnmt\Theater\Models\Participation'],
+        'participation' => ['Abnmt\Theater\Models\Participation'],
     ];
     public $belongsTo = [];
     public $belongsToMany = [];
+
     public $morphTo = [];
     public $morphOne = [];
-    // public $morphMany = [
-    //     // 'press' => ['Abnmt\Theater\Models\Press', 'name' => 'press_relation']
-    // ];
-    public $attachOne = [
-        'playbill' => ['System\Models\File'],
-    ];
-    public $attachMany = [
-        'repertoire' => ['System\Models\File'],
-        'background' => ['System\Models\File'],
-        'featured' => ['System\Models\File'],
-        'video' => ['System\Models\File'],
-    ];
-
+    public $morphMany = [];
     public $morphToMany = [
-        'presses' => ['Abnmt\Theater\Models\Press',
+        'press' => ['Abnmt\Theater\Models\Press',
             'table' => 'abnmt_theater_press_relations',
             'name' => 'relation',
         ],
     ];
+    public $morphedByMany = [];
+
+    public $attachOne = [
+        'playbill' => ['System\Models\File'],
+        'video' => ['System\Models\File'],
+        'repertoire' => ['System\Models\File'],
+    ];
+    public $attachMany = [
+        'background' => ['System\Models\File'],
+        'featured' => ['System\Models\File'],
+    ];
 
 
+    /**
+     * SCOPES
+     */
+
+    /**
+     * Scope IsPublished
+     */
     public function scopeIsPublished($query)
     {
         return $query
@@ -77,6 +85,10 @@ class Performance extends Model
             ->where('published', '=', 1)
         ;
     }
+
+    /**
+     * Scope IsNormal
+     */
     public function scopeIsNormal($query)
     {
         return $query
@@ -84,6 +96,10 @@ class Performance extends Model
             ->where('type', '=', 'normal')
         ;
     }
+
+    /**
+     * Scope IsChild
+     */
     public function scopeIsChild($query)
     {
         return $query
@@ -91,14 +107,16 @@ class Performance extends Model
             ->where('type', '=', 'child')
         ;
     }
+
+    /**
+     * Scope IsArchive
+     */
     public function scopeIsArchive($query)
     {
         return $query
             ->where('state', '=', 'archived')
         ;
     }
-
-
 
     // public function scopeListPerformances($query, $options)
     // {
@@ -110,7 +128,6 @@ class Performance extends Model
     //         'sort'       => 'premiere_date',
     //         'published'  => true
     //     ], $options));
-
 
     //     if ($published)
     //         $query->isPublished();
@@ -130,34 +147,34 @@ class Performance extends Model
     //         }
     //     }
 
-
     //     return $query;
     // }
 
 
-
-
+    /**
+     * Dropdown options
+     */
     public function getDropdownOptions($fieldName = null, $keyValue = null)
     {
-        if ($fieldName == 'entracte')
+        if ($fieldName == 'entracte') {
             return [
                 0 => 'Без антракта',
                 1 => 'С одним антрактом',
                 2 => 'С двумя антрактами',
             ];
-        elseif ($fieldName == 'state')
+        } elseif ($fieldName == 'state') {
             return [
                 'normal'   => 'Обычное',
                 'premiere' => 'Премьера',
                 'archived' => 'В архиве',
             ];
-        elseif ($fieldName == 'type')
+        } elseif ($fieldName == 'type') {
             return [
                 'normal' => 'Обычный',
                 'child'  => 'Детский',
                 'event'  => 'Событие',
             ];
-        elseif ($fieldName == 'rate')
+        } elseif ($fieldName == 'rate') {
             return [
                 0  => '0+',
                 6  => '6+',
@@ -165,10 +182,11 @@ class Performance extends Model
                 16 => '16+',
                 18 => '18+',
             ];
-        else
+        } else {
             return ['' => '—'];
-    }
+        }
 
+    }
 
     /**
      * Sets the "url" attribute with a URL to this object
@@ -178,7 +196,7 @@ class Performance extends Model
     public function setUrl($pageName, $controller)
     {
         $params = [
-            'id' => $this->id,
+            'id'   => $this->id,
             'slug' => $this->slug,
         ];
 
