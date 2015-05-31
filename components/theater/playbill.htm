@@ -1,0 +1,16 @@
+                                {% if byGroup %}
+                                {% for event in byGroup.normal %}<!-- {{ event.slug }} -->
+                                {% partial __SELF__ ~ '::event' event=event %}
+                                {% endfor %}<!-- /End -->
+
+                                <h4 id="child" >Детские спектакли</h4>
+                                {% for event in byGroup.child %}<!-- {{ event.slug }} -->
+                                {% partial __SELF__ ~ '::event' event=event %}
+                                {% endfor %}<!-- /End -->
+
+                                {% else %}
+                                {% for event in playbill %}<!-- {{ event.slug }} -->
+                                {% partial __SELF__ ~ '::event' event=event %}
+                                {% endfor %}<!-- /End -->
+                                {% endif %}
+

@@ -72,9 +72,11 @@ class Plugin extends PluginBase
      * Register Components
      * @return array
      */
-    // public function registerComponents()
-    // {
-    //     return [
+    public function registerComponents()
+    {
+        return [
+            'Abnmt\Theater\Components\Data'    => 'data',
+            'Abnmt\Theater\Components\Theater' => 'theater',
     //         'Abnmt\Theater\Components\Playbill'     => 'playbill',
     //         'Abnmt\Theater\Components\Calendar'     => 'calendar',
     //         'Abnmt\Theater\Components\Performance'  => 'performance',
@@ -83,7 +85,7 @@ class Plugin extends PluginBase
     //         'Abnmt\Theater\Components\Troupe'       => 'troupe',
     //         'Abnmt\Theater\Components\Press'        => 'press',
     //         'Abnmt\Theater\Components\PressArchive' => 'pressArchive',
-    //     ];
-    // }
+        ];
+    }
 
 }

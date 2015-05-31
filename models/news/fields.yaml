@@ -9,6 +9,14 @@ fields:
     slug:
         label: URL
         span: right
+    published_at:
+        label: Дата
+        span: left
+        type: datepicker
+    published:
+        label: Опубликовано
+        span: left
+        type: switch
 
 tabs:
     defaultTab: Основное

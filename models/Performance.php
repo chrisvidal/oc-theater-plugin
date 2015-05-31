@@ -29,17 +29,6 @@ class Performance extends Model
     protected $fillable = [];
 
     /**
-     * The attributes on which the post list can be ordered
-     * @var array
-     */
-    // public static $allowedSortingOptions = array(
-    //     'title asc' => 'Title (ascending)',
-    //     'title desc' => 'Title (descending)',
-    //     'premiere_date asc' => 'Premiere date (ascending)',
-    //     'premiere_date desc' => 'Premiere date (descending)',
-    // );
-
-    /**
      * @var array Relations
      */
     public $hasOne = [];
@@ -118,37 +107,60 @@ class Performance extends Model
         ;
     }
 
-    // public function scopeListPerformances($query, $options)
-    // {
+    /**
+     * Scope GetList
+     */
+    public function scopeGetList($query, $options)
+    {
+        /*
+         * Default options
+         */
+        extract(array_merge([
+            'sort'    => ['premiere_date', 'desc'],
+            'section' => 'normal',
+        ], $options));
 
-    //     /*
-    //      * Default options
-    //      */
-    //     extract(array_merge([
-    //         'sort'       => 'premiere_date',
-    //         'published'  => true
-    //     ], $options));
+        $query = $query->isPublished();
 
-    //     if ($published)
-    //         $query->isPublished();
+        switch ($section) {
+            case 'child':
+                $query = $query->isChild();
+                break;
+            case 'archive':
+                $query = $query->isArchive();
+                break;
+            case 'normal':
+            default:
+                $query = $query->isNormal();
+                break;
+        }
 
-    //     /*
-    //      * Sorting
-    //      */
-    //     if (!is_array($sort)) $sort = [$sort];
-    //     foreach ($sort as $_sort) {
+        return $query = $query
+            ->with(['repertoire'])
+            ->orderBy($sort[0], $sort[1])
+        ;
 
-    //         if (in_array($_sort, array_keys(self::$allowedSortingOptions))) {
-    //             $parts = explode(' ', $_sort);
-    //             if (count($parts) < 2) array_push($parts, 'desc');
-    //             list($sortField, $sortDirection) = $parts;
+    }
 
-    //             $query->orderBy($sortField, $sortDirection);
-    //         }
-    //     }
+    /**
+     * Scope GetSingle
+     */
+    public function scopeGetSingle($query, $options)
+    {
+        /*
+         * Default options
+         */
+        extract(array_merge([], $options));
 
-    //     return $query;
-    // }
+        return $query
+            ->isPublished()
+            ->with(['participation.person', 'press', 'video', 'background', 'featured'])
+            ->where('slug', '=', $slug)
+        ;
+
+    }
+
+
 
 
     /**

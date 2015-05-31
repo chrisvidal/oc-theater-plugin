@@ -1,0 +1,22 @@
+
+                                {% for performance in repertoire %}<!-- {{ performance.slug }} -->
+                                <div class="performance">
+                                    {% if performance.repertoire | length != 0 %}<!-- Background -->
+                                    <a href="{{ performance.url }}" class="playbill" style="background: url('{{ random(performance.repertoire).path }}');" title="{{ performance.title }}" alt="{{ performance.title }}"></a>
+                                    {% else %}<!-- No backgrounds -->
+                                    <a href="{{ performance.url }}" class="playbill" title="{{ performance.title }}" alt="{{ performance.title }}"></a>
+                                    {% endif %}<!-- /End -->
+                                    <div class="title-block">
+                                        <div class="title">
+                                            <a href="{{ performance.url }}">{{ performance.title }}</a>
+                                            {% if performance.rate %}<span class="rate">{{ performance.rate }}+</span>{% endif %}
+
+                                        </div>
+                                        <div class="author">{{ performance.author }}</div>
+                                        <div class="description">{{ performance.description}}</div>
+                                    </div>
+                                    <div class="synopsis">{{ performance.synopsis|raw }}</div>
+                                    <div class="performance-link"><a href="{{ performance.url }}">Посмотреть спектакль</a></div>
+                                </div>
+
+                                {% endfor %}<!-- /End -->

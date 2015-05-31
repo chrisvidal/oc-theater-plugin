@@ -1,0 +1,32 @@
+
+
+                            <nav id="page-navigation" role="navigation" class="secondary-navigation">
+                                <ul class="nav-menu">
+                                    {% for list in submenu %}<!-- {{ list.slug }} -->
+                                    <li class="nav-menu-item{{ list.active ? ' ' ~ list.active }}{{ list.slug ? ' ' ~ list.slug }}">
+                                        {% if list.active %}{{ list.title }}{% else %}<a href="{{ list.url }}">{{ list.title }}</a>{% endif %}
+
+                                    </li>
+                                    {% endfor %}<!-- /End -->
+                                </ul>
+                            </nav>
+
+
+                            <div class="content">
+
+                            {% if repertoire %}
+                                {% partial __SELF__ ~ '::repertoire' %}
+                            {% elseif troupe %}
+                                {% partial __SELF__ ~ '::troupe' %}
+                            {% elseif news %}
+                                {% partial __SELF__ ~ '::news' %}
+                            {% elseif press %}
+                                {% partial __SELF__ ~ '::press' %}
+                            {% elseif playbill %}
+                                {% partial __SELF__ ~ '::playbill' %}
+                            {% endif %}
+
+
+                            <!-- {{ test|raw }} -->
+
+                            </div>

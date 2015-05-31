@@ -3,20 +3,15 @@
 use Model;
 
 /**
- * Press Model
+ * Event Model
  */
-class Press extends Model
+class Event extends Model
 {
 
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'abnmt_theater_press';
-
-    /**
-     * @var array JSONable fields
-     */
-    protected $jsonable = [];
+    public $table = 'abnmt_theater_events';
 
     /**
      * @var array Guarded fields
@@ -29,30 +24,26 @@ class Press extends Model
     protected $fillable = [];
 
     /**
+     * The attributes that should be mutated to dates.
+     * @var array
+     */
+    protected $dates = ['datetime'];
+
+    /**
      * @var array Relations
      */
     public $hasOne = [];
     public $hasMany = [];
-    public $belongsTo = [];
+    public $belongsTo = [
+        "performance" => ['Abnmt\Theater\Models\Performance'],
+    ];
     public $belongsToMany = [];
-
     public $morphTo = [];
     public $morphOne = [];
     public $morphMany = [];
-    public $morphToMany = [];
-    public $morphedByMany = [
-        'performances' => ['Abnmt\Theater\Models\Performance',
-            'name'  => 'relation',
-            'table' => 'abnmt_theater_press_relations',
-        ],
-        'people' => ['Abnmt\Theater\Models\Person',
-            'name'  => 'relation',
-            'table' => 'abnmt_theater_press_relations',
-        ],
-    ];
-
     public $attachOne = [];
     public $attachMany = [];
+
 
 
     /**
@@ -71,30 +62,18 @@ class Press extends Model
     }
 
     /**
-     * Scope GetFrontEnd
+     * Scope CurrentMonth
      */
-    public function scopeGetFrontEnd($query, $options)
-    {
-
-        /*
-         * Default options
-         */
-        extract(array_merge([
-            'page'      => 1,
-            'perPage'   => 10,
-            'sort'      => 'source_date',
-            'filter'    => 'all',
-            'published' => true,
-        ], $options));
-
-        $query->orderBy($sort, 'DESC');
-
-        return $query
-            ->whereNotNull('published')
-            ->where('published', '=', 1)
-            ->paginate($perPage, $page)
-        ;
-    }
+    // public function scopeCurrentMonth($query)
+    // {
+    //     return $query
+    //         // ->groupBy(function ($event) {
+    //         //     // return \Carbon\Carbon::parse($event->datetime)->format('M');
+    //         //     return $event->datetime;
+    //         // })
+    //         ->groupBy('title')
+    //     ;
+    // }
 
     /**
      * Sets the "url" attribute with a URL to this object
@@ -110,5 +89,6 @@ class Press extends Model
 
         return $this->url = $controller->pageUrl($pageName, $params);
     }
+
 
 }
