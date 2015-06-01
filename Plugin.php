@@ -4,10 +4,14 @@ use System\Classes\PluginBase;
 
 use Abnmt\Theater\Models\Performance as PerformanceModel;
 use Abnmt\Theater\Models\Person as PersonModel;
-use Abnmt\Theater\Models\TaxonomyGroup as TaxonomyGroupModel;
 
 use Abnmt\Theater\Controllers\Performances as PerformancesController;
 use Abnmt\Theater\Controllers\People as PeopleController;
+
+use Illuminate\Support\Facades\App;
+use Illuminate\Foundation\AliasLoader;
+
+use Laravelrus\LocalizedCarbon\LocalizedCarbon as LocalizedCarbon;
 
 /**
  * Theater Plugin Information File
@@ -85,6 +89,54 @@ class Plugin extends PluginBase
     //         'Abnmt\Theater\Components\Troupe'       => 'troupe',
     //         'Abnmt\Theater\Components\Press'        => 'press',
     //         'Abnmt\Theater\Components\PressArchive' => 'pressArchive',
+        ];
+    }
+    /**
+     * Register Components
+     * @return array
+     */
+    public function registerPageSnippets()
+    {
+        return [
+            'Abnmt\Theater\Components\Theater' => 'theater',
+        ];
+    }
+
+
+
+    public function boot()
+    {
+        App::register( 'Laravelrus\LocalizedCarbon\LocalizedCarbonServiceProvider' );
+
+        $alias = AliasLoader::getInstance();
+        $alias->alias( 'LocalizedCarbon', 'Laravelrus\LocalizedCarbon\LocalizedCarbon' );
+        $alias->alias( 'DiffFormatter'  , 'Laravelrus\LocalizedCarbon\DiffFactoryFacade' );
+    }
+
+    /**
+     * Register Twig tags
+     * @return array
+     */
+    public function registerMarkupTags()
+    {
+        return [
+            'filters' => [
+                'weekday' => function ( $datetime ) {
+                    setlocale(LC_ALL, 'Russian');
+                    $weekday = \Carbon\Carbon::parse($datetime)->formatLocalized('%a');
+                    return mb_convert_encoding($weekday, "UTF-8", "CP1251");
+                },
+                'month' => function ( $datetime ) {
+                    setlocale(LC_ALL, 'Russian');
+                    return $month = LocalizedCarbon::parse($datetime)->formatLocalized('%f');
+                },
+                'duration' => function ( $datetime ) {
+                    $interval = preg_split('/\:|\:0/', $datetime);
+                    $diff = new \DateInterval('PT' . $interval[0] . 'H' . $interval[1] . 'M');
+                    \Carbon\CarbonInterval::setLocale('ru');
+                    return \Carbon\CarbonInterval::instance($diff);
+                },
+            ]
         ];
     }
 

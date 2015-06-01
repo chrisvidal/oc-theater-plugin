@@ -149,9 +149,6 @@ class Theater extends ComponentBase
     protected function getData()
     {
 
-        $now = new \DateTime('now');
-        $month = $now->format('M');
-
         $options = [
             'news' => [
                 'default' => [
@@ -174,14 +171,14 @@ class Theater extends ComponentBase
             ],
             'playbill' => [
                 'default' => [
-                    'title' => \Carbon\Carbon::now()->startOfMonth()->format('F'),
+                    'title' => $this->localeCurrentMonth(),
                     'model' => EventModel::isPublished(),
                     'sort'  => [['datetime', 'asc']],
                     'with'  => ['performance'],
                     'query' => [['datetime', '>=', \Carbon\Carbon::now()->startOfMonth()]],
                 ],
                 'next' => [
-                    'title' => \Carbon\Carbon::now()->startOfMonth()->addMonth()->format('F'),
+                    'title' => $this->localeNextMonth(),
                     'model' => EventModel::isPublished(),
                     'sort'  => [['datetime', 'asc']],
                     'with'  => ['performance'],
@@ -214,7 +211,7 @@ class Theater extends ComponentBase
                     'with'  => ['repertoire'],
                 ],
             ],
-            'performance' => [''],
+            'performance' => [],
             'troupe' => [
                 'default' => [
                     'title'   => 'Художественный руководитель',
@@ -251,7 +248,24 @@ class Theater extends ComponentBase
                     'with'  => ['portrait'],
                 ],
             ],
-            'person' => [],
+            'single' => [
+                'performance' => [
+                    'model' => PerformanceModel::isPublished(),
+                    'nav' => 'repertoire',
+                ],
+                'person' => [
+                    'model' => PersonModel::isPublished(),
+                    'nav' => 'troupe',
+                ],
+                'press' => [
+                    'model' => PressModel::isPublished(),
+                    'nav' => 'press',
+                ],
+                'news' => [
+                    'model' => NewsModel::isPublished(),
+                    'nav' => 'news',
+                ],
+            ],
         ];
 
         if (
@@ -343,29 +357,43 @@ class Theater extends ComponentBase
 
 
 
-    protected function getSingle()
+    protected function localeCurrentMonth()
     {
-        /**
-         * Get Single
-         */
-        $data = 'Это контент и ниибёт!';
-
-        /**
-         * Return
-         */
-        return $data;
+        setlocale(LC_ALL, 'Russian');
+        $month = \Carbon\Carbon::now()->startOfMonth()->formatLocalized('%B');
+        return mb_convert_encoding($month, "UTF-8", "CP1251");
     }
-    protected function getList()
+    protected function localeNextMonth()
     {
-        /**
-         * Get List
-         */
-        $data = 'Это контент и ниибёт!';
-
-        /**
-         * Return
-         */
-        return $data;
+        setlocale(LC_ALL, 'Russian');
+        $month = \Carbon\Carbon::now()->startOfMonth()->addMonth()->formatLocalized('%B');
+        return mb_convert_encoding($month, "UTF-8", "CP1251");
     }
+
+    // protected function getSingle()
+    // {
+    //     /**
+    //      * Get Single
+    //      */
+    //     $data = 'Это контент и ниибёт!';
+
+    //     /**
+    //      * Return
+    //      */
+    //     return $data;
+    // }
+
+    // protected function getList()
+    // {
+    //     /**
+    //      * Get List
+    //      */
+    //     $data = 'Это контент и ниибёт!';
+
+    //     /**
+    //      * Return
+    //      */
+    //     return $data;
+    // }
 
 }
