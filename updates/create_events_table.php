@@ -18,9 +18,10 @@ class CreateEventsTable extends Migration
             $table->string('title');
             $table->string('slug')->index();
 
-            $table->timestamp('datetime');
+            $table->datetime('datetime');
 
-            $table->integer('performance_id');
+            $table->integer('performance_id')->unsigned();
+            $table->integer('playbill_id')->unsigned();
 
             $table->boolean('published')->default(false);
 

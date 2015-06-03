@@ -1,9 +1,13 @@
 <?php namespace Abnmt\Theater;
 
+
 use System\Classes\PluginBase;
 
+use Abnmt\Theater\Models\Event as EventModel;
 use Abnmt\Theater\Models\Performance as PerformanceModel;
 use Abnmt\Theater\Models\Person as PersonModel;
+use Abnmt\Theater\Models\News as NewsModel;
+use Abnmt\Theater\Models\Press as PressModel;
 
 use Abnmt\Theater\Controllers\Performances as PerformancesController;
 use Abnmt\Theater\Controllers\People as PeopleController;
@@ -12,6 +16,8 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Foundation\AliasLoader;
 
 use Laravelrus\LocalizedCarbon\LocalizedCarbon as LocalizedCarbon;
+
+use Event;
 
 /**
  * Theater Plugin Information File
@@ -79,16 +85,14 @@ class Plugin extends PluginBase
     public function registerComponents()
     {
         return [
-            'Abnmt\Theater\Components\Data'    => 'data',
-            'Abnmt\Theater\Components\Theater' => 'theater',
-    //         'Abnmt\Theater\Components\Playbill'     => 'playbill',
-    //         'Abnmt\Theater\Components\Calendar'     => 'calendar',
-    //         'Abnmt\Theater\Components\Performance'  => 'performance',
-    //         'Abnmt\Theater\Components\Performances' => 'repertoire',
-    //         'Abnmt\Theater\Components\Person'       => 'person',
-    //         'Abnmt\Theater\Components\Troupe'       => 'troupe',
-    //         'Abnmt\Theater\Components\Press'        => 'press',
-    //         'Abnmt\Theater\Components\PressArchive' => 'pressArchive',
+            'Abnmt\Theater\Components\Theater'      => 'theater',
+            'Abnmt\Theater\Components\Playbill'     => 'theaterPlaybill',
+            'Abnmt\Theater\Components\Repertoire'   => 'theaterRepertoire',
+            'Abnmt\Theater\Components\Troupe'       => 'theaterTroupe',
+            'Abnmt\Theater\Components\News'         => 'theaterNews',
+            'Abnmt\Theater\Components\Press'        => 'theaterPress',
+            'Abnmt\Theater\Components\Person'       => 'theaterPerson',
+            'Abnmt\Theater\Components\Performance'  => 'theaterPerformance',
         ];
     }
     /**
@@ -111,6 +115,46 @@ class Plugin extends PluginBase
         $alias = AliasLoader::getInstance();
         $alias->alias( 'LocalizedCarbon', 'Laravelrus\LocalizedCarbon\LocalizedCarbon' );
         $alias->alias( 'DiffFormatter'  , 'Laravelrus\LocalizedCarbon\DiffFactoryFacade' );
+
+
+        /*
+         * Register menu items for the RainLab.Pages plugin
+         */
+        Event::listen('pages.menuitem.listTypes', function() {
+            return [
+                'news-archive' => 'Архив новостей',
+                'press-archive' => 'Архив прессы',
+                'playbill' => 'Афиша на 2 крайних месяца',
+                'repertoire-category' => 'Список спектаклей одной категории',
+                'troupe-category' => 'Список людей одной категории',
+            ];
+        });
+
+        Event::listen('pages.menuitem.getTypeInfo', function($type) {
+            if ($type == 'playbill')
+                return EventModel::getMenuTypeInfo($type);
+            if ($type == 'repertoire-category')
+                return PerformanceModel::getMenuTypeInfo($type);
+            if ($type == 'troupe-category')
+                return PersonModel::getMenuTypeInfo($type);
+            if ($type == 'news-archive')
+                return NewsModel::getMenuTypeInfo($type);
+            if ($type == 'press-archive')
+                return PressModel::getMenuTypeInfo($type);
+        });
+
+        Event::listen('pages.menuitem.resolveItem', function($type, $item, $url, $theme) {
+            if ($type == 'playbill')
+                return EventModel::resolveMenuItem($item, $url, $theme);
+            if ($type == 'repertoire-category')
+                return PerformanceModel::resolveMenuItem($item, $url, $theme);
+            if ($type == 'troupe-category')
+                return PersonModel::resolveMenuItem($item, $url, $theme);
+            if ($type == 'news-archive')
+                return NewsModel::resolveMenuItem($item, $url, $theme);
+            if ($type == 'press-archive')
+                return PressModel::resolveMenuItem($item, $url, $theme);
+        });
     }
 
     /**

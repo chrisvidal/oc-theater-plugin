@@ -2,14 +2,14 @@
 
 use Cms\Classes\ComponentBase;
 
-class Repertoire extends ComponentBase
+class Person extends ComponentBase
 {
 
     public function componentDetails()
     {
         return [
-            'name'        => 'Репертуар',
-            'description' => 'Выводит репертуар'
+            'name'        => 'Персоналия',
+            'description' => 'Выводит страницу биографии'
         ];
     }
 

@@ -21,9 +21,9 @@ class CreateParticipationsTable extends Migration
 
             $table->string('group')->nullable()->default(null);
 
-            $table->integer('performance_id');
+            $table->integer('performance_id')->unsigned();
             $table->string('performance_title')->nullable()->default(null);
-            $table->integer('person_id');
+            $table->integer('person_id')->unsigned();
             $table->string('person_title')->nullable()->default(null);
 
             $table->integer('sort_order')->nullable();

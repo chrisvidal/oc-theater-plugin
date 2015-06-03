@@ -36,6 +36,7 @@ class Event extends Model
     public $hasMany = [];
     public $belongsTo = [
         "performance" => ['Abnmt\Theater\Models\Performance'],
+        "playbill"    => ['Abnmt\Theater\Models\Playbill'],
     ];
     public $belongsToMany = [];
     public $morphTo = [];

@@ -32,9 +32,9 @@ class CreatePressTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
 
-            $table->integer('press_id');
+            $table->integer('press_id')->unsigned();
 
-            $table->integer('relation_id');
+            $table->integer('relation_id')->unsigned();
             $table->string('relation_type');
 
             $table->string('description')->nulable()->default(null);

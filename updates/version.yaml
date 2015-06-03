@@ -6,6 +6,7 @@
     - create_press_table.php
     - create_participation_table.php
     - create_events_table.php
+    - create_playbills_table.php
 1.0.2:
     - Seed data
     - seed_performances_table.php
@@ -14,3 +15,4 @@
     - seed_press_table.php
     - seed_participation_table.php
     - seed_events_table.php
+    - seed_playbills_table.php
