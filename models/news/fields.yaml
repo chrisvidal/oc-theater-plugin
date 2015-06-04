@@ -35,3 +35,8 @@ tabs:
             tab: Медиа
             label: Обложка
             type: fileupload
+
+        categories:
+            tab: Категории
+            type: partial
+            path: $/abnmt/theater/models/news/_list_categories.htm

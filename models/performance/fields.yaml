@@ -18,14 +18,14 @@ fields:
             field: title
     author:
         label: Автор
-    type:
-        label: Тип
-        type: dropdown
-        span: left
-    state:
-        label: Состояние
-        type: dropdown
-        span: right
+    # type:
+    #     label: Тип
+    #     type: dropdown
+    #     span: left
+    # state:
+    #     label: Состояние
+    #     type: dropdown
+    #     span: right
     published:
         label: Опубликовано
         type: switch
@@ -120,3 +120,8 @@ tabs:
             nameFrom: title
             options:
                 nameColumn: title
+
+        categories:
+            tab: Категории
+            type: partial
+            path: $/abnmt/theater/models/performance/_list_categories.htm

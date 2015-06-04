@@ -1,0 +1,14 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    title:
+        label: Название
+        placeholder: Название категории
+        span: left
+
+    slug:
+        label: URL
+        span: right
+        preset: title

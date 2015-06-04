@@ -9,8 +9,6 @@ columns:
         sortable: false
     title:
         label: Имя, Фамилия
-    state:
-        label: В штате
     # published:
     #     label: Опубликовано
     #     type: switch

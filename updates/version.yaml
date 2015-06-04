@@ -7,8 +7,18 @@
     - create_participation_table.php
     - create_events_table.php
     - create_playbills_table.php
+    - create_event_categories_table.php
+    - create_performance_categories_table.php
+    - create_person_categories_table.php
+    - create_news_categories_table.php
+    - create_press_categories_table.php
 1.0.2:
     - Seed data
+    - seed_event_categories_table.php
+    - seed_performance_categories_table.php
+    - seed_person_categories_table.php
+    - seed_news_categories_table.php
+    - seed_press_categories_table.php
     - seed_performances_table.php
     - seed_people_table.php
     # - seed_news_table.php

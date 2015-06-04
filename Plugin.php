@@ -4,10 +4,17 @@
 use System\Classes\PluginBase;
 
 use Abnmt\Theater\Models\Event as EventModel;
+use Abnmt\Theater\Models\Playbill as PlaybillModel;
 use Abnmt\Theater\Models\Performance as PerformanceModel;
 use Abnmt\Theater\Models\Person as PersonModel;
 use Abnmt\Theater\Models\News as NewsModel;
 use Abnmt\Theater\Models\Press as PressModel;
+
+use Abnmt\Theater\Models\EventCategory as EventCategoryModel;
+use Abnmt\Theater\Models\PerformanceCategory as PerformanceCategoryModel;
+use Abnmt\Theater\Models\PersonCategory as PersonCategoryModel;
+use Abnmt\Theater\Models\NewsCategory as NewsCategoryModel;
+use Abnmt\Theater\Models\PressCategory as PressCategoryModel;
 
 use Abnmt\Theater\Controllers\Performances as PerformancesController;
 use Abnmt\Theater\Controllers\People as PeopleController;
@@ -54,9 +61,9 @@ class Plugin extends PluginBase
                         'url'   => \Backend::url('abnmt/theater/news'),
                     ],
                     'events' => [
-                        'label' => 'События',
+                        'label' => 'Афиша',
                         'icon'  => 'icon-calendar',
-                        'url'   => \Backend::url('abnmt/theater/events'),
+                        'url'   => \Backend::url('abnmt/theater/playbill'),
                     ],
                     'performances' => [
                         'label' => 'Спектакли',
@@ -122,38 +129,39 @@ class Plugin extends PluginBase
          */
         Event::listen('pages.menuitem.listTypes', function() {
             return [
-                'news-archive' => 'Архив новостей',
-                'press-archive' => 'Архив прессы',
-                'playbill' => 'Афиша на 2 крайних месяца',
-                'repertoire-category' => 'Список спектаклей одной категории',
-                'troupe-category' => 'Список людей одной категории',
+                'news-category' => 'Новости по категориям',
+                'performance-category' => 'Спектакли по категориям',
+                // 'press-category' => 'Архив прессы',
+                'playbill-now' => 'Афиша на текущий месяц',
+                'playbill-next' => 'Афиша на следующие месяцы',
+                'person-category' => 'Люди по категориям',
             ];
         });
 
         Event::listen('pages.menuitem.getTypeInfo', function($type) {
-            if ($type == 'playbill')
-                return EventModel::getMenuTypeInfo($type);
-            if ($type == 'repertoire-category')
-                return PerformanceModel::getMenuTypeInfo($type);
-            if ($type == 'troupe-category')
-                return PersonModel::getMenuTypeInfo($type);
-            if ($type == 'news-archive')
-                return NewsModel::getMenuTypeInfo($type);
-            if ($type == 'press-archive')
-                return PressModel::getMenuTypeInfo($type);
+            if ($type == 'news-category')
+                return NewsCategoryModel::getMenuTypeInfo($type);
+            if ($type == 'performance-category')
+                return PerformanceCategoryModel::getMenuTypeInfo($type);
+            if ($type == 'person-category')
+                return PersonCategoryModel::getMenuTypeInfo($type);
+            if ($type == 'playbill-now' || $type == 'playbill-next')
+                return PlaybillModel::getMenuTypeInfo($type);
+            // if ($type == 'press-category')
+            //     return PressCategoryModel::getMenuTypeInfo($type);
         });
 
         Event::listen('pages.menuitem.resolveItem', function($type, $item, $url, $theme) {
-            if ($type == 'playbill')
-                return EventModel::resolveMenuItem($item, $url, $theme);
-            if ($type == 'repertoire-category')
-                return PerformanceModel::resolveMenuItem($item, $url, $theme);
-            if ($type == 'troupe-category')
-                return PersonModel::resolveMenuItem($item, $url, $theme);
-            if ($type == 'news-archive')
-                return NewsModel::resolveMenuItem($item, $url, $theme);
-            if ($type == 'press-archive')
-                return PressModel::resolveMenuItem($item, $url, $theme);
+            if ($type == 'news-category')
+                return NewsCategoryModel::resolveMenuItem($item, $url, $theme);
+            if ($type == 'performance-category')
+                return PerformanceCategoryModel::resolveMenuItem($item, $url, $theme);
+            if ($type == 'person-category')
+                return PersonCategoryModel::resolveMenuItem($item, $url, $theme);
+            if ($type == 'playbill-now' || $type == 'playbill-next')
+                return PlaybillModel::resolveMenuItem($item, $url, $theme);
+            // if ($type == 'press-category')
+            //     return PressCategoryModel::resolveMenuItem($item, $url, $theme);
         });
     }
 

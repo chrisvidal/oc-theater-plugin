@@ -1,6 +1,7 @@
 <?php namespace Abnmt\Theater\Updates;
 
 use Abnmt\Theater\Models\Person;
+use Abnmt\Theater\Models\PersonCategory;
 use October\Rain\Database\Updates\Seeder;
 
 class SeedPeopleTable extends Seeder
@@ -19,7 +20,24 @@ class SeedPeopleTable extends Seeder
 
     private function createPerson($person)
     {
-        Person::create($person);
+
+        $categories = [
+            'state' => array_key_exists('state', $person) ? $person['state'] : null,
+        ];
+
+        unset($person['state']);
+
+        $model = Person::create($person);
+
+        // echo $model->;
+
+        if ( array_key_exists('state', $categories) ) {
+            $category = PersonCategory::where('slug', '=', $categories['state'])->first();
+
+            if (!is_null($category)) {
+                $model->categories()->save($category);
+            }
+        }
     }
 
 }

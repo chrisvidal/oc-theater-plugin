@@ -1,0 +1,13 @@
+# ===================================
+#  Relation Behavior Config
+# ===================================
+
+categories:
+    label: Категории
+    view:
+        list: $/abnmt/theater/models/presscategory/columns.yaml
+        toolbarButtons: add|create|delete
+    manage:
+        list: $/abnmt/theater/models/presscategory/columns.yaml
+        form: $/abnmt/theater/models/presscategory/fields.yaml
+        recordsPerPage: 25

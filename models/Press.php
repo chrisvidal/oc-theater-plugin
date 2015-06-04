@@ -14,6 +14,12 @@ class Press extends Model
     public $table = 'abnmt_theater_press';
 
     /**
+     * The attributes that should be mutated to dates.
+     * @var array
+     */
+    protected $dates = ['published_at'];
+
+    /**
      * @var array JSONable fields
      */
     protected $jsonable = [];
@@ -34,7 +40,9 @@ class Press extends Model
     public $hasOne = [];
     public $hasMany = [];
     public $belongsTo = [];
-    public $belongsToMany = [];
+    public $belongsToMany = [
+        'categories' => ['Abnmt\Theater\Models\PressCategory', 'table' => 'abnmt_theater_press_articles_categories', 'order' => 'title']
+    ];
 
     public $morphTo = [];
     public $morphOne = [];
@@ -56,8 +64,98 @@ class Press extends Model
 
 
     /**
+     * The attributes on which the post list can be ordered
+     * @var array
+     */
+    public static $allowedSortingOptions = array(
+        'title asc' => 'Title (ascending)',
+        'title desc' => 'Title (descending)',
+        'created_at asc' => 'Created (ascending)',
+        'created_at desc' => 'Created (descending)',
+        'updated_at asc' => 'Updated (ascending)',
+        'updated_at desc' => 'Updated (descending)',
+        'source_date asc' => 'Source date (ascending)',
+        'source_date desc' => 'Source date (descending)',
+    );
+
+
+    /**
      * SCOPES
      */
+
+    /**
+     * Lists posts for the front end
+     * @param  array $options Display options
+     * @return self
+     */
+    public function scopeListFrontEnd($query, $options)
+    {
+        /*
+         * Default options
+         */
+        extract(array_merge([
+            'page'       => 1,
+            'perPage'    => 10,
+            'sort'       => 'created_at',
+            'categories' => null,
+            'search'     => '',
+            'published'  => true
+        ], $options));
+
+        $searchableFields = ['title', 'slug', 'content'];
+
+        if ($published)
+            $query->isPublished();
+
+        /*
+         * Sorting
+         */
+        if (!is_array($sort)) $sort = [$sort];
+        foreach ($sort as $_sort) {
+
+            if (in_array($_sort, array_keys(self::$allowedSortingOptions))) {
+                $parts = explode(' ', $_sort);
+                if (count($parts) < 2) array_push($parts, 'desc');
+                list($sortField, $sortDirection) = $parts;
+
+                $query->orderBy($sortField, $sortDirection);
+            }
+        }
+
+        /*
+         * Search
+         */
+        $search = trim($search);
+        if (strlen($search)) {
+            $query->searchWhere($search, $searchableFields);
+        }
+
+        /*
+         * Categories
+         */
+        if ($categories !== null) {
+            if (!is_array($categories)) $categories = [$categories];
+            $query->whereHas('categories', function($q) use ($categories) {
+                $q->whereIn('id', $categories);
+            });
+        }
+
+        return $query->paginate($perPage, $page);
+    }
+
+    /**
+     * Allows filtering for specifc categories
+     * @param  Illuminate\Query\Builder  $query      QueryBuilder
+     * @param  array                     $categories List of category ids
+     * @return Illuminate\Query\Builder              QueryBuilder
+     */
+    public function scopeFilterCategories($query, $categories)
+    {
+        return $query->whereHas('categories', function($q) use ($categories) {
+            $q->whereIn('id', $categories);
+        });
+    }
+
 
     /**
      * Scope IsPublished
@@ -67,32 +165,6 @@ class Press extends Model
         return $query
             ->whereNotNull('published')
             ->where('published', '=', 1)
-        ;
-    }
-
-    /**
-     * Scope GetFrontEnd
-     */
-    public function scopeGetFrontEnd($query, $options)
-    {
-
-        /*
-         * Default options
-         */
-        extract(array_merge([
-            'page'      => 1,
-            'perPage'   => 10,
-            'sort'      => 'source_date',
-            'filter'    => 'all',
-            'published' => true,
-        ], $options));
-
-        $query->orderBy($sort, 'DESC');
-
-        return $query
-            ->whereNotNull('published')
-            ->where('published', '=', 1)
-            ->paginate($perPage, $page)
         ;
     }
 

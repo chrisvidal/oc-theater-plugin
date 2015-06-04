@@ -6,3 +6,10 @@ columns:
     id:
         label: ID
         searchable: true
+    title:
+        label: Название
+        type: relation
+        relation: performance
+        select: title
+    datetime:
+        label: Дата и время

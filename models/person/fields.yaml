@@ -33,16 +33,17 @@ fields:
         options:
             male: Мужской
             female: Женский
-    state:
-        label: В штате
-        type: dropdown
-        span: right
-        options:
-            state: В штате
-            cooperate: Приглашенный
-            director: Художественный руководитель =)
+    # state:
+    #     label: В штате
+    #     type: dropdown
+    #     span: right
+    #     options:
+    #         state: В штате
+    #         cooperate: Приглашенный
+    #         director: Художественный руководитель =)
     grade:
         label: Звание
+        span: right
 tabs:
     defaultTab: Основное
     fields:
@@ -67,3 +68,8 @@ tabs:
             nameFrom: title
             options:
                 nameColumn: title
+
+        categories:
+            tab: Категории
+            type: partial
+            path: $/abnmt/theater/models/person/_list_categories.htm
