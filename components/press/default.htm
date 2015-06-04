@@ -1,3 +1,10 @@
+{% if post %}
+    <h1>{{  post.title }}</h1>
+    <div class="article">{{ post.content | raw }}</div>
+{% endif %}
+
+
+
 {% set posts = __SELF__.posts %}
 
 <ul class="post-list">

@@ -1,3 +1,25 @@
-<p>This is the default markup for component Performance</p>
+<div style="" class="title">{{ post.title }}</div>
+{% if post.author %}<div class="author">{{ post.author }}</div>{% endif %}
+{% if post.description %}<div class="description{% if post.author == null %} alone{% endif %}">{{ post.description }}</div>{% endif %}
+<div class="add">
+    <!-- <div class="rate">{{ post.rate }}+</div> -->
+    <p class="premiere-date">Премьера состоялась</br><span class="nowrap">{{ post.premiere_date }}</span></p>
+    <p class="duration">Длительность спектакля</br><span class="nowrap">{{ post.duration | duration }}</span></p>
+</div>
 
-<small>You can delete this file if you want</small>
+<div class="about">
+    {{ post.content|raw }}
+</div>
+
+
+{% partial __SELF__ ~ "::participations" %}
+
+{% partial __SELF__ ~ "::press" %}
+
+{% partial __SELF__ ~ "::video" %}
+
+{% partial __SELF__ ~ "::gallery" %}
+
+
+
+

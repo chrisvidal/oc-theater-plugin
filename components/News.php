@@ -217,7 +217,7 @@ class News extends ComponentBase
     {
         $post = NewsModel::isPublished()
             ->whereSlug($this->slug)
-            ->get()
+            ->first()
         ;
 
         return $post;

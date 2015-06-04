@@ -10,6 +10,11 @@ class Press extends ComponentBase
 
 
     /**
+     * A post
+     * @var Collection
+     */
+    public $post;
+    /**
      * A collection of posts to display
      * @var Collection
      */
@@ -133,10 +138,13 @@ class Press extends ComponentBase
     {
         $this->prepareVars();
 
+        if ($this->slug = $this->param('slug')) {
+            $this->post = $this->page['post'] = $this->loadPost();
+        }
+
         $this->category = $this->page['category'] = $this->loadCategory();
         $this->posts = $this->page['posts'] = $this->listPosts();
 
-        // $this->page['test'] = "<pre>" . json_encode($this->posts, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES ) . "</pre>\n";
 
         /*
          * If the page number is not valid, redirect
@@ -200,5 +208,15 @@ class Press extends ComponentBase
             return null;
 
         return $category;
+    }
+
+    protected function loadPost()
+    {
+        $post = PressModel::isPublished()
+            ->whereSlug($this->slug)
+            ->first()
+        ;
+
+        return $post;
     }
 }

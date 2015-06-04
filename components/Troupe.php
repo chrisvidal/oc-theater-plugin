@@ -4,6 +4,8 @@ use Cms\Classes\ComponentBase;
 use Abnmt\Theater\Models\PersonCategory as PersonCategoryModel;
 use Abnmt\Theater\Models\Person as PersonModel;
 
+use \Clockwork\Support\Laravel\Facade as CW;
+
 class Troupe extends ComponentBase
 {
 
@@ -63,6 +65,14 @@ class Troupe extends ComponentBase
     public $sortOrder = 'family_name asc';
 
 
+    /**
+     * If the post list should be grouped by another attribute.
+     * @var string
+     */
+    public $group = [
+        'normal' => [],
+        'grade'  => [],
+    ];
 
     public function onRun()
     {
@@ -96,7 +106,7 @@ class Troupe extends ComponentBase
         /*
          * List all the posts, eager load their categories
          */
-        $posts = PersonModel::with('categories')->listFrontEnd([
+        $posts = PersonModel::with(['categories', 'portrait'])->listFrontEnd([
             'sort'       => $this->sortOrder,
             'categories' => $categories,
         ]);
@@ -110,9 +120,20 @@ class Troupe extends ComponentBase
             $post->categories->each(function($category){
                 $category->setUrl($this->categoryPage, $this->controller);
             });
+
+            /*
+             * Grouping
+             */
+            if (!is_null($post->grade))
+                $this->group['grade'][] = $post;
+            else
+                $this->group['normal'][] = $post;
+
+            $this->page['group'] = $this->group;
         });
 
-        $this->page['test'] = "<pre>" . json_encode($posts, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES ) . "</pre>\n";
+        CW::info($posts);
+        CW::info($this->group);
 
         return $posts;
     }

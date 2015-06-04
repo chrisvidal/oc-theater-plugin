@@ -5,6 +5,8 @@ use Cms\Classes\ComponentBase;
 use Abnmt\Theater\Models\Playbill as PlaybillModel;
 use Abnmt\Theater\Models\Event as EventModel;
 
+use \Clockwork\Support\Laravel\Facade as CW;
+
 setlocale(LC_ALL, 'Russian');
 use Laravelrus\LocalizedCarbon\LocalizedCarbon as Carbon;
 
@@ -67,6 +69,15 @@ class Playbill extends ComponentBase
      */
     public $sortOrder = 'datetime asc';
 
+    /**
+     * If the post list should be grouped by another attribute.
+     * @var string
+     */
+    public $group = [
+        'normal' => [],
+        'child'  => [],
+    ];
+
 
 
     public function onRun()
@@ -74,7 +85,7 @@ class Playbill extends ComponentBase
         $this->prepareVars();
 
         $this->category = $this->page['category'] = $this->loadCategory();
-        $this->posts = $this->page['posts'] = $this->listPosts();
+        $this->posts    = $this->page['posts']    = $this->listPosts();
 
     }
 
@@ -112,17 +123,39 @@ class Playbill extends ComponentBase
         ]);
 
         /*
-         * Add a "url" helper attribute for linking to each post and category
+         * Add a "url" helper attribute for linking to each post and category and Grouping
          */
         $posts->each(function($post){
             $post->setUrl($this->postPage, $this->controller);
 
-            $post->categories->each(function($category){
+            $post->performance->setUrl($this->postPage, $this->controller);
+
+            $post->categories->each(function($category) use ($post) {
                 $category->setUrl($this->categoryPage, $this->controller);
             });
+
+            $post->performance->categories->each(function($category) use ($post) {
+                $category->setUrl($this->categoryPage, $this->controller);
+
+                /*
+                 * Grouping
+                 */
+                if ($category->slug == 'child')
+                    $this->group['child'][] = $post;
+                else
+                    $this->group['normal'][] = $post;
+
+                $this->page['group'] = $this->group;
+
+            });
+
+
         });
 
-        $this->page['test'] = "<pre>" . json_encode($posts, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES ) . "</pre>\n";
+        CW::info($this->group);
+        CW::info($posts);
+
+        // $this->page['test'] = "<pre>" . json_encode($this->group, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES ) . "</pre>\n";
 
         return $posts;
     }

@@ -125,9 +125,18 @@ class PerformanceCategory extends Model
             if (!$item->reference || !$item->cmsPage)
                 return;
 
-            $category = self::find($item->reference);
+            $category = self::with('performances')->find($item->reference);
             if (!$category)
                 return;
+
+
+            /*  */
+            $category->performances->each(function($performance) {
+                $performance->url = CmsPage::url('single/performance', ['slug' => $performance->slug]);
+            });
+            $postUrls = $category->performances->lists('url', 'slug');
+            /*  */
+
 
             $pageUrl = self::getCategoryPageUrl($item->cmsPage, $category, $theme);
             if (!$pageUrl)
@@ -137,7 +146,7 @@ class PerformanceCategory extends Model
 
             $result = [];
             $result['url'] = $pageUrl;
-            $result['isActive'] = $pageUrl == $url;
+            $result['isActive'] = $pageUrl == $url || in_array($url, $postUrls);
             $result['mtime'] = $category->updated_at;
         }
         elseif ($item->type == 'all-performance-categories') {

@@ -1,0 +1,14 @@
+<dl class="{{ type }}">
+    {% for person in roles %}{% if person.type == type %}<!-- {{ type }} -->
+    <dt class="role">{{ person.title }}</dt>
+    <dd class="name">
+        {{ person.person.grade }}
+        {% if person.person.published %}
+        <a href="{{ person.person.url }}" style="white-space:nowrap">{{ person.person.title }}</a>
+        {% else %}
+        <span style="white-space:nowrap">{{ person.person.title }}</span>
+        {% endif %}
+        {{ person.description }}
+    </dd>
+    {% endif %}{% endfor %}<!-- /End -->
+</dl>

@@ -1,0 +1,21 @@
+{% if post.participation | length != 0 %}<!-- Participation -->
+<h4>Создатели</h4>
+
+{% partial __SELF__ ~ "::role" type='creators' roles=post.participation %}
+
+{% if post.roles | length > 0 %}
+<h4>Роли и исполнители</h4>
+{% for group, roles in post.roles %}
+<h5>{{ group }}</h5>
+
+{% partial __SELF__ ~ "::role" type='roles' roles=roles %}
+
+{% endfor %}<!-- /End -->
+{% else %}
+<h4>Роли и исполнители</h4>
+
+{% partial __SELF__ ~ "::role" type='roles' roles=post.participation %}
+
+{% endif %}
+<!-- /End -->{% endif %}
+

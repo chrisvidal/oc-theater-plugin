@@ -1,3 +1,18 @@
+{% if group %}
 
+{% for post in group.grade %}
+    {% partial __SELF__ ~ "::person" person=post %}
+{% endfor%}
 
-{{ test | raw }}
+{% for post in group.normal %}
+    {% partial __SELF__ ~ "::person" person=post %}
+{% endfor%}
+
+{% else %}
+
+{% for post in posts %}
+    {% partial __SELF__ ~ "::person" person=post %}
+{% endfor%}
+
+{% endif %}
+

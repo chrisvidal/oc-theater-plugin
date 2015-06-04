@@ -91,7 +91,7 @@ class Event extends Model
             'sort'       => 'created_at',
             'categories' => null,
             'search'     => '',
-            'published'  => true
+            'published'  => true,
         ], $options));
 
         $searchableFields = ['title', 'slug'];

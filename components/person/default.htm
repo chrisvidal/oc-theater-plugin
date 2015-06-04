@@ -1,3 +1,43 @@
-<p>This is the default markup for component Person</p>
+{% if post %}
 
-<small>You can delete this file if you want</small>
+<div class="portrait">
+	<img src="{{ post.portrait.path }}" alt="">
+</div>
+<div class="container">
+	<div class="grade">{{ post.grade }}</div>
+	<div class="title">{{ post.title }}</div>
+	<div class="bio">{{ post.bio|raw }}</div>
+
+	{% if roles | length > 0 %}
+	<h4>Роли в спектаклях</h4>
+	<dl class="roles">
+		{% for role in roles %}<!-- Role -->
+		<dt class="performance">
+			<a href="{{role.url}}">{{ role.performance }}</a>
+		</dt>
+		<dd class="role">
+			{% for key, role in role.roles %}
+			{% if key != 0 %} / {% endif %}
+			{{ role }}
+			{% endfor %}
+		</dd>
+		{% endfor %}<!-- /End -->
+	</dl>
+	{% endif %}<!-- /End -->
+
+	{% if post.press | length > 0 %}<!-- Press -->
+	<h4>Пресса</h4>
+	<div class="press">
+		<ul class="press-list">
+			{% for article in post.press %}<!-- Article -->
+			<li>«<a href="{{ article.url }}">{{ article.title }}</a>» / {{ article.source }}</li>
+			{% endfor %}<!-- /End -->
+		</ul>
+	</div>
+	<!-- /End -->{% endif %}
+
+
+
+</div>
+
+{% endif %}

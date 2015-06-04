@@ -6,6 +6,8 @@ use URL;
 use Cms\Classes\Page as CmsPage;
 use Cms\Classes\Theme;
 
+use \Clockwork\Support\Laravel\Facade as CW;
+
 /**
  * PersonCategory Model
  */
@@ -125,9 +127,17 @@ class PersonCategory extends Model
             if (!$item->reference || !$item->cmsPage)
                 return;
 
-            $category = self::find($item->reference);
+            $category = self::with('persons')->find($item->reference);
             if (!$category)
                 return;
+
+
+            /*  */
+            $category->persons->each(function($person) {
+                $person->url = CmsPage::url('single/person', ['slug' => $person->slug]);
+            });
+            $postUrls = $category->persons->lists('url', 'slug');
+            /*  */
 
             $pageUrl = self::getCategoryPageUrl($item->cmsPage, $category, $theme);
             if (!$pageUrl)
@@ -137,8 +147,10 @@ class PersonCategory extends Model
 
             $result = [];
             $result['url'] = $pageUrl;
-            $result['isActive'] = $pageUrl == $url;
+            $result['isActive'] = $pageUrl == $url || in_array($url, $postUrls);
             $result['mtime'] = $category->updated_at;
+
+            CW::info($postUrls);
         }
         elseif ($item->type == 'all-person-categories') {
             $result = [
@@ -172,6 +184,19 @@ class PersonCategory extends Model
 
         $paramName = 'category';
         $url = CmsPage::url($page->getBaseFileName(), [$paramName => $category->slug]);
+
+        return $url;
+    }
+    /**
+     * Returns URL of a page.
+     */
+    protected static function getPostPageUrl($pageCode, $post, $theme)
+    {
+        $page = CmsPage::loadCached($theme, $pageCode);
+        if (!$page) return;
+
+        $paramName = 'slug';
+        $url = CmsPage::url($page->getBaseFileName(), [$paramName => $post->slug]);
 
         return $url;
     }
