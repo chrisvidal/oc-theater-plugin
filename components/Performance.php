@@ -4,6 +4,7 @@ use Cms\Classes\ComponentBase;
 use Abnmt\Theater\Models\Performance as PerformanceModel;
 
 use \Clockwork\Support\Laravel\Facade as CW;
+use Laravelrus\LocalizedCarbon\LocalizedCarbon as Carbon;
 
 class Performance extends ComponentBase
 {
@@ -78,6 +79,11 @@ class Performance extends ComponentBase
     {
         $post = PerformanceModel::isPublished()
             ->with(['background', 'featured', 'video', 'participation.person', 'press'])
+            ->with(
+                ['events' => function($q) {
+                    $q->where('datetime', '>=', Carbon::now())->take(2);
+                }]
+            )
             ->whereSlug($this->slug)
             ->first()
         ;
@@ -129,10 +135,15 @@ class Performance extends ComponentBase
         }
 
         $post->roles = $this->roles;
-        $post->participation = $this->participation;
+        $post->roles_ng = $this->participation;
 
         CW::info($post);
 
         return $post;
     }
+
+    // protected function loadEvents($post)
+    // {
+    //     $post->events();
+    // }
 }

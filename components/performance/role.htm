@@ -1,6 +1,7 @@
 <dl class="{{ type }}">
     {% for person in roles %}{% if person.type == type %}<!-- {{ type }} -->
     <dt class="role">{{ person.title }}</dt>
+    {% if person.person %}
     <dd class="name">
         {{ person.person.grade }}
         {% if person.person.published %}
@@ -10,5 +11,20 @@
         {% endif %}
         {{ person.description }}
     </dd>
+    {% endif %}
+    {% if person.persons %}
+    <dd class="name">
+        {% for key, person in person.persons %}
+        {% if key != 0 %} / {% endif %}
+        {{ person.grade }}
+        {% if person.published %}
+        <a href="{{ person.url }}" style="white-space:nowrap">{{ person.title }}</a>
+        {% else %}
+        <span style="white-space:nowrap">{{ person.title }}</span>
+        {% endif %}
+        {{ person.description }}
+        {% endfor %}
+    </dd>
+    {% endif %}
     {% endif %}{% endfor %}<!-- /End -->
 </dl>

@@ -1,0 +1,9 @@
+{% if post.background %}<!-- Backgrounds -->
+<div class="bg-container">
+    {% for key, bg in post.background %}<!-- BG -->
+    <div class="bg bg-{{key+1}}">
+        <img src="{{bg.path}}">
+    </div>
+    {% endfor %}<!-- /End -->
+</div>
+<!-- /End -->{% endif %}

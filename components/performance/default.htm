@@ -1,16 +1,29 @@
+{% partial __SELF__ ~ "::backgrounds" %}
+
+<div class="container">
+    <div class="wrap">
+        <div class="content">
+
 <div style="" class="title">{{ post.title }}</div>
 {% if post.author %}<div class="author">{{ post.author }}</div>{% endif %}
 {% if post.description %}<div class="description{% if post.author == null %} alone{% endif %}">{{ post.description }}</div>{% endif %}
-<div class="add">
-    <!-- <div class="rate">{{ post.rate }}+</div> -->
-    <p class="premiere-date">Премьера состоялась</br><span class="nowrap">{{ post.premiere_date }}</span></p>
-    <p class="duration">Длительность спектакля</br><span class="nowrap">{{ post.duration | duration }}</span></p>
+
+<div class="duration">
+    Длительность спектакля<br>
+    <span class="nowrap">{{ post.duration | duration }}</span>
+    {% if post.entracte == 0 %}<span class="nowrap"> без антракта</span>
+    {% elseif post.entracte == 1 %}<span class="nowrap"> с одним антрактом</span>
+    {% elseif post.entracte == 2 %}<span class="nowrap"> с двумя антрактами</span>
+    {% endif %}
 </div>
+
 
 <div class="about">
     {{ post.content|raw }}
 </div>
 
+
+{% partial __SELF__ ~ "::event" %}
 
 {% partial __SELF__ ~ "::participations" %}
 
@@ -20,6 +33,10 @@
 
 {% partial __SELF__ ~ "::gallery" %}
 
+<div class="premiere-date">Премьера состоялась</br><span class="nowrap">{{ post.premiere_date | humanDate }}</span></div>
 
 
 
+        </div>
+    </div>
+</div>

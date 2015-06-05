@@ -39,6 +39,7 @@ class Performance extends Model
     public $hasOne = [];
     public $hasMany = [
         'participation' => ['Abnmt\Theater\Models\Participation'],
+        'events'        => ['Abnmt\Theater\Models\Event'],
     ];
     public $belongsTo = [];
     public $belongsToMany = [

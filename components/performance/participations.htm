@@ -1,7 +1,7 @@
 {% if post.participation | length != 0 %}<!-- Participation -->
 <h4>Создатели</h4>
 
-{% partial __SELF__ ~ "::role" type='creators' roles=post.participation %}
+{% partial __SELF__ ~ "::role" type='creators' roles=post.roles_ng %}
 
 {% if post.roles | length > 0 %}
 <h4>Роли и исполнители</h4>
@@ -14,7 +14,7 @@
 {% else %}
 <h4>Роли и исполнители</h4>
 
-{% partial __SELF__ ~ "::role" type='roles' roles=post.participation %}
+{% partial __SELF__ ~ "::role" type='roles' roles=post.roles_ng %}
 
 {% endif %}
 <!-- /End -->{% endif %}

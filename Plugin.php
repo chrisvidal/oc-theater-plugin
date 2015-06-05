@@ -178,9 +178,20 @@ class Plugin extends PluginBase
                     $weekday = \Carbon\Carbon::parse($datetime)->formatLocalized('%a');
                     return mb_convert_encoding($weekday, "UTF-8", "CP1251");
                 },
+                'weekday_long' => function ( $datetime ) {
+                    setlocale(LC_ALL, 'Russian');
+                    $weekday = \Carbon\Carbon::parse($datetime)->formatLocalized('%A');
+                    return mb_convert_encoding($weekday, "UTF-8", "CP1251");
+                },
                 'month' => function ( $datetime ) {
                     setlocale(LC_ALL, 'Russian');
                     return $month = LocalizedCarbon::parse($datetime)->formatLocalized('%f');
+                },
+                'humanDate' => function ( $datetime ) {
+                    setlocale(LC_ALL, 'Russian');
+                    return $date = LocalizedCarbon::parse($datetime)->formatLocalized('%e %f %Y года');
+                    // return $date = LocalizedCarbon::parse($datetime)->formatLocalized('%G');
+                    // return mb_convert_encoding($date, "UTF-8", "CP1251");
                 },
                 'duration' => function ( $datetime ) {
                     $interval = preg_split('/\:|\:0/', $datetime);
