@@ -5,7 +5,7 @@ use Abnmt\Theater\Models\Person;
 use Abnmt\Theater\Models\News;
 use October\Rain\Database\Updates\Seeder;
 
-class SeedPressTable extends Seeder
+class SeedNewsTable extends Seeder
 {
 
     public function run()

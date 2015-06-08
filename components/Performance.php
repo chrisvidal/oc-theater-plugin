@@ -78,7 +78,7 @@ class Performance extends ComponentBase
     protected function loadPost()
     {
         $post = PerformanceModel::isPublished()
-            ->with(['background', 'featured', 'video', 'participation.person', 'press'])
+            ->with(['background', 'background_mobile', 'background_flat', 'background_mask', 'featured', 'video', 'participation.person', 'press'])
             ->with(
                 ['events' => function($q) {
                     $q->where('datetime', '>=', Carbon::now())->take(2);
@@ -99,8 +99,10 @@ class Performance extends ComponentBase
         {
             $role->person->setUrl($this->personPage, $this->controller);
 
-            if ($role['group'] != NULL)
+            if ($role['group'] != NULL) {
                 $this->roles[$role['group']][] = $role;
+                return;
+            }
 
             $this->participation[$role['title']]['title'] = $role->title;
             $this->participation[$role['title']]['type'] = $role->type;
@@ -114,6 +116,57 @@ class Performance extends ComponentBase
         $post->press->each(function($press){
             $press->setUrl($this->pressPage, $this->controller);
         });
+
+
+        $post->background->each(function($image){
+            $image['sizes'] = getimagesize('./' . $image->getPath());
+
+            preg_match('/.+?_(\d+)\.png/', $image->file_name, $matches);
+
+            $width = $matches[1];
+            $height = round($width/$image->sizes[0]*$image->sizes[1]);
+
+            $image['dest'] = $image->getThumb($width, $height, ['extension' => 'png']);
+
+            // $flat = $this->post->background_flat[$pos];
+            // $mask = $this->post->background_masq[$pos];
+
+            // $image['dest_flat'] = $flat->getThumb($width, $height);
+            // $image['dest_mask'] = $mask->getThumb($width, $height);
+
+            $image['dest_sizes'] = getimagesize('./' . $image->dest);
+
+            // $pos++;
+        });
+        $post->background_flat->each(function($image){
+            $image['sizes'] = getimagesize('./' . $image->getPath());
+
+            preg_match('/.+?_(\d+)_flat\.jpg/', $image->file_name, $matches);
+
+            $width = $matches[1];
+            $height = round($width/$image->sizes[0]*$image->sizes[1]);
+
+            $image['dest'] = $image->getThumb($width, $height);
+            $image['dest_sizes'] = getimagesize('./' . $image->dest);
+        });
+        $post->background_mask->each(function($image){
+            $image['sizes'] = getimagesize('./' . $image->getPath());
+
+            preg_match('/.+?_(\d+)_mask\.jpg/', $image->file_name, $matches);
+
+            $width = $matches[1];
+            $height = round($width/$image->sizes[0]*$image->sizes[1]);
+
+            $image['dest'] = $image->getThumb($width, $height);
+            $image['dest_sizes'] = getimagesize('./' . $image->dest);
+        });
+
+        if ( $bg_min = $post->background_mobile ) {
+            $bg_min['dest'] = $bg_min->getThumb(960, null);
+            $bg_min['dest_sizes'] = getimagesize('./' . $bg_min->dest);
+
+            $post->background_mobile = $bg_min;
+        }
 
 
         if ($post->featured) {

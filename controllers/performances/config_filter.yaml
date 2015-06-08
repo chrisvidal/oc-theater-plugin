@@ -3,10 +3,10 @@ scopes:
         label: Скрыть не опубликованые
         type: checkbox
         scope: isPublished
-    # type:
-    #     label: Тип
-    #     modelClass: Abnmt\Theater\Models\Performance
-    #     nameFrom: type
+    type:
+        label: Категории
+        modelClass: Abnmt\Theater\Models\PerformanceCategory
+        nameFrom: title
     # is_normal:
     #     label: Обычные
     #     type: checkbox

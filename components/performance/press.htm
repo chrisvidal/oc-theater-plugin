@@ -1,9 +1,9 @@
-{% if post.presses | length > 0 %}<!-- Press -->
+{% if post.press | length > 0 %}<!-- Press -->
 <h4>Пресса</h4>
 <div class="press">
 	<ul class="press-list">
-		{% for article in post.presses|slice(0, 3) %}<!-- Article -->
-		<li>«<a href="{{ article.url }}">{{ article.title }}</a>» / {{ article.source }}</li>
+		{% for article in post.press|slice(0, 3) %}<!-- Article -->
+		<li>«<a href="{{ article.url }}">{{ article.title }}</a>» / {{ article.source }}{{ article.source_date ? " / " ~ article.source_date | date("d-m-Y")}}</li>
 		{% endfor %}<!-- /End -->
 	</ul>
 	<a href="">Все статьи о с пектакле «{{ post.title }}»</a>

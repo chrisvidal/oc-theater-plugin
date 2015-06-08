@@ -3,19 +3,16 @@
 
 {% partial __SELF__ ~ "::role" type='creators' roles=post.roles_ng %}
 
-{% if post.roles | length > 0 %}
 <h4>Роли и исполнители</h4>
-{% for group, roles in post.roles %}
+
+{% partial __SELF__ ~ "::role" type='roles' roles=post.roles_ng %}
+
+{% if post.roles | length > 0 %}{% for group, roles in post.roles %}
 <h5>{{ group }}</h5>
 
 {% partial __SELF__ ~ "::role" type='roles' roles=roles %}
 
 {% endfor %}<!-- /End -->
-{% else %}
-<h4>Роли и исполнители</h4>
-
-{% partial __SELF__ ~ "::role" type='roles' roles=post.roles_ng %}
-
 {% endif %}
 <!-- /End -->{% endif %}
 

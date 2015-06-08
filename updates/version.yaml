@@ -21,7 +21,7 @@
     - seed_press_categories_table.php
     - seed_performances_table.php
     - seed_people_table.php
-    # - seed_news_table.php
+    - seed_news_table.php
     - seed_press_table.php
     - seed_participation_table.php
     - seed_events_table.php
