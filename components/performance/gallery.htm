@@ -1,4 +1,7 @@
 {% if post.featured | length != 0%}<!-- Gallery -->
+
+<div class="content">
+
 <h4 class="gallery-title">Галерея</h4>
 <div class="gallery">
     {% for image in post.featured %}<!-- Image -->
@@ -55,6 +58,9 @@
             </div>
         </div>
     </div>
+</div>
+
+
 </div>
 {% endif %}<!-- /End -->
 

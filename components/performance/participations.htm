@@ -1,4 +1,7 @@
+
 {% if post.participation | length != 0 %}<!-- Participation -->
+<div class="content">
+
 <h4>Создатели</h4>
 
 {% partial __SELF__ ~ "::role" type='creators' roles=post.roles_ng %}
@@ -14,5 +17,7 @@
 
 {% endfor %}<!-- /End -->
 {% endif %}
+
+</div>
 <!-- /End -->{% endif %}
 

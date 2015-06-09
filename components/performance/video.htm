@@ -1,8 +1,14 @@
-
 {% if post.video %}<!-- Video -->
+
+<div class="content">
+
+
 <h4 class="video-title">Видео-релиз спектакля <span class="performance-title">«{{ post.title }}»</span></h4>
 <div class="video-description">Режиссёр Аноним Безымянный</div>
 <div class="video">
     <img src="{{ post.video.path }}" alt="">
+</div>
+
+
 </div>
 <!-- /End -->{% endif %}

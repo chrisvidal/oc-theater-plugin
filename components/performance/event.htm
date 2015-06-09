@@ -1,9 +1,10 @@
 {% if post.events %}
-<div class="earliest-block">
-    <h5>Ближайший спектакль</h5>
+<div class="content earliest-block">
+    {# <h5>Ближайший спектакль</h5> #}
     <div class="day num-{{post.events[0].datetime | date('j')}}">{{ post.events[0].datetime | date('j') }}</div>
     <div class="month">{{ post.events[0].datetime | month }}</div>
     <div class="weekday">{{ post.events[0].datetime | weekday_long }}</div>
+    <div class="header">Ближайшая дата спектакля</div>
     <div class="buy-button"><a href="#">Купить билет!</a></div>
 </div>
 

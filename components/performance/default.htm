@@ -1,22 +1,20 @@
-{% partial __SELF__ ~ "::backgrounds" %}
-
-<div class="container">
-    <div class="wrap">
-        <div class="content">
-
-<div style="" class="title">{{ post.title }}</div>
-{% if post.author %}<div class="author">{{ post.author }}</div>{% endif %}
-{% if post.description %}<div class="description{% if post.author == null %} alone{% endif %}">{{ post.description }}</div>{% endif %}
+{% partial __SELF__ ~ "::background" key = 0 %}
+{% partial __SELF__ ~ "::background" key = 5 %}
 
 
+<div style="" class="content title">{{ post.title }}<div class="buy-button"><a href="#">Купить билет!</a></div></div>
+{% if post.author %}<div class="content author">{{ post.author }}</div>{% endif %}
+{% if post.description %}<div class="content description{% if post.author == null %} alone{% endif %}">{{ post.description }}</div>{% endif %}
 
 
-<div class="about">
+<div class="content about">
     {{ post.content|raw }}
 </div>
 
-
 {% partial __SELF__ ~ "::event" %}
+
+{% partial __SELF__ ~ "::background" key = 1 %}
+{% partial __SELF__ ~ "::background" key = 4 %}
 
 {% partial __SELF__ ~ "::participations" %}
 
@@ -24,7 +22,15 @@
 
 {% partial __SELF__ ~ "::video" %}
 
+<div class="wrap">
+{% partial __SELF__ ~ "::background" key = 2 %}
+{% partial __SELF__ ~ "::background" key = 3 %}
+
 {% partial __SELF__ ~ "::gallery" %}
+</div>
+
+<div class="content">
+
 
 <div class="premiere-date">Премьера состоялась</br><span class="nowrap">{{ post.premiere_date | humanDate }}</span></div>
 
@@ -37,6 +43,4 @@
     {% endif %}
 </div>
 
-        </div>
-    </div>
 </div>
