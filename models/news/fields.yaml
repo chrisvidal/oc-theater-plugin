@@ -34,7 +34,9 @@ tabs:
         cover:
             tab: Медиа
             label: Обложка
-            type: fileupload
+            # type: fileupload
+            type: mediafinder
+            mode: image
 
         categories:
             tab: Категории

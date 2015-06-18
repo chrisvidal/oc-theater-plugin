@@ -47,7 +47,7 @@ class News extends Model
     public $morphOne = [];
     public $morphMany = [];
     public $attachOne = [
-        'cover' => ['System\Models\File'],
+        // 'cover' => ['System\Models\File'],
     ];
     public $attachMany = [];
 
