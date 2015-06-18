@@ -12,6 +12,7 @@
     - create_person_categories_table.php
     - create_news_categories_table.php
     - create_press_categories_table.php
+    - create_partners_table.php
 1.0.2:
     - Seed data
     - seed_event_categories_table.php

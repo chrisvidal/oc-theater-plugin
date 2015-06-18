@@ -11,4 +11,5 @@ fields:
     slug:
         label: URL
         span: right
-        preset: title
+        preset:
+            field: title

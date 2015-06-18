@@ -80,6 +80,11 @@ class Plugin extends PluginBase
                         'icon'  => 'icon-newspaper-o',
                         'url'   => \Backend::url('abnmt/theater/press'),
                     ],
+                    'partners' => [
+                        'label' => 'Партнёры',
+                        'icon'  => 'icon-ticket',
+                        'url'   => \Backend::url('abnmt/theater/partners'),
+                    ],
                 ],
             ],
         ];
@@ -92,7 +97,7 @@ class Plugin extends PluginBase
     public function registerComponents()
     {
         return [
-            'Abnmt\Theater\Components\Theater'      => 'theater',
+            // 'Abnmt\Theater\Components\Theater'      => 'theater',
             'Abnmt\Theater\Components\Playbill'     => 'theaterPlaybill',
             'Abnmt\Theater\Components\Repertoire'   => 'theaterRepertoire',
             'Abnmt\Theater\Components\Troupe'       => 'theaterTroupe',
@@ -100,18 +105,19 @@ class Plugin extends PluginBase
             'Abnmt\Theater\Components\Press'        => 'theaterPress',
             'Abnmt\Theater\Components\Person'       => 'theaterPerson',
             'Abnmt\Theater\Components\Performance'  => 'theaterPerformance',
+            'Abnmt\Theater\Components\Partners'     => 'theaterPartners',
         ];
     }
     /**
      * Register Components
      * @return array
      */
-    public function registerPageSnippets()
-    {
-        return [
-            'Abnmt\Theater\Components\Theater' => 'theater',
-        ];
-    }
+    // public function registerPageSnippets()
+    // {
+    //     return [
+    //         'Abnmt\Theater\Components\Theater' => 'theater',
+    //     ];
+    // }
 
 
 

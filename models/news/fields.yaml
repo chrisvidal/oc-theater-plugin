@@ -9,6 +9,8 @@ fields:
     slug:
         label: URL
         span: right
+        preset:
+            field: title
     published_at:
         label: Дата
         span: left
