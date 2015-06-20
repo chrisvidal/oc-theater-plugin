@@ -59,6 +59,8 @@ class Performance extends Model
 
     public $attachOne = [
         'playbill' => ['System\Models\File'],
+        'playbill_flat' => ['System\Models\File'],
+        'playbill_mask' => ['System\Models\File'],
         'video' => ['System\Models\File'],
         'repertoire' => ['System\Models\File'],
         'background_mobile' => ['System\Models\File'],
