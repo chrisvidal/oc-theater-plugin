@@ -25,6 +25,7 @@ use Illuminate\Foundation\AliasLoader;
 use Laravelrus\LocalizedCarbon\LocalizedCarbon as LocalizedCarbon;
 
 use Event;
+use Lang;
 
 /**
  * Theater Plugin Information File
@@ -194,10 +195,14 @@ class Plugin extends PluginBase
                     return $month = LocalizedCarbon::parse($datetime)->formatLocalized('%f');
                 },
                 'humanDate' => function ( $datetime ) {
-                    setlocale(LC_ALL, 'Russian');
-                    return $date = LocalizedCarbon::parse($datetime)->formatLocalized('%e %f %Y года');
-                    // return $date = LocalizedCarbon::parse($datetime)->formatLocalized('%G');
-                    // return mb_convert_encoding($date, "UTF-8", "CP1251");
+                    // setlocale(LC_ALL, 'Russian');
+                    // return $date = LocalizedCarbon::parse($datetime)->formatLocalized('%e %f %Y года');
+                    extract(date_parse($datetime));
+                    $months = explode(',', Lang::get('abnmt.theater::lang.dates.month_gen', compact('month')));
+                    $month = $months[$months[0]];
+                    $format = '%1$d %2$s %3$d года';
+                    $string = sprintf($format, $day, $month, $year);
+                    return $string;
                 },
                 'duration' => function ( $datetime ) {
                     $interval = preg_split('/\:|\:0/', $datetime);

@@ -1,7 +1,20 @@
 
 {% set bg = post.background[key] %}
+
+
+{% if key == 1 %}
+{% set top = post.background[0].dest_sizes[1] %}
+{% set bottom = post.background[2].dest_sizes[1] %}
+{% endif %}
+{% if key == 4 %}
+{% set top = 466 %}
+{% set bottom = post.background[3].dest_sizes[1] %}
+{% endif %}
+
+<!-- {{ all }} -->
+
 {% if post.background[key] and post.background_flat | length != 0 and post.background_mask  | length != 0 %}<!-- Backgrounds -->
-    <div class="bg bg-{{key+1}} {{ key+1 == 1 or key+1 == 6 ? 'top' }}{{ key+1 == 3 or key+1 == 4 ? 'bottom' }}">
+    <div class="bg bg-{{key+1}} {{ class }}" {% if top or bottom %} style="padding-top:{{top ? top : 0}}px; padding-bottom:{{bottom ? bottom : 0}}px" {% endif %}>
 
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 {{ bg.dest_sizes[0] }} {{ bg.dest_sizes[1] }}" {{ post.background_flat[key].dest_sizes[3] |raw }}>
             <defs><mask id="MaskG-{{key+1}}"><image xlink:href="{{post.background_mask[key].dest}}" x="0" y="0" width="{{ bg.dest_sizes[0] }}px" height="{{ bg.dest_sizes[1] }}px"></image></mask></defs>
@@ -10,7 +23,7 @@
 
     </div>
 {% elseif post.background[key] %}
-    <div class="bg bg-{{key+1}} {{ key+1 == 1 or key+1 == 6 ? 'top' }}{{ key+1 == 3 or key+1 == 4 ? 'bottom' }}">
+    <div class="bg bg-{{key+1}} {{ class }}">
         <img src="{{bg.dest}}" {{ bg.dest_sizes[3] |raw }}>
     </div>
 {% endif %}
