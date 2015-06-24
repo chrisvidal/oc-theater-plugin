@@ -191,7 +191,7 @@ class Performance extends ComponentBase
         $post->roles = $this->roles;
         $post->roles_ng = $this->participation;
 
-        CW::info($post);
+        // CW::info($post);
 
         return $post;
     }
