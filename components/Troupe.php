@@ -121,6 +121,11 @@ class Troupe extends ComponentBase
                 $category->setUrl($this->categoryPage, $this->controller);
             });
 
+            if ($post->portrait) {
+                $image = $post->portrait;
+                $image['thumb'] = $image->getThumb(250, 250, 'crop');
+            }
+
             /*
              * Grouping
              */

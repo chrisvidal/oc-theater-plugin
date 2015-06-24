@@ -21,7 +21,7 @@ class CreateNewsTable extends Migration
             $table->string('excerpt')->nullable()->default(null);
             $table->text('content')->nullable()->default(null);
 
-            $table->text('cover')->nullable()->default(null);
+            // $table->text('cover')->nullable()->default(null);
 
             $table->datetime('published_at');
             $table->boolean('published')->default(false);

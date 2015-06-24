@@ -3,6 +3,10 @@
 use Abnmt\Theater\Models\Performance;
 use Abnmt\Theater\Models\Person;
 use Abnmt\Theater\Models\News;
+
+use Cms\Classes\MediaLibrary as Media;
+use System\Models\File as File;
+
 use October\Rain\Database\Updates\Seeder;
 
 class SeedNewsTable extends Seeder
@@ -22,6 +26,8 @@ class SeedNewsTable extends Seeder
             }
 
             $post = News::create($article);
+
+            // $this->assignCover($post);
 
             if ($relations != '') {
                 foreach ($relations as $key => $relation) {
@@ -53,6 +59,28 @@ class SeedNewsTable extends Seeder
             echo "NOT FIND!\n";
             return;
         }
+    }
+
+    private function assignCover($post)
+    {
+
+        echo $post->slug . "\n";
+
+        $content = $post->content;
+        preg_match_all('/src\s*=\s*"(\/storage.+?[jpg|png])"/', $content, $match);
+
+
+        if (count($match) != 0 and count($match[1]) != 0){
+            $filePath = realpath("D:\Dropbox\OpenServer\domains\komedianty.abnmt.com" . $match[1][0]);
+            $file = new File();
+            $file->fromFile($filePath);
+            $post->featured()->save($file);
+        }
+
+        // print_r($match);
+
+        // $file->save();
+
     }
 
 }

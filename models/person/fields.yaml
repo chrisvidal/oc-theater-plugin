@@ -55,6 +55,11 @@ tabs:
             label: Портрет
             type: fileupload
 
+        featured:
+            tab: Галерея
+            label: Галерея
+            type: fileupload
+
         participation:
             tab: Занятость в спектаклях
             type: partial

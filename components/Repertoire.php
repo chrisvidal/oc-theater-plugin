@@ -112,9 +112,19 @@ class Repertoire extends ComponentBase
             $post->categories->each(function($category){
                 $category->setUrl($this->categoryPage, $this->controller);
             });
-        });
 
-        $this->page['test'] = "<pre>" . json_encode($posts, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES ) . "</pre>\n";
+            if ($post->repertoire) {
+
+                $image = $post->repertoire;
+
+                $image['sizes'] = getimagesize('./' . $image->getPath());
+                if ($image['sizes'][0] < $image['sizes'][1])
+                    $image['thumb'] = $image->getThumb(450, null);
+                else
+                    $image['thumb'] = $image->getThumb(null, 450);
+            }
+
+        });
 
         return $posts;
     }

@@ -5,6 +5,8 @@ use Cms\Classes\ComponentBase;
 use Abnmt\Theater\Models\News as NewsModel;
 use Abnmt\Theater\Models\NewsCategory as NewsCategoryModel;
 
+use \Clockwork\Support\Laravel\Facade as CW;
+
 class News extends ComponentBase
 {
     /**
@@ -181,7 +183,7 @@ class News extends ComponentBase
         /*
          * List all the posts, eager load their categories
          */
-        $posts = NewsModel::with('categories')->listFrontEnd([
+        $posts = NewsModel::with(['categories', 'featured'])->listFrontEnd([
             'page'       => $this->property('pageNumber'),
             'sort'       => $this->property('sortOrder'),
             'perPage'    => $this->property('postsPerPage'),
@@ -199,6 +201,7 @@ class News extends ComponentBase
             });
         });
 
+        CW::info($posts);
         return $posts;
     }
 
@@ -215,10 +218,13 @@ class News extends ComponentBase
 
     protected function loadPost()
     {
-        $post = NewsModel::isPublished()
+        $post = NewsModel::with(['categories', 'featured'])
+            ->isPublished()
             ->whereSlug($this->slug)
             ->first()
         ;
+
+        CW::info($post);
 
         return $post;
     }

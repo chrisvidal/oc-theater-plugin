@@ -150,7 +150,7 @@ class PersonCategory extends Model
             $result['isActive'] = $pageUrl == $url || in_array($url, $postUrls);
             $result['mtime'] = $category->updated_at;
 
-            CW::info($postUrls);
+            // CW::info($postUrls);
         }
         elseif ($item->type == 'all-person-categories') {
             $result = [

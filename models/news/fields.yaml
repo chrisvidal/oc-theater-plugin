@@ -33,12 +33,14 @@ tabs:
             label: Содержимое
             type: richeditor
             size: giant
-        cover:
+        featured:
             tab: Медиа
             label: Обложка
-            # type: fileupload
-            type: mediafinder
+            type: fileupload
+            # type: mediafinder
             mode: image
+            imageWidth: 416
+            imageHeight: 256
 
         categories:
             tab: Категории

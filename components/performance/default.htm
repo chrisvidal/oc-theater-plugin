@@ -5,11 +5,12 @@
             {% if post.author %}<div class="content author">{{ post.author }}</div>{% endif %}
             {% if post.description %}<div class="content description{% if post.author == null %} alone{% endif %}">{{ post.description }}</div>{% endif %}
 
+            {% partial __SELF__ ~ "::event" %}
+
             <div class="content about">
                 {{ post.content|raw }}
             </div>
 
-            {% partial __SELF__ ~ "::event" %}
 
         </div>
     </div>

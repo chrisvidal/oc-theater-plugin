@@ -184,6 +184,7 @@ class Performance extends ComponentBase
                     $image['thumb'] = $image->getThumb(177, null);
                 else
                     $image['thumb'] = $image->getThumb(null, 177);
+                // $image['thumb'] = $image->getThumb(177, 177, 'portrait');
             });
         }
 

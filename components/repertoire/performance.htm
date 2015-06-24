@@ -1,7 +1,7 @@
 <!-- {{ performance.slug }} -->
 <div class="performance">
 	{% if performance.repertoire | length != 0 %}<!-- Background -->
-	<a href="{{ performance.url }}" class="repertoire-cover" style="background: url('{{ random(performance.repertoire).path }}');" title="{{ performance.title }}" alt="{{ performance.title }}"></a>
+	<a href="{{ performance.url }}" class="repertoire-cover" style="background-image: url('{{ performance.repertoire.thumb }}');" title="{{ performance.title }}" alt="{{ performance.title }}"></a>
 	{% else %}<!-- No backgrounds -->
 	<a href="{{ performance.url }}" class="repertoire-cover" title="{{ performance.title }}" alt="{{ performance.title }}"></a>
 	<!-- /End -->{% endif %}

@@ -59,7 +59,9 @@ class Person extends Model
     public $attachOne = [
         'portrait' => ['System\Models\File'],
     ];
-    public $attachMany = [];
+    public $attachMany = [
+        'featured' => ['System\Models\File'],
+    ];
 
 
     /**

@@ -9,6 +9,10 @@ columns:
         sortable: false
     title:
         label: Имя, Фамилия
-    # published:
-    #     label: Опубликовано
-    #     type: switch
+    featured:
+        label: Галерея
+        type: partial
+        sortable: false
+    published:
+        label: Опубликовано
+        type: switch

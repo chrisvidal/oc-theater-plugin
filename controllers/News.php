@@ -25,7 +25,6 @@ class News extends Controller
         BackendMenu::setContext('Abnmt.Theater', 'theater', 'news');
     }
 
-
     /**
      * ????
      */
@@ -38,8 +37,8 @@ class News extends Controller
      * Add Portait relation to List query
      * @param $query
      */
-    // public function listExtendQuery($query)
-    // {
-    //     $query->with(['cover']);
-    // }
+    public function listExtendQuery($query)
+    {
+        $query->with(['featured']);
+    }
 }

@@ -20,8 +20,7 @@ class SeedPerformancesTable extends Seeder
         foreach ($performances as $key => $performance) {
             $performance = $this->createPerformance($performance);
 
-            // $this->assignImages($performance);
-
+            $this->assignImages($performance);
         }
     }
 
@@ -70,6 +69,8 @@ class SeedPerformancesTable extends Seeder
 
             echo $performance->slug . "\n";
 
+            // print_r($performance->video);
+
             foreach ($images as $key => $filePath)
             {
 
@@ -80,46 +81,67 @@ class SeedPerformancesTable extends Seeder
                     $file->fromFile($filePath);
                     // $file->save();
 
-                    switch ($key) {
-                        case 'playbill':
+                    if ($key == 'playbill'){
+                        if ($performance->playbill->getFilename() == $file->getFilename())
+                            echo "File " . $file->getFilename() . "EXIST\n";
+                        else
                             $performance->playbill()->save($file);
-                            break;
-                        case 'playbill_flat':
-                            $performance->playbill_flat()->save($file);
-                            break;
-                        case 'playbill_mask':
-                            $performance->playbill_mask()->save($file);
-                            break;
-                        case 'video':
-                            $performance->video()->save($file);
-                            break;
-                        case 'repertoire':
-                            $performance->repertoire()->save($file);
-                            break;
-                        case 'cover':
-                            $performance->background_mobile()->save($file);
-                            break;
-
-                        default:
-                            echo 'Image ' . $filePath . ' not saved.' . "\n";
-                            break;
                     }
+                    elseif ($key ==  'playbill_flat'){
+                        if ($performance->playbill->getFilename() == $file->getFilename())
+                            echo "File " . $file->getFilename() . "EXIST\n";
+                        else
+                            $performance->playbill_flat()->save($file);
+                    }
+                    elseif ($key ==  'playbill_mask'){
+                        if ($performance->playbill->getFilename() == $file->getFilename())
+                            echo "File " . $file->getFilename() . "EXIST\n";
+                        else
+                            $performance->playbill_mask()->save($file);
+                    }
+                    elseif ($key ==  'video'){
+                        if ($performance->playbill->getFilename() == $file->getFilename())
+                            echo "File " . $file->getFilename() . "EXIST\n";
+                        else
+                            $performance->video()->save($file);
+                    }
+                    elseif ($key ==  'repertoire'){
+                        if ($performance->playbill->getFilename() == $file->getFilename())
+                            echo "File " . $file->getFilename() . "EXIST\n";
+                        else
+                            $performance->repertoire()->save($file);
+                    }
+                    elseif ($key ==  'cover'){
+                        if ($performance->playbill->getFilename() == $file->getFilename())
+                            echo "File " . $file->getFilename() . "EXIST\n";
+                        else
+                            $performance->background_mobile()->save($file);
+                    }
+                    else
+                        echo 'Image ' . $filePath . ' not saved.' . "\n";
                 }
                 elseif ( is_array($filePath) )
                 {
                     foreach ($filePath as $filename => $filePath) {
                         $file = new File();
                         $file->fromFile($filePath);
+                        // $filename = $file->getFilename;
                         // $file->save();
 
-                        if ( $key == 'bg' && preg_match('/.+?_flat/', $filename) )
-                            $performance->background_flat()->save($file);
-                        elseif ( $key == 'bg' && preg_match('/.+?_mask/', $filename) )
-                            $performance->background_mask()->save($file);
-                        elseif ( $key == 'bg' )
-                            $performance->background()->save($file);
-                        elseif ( $key == 'gallery' )
-                            $performance->featured()->save($file);
+                        if ( $key == 'bg' && preg_match('/.+?_flat/', $filename) ){
+                            print_r( $performance->background_flat );
+                            // echo "File " . $file->getFilename() . "EXIST\n";
+                            // $performance->background_flat()->save($file);
+                        }
+                        elseif ( $key == 'bg' && preg_match('/.+?_mask/', $filename) ){
+                            // $performance->background_mask()->save($file);
+                        }
+                        elseif ( $key == 'bg' ){
+                            // $performance->background()->save($file);
+                        }
+                        elseif ( $key == 'gallery' ){
+                            // $performance->featured()->save($file);
+                        }
                         else
                             echo 'Image ' . $filePath . ' not saved.' . "\n";
 

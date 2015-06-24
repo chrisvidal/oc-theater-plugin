@@ -140,9 +140,9 @@ class Playbill extends ComponentBase
                 /*
                  * Grouping
                  */
-                if ($category->slug == 'child')
+                if ($category->slug == 'child' && $category->slug != 'premiere')
                     $this->group['child'][] = $post;
-                else
+                elseif ($category->slug != 'premiere')
                     $this->group['normal'][] = $post;
 
                 $this->page['group'] = $this->group;
@@ -152,7 +152,7 @@ class Playbill extends ComponentBase
 
         });
 
-        CW::info($this->group);
+        // CW::info($this->group);
         CW::info($posts);
 
         // $this->page['test'] = "<pre>" . json_encode($this->group, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES ) . "</pre>\n";
