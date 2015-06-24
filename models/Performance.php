@@ -6,6 +6,7 @@ use Str;
 use URL;
 use Cms\Classes\Page as CmsPage;
 use Cms\Classes\Theme;
+
 /**
  * Performance Model
  */
@@ -38,9 +39,12 @@ class Performance extends Model
     public $hasOne = [];
     public $hasMany = [
         'participation' => ['Abnmt\Theater\Models\Participation'],
+        'events'        => ['Abnmt\Theater\Models\Event'],
     ];
     public $belongsTo = [];
-    public $belongsToMany = [];
+    public $belongsToMany = [
+        'categories' => ['Abnmt\Theater\Models\PerformanceCategory', 'table' => 'abnmt_theater_performances_categories', 'order' => 'title']
+    ];
 
     public $morphTo = [];
     public $morphOne = [];
@@ -48,25 +52,45 @@ class Performance extends Model
     public $morphToMany = [
         'press' => ['Abnmt\Theater\Models\Press',
             'table' => 'abnmt_theater_press_relations',
-            'name' => 'relation',
+            'name'  => 'relation',
         ],
     ];
     public $morphedByMany = [];
 
     public $attachOne = [
         'playbill' => ['System\Models\File'],
+        'playbill_flat' => ['System\Models\File'],
+        'playbill_mask' => ['System\Models\File'],
         'video' => ['System\Models\File'],
         'repertoire' => ['System\Models\File'],
+        'background_mobile' => ['System\Models\File'],
     ];
     public $attachMany = [
         'background' => ['System\Models\File'],
+        'background_flat' => ['System\Models\File'],
+        'background_mask' => ['System\Models\File'],
         'featured' => ['System\Models\File'],
     ];
 
 
+
     /**
-     * SCOPES
+     * The attributes on which the post list can be ordered
+     * @var array
      */
+    public static $allowedSortingOptions = array(
+        'title asc'          => 'Title (ascending)',
+        'title desc'         => 'Title (descending)',
+        'created_at asc'     => 'Created (ascending)',
+        'created_at desc'    => 'Created (descending)',
+        'updated_at asc'     => 'Updated (ascending)',
+        'updated_at desc'    => 'Updated (descending)',
+        'published_at asc'   => 'Published (ascending)',
+        'published_at desc'  => 'Published (descending)',
+        'premiere_date asc'  => 'Premiere date (ascending)',
+        'premiere_date desc' => 'Premiere date (descending)',
+    );
+
 
     /**
      * Scope IsPublished
@@ -80,92 +104,62 @@ class Performance extends Model
     }
 
     /**
-     * Scope IsNormal
+     * Lists posts for the front end
+     * @param  array $options Display options
+     * @return self
      */
-    public function scopeIsNormal($query)
-    {
-        return $query
-            ->where('state', '<>', 'archived')
-            ->where('type', '=', 'normal')
-        ;
-    }
-
-    /**
-     * Scope IsChild
-     */
-    public function scopeIsChild($query)
-    {
-        return $query
-            ->where('state', '<>', 'archive')
-            ->where('type', '=', 'child')
-        ;
-    }
-
-    /**
-     * Scope IsArchive
-     */
-    public function scopeIsArchive($query)
-    {
-        return $query
-            ->where('state', '=', 'archived')
-        ;
-    }
-
-    /**
-     * Scope GetList
-     */
-    public function scopeGetList($query, $options)
+    public function scopeListFrontEnd($query, $options)
     {
         /*
          * Default options
          */
         extract(array_merge([
-            'sort'    => ['premiere_date', 'desc'],
-            'section' => 'normal',
+            'sort'       => 'created_at',
+            'categories' => null,
+            'search'     => '',
+            'published'  => true
         ], $options));
 
-        $query = $query->isPublished();
+        $searchableFields = ['title', 'slug'];
 
-        switch ($section) {
-            case 'child':
-                $query = $query->isChild();
-                break;
-            case 'archive':
-                $query = $query->isArchive();
-                break;
-            case 'normal':
-            default:
-                $query = $query->isNormal();
-                break;
+        if ($published)
+            $query->isPublished();
+
+        /*
+         * Sorting
+         */
+        if (!is_array($sort)) $sort = [$sort];
+        foreach ($sort as $_sort) {
+
+            if (in_array($_sort, array_keys(self::$allowedSortingOptions))) {
+                $parts = explode(' ', $_sort);
+                if (count($parts) < 2) array_push($parts, 'desc');
+                list($sortField, $sortDirection) = $parts;
+
+                $query->orderBy($sortField, $sortDirection);
+            }
         }
 
-        return $query = $query
-            ->with(['repertoire'])
-            ->orderBy($sort[0], $sort[1])
-        ;
-
-    }
-
-    /**
-     * Scope GetSingle
-     */
-    public function scopeGetSingle($query, $options)
-    {
         /*
-         * Default options
+         * Search
          */
-        extract(array_merge([], $options));
+        $search = trim($search);
+        if (strlen($search)) {
+            $query->searchWhere($search, $searchableFields);
+        }
 
-        return $query
-            ->isPublished()
-            ->with(['participation.person', 'press', 'video', 'background', 'featured'])
-            ->where('slug', '=', $slug)
-        ;
+        /*
+         * Categories
+         */
+        if ($categories !== null) {
+            if (!is_array($categories)) $categories = [$categories];
+            $query->whereHas('categories', function($q) use ($categories) {
+                $q->whereIn('id', $categories);
+            });
+        }
 
+        return $query->get();
     }
-
-
-
 
     /**
      * Dropdown options
@@ -177,18 +171,6 @@ class Performance extends Model
                 0 => 'Без антракта',
                 1 => 'С одним антрактом',
                 2 => 'С двумя антрактами',
-            ];
-        } elseif ($fieldName == 'state') {
-            return [
-                'normal'   => 'Обычное',
-                'premiere' => 'Премьера',
-                'archived' => 'В архиве',
-            ];
-        } elseif ($fieldName == 'type') {
-            return [
-                'normal' => 'Обычный',
-                'child'  => 'Детский',
-                'event'  => 'Событие',
             ];
         } elseif ($fieldName == 'rate') {
             return [
@@ -219,169 +201,4 @@ class Performance extends Model
         return $this->url = $controller->pageUrl($pageName, $params);
     }
 
-
-
-    /**
-     * Handler for the pages.menuitem.getTypeInfo event.
-     * Returns a menu item type information. The type information is returned as array
-     * with the following elements:
-     * - references - a list of the item type reference options. The options are returned in the
-     *   ["key"] => "title" format for options that don't have sub-options, and in the format
-     *   ["key"] => ["title"=>"Option title", "items"=>[...]] for options that have sub-options. Optional,
-     *   required only if the menu item type requires references.
-     * - nesting - Boolean value indicating whether the item type supports nested items. Optional,
-     *   false if omitted.
-     * - dynamicItems - Boolean value indicating whether the item type could generate new menu items.
-     *   Optional, false if omitted.
-     * - cmsPages - a list of CMS pages (objects of the Cms\Classes\Page class), if the item type requires a CMS page reference to
-     *   resolve the item URL.
-     * @param string $type Specifies the menu item type
-     * @return array Returns an array
-     */
-    public static function getMenuTypeInfo($type)
-    {
-        $result = [];
-
-        if ($type == 'repertoire-category') {
-
-            // $references = [];
-            // $categories = self::orderBy('name')->get();
-            // foreach ($categories as $category) {
-            //     $references[$category->id] = $category->name;
-            // }
-
-            $references = [
-                'normal'   => 'Спектакли',
-                'child'    => 'Детские спектакли',
-                'archive'  => 'Архивные спектакли',
-            ];
-
-            $result = [
-                'references'   => $references,
-                'nesting'      => false,
-                'dynamicItems' => false
-            ];
-        }
-
-        if ($type == 'all-repertoire-category') {
-            $result = [
-                'dynamicItems' => true
-            ];
-        }
-
-        if ($result) {
-            $theme = Theme::getActiveTheme();
-
-            $pages = CmsPage::listInTheme($theme, true);
-            $cmsPages = [];
-            foreach ($pages as $page) {
-                if (!$page->hasComponent('theaterRepertoire'))
-                    continue;
-
-                /*
-                 * Component must use a category filter with a routing parameter
-                 * eg: categoryFilter = "{{ :somevalue }}"
-                 */
-                $properties = $page->getComponentProperties('theaterRepertoire');
-                if (!isset($properties['categoryFilter']) || !preg_match('/{{\s*:/', $properties['categoryFilter']))
-                    continue;
-
-                $cmsPages[] = $page;
-            }
-
-            $result['cmsPages'] = $cmsPages;
-        }
-
-        return $result;
-    }
-
-    /**
-     * Handler for the pages.menuitem.resolveItem event.
-     * Returns information about a menu item. The result is an array
-     * with the following keys:
-     * - url - the menu item URL. Not required for menu item types that return all available records.
-     *   The URL should be returned relative to the website root and include the subdirectory, if any.
-     *   Use the URL::to() helper to generate the URLs.
-     * - isActive - determines whether the menu item is active. Not required for menu item types that
-     *   return all available records.
-     * - items - an array of arrays with the same keys (url, isActive, items) + the title key.
-     *   The items array should be added only if the $item's $nesting property value is TRUE.
-     * @param \RainLab\Pages\Classes\MenuItem $item Specifies the menu item.
-     * @param \Cms\Classes\Theme $theme Specifies the current theme.
-     * @param string $url Specifies the current page URL, normalized, in lower case
-     * The URL is specified relative to the website root, it includes the subdirectory name, if any.
-     * @return mixed Returns an array. Returns null if the item cannot be resolved.
-     */
-    public static function resolveMenuItem($item, $url, $theme)
-    {
-        $result = null;
-
-        if ($item->type == 'repertoire-category') {
-            if (!$item->reference || !$item->cmsPage)
-                return;
-
-            $category = self::find($item->reference);
-            if (!$category)
-                return;
-
-            $pageUrl = self::getCategoryPageUrl($item->cmsPage, $category, $theme);
-            if (!$pageUrl)
-                return;
-
-            $pageUrl = URL::to($pageUrl);
-
-            $result = [];
-            $result['url'] = $pageUrl;
-            $result['isActive'] = $pageUrl == $url;
-            $result['mtime'] = $category->updated_at;
-        }
-        elseif ($item->type == 'all-blog-categories') {
-            $result = [
-                'items' => []
-            ];
-
-            $categories = self::orderBy('name')->get();
-            foreach ($categories as $category) {
-                $categoryItem = [
-                    'title' => $category->name,
-                    'url'   => self::getCategoryPageUrl($item->cmsPage, $category, $theme),
-                    'mtime' => $category->updated_at,
-                ];
-
-                $categoryItem['isActive'] = $categoryItem['url'] == $url;
-
-                $result['items'][] = $categoryItem;
-            }
-        }
-
-        return $result;
-    }
-
-
-    /**
-     * Returns URL of a category page.
-     */
-    protected static function getCategoryPageUrl($pageCode, $category, $theme)
-    {
-        $page = CmsPage::loadCached($theme, $pageCode);
-        if (!$page) return;
-
-        $properties = $page->getComponentProperties('theaterRepertoire');
-        if (!isset($properties['categoryFilter'])) {
-            return;
-        }
-
-        /*
-         * Extract the routing parameter name from the category filter
-         * eg: {{ :someRouteParam }}
-         */
-        if (!preg_match('/^\{\{([^\}]+)\}\}$/', $properties['categoryFilter'], $matches)) {
-            return;
-        }
-
-        $paramName = substr(trim($matches[1]), 1);
-        $url = CmsPage::url($page->getBaseFileName(), [$paramName => $category->slug]);
-
-        return $url;
-    }
 }

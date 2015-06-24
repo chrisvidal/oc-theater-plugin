@@ -4,18 +4,18 @@ scopes:
         type: checkbox
         scope: isPublished
     type:
-        label: Тип
-        modelClass: Abnmt\Theater\Models\Performance
-        nameFrom: type
-    is_normal:
-        label: Обычные
-        type: checkbox
-        scope: isNormal
-    is_archive:
-        label: Архив
-        type: checkbox
-        scope: isArchive
-    is_child:
-        label: Детские
-        type: checkbox
-        scope: isChild
+        label: Категории
+        modelClass: Abnmt\Theater\Models\PerformanceCategory
+        nameFrom: title
+    # is_normal:
+    #     label: Обычные
+    #     type: checkbox
+    #     scope: isNormal
+    # is_archive:
+    #     label: Архив
+    #     type: checkbox
+    #     scope: isArchive
+    # is_child:
+    #     label: Детские
+    #     type: checkbox
+    #     scope: isChild

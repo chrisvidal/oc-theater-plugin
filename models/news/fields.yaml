@@ -9,6 +9,8 @@ fields:
     slug:
         label: URL
         span: right
+        preset:
+            field: title
     published_at:
         label: Дата
         span: left
@@ -31,7 +33,16 @@ tabs:
             label: Содержимое
             type: richeditor
             size: giant
-        cover:
+        featured:
             tab: Медиа
             label: Обложка
             type: fileupload
+            # type: mediafinder
+            mode: image
+            imageWidth: 416
+            imageHeight: 256
+
+        categories:
+            tab: Категории
+            type: partial
+            path: $/abnmt/theater/models/news/_list_categories.htm

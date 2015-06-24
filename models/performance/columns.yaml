@@ -27,7 +27,7 @@ columns:
         label: Афиша
         type: partial
         sortable: false
-    background:
+    background_mobile:
         label: Бэкграунды
         type: partial
         sortable: false

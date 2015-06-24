@@ -27,12 +27,15 @@ class CreatePerformancesTable extends Migration
             // $table->text('roles')->nullable();
 
             $table->string('title_html')->nullable();
-            $table->string('state')->nullable();
-            $table->string('type')->nullable();
+            // $table->string('state')->nullable();
+            // $table->string('type')->nullable();
             // $table->string('genre')->nullable();
             $table->time('duration')->nullable();
             $table->smallInteger('entracte')->nullable();
+
             $table->date('premiere_date')->nullable();
+            $table->date('removed_date')->nullable();
+
             $table->string('rate')->nullable();
 
             $table->boolean('published')->default(false);

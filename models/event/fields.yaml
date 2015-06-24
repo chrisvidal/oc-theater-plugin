@@ -6,3 +6,19 @@ fields:
     id:
         label: ID
         disabled: true
+
+    title:
+        label: Название
+    # performance:
+    #     label: Спектакль
+    #     type: relation
+    #     select: title
+    datetime:
+        label: Дата и время начала
+
+tabs:
+    fields:
+        categories:
+            tab: Категории
+            type: partial
+            path: $/abnmt/theater/models/event/_list_categories.htm

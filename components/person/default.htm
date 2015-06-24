@@ -1,3 +1,57 @@
-<p>This is the default markup for component Person</p>
+{% if post %}
 
-<small>You can delete this file if you want</small>
+<div class="grade">{{ post.grade }}</div>
+<div class="title">{{ post.title }}</div>
+
+<div class="row">
+	<div class="col left">
+		<div class="portrait">
+			<img src="{{ post.portrait.path }}" alt="">
+		</div>
+	</div>
+	<div class="col right">
+		{% partial __SELF__ ~ "::gallery" %}
+	</div>
+</div>
+
+<div class="cols">
+
+<div class="content-block bio">
+	<h4>Биография</h4>
+	{{ post.bio|raw }}
+</div>
+
+{% if roles | length > 0 %}
+<div class="content-block roles">
+	{# <h4>Роли в спектаклях театра «Комедианты»</h4> #}
+	<h4>Роли в спектаклях</h4>
+	<dl class="roles-list">
+		{% for role in roles %}<!-- Role -->
+		<dt class="performance">
+			<a href="{{role.url}}" class="performance-title">{{ role.performance }}</a>{% if role.author %}, <span class="performance-author">{{ role.author }}</span>{% endif %}
+		</dt>
+		<dd class="role">
+			{% for key, role in role.roles %}
+			{% if key != 0 %} / {% endif %}
+			{{ role }}
+			{% endfor %}
+		</dd>
+		{% endfor %}<!-- /End -->
+	</dl>
+</div>
+{% endif %}<!-- /End -->
+
+{% if post.press | length > 0 %}<!-- Press -->
+<div class="content-block press">
+	<h4>Пресса</h4>
+	<ul class="press-list">
+		{% for article in post.press %}<!-- Article -->
+		<li><a href="{{ article.url }}" class="article-title">{{ article.title }}</a>{% if article.source %}<span class="article-source">{{ article.source }}</span>{% endif %}</li>
+		{% endfor %}<!-- /End -->
+	</ul>
+</div>
+<!-- /End -->{% endif %}
+
+</div>
+
+{% endif %}

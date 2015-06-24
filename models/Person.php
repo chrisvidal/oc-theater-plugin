@@ -2,6 +2,11 @@
 
 use Model;
 
+use Str;
+use URL;
+use Cms\Classes\Page as CmsPage;
+use Cms\Classes\Theme;
+
 /**
  * Person Model
  */
@@ -36,7 +41,9 @@ class Person extends Model
         'participation' => ['Abnmt\Theater\Models\Participation'],
     ];
     public $belongsTo = [];
-    public $belongsToMany = [];
+    public $belongsToMany = [
+        'categories' => ['Abnmt\Theater\Models\PersonCategory', 'table' => 'abnmt_theater_persons_categories', 'order' => 'title']
+    ];
 
     public $morphTo = [];
     public $morphOne = [];
@@ -52,14 +59,28 @@ class Person extends Model
     public $attachOne = [
         'portrait' => ['System\Models\File'],
     ];
-    public $attachMany = [];
-
-
+    public $attachMany = [
+        'featured' => ['System\Models\File'],
+    ];
 
 
     /**
-     * SCOPES
+     * The attributes on which the post list can be ordered
+     * @var array
      */
+    public static $allowedSortingOptions = array(
+        'title asc'         => 'Title (ascending)',
+        'title desc'        => 'Title (descending)',
+        'created_at asc'    => 'Created (ascending)',
+        'created_at desc'   => 'Created (descending)',
+        'updated_at asc'    => 'Updated (ascending)',
+        'updated_at desc'   => 'Updated (descending)',
+        'published_at asc'  => 'Published (ascending)',
+        'published_at desc' => 'Published (descending)',
+        'family_name asc'   => 'Family name (ascending)',
+        'family_name desc'  => 'Family name (descending)',
+    );
+
 
     /**
      * Scope IsPublished
@@ -73,44 +94,103 @@ class Person extends Model
     }
 
     /**
+     * Lists posts for the front end
+     * @param  array $options Display options
+     * @return self
+     */
+    public function scopeListFrontEnd($query, $options)
+    {
+        /*
+         * Default options
+         */
+        extract(array_merge([
+            'sort'       => 'created_at',
+            'categories' => null,
+            'search'     => '',
+            'published'  => true
+        ], $options));
+
+        $searchableFields = ['title', 'slug'];
+
+        if ($published)
+            $query->isPublished();
+
+        /*
+         * Sorting
+         */
+        if (!is_array($sort)) $sort = [$sort];
+        foreach ($sort as $_sort) {
+
+            if (in_array($_sort, array_keys(self::$allowedSortingOptions))) {
+                $parts = explode(' ', $_sort);
+                if (count($parts) < 2) array_push($parts, 'desc');
+                list($sortField, $sortDirection) = $parts;
+
+                $query->orderBy($sortField, $sortDirection);
+            }
+        }
+
+        /*
+         * Search
+         */
+        $search = trim($search);
+        if (strlen($search)) {
+            $query->searchWhere($search, $searchableFields);
+        }
+
+        /*
+         * Categories
+         */
+        if ($categories !== null) {
+            if (!is_array($categories)) $categories = [$categories];
+            $query->whereHas('categories', function($q) use ($categories) {
+                $q->whereIn('id', $categories);
+            });
+        }
+
+        return $query->get();
+    }
+
+
+    /**
      * Scope IsGrade
      */
-    public function scopeIsGrade($query)
-    {
-        return $query
-            ->whereNotNull('grade')
-        ;
-    }
+    // public function scopeIsGrade($query)
+    // {
+    //     return $query
+    //         ->whereNotNull('grade')
+    //     ;
+    // }
 
     /**
      * Scope IsState
      */
-    public function scopeIsState($query)
-    {
-        return $query
-            ->where('state', '=', 'state')
-        ;
-    }
+    // public function scopeIsState($query)
+    // {
+    //     return $query
+    //         ->where('state', '=', 'state')
+    //     ;
+    // }
 
     /**
      * Scope IsCooperate
      */
-    public function scopeIsCooperate($query)
-    {
-        return $query
-            ->where('state', '=', 'cooperate')
-        ;
-    }
+    // public function scopeIsCooperate($query)
+    // {
+    //     return $query
+    //         ->where('state', '=', 'cooperate')
+    //     ;
+    // }
 
     /**
      * Scope IsAdministration
      */
-    public function scopeIsAdministration($query)
-    {
-        return $query
-            ->where('state', '=', 'administration')
-        ;
-    }
+    // public function scopeIsAdministration($query)
+    // {
+    //     return $query
+    //         ->where('state', '=', 'administration')
+    //     ;
+    // }
 
 
 

@@ -52,3 +52,8 @@ tabs:
             options:
                 nameColumn: title
                 sort: title
+
+        categories:
+            tab: Категории
+            type: partial
+            path: $/abnmt/theater/models/press/_list_categories.htm

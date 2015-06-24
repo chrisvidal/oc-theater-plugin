@@ -3,6 +3,10 @@
 # ===================================
 
 columns:
+    featured:
+        label: Обложка
+        type: partial
+        sortable: false
     title:
         label: Название
         searchable: true

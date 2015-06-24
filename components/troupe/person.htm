@@ -1,0 +1,15 @@
+<!-- {{ person.slug }} -->
+<div class="person">
+	<div class="portrait">
+		<a href="{{ person.url }}">
+			{% if person.portrait.path %}<img src="{{ person.portrait.thumb }}" width="100%" height="auto">{% endif %}
+		</a>
+	</div>
+	<div class="caption">
+		<div class="title">
+			<a href="{{ person.url }}">{{ person.title }}</a>
+		</div>
+		{% if person.grade %}<div class="grade">{{ person.grade }}</div>{% endif %}
+	</div>
+</div>
+

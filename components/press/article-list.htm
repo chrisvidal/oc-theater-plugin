@@ -1,0 +1,7 @@
+<ul class="post-list">
+    {% for post in posts %}
+        {% partial __SELF__ ~ "::article-item" post=post %}
+    {% else %}
+        <li class="no-data">{{ noPostsMessage }}</li>
+    {% endfor %}
+</ul>

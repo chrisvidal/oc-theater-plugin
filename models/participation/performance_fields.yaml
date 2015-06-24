@@ -10,5 +10,10 @@ fields:
         type: relation
         nameFrom: title
     type:
-        hidden: true
-        default: roles
+        label: Тип
+        type: dropdown
+        options:
+            roles: Актеры
+            creators: Создатели
+    group:
+        label: Группа

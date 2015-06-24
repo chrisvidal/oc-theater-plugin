@@ -21,7 +21,7 @@ class Participation extends Model
     /**
      * @var array Fillable fields
      */
-    protected $fillable = ['title', 'performance', 'person'];
+    protected $fillable = ['title', 'performance', 'person', 'type', 'group'];
 
     /**
      * @var array Relations

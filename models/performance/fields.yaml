@@ -18,14 +18,14 @@ fields:
             field: title
     author:
         label: Автор
-    type:
-        label: Тип
-        type: dropdown
-        span: left
-    state:
-        label: Состояние
-        type: dropdown
-        span: right
+    # type:
+    #     label: Тип
+    #     type: dropdown
+    #     span: left
+    # state:
+    #     label: Состояние
+    #     type: dropdown
+    #     span: right
     published:
         label: Опубликовано
         type: switch
@@ -95,16 +95,37 @@ tabs:
             tab: Медиа
             label: Бэкграунды
             mode: image
+            span: left
+            type: fileupload
+        background_flat:
+            tab: Медиа
+            label: Бэкграунды (слитые)
+            mode: image
+            span: left
+            type: fileupload
+        background_mask:
+            tab: Медиа
+            label: Маски
+            mode: image
+            span: left
+            type: fileupload
+        background_mobile:
+            tab: Медиа
+            label: Бэкграунд для мобильных
+            mode: image
+            span: right
             type: fileupload
         featured:
             tab: Медиа
             label: Галерея
             mode: image
+            span: left
             type: fileupload
         video:
             tab: Медиа
             label: Видео
             mode: image
+            span: right
             type: fileupload
 
         participation:
@@ -120,3 +141,8 @@ tabs:
             nameFrom: title
             options:
                 nameColumn: title
+
+        categories:
+            tab: Категории
+            type: partial
+            path: $/abnmt/theater/models/performance/_list_categories.htm

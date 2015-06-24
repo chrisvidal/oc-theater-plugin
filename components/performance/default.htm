@@ -1,3 +1,72 @@
-<p>This is the default markup for component Performance</p>
+    <div class="container">
+        <div class="wrap">
 
-<small>You can delete this file if you want</small>
+            <div style="" class="content title">{{ post.title }}<div class="buy-button"><a href="#">Купить билет!</a></div></div>
+            {% if post.author %}<div class="content author">{{ post.author }}</div>{% endif %}
+            {% if post.description %}<div class="content description{% if post.author == null %} alone{% endif %}">{{ post.description }}</div>{% endif %}
+
+            {% partial __SELF__ ~ "::event" %}
+
+            <div class="content about">
+                {{ post.content|raw }}
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="wrap">
+            {% partial __SELF__ ~ "::participations" %}
+
+            {% partial __SELF__ ~ "::press" %}
+
+            {% partial __SELF__ ~ "::video" %}
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="wrap">
+            {% partial __SELF__ ~ "::gallery" %}
+        </div>
+    </div>
+
+
+
+<div class="block">
+    <div class="bg-container top">
+        {% partial __SELF__ ~ "::background" key = 0 class="top right" %}
+        {% partial __SELF__ ~ "::background" key = 5 class="top left" %}
+    </div>
+</div>
+<div class="block">
+    <div class="bg-container middle">
+        {% partial __SELF__ ~ "::background" key = 1 class="middle right" %}
+        {% partial __SELF__ ~ "::background" key = 4 class="middle left" %}
+    </div>
+</div>
+<div class="block">
+    <div class="bg-container bottom">
+        {% partial __SELF__ ~ "::background" key = 2 class="bottom right" %}
+        {% partial __SELF__ ~ "::background" key = 3 class="bottom left" %}
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="wrap">
+        <div class="content">
+            <div class="premiere-date">Премьера состоялась</br><span class="nowrap">{{ post.premiere_date | humanDate }}</span></div>
+
+            <div class="duration">
+                Длительность спектакля<br>
+                <span class="nowrap">{{ post.duration | duration }}</span>
+                {% if post.entracte == 0 %}<span class="nowrap"> без антракта</span>
+                {% elseif post.entracte == 1 %}<span class="nowrap"> с одним антрактом</span>
+                {% elseif post.entracte == 2 %}<span class="nowrap"> с двумя антрактами</span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

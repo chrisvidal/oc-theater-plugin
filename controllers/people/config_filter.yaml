@@ -3,11 +3,11 @@ scopes:
         label: Скрыть не опубликованые
         type: checkbox
         scope: isPublished
-    is_state:
-        label: Штат
-        type: checkbox
-        scope: isState
-    is_cooperate:
-        label: Приглашенные
-        type: checkbox
-        scope: isCooperate
+    # is_state:
+    #     label: Штат
+    #     type: checkbox
+    #     scope: isState
+    # is_cooperate:
+    #     label: Приглашенные
+    #     type: checkbox
+    #     scope: isCooperate

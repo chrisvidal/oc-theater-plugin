@@ -28,9 +28,9 @@ showSetup: true
 showSorting: true
 
 # Default sorting column
-defaultSort:
-    column: state
-    direction: desc
+# defaultSort:
+#     column: state
+#     direction: desc
 
 # Display checkboxes next to each record
 # showCheckboxes: true

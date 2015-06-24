@@ -3,6 +3,9 @@
 use Cms\Classes\Page;
 use Cms\Classes\ComponentBase;
 use Abnmt\Theater\Models\News as NewsModel;
+use Abnmt\Theater\Models\NewsCategory as NewsCategoryModel;
+
+use \Clockwork\Support\Laravel\Facade as CW;
 
 class News extends ComponentBase
 {
@@ -11,6 +14,18 @@ class News extends ComponentBase
      * @var Collection
      */
     public $posts;
+
+    /**
+     * A Post object
+     * @var Model
+     */
+    public $post;
+
+    /**
+     * A Post slug
+     * @var string
+     */
+    public $slug;
 
     /**
      * Parameter to use for the page number
@@ -62,7 +77,7 @@ class News extends ComponentBase
     {
         return [
             'pageNumber' => [
-                'title'       => '№ страницы',
+                'title'       => 'Номер страницы',
                 'description' => 'Переменная с номером страницы',
                 'type'        => 'string',
                 'default'     => '{{ :page }}',
@@ -97,14 +112,14 @@ class News extends ComponentBase
                 'title'       => 'Страница для рубрик',
                 'description' => 'Шаблон для вывода списка записей определенной рубрики',
                 'type'        => 'dropdown',
-                'default'     => 'blog/category',
+                'default'     => 'news/category',
                 'group'       => 'Links',
             ],
             'postPage' => [
                 'title'       => 'Страница для постов',
                 'description' => 'Шаблон для вывода одной записи',
                 'type'        => 'dropdown',
-                'default'     => 'blog/post',
+                'default'     => 'single/news',
                 'group'       => 'Links',
             ],
         ];
@@ -131,6 +146,12 @@ class News extends ComponentBase
 
         $this->category = $this->page['category'] = $this->loadCategory();
         $this->posts = $this->page['posts'] = $this->listPosts();
+
+        if ($this->slug = $this->param('slug'))
+            $this->post = $this->page['post'] = $this->loadPost();
+
+
+        // $this->page['test'] = "<pre>" . $this->posts->toJson() . "</pre>\n";
 
         /*
          * If the page number is not valid, redirect
@@ -162,7 +183,7 @@ class News extends ComponentBase
         /*
          * List all the posts, eager load their categories
          */
-        $posts = NewsModel::with('categories')->listFrontEnd([
+        $posts = NewsModel::with(['categories', 'featured'])->listFrontEnd([
             'page'       => $this->property('pageNumber'),
             'sort'       => $this->property('sortOrder'),
             'perPage'    => $this->property('postsPerPage'),
@@ -180,6 +201,7 @@ class News extends ComponentBase
             });
         });
 
+        CW::info($posts);
         return $posts;
     }
 
@@ -188,9 +210,22 @@ class News extends ComponentBase
         if (!$categoryId = $this->property('categoryFilter'))
             return null;
 
-        if (!$category = BlogCategory::whereSlug($categoryId)->first())
+        if (!$category = NewsCategoryModel::whereSlug($categoryId)->first())
             return null;
 
         return $category;
+    }
+
+    protected function loadPost()
+    {
+        $post = NewsModel::with(['categories', 'featured'])
+            ->isPublished()
+            ->whereSlug($this->slug)
+            ->first()
+        ;
+
+        CW::info($post);
+
+        return $post;
     }
 }

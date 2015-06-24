@@ -1,3 +1,21 @@
-<p>This is the default markup for component Playbill</p>
+{% if group %}
 
-<small>You can delete this file if you want</small>
+{% for post in group.normal %}
+    {% partial __SELF__ ~ "::event" event=post %}
+{% endfor%}
+
+{% if group.child %}
+<h3 id="child">Детские спектакли</h3>
+{% for post in group.child %}
+    {% partial __SELF__ ~ "::event" event=post %}
+{% endfor%}
+{% endif %}
+
+{% else %}
+
+{% for post in posts %}
+    {% partial __SELF__ ~ "::event" event=post %}
+{% endfor%}
+
+{% endif %}
+
