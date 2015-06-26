@@ -7,8 +7,8 @@ use Cms\Classes\Page as CmsPage;
 use Cms\Classes\Theme;
 
 setlocale(LC_ALL, 'Russian');
-use Laravelrus\LocalizedCarbon\LocalizedCarbon as Carbon;
-// use \Carbon\Carbon as Carbon;
+// use Laravelrus\LocalizedCarbon\LocalizedCarbon as Carbon;
+use \Carbon\Carbon as Carbon;
 
 
 

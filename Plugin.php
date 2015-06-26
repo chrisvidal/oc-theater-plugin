@@ -22,7 +22,7 @@ use Abnmt\Theater\Controllers\People as PeopleController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Foundation\AliasLoader;
 
-use Laravelrus\LocalizedCarbon\LocalizedCarbon as LocalizedCarbon;
+// use Laravelrus\LocalizedCarbon\LocalizedCarbon as LocalizedCarbon;
 
 use Event;
 use Lang;
@@ -124,11 +124,11 @@ class Plugin extends PluginBase
 
     public function boot()
     {
-        App::register( 'Laravelrus\LocalizedCarbon\LocalizedCarbonServiceProvider' );
+        // App::register( 'Laravelrus\LocalizedCarbon\LocalizedCarbonServiceProvider' );
 
-        $alias = AliasLoader::getInstance();
-        $alias->alias( 'LocalizedCarbon', 'Laravelrus\LocalizedCarbon\LocalizedCarbon' );
-        $alias->alias( 'DiffFormatter'  , 'Laravelrus\LocalizedCarbon\DiffFactoryFacade' );
+        // $alias = AliasLoader::getInstance();
+        // $alias->alias( 'LocalizedCarbon', 'Laravelrus\LocalizedCarbon\LocalizedCarbon' );
+        // $alias->alias( 'DiffFormatter'  , 'Laravelrus\LocalizedCarbon\DiffFactoryFacade' );
 
 
         /*
@@ -191,8 +191,14 @@ class Plugin extends PluginBase
                     return mb_convert_encoding($weekday, "UTF-8", "CP1251");
                 },
                 'month' => function ( $datetime ) {
+                    // extract(date_parse($datetime));
+                    // $months = explode(',', Lang::get('abnmt.theater::lang.dates.month_gen', compact('month')));
+                    // $month = $months[$months[0]];
+                    // $format = '%1$d %2$s %3$d года';
+                    // $string = sprintf($format, $day, $month, $year);
                     setlocale(LC_ALL, 'Russian');
-                    return $month = LocalizedCarbon::parse($datetime)->formatLocalized('%f');
+                    $month = \Carbon\Carbon::parse($datetime)->formatLocalized('%B');
+                    return $month;
                 },
                 'humanDate' => function ( $datetime ) {
                     // setlocale(LC_ALL, 'Russian');

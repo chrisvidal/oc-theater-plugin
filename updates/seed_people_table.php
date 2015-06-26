@@ -12,8 +12,8 @@ class SeedPeopleTable extends Seeder
 
     public function run()
     {
-
-        $this->fileData = $this->fillArrayWithFileNodes( new \DirectoryIterator( 'D:\Dropbox\OpenServer\domains\komedianty.abnmt.com\storage\app\media\_images\person' ) );
+        $path = "./storage/app/media/_images/person";
+        $this->fileData = $this->fillArrayWithFileNodes( new \DirectoryIterator( $path ) );
 
         require_once 'data/people.php';
 

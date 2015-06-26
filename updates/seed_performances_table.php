@@ -13,7 +13,10 @@ class SeedPerformancesTable extends Seeder
     public function run()
     {
 
-        $this->fileData = $this->fillArrayWithFileNodes( new \DirectoryIterator( 'D:\Dropbox\OpenServer\domains\komedianty.abnmt.com\storage\app\media\_images\performance' ) );
+        $path = "./storage/app/media/_images/performance";
+        // echo realpath(__DIR__ . '../../../../' . '\storage\app\media\_images\performance');
+
+        $this->fileData = $this->fillArrayWithFileNodes( new \DirectoryIterator( $path ) );
 
         require_once 'data/performances.php';
 

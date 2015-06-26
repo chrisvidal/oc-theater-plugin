@@ -12,7 +12,7 @@ class SeedRolesTable extends Seeder
     public function run()
     {
 
-        require_once 'data\participation.php';
+        require_once 'data/participation.php';
 
         foreach ($participation as $performance) {
 

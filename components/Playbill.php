@@ -8,7 +8,7 @@ use Abnmt\Theater\Models\Event as EventModel;
 use \Clockwork\Support\Laravel\Facade as CW;
 
 setlocale(LC_ALL, 'Russian');
-use Laravelrus\LocalizedCarbon\LocalizedCarbon as Carbon;
+use \Carbon\Carbon as Carbon;
 
 class Playbill extends ComponentBase
 {

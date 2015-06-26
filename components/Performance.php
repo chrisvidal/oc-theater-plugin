@@ -4,7 +4,8 @@ use Cms\Classes\ComponentBase;
 use Abnmt\Theater\Models\Performance as PerformanceModel;
 
 use \Clockwork\Support\Laravel\Facade as CW;
-use Laravelrus\LocalizedCarbon\LocalizedCarbon as Carbon;
+// use Laravelrus\LocalizedCarbon\LocalizedCarbon as Carbon;
+use \Carbon\Carbon as Carbon;
 
 class Performance extends ComponentBase
 {

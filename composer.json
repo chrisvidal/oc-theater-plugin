@@ -1,6 +1,0 @@
-{
-    "require": {
-        "twig/extensions": "~1.2",
-        "laravelrus/localized-carbon": "dev-master"
-    }
-}

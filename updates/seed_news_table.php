@@ -69,9 +69,8 @@ class SeedNewsTable extends Seeder
         $content = $post->content;
         preg_match_all('/src\s*=\s*"(\/storage.+?[jpg|png])"/', $content, $match);
 
-
         if (count($match) != 0 and count($match[1]) != 0){
-            $filePath = realpath("D:\Dropbox\OpenServer\domains\komedianty.abnmt.com" . $match[1][0]);
+            $filePath = realpath("./" . $match[1][0]);
             $file = new File();
             $file->fromFile($filePath);
             $post->featured()->save($file);
