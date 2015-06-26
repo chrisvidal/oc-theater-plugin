@@ -1,18 +1,21 @@
-        <li>
-            <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
 
-            <p class="info">
-                Posted
-                {% if post.categories.count %} in {% endif %}
-                {% for category in post.categories %}
-                    <a href="{{ category.url }}">{{ category.name }}</a>{% if not loop.last %}, {% endif %}
-                {% endfor %}
-                on {{ post.published_at|date('M d, Y') }}
-            </p>
-
-            {% if post.excerpt %}
-                <p class="excerpt">{{ post.excerpt }}</p>
-            {% else %}
-                <div class="content">{{ post.content|raw }}</div>
-            {% endif %}
+        <!-- {{ post.slug }} -->
+        <li class="post-item">
+            {% if post.featured | length != 0 %}<!-- Background -->
+            <a href="{{ post.url }}" class="post-cover" style="background-image: url('{{ post.featured.thumb("416", "256", "crop") }}');" title="{{ post.title }}" alt="{{ post.title }}"></a>
+            {% else %}<!-- No backgrounds -->
+            <div class="post-source">
+                <div class="source-title">{{ post.source }}</div>
+                <div class="source-author">{{ post.source_author }}</div>
+            </div>
+            <!-- /End -->{% endif %}
+            <div class="title-block">
+                <div class="title">
+                    <a href="{{ post.url }}">{{ post.title }}</a>
+                </div>
+            </div>
+            <div class="excerpt">{{ post.excerpt|raw }}</div>
+            <div class="post-info">{{ post.published_at|date('d.m.Y') }}</div>
+            <div class="post-link"><a href="{{ post.url }}">Читать полностью</a></div>
         </li>
+

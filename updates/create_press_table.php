@@ -24,6 +24,7 @@ class CreatePressTable extends Migration
             $table->date('source_date')->nullable()->default(null);
             $table->string('source_link')->nullable()->default(null);
 
+            $table->datetime('published_at')->nullable()->default(null);
             $table->boolean('published')->default(false);
             $table->timestamps();
         });

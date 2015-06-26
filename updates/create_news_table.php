@@ -23,7 +23,7 @@ class CreateNewsTable extends Migration
 
             // $table->text('cover')->nullable()->default(null);
 
-            $table->datetime('published_at');
+            $table->datetime('published_at')->nullable()->default(null);
             $table->boolean('published')->default(false);
 
             $table->timestamps();
