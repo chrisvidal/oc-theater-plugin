@@ -111,7 +111,7 @@ class Playbill extends Model
             ;
 
             foreach ($categories as $category) {
-                $references[$category->id] = Carbon::parse($category->date)->formatLocalized('%B');
+                $references[$category->id] = $this->dateLocale($category->date, '%B');
             }
 
             $result = [
@@ -163,7 +163,8 @@ class Playbill extends Model
 
             foreach ($categories as $category) {
                 $categoryItem = [
-                    'title' => mb_convert_encoding( Carbon::parse($category->date)->formatLocalized('%B'), "UTF-8", "CP1251" ),
+                    // 'title' => mb_convert_encoding( Carbon::parse($category->date)->formatLocalized('%B'), "UTF-8", "CP1251" ),
+                    'title' => self::dateLocale($category->date, '%B'),
                     'url'   => self::getCategoryPageUrl($item->cmsPage, $category, $theme),
                     'mtime' => $category->updated_at,
                 ];
@@ -191,6 +192,33 @@ class Playbill extends Model
         $url = CmsPage::url($page->getBaseFileName(), [$paramName => $slug]);
 
         return $url;
+    }
+
+    protected static function dateLocale($dateString, $dateFormat = '%c') {
+        if (class_exists('RainLab\Translate\Behaviors\TranslatableModel')){
+            $locale = Translator::instance()->getLocale();
+            $locales = [
+                'ru' => "ru_RU.UTF-8",
+                'en' => "en_US.UTF-8",
+            ];
+            setlocale(LC_ALL, $locales[$locale]);
+        } else {
+            $locale = 'ru';
+            setlocale(LC_ALL, 'ru_RU.UTF-8');
+        }
+
+        $dateString = strtotime($dateString);
+
+        if ($locale == 'ru') {
+            if ($dateFormat === '%c'){
+                $dateFormat = '%e %h %Y г.';
+            }
+            $months = explode("|", '|января|февраля|марта|апреля|мая|июня|июля|августа|сентября|октября|ноября|декабря');
+            $dateFormat = preg_replace("~\%h~", $months[date('n', $dateString)], $dateFormat);
+
+        }
+
+        return strftime($dateFormat, $dateString );
     }
 
 }
