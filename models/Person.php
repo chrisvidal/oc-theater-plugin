@@ -38,19 +38,23 @@ class Person extends Model
      */
     public $hasOne = [];
     public $hasMany = [
-        'participation' => ['Abnmt\Theater\Models\Participation'],
+        // 'participation' => ['Abnmt\Theater\Models\Participation'],
     ];
     public $belongsTo = [];
     public $belongsToMany = [
-        'categories' => ['Abnmt\Theater\Models\PersonCategory', 'table' => 'abnmt_theater_persons_categories', 'order' => 'title']
+        // 'categories' => ['Abnmt\Theater\Models\PersonCategory', 'table' => 'abnmt_theater_persons_categories', 'order' => 'title']
     ];
 
     public $morphTo = [];
     public $morphOne = [];
     public $morphMany = [];
     public $morphToMany = [
-        'press' => ['Abnmt\Theater\Models\Press',
-            'table' => 'abnmt_theater_press_relations',
+        'relation' => ['Abnmt\Theater\Models\Article',
+            'table' => 'abnmt_theater_articles_relations',
+            'name'  => 'relation',
+        ],
+        'taxonomy' => ['Abnmt\Theater\Models\Taxonomy',
+            'table' => 'abnmt_theater_taxonomies_relations',
             'name'  => 'relation',
         ],
     ];
@@ -105,7 +109,7 @@ class Person extends Model
          */
         extract(array_merge([
             'sort'       => 'created_at',
-            'categories' => null,
+            // 'categories' => null,
             'search'     => '',
             'published'  => true
         ], $options));
@@ -141,12 +145,12 @@ class Person extends Model
         /*
          * Categories
          */
-        if ($categories !== null) {
-            if (!is_array($categories)) $categories = [$categories];
-            $query->whereHas('categories', function($q) use ($categories) {
-                $q->whereIn('id', $categories);
-            });
-        }
+        // if ($categories !== null) {
+        //     if (!is_array($categories)) $categories = [$categories];
+        //     $query->whereHas('categories', function($q) use ($categories) {
+        //         $q->whereIn('id', $categories);
+        //     });
+        // }
 
         return $query->get();
     }
@@ -209,12 +213,16 @@ class Person extends Model
         return $this->url = $controller->pageUrl($pageName, $params);
     }
 
-    /**
-     * Make title from given and family names
-     */
-    public function beforeSave()
+
+
+    public function beforeCreate()
     {
+
+        // Make title from given and family names
         $this->title = $this->given_name . " " . $this->family_name;
+
+        // Generate a URL slug for this model
+        $this->slug = Str::slug($this->title);
     }
 
 }

@@ -38,38 +38,44 @@ class Performance extends Model
      */
     public $hasOne = [];
     public $hasMany = [
-        'participation' => ['Abnmt\Theater\Models\Participation'],
-        'events'        => ['Abnmt\Theater\Models\Event'],
+        // 'participation' => ['Abnmt\Theater\Models\Participation'],
+        // 'events'        => ['Abnmt\Theater\Models\Event'],
     ];
     public $belongsTo = [];
     public $belongsToMany = [
-        'categories' => ['Abnmt\Theater\Models\PerformanceCategory', 'table' => 'abnmt_theater_performances_categories', 'order' => 'title']
+        // 'categories' => ['Abnmt\Theater\Models\PerformanceCategory', 'table' => 'abnmt_theater_performances_categories', 'order' => 'title']
     ];
 
     public $morphTo = [];
     public $morphOne = [];
-    public $morphMany = [];
+    public $morphMany = [
+        'events' => ['Abnmt\Theater\Models\Event', 'name' => 'relation']
+    ];
     public $morphToMany = [
-        'press' => ['Abnmt\Theater\Models\Press',
-            'table' => 'abnmt_theater_press_relations',
+        'relation' => ['Abnmt\Theater\Models\Article',
+            'table' => 'abnmt_theater_articles_relations',
+            'name'  => 'relation',
+        ],
+        'taxonomy' => ['Abnmt\Theater\Models\Taxonomy',
+            'table' => 'abnmt_theater_taxonomies_relations',
             'name'  => 'relation',
         ],
     ];
     public $morphedByMany = [];
 
     public $attachOne = [
-        'playbill' => ['System\Models\File'],
-        'playbill_flat' => ['System\Models\File'],
-        'playbill_mask' => ['System\Models\File'],
-        'video' => ['System\Models\File'],
-        'repertoire' => ['System\Models\File'],
+        'playbill'          => ['System\Models\File'],
+        'playbill_flat'     => ['System\Models\File'],
+        'playbill_mask'     => ['System\Models\File'],
+        'video'             => ['System\Models\File'],
+        'repertoire'        => ['System\Models\File'],
         'background_mobile' => ['System\Models\File'],
     ];
     public $attachMany = [
-        'background' => ['System\Models\File'],
+        'background'      => ['System\Models\File'],
         'background_flat' => ['System\Models\File'],
         'background_mask' => ['System\Models\File'],
-        'featured' => ['System\Models\File'],
+        'featured'        => ['System\Models\File'],
     ];
 
 
@@ -115,7 +121,7 @@ class Performance extends Model
          */
         extract(array_merge([
             'sort'       => 'created_at',
-            'categories' => null,
+            // 'categories' => null,
             'search'     => '',
             'published'  => true
         ], $options));
@@ -151,12 +157,12 @@ class Performance extends Model
         /*
          * Categories
          */
-        if ($categories !== null) {
-            if (!is_array($categories)) $categories = [$categories];
-            $query->whereHas('categories', function($q) use ($categories) {
-                $q->whereIn('id', $categories);
-            });
-        }
+        // if ($categories !== null) {
+        //     if (!is_array($categories)) $categories = [$categories];
+        //     $query->whereHas('categories', function($q) use ($categories) {
+        //         $q->whereIn('id', $categories);
+        //     });
+        // }
 
         return $query->get();
     }
@@ -201,4 +207,9 @@ class Performance extends Model
         return $this->url = $controller->pageUrl($pageName, $params);
     }
 
+    public function beforeCreate()
+    {
+        // Generate a URL slug for this model
+        $this->slug = Str::slug($this->title);
+    }
 }

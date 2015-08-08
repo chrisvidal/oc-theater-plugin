@@ -3,21 +3,15 @@
 
 use System\Classes\PluginBase;
 
-use Abnmt\Theater\Models\Event as EventModel;
-use Abnmt\Theater\Models\Playbill as PlaybillModel;
-use Abnmt\Theater\Models\Performance as PerformanceModel;
-use Abnmt\Theater\Models\Person as PersonModel;
-use Abnmt\Theater\Models\News as NewsModel;
-use Abnmt\Theater\Models\Press as PressModel;
+use Abnmt\Theater\Models\Event         as EventModel;
+use Abnmt\Theater\Models\Article       as ArticleModel;
+use Abnmt\Theater\Models\Performance   as PerformanceModel;
+use Abnmt\Theater\Models\Person        as PersonModel;
+use Abnmt\Theater\Models\Taxonomy      as TaxonomyModel;
+use Abnmt\Theater\Models\Participation as ParticipationModel;
 
-use Abnmt\Theater\Models\EventCategory as EventCategoryModel;
-use Abnmt\Theater\Models\PerformanceCategory as PerformanceCategoryModel;
-use Abnmt\Theater\Models\PersonCategory as PersonCategoryModel;
-use Abnmt\Theater\Models\NewsCategory as NewsCategoryModel;
-use Abnmt\Theater\Models\PressCategory as PressCategoryModel;
-
-use Abnmt\Theater\Controllers\Performances as PerformancesController;
-use Abnmt\Theater\Controllers\People as PeopleController;
+// use Abnmt\Theater\Controllers\Performances as PerformancesController;
+// use Abnmt\Theater\Controllers\People as PeopleController;
 
 use Illuminate\Support\Facades\App;
 use Illuminate\Foundation\AliasLoader;
@@ -52,7 +46,7 @@ class Plugin extends PluginBase
 		return [
 			'theater' => [
 				'label' => 'Театр',
-				'url' => \Backend::url('abnmt/theater/panel'),
+				'url' => \Backend::url('abnmt/theater/dashboard'),
 				'icon' => 'icon-university',
 				'order' => 500,
 				'sideMenu' => [
@@ -98,19 +92,21 @@ class Plugin extends PluginBase
 	public function registerComponents()
 	{
 		return [
-			// 'Abnmt\Theater\Components\Theater'      => 'theater',
-			'Abnmt\Theater\Components\Playbill'     => 'theaterPlaybill',
-			'Abnmt\Theater\Components\Repertoire'   => 'theaterRepertoire',
-			'Abnmt\Theater\Components\Troupe'       => 'theaterTroupe',
-			'Abnmt\Theater\Components\News'         => 'theaterNews',
-			'Abnmt\Theater\Components\Press'        => 'theaterPress',
-			'Abnmt\Theater\Components\Person'       => 'theaterPerson',
-			'Abnmt\Theater\Components\Performance'  => 'theaterPerformance',
-			'Abnmt\Theater\Components\Partners'     => 'theaterPartners',
+			'Abnmt\Theater\Components\Theater' => 'theater',
+			// 'Abnmt\Theater\Components\Playbill'     => 'theaterPlaybill',
+			// 'Abnmt\Theater\Components\Repertoire'   => 'theaterRepertoire',
+			// 'Abnmt\Theater\Components\Troupe'       => 'theaterTroupe',
+			// 'Abnmt\Theater\Components\News'         => 'theaterNews',
+			// 'Abnmt\Theater\Components\Press'        => 'theaterPress',
+			// 'Abnmt\Theater\Components\Person'       => 'theaterPerson',
+			// 'Abnmt\Theater\Components\Performance'  => 'theaterPerformance',
+			// 'Abnmt\Theater\Components\Partners'     => 'theaterPartners',
 		];
 	}
+
+
 	/**
-	 * Register Components
+	 * Register Page snippets
 	 * @return array
 	 */
 	// public function registerPageSnippets()
@@ -136,37 +132,37 @@ class Plugin extends PluginBase
 		 */
 		Event::listen('pages.menuitem.listTypes', function() {
 			return [
-				'news-category' => 'Новости по категориям',
-				'performance-category' => 'Спектакли по категориям',
+				// 'news-category' => 'Новости по категориям',
+				// 'performance-category' => 'Спектакли по категориям',
 				// 'press-category' => 'Архив прессы',
-				'playbill-now' => 'Афиша на текущий месяц',
-				'playbill-next' => 'Афиша на следующие месяцы',
-				'person-category' => 'Люди по категориям',
+				// 'playbill-now' => 'Афиша на текущий месяц',
+				// 'playbill-next' => 'Афиша на следующие месяцы',
+				// 'person-category' => 'Люди по категориям',
 			];
 		});
 
 		Event::listen('pages.menuitem.getTypeInfo', function($type) {
-			if ($type == 'news-category')
-				return NewsCategoryModel::getMenuTypeInfo($type);
-			if ($type == 'performance-category')
-				return PerformanceCategoryModel::getMenuTypeInfo($type);
-			if ($type == 'person-category')
-				return PersonCategoryModel::getMenuTypeInfo($type);
-			if ($type == 'playbill-now' || $type == 'playbill-next')
-				return PlaybillModel::getMenuTypeInfo($type);
+			// if ($type == 'news-category')
+			// 	return NewsCategoryModel::getMenuTypeInfo($type);
+			// if ($type == 'performance-category')
+			// 	return PerformanceCategoryModel::getMenuTypeInfo($type);
+			// if ($type == 'person-category')
+			// 	return PersonCategoryModel::getMenuTypeInfo($type);
+			// if ($type == 'playbill-now' || $type == 'playbill-next')
+			// 	return PlaybillModel::getMenuTypeInfo($type);
 			// if ($type == 'press-category')
 			//     return PressCategoryModel::getMenuTypeInfo($type);
 		});
 
 		Event::listen('pages.menuitem.resolveItem', function($type, $item, $url, $theme) {
-			if ($type == 'news-category')
-				return NewsCategoryModel::resolveMenuItem($item, $url, $theme);
-			if ($type == 'performance-category')
-				return PerformanceCategoryModel::resolveMenuItem($item, $url, $theme);
-			if ($type == 'person-category')
-				return PersonCategoryModel::resolveMenuItem($item, $url, $theme);
-			if ($type == 'playbill-now' || $type == 'playbill-next')
-				return PlaybillModel::resolveMenuItem($item, $url, $theme);
+			// if ($type == 'news-category')
+			// 	return NewsCategoryModel::resolveMenuItem($item, $url, $theme);
+			// if ($type == 'performance-category')
+			// 	return PerformanceCategoryModel::resolveMenuItem($item, $url, $theme);
+			// if ($type == 'person-category')
+			// 	return PersonCategoryModel::resolveMenuItem($item, $url, $theme);
+			// if ($type == 'playbill-now' || $type == 'playbill-next')
+			// 	return PlaybillModel::resolveMenuItem($item, $url, $theme);
 			// if ($type == 'press-category')
 			//     return PressCategoryModel::resolveMenuItem($item, $url, $theme);
 		});

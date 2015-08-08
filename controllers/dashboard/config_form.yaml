@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Dashboard
+
+# Model Form Field configuration
+form: $/abnmt/theater/models/dashboard/fields.yaml
+
+# Model Class name
+modelClass: Abnmt\Theater\Models\Dashboard
+
+# Default redirect location
+defaultRedirect: abnmt/theater/dashboard
+
+# Create page
+create:
+    title: Create Dashboard
+    redirect: abnmt/theater/dashboard/update/:id
+    redirectClose: abnmt/theater/dashboard
+
+# Update page
+update:
+    title: Edit Dashboard
+    redirect: abnmt/theater/dashboard
+    redirectClose: abnmt/theater/dashboard
+
+# Preview page
+preview:
+    title: Preview Dashboard

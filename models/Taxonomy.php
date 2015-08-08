@@ -2,16 +2,18 @@
 
 use Model;
 
+use Str;
+
 /**
- * Participation Model
+ * Taxonomy Model
  */
-class Participation extends Model
+class Taxonomy extends Model
 {
 
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'abnmt_theater_participations';
+    public $table = 'abnmt_theater_taxonomies';
 
     /**
      * @var array Guarded fields
@@ -21,22 +23,25 @@ class Participation extends Model
     /**
      * @var array Fillable fields
      */
-    protected $fillable = ['title', 'performance', 'person', 'type', 'group', 'description', 'sort_order'];
+    protected $fillable = [];
 
     /**
      * @var array Relations
      */
     public $hasOne = [];
     public $hasMany = [];
-    public $belongsTo = [
-        'performance' => ['Abnmt\Theater\Models\Performance'],
-        'person'      => ['Abnmt\Theater\Models\Person'],
-    ];
+    public $belongsTo = [];
     public $belongsToMany = [];
     public $morphTo = [];
     public $morphOne = [];
     public $morphMany = [];
     public $attachOne = [];
     public $attachMany = [];
+
+    public function beforeCreate()
+    {
+        // Generate a URL slug for this model
+        // $this->slug = Str::slug($this->title);
+    }
 
 }
