@@ -92,14 +92,14 @@ class Plugin extends PluginBase
 	public function registerComponents()
 	{
 		return [
-			'Abnmt\Theater\Components\Theater' => 'theater',
+			'Abnmt\Theater\Components\Theater'      => 'theater',
 			// 'Abnmt\Theater\Components\Playbill'     => 'theaterPlaybill',
 			// 'Abnmt\Theater\Components\Repertoire'   => 'theaterRepertoire',
 			// 'Abnmt\Theater\Components\Troupe'       => 'theaterTroupe',
 			// 'Abnmt\Theater\Components\News'         => 'theaterNews',
 			// 'Abnmt\Theater\Components\Press'        => 'theaterPress',
-			// 'Abnmt\Theater\Components\Person'       => 'theaterPerson',
-			// 'Abnmt\Theater\Components\Performance'  => 'theaterPerformance',
+			'Abnmt\Theater\Components\Person'       => 'theaterPerson',
+			'Abnmt\Theater\Components\Performance'  => 'theaterPerformance',
 			// 'Abnmt\Theater\Components\Partners'     => 'theaterPartners',
 		];
 	}
@@ -238,7 +238,9 @@ class Plugin extends PluginBase
 				$dateFormat = '%e %h %Y г.';
 			}
 			$months = explode("|", '|января|февраля|марта|апреля|мая|июня|июля|августа|сентября|октября|ноября|декабря');
+			$weekday = explode("|", '|понедельник|вторник|среда|четверг|пятница|суббота|воскресенье');
 			$dateFormat = preg_replace("~\%h~", $months[date('n', $dateString)], $dateFormat);
+			$dateFormat = preg_replace("~\%A~", $weekday[date('N', $dateString)], $dateFormat);
 
 		}
 

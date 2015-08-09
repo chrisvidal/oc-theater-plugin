@@ -40,6 +40,15 @@ class Event extends Model
     public $attachOne = [];
     public $attachMany = [];
 
+    /**
+     * The attributes on which the post list can be ordered
+     * @var array
+     */
+    public static $allowedSortingOptions = array(
+        'event_date desc'    => 'По дате (вниз)',
+        'event_date asc'     => 'По дате (вверх)',
+    );
+
     // public function beforeCreate()
     // {
     //     // Generate a URL slug for this model

@@ -35,6 +35,12 @@ class Taxonomy extends Model
     public $morphTo = [];
     public $morphOne = [];
     public $morphMany = [];
+    public $morphedByMany = [
+        'relations' => ['Abnmt\Theater\Models\Taxonomy',
+            'table' => 'abnmt_theater_taxonomies_relations',
+            'name'  => 'relation',
+        ],
+    ];
     public $attachOne = [];
     public $attachMany = [];
 

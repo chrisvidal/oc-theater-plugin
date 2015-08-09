@@ -38,7 +38,7 @@ class Person extends Model
      */
     public $hasOne = [];
     public $hasMany = [
-        // 'participation' => ['Abnmt\Theater\Models\Participation'],
+        'participation' => ['Abnmt\Theater\Models\Participation'],
     ];
     public $belongsTo = [];
     public $belongsToMany = [
@@ -73,16 +73,9 @@ class Person extends Model
      * @var array
      */
     public static $allowedSortingOptions = array(
-        'title asc'         => 'Title (ascending)',
-        'title desc'        => 'Title (descending)',
-        'created_at asc'    => 'Created (ascending)',
-        'created_at desc'   => 'Created (descending)',
-        'updated_at asc'    => 'Updated (ascending)',
-        'updated_at desc'   => 'Updated (descending)',
-        'published_at asc'  => 'Published (ascending)',
-        'published_at desc' => 'Published (descending)',
-        'family_name asc'   => 'Family name (ascending)',
-        'family_name desc'  => 'Family name (descending)',
+        'family_name asc, given_name asc' => 'По Фамилии и Имени (asc)',
+        'family_name asc'                 => 'По Фамилии (asc)',
+        'family_name desc'                => 'По Фамилии (desc)',
     );
 
 

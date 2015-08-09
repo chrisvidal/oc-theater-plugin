@@ -38,7 +38,7 @@ class Performance extends Model
      */
     public $hasOne = [];
     public $hasMany = [
-        // 'participation' => ['Abnmt\Theater\Models\Participation'],
+        'participation' => ['Abnmt\Theater\Models\Participation'],
         // 'events'        => ['Abnmt\Theater\Models\Event'],
     ];
     public $belongsTo = [];
@@ -85,16 +85,16 @@ class Performance extends Model
      * @var array
      */
     public static $allowedSortingOptions = array(
-        'title asc'          => 'Title (ascending)',
-        'title desc'         => 'Title (descending)',
-        'created_at asc'     => 'Created (ascending)',
-        'created_at desc'    => 'Created (descending)',
-        'updated_at asc'     => 'Updated (ascending)',
-        'updated_at desc'    => 'Updated (descending)',
-        'published_at asc'   => 'Published (ascending)',
-        'published_at desc'  => 'Published (descending)',
-        'premiere_date asc'  => 'Premiere date (ascending)',
-        'premiere_date desc' => 'Premiere date (descending)',
+        'title asc'          => 'Название (asc)',
+        'title desc'         => 'Название (desc)',
+        'created_at asc'     => 'Дата создания (asc)',
+        'created_at desc'    => 'Дата создания (desc)',
+        'updated_at asc'     => 'Дата обновления (asc)',
+        'updated_at desc'    => 'Дата обновления (desc)',
+        'published_at asc'   => 'Дата публикации (asc)',
+        'published_at desc'  => 'Дата публикации (desc)',
+        'premiere_date asc'  => 'Дата премьеры (asc)',
+        'premiere_date desc' => 'Дата премьеры (desc)',
     );
 
 
@@ -180,11 +180,11 @@ class Performance extends Model
             ];
         } elseif ($fieldName == 'rate') {
             return [
-                0  => '0+',
-                6  => '6+',
-                12 => '12+',
-                16 => '16+',
-                18 => '18+',
+                '0+'  => '0+',
+                '6+'  => '6+',
+                '12+' => '12+',
+                '16+' => '16+',
+                '18+' => '18+',
             ];
         } else {
             return ['' => '—'];
