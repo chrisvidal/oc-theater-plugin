@@ -7,6 +7,10 @@ use URL;
 use Cms\Classes\Page as CmsPage;
 use Cms\Classes\Theme;
 
+use Abnmt\Theater\Models\Taxonomy as TaxonomyModel;
+
+use \Clockwork\Support\Laravel\Facade as CW;
+
 /**
  * Performance Model
  */
@@ -34,17 +38,19 @@ class Performance extends Model
     protected $fillable = [];
 
     /**
+     * @var array With fields
+     */
+    protected $with = ['taxonomy'];
+
+    /**
      * @var array Relations
      */
     public $hasOne = [];
     public $hasMany = [
         'participation' => ['Abnmt\Theater\Models\Participation'],
-        // 'events'        => ['Abnmt\Theater\Models\Event'],
     ];
     public $belongsTo = [];
-    public $belongsToMany = [
-        // 'categories' => ['Abnmt\Theater\Models\PerformanceCategory', 'table' => 'abnmt_theater_performances_categories', 'order' => 'title']
-    ];
+    public $belongsToMany = [];
 
     public $morphTo = [];
     public $morphOne = [];
@@ -84,7 +90,7 @@ class Performance extends Model
      * The attributes on which the post list can be ordered
      * @var array
      */
-    public static $allowedSortingOptions = array(
+    public static $allowedSortingOptions = [
         'title asc'          => 'Название (asc)',
         'title desc'         => 'Название (desc)',
         'created_at asc'     => 'Дата создания (asc)',
@@ -95,7 +101,23 @@ class Performance extends Model
         'published_at desc'  => 'Дата публикации (desc)',
         'premiere_date asc'  => 'Дата премьеры (asc)',
         'premiere_date desc' => 'Дата премьеры (desc)',
-    );
+    ];
+
+    /**
+     * The attributes of posts Scopes
+     * @var array
+     */
+    public static $allowedScopingOptions = [
+        'Performance' => 'Спектакль',
+        'Repertoire'  => 'Репертуар',
+    ];
+
+
+    public function beforeCreate()
+    {
+        // Generate a URL slug for this model
+        $this->slug = Str::slug($this->title);
+    }
 
 
     /**
@@ -110,6 +132,43 @@ class Performance extends Model
     }
 
     /**
+     * Scope Performance
+     */
+    public function scopePerformance($query)
+    {
+        return $query
+            ->with(['background', 'background_mobile', 'background_flat', 'background_mask', 'featured', 'video', 'participation.person', 'relation'])
+            ->with(
+                ['events' => function($q) {
+                    $q->where('event_date', '>=', Carbon::now())->take(2);
+                }]
+            )
+        ;
+    }
+
+    /**
+     * Scope Repertoire
+     */
+    public function scopeRepertoire($query)
+    {
+        return $query
+            ->with(['repertoire'])
+        ;
+    }
+
+    /**
+     * Scope byCategory
+     */
+    public function scopeByCategory($query, $category)
+    {
+        return $query
+            ->whereHas('taxonomy', function ($q) use ($category) {
+                $q->where('slug', $category);
+            })
+        ;
+    }
+
+    /**
      * Lists posts for the front end
      * @param  array $options Display options
      * @return self
@@ -120,51 +179,114 @@ class Performance extends Model
          * Default options
          */
         extract(array_merge([
-            'sort'       => 'created_at',
-            // 'categories' => null,
-            'search'     => '',
-            'published'  => true
+            'sort'       => 'premiere_date desc',
+            'categories' => null,
+            'search'     => null,
+            'scopes'     => null,
+            'published'  => true,
         ], $options));
 
         $searchableFields = ['title', 'slug'];
 
-        if ($published)
+        if (isset($published) && $published)
             $query->isPublished();
+
+        /*
+         * With
+         */
+        if (isset($scopes)) {
+            if (!is_array($scopes)) $scopes = array_map('trim', explode(',', $scopes));
+            foreach ($scopes as $scope) {
+                switch ($scope) {
+                    case 'Performance':
+                        $query->Performance();
+                        break;
+
+                    default:
+                        $query->with($scope);
+                        break;
+                }
+            }
+        }
 
         /*
          * Sorting
          */
-        if (!is_array($sort)) $sort = [$sort];
-        foreach ($sort as $_sort) {
+        if (isset($sort)) {
+            if (!is_array($sort)) $sort = array_map('trim', explode(',', $sort));
+            foreach ($sort as $_sort) {
+                if (in_array($_sort, array_keys(self::$allowedSortingOptions))) {
+                    $parts = explode(' ', $_sort);
+                    if (count($parts) < 2) array_push($parts, 'desc');
+                    list($sortField, $sortDirection) = $parts;
 
-            if (in_array($_sort, array_keys(self::$allowedSortingOptions))) {
-                $parts = explode(' ', $_sort);
-                if (count($parts) < 2) array_push($parts, 'desc');
-                list($sortField, $sortDirection) = $parts;
-
-                $query->orderBy($sortField, $sortDirection);
+                    $query->orderBy($sortField, $sortDirection);
+                }
             }
         }
 
         /*
          * Search
          */
-        $search = trim($search);
-        if (strlen($search)) {
-            $query->searchWhere($search, $searchableFields);
+        if (isset($search)) {
+            $search = trim($search);
+            if (strlen($search)) {
+                $query->searchWhere($search, $searchableFields);
+            }
         }
 
         /*
          * Categories
          */
-        // if ($categories !== null) {
-        //     if (!is_array($categories)) $categories = [$categories];
-        //     $query->whereHas('categories', function($q) use ($categories) {
-        //         $q->whereIn('id', $categories);
-        //     });
-        // }
+        if (isset($categories)) {
+            if (!is_array($categories)) $categories = array_map('trim', explode(',', $categories));
+            $query->whereHas('taxonomy', function($q) use ($categories) {
+                foreach ($categories as $key => $category) {
+                    if ($key == 0)
+                        $q->where('slug', '=', $category);
+                    else
+                        $q->orWhere('slug', '=', $category);
+                }
+            });
+        }
 
         return $query->get();
+    }
+
+    public static function getCategories()
+    {
+        $categories = TaxonomyModel::where('model', get_class())->select('id', 'title', 'slug')->get();
+
+        CW::info($categories);
+        return $categories;
+    }
+
+    /**
+     * Lists posts for the front end
+     * @param  array $options Display options
+     * @return self
+     */
+    public function scopeLoadPost($query, $options)
+    {
+        /*
+         * Default options
+         */
+        extract(array_merge([
+            'sort'       => 'published_at desc',
+            'categories' => null,
+            'search'     => null,
+            'with'       => null,
+            'published'  => true,
+            'slug'       => null,
+        ], $options));
+
+        if (isset($published) && $published)
+            $query->isPublished();
+
+        if (isset($slug))
+            $query->where('slug', '=', $slug);
+
+        return $query->first();
     }
 
     /**
@@ -192,6 +314,116 @@ class Performance extends Model
 
     }
 
+
+
+    /**
+     * Handler for the pages.menuitem.getTypeInfo event.
+     * @param string $type Specifies the menu item type
+     * @return array Returns an array
+     */
+    public static function getMenuTypeInfo($type)
+    {
+        $result = [];
+
+        if ($type == 'repertoire') {
+
+            $references = [];
+            $categories = self::getCategories();
+            foreach ($categories as $category) {
+                $references[$category->slug] = $category->title;
+            }
+
+            $result = [
+                'references'   => $references,
+                'nesting'      => false,
+                'dynamicItems' => false
+            ];
+        }
+
+        if ($result) {
+            $theme = Theme::getActiveTheme();
+
+            $pages = CmsPage::listInTheme($theme, true);
+            $cmsPages = [];
+            foreach ($pages as $page) {
+                if (!$page->hasComponent('theater'))
+                    continue;
+
+                $cmsPages[] = $page;
+            }
+
+            $result['cmsPages'] = $cmsPages;
+        }
+
+        return $result;
+    }
+
+    /**
+     * Handler for the pages.menuitem.resolveItem event.
+     * @param \RainLab\Pages\Classes\MenuItem $item Specifies the menu item.
+     * @param \Cms\Classes\Theme $theme Specifies the current theme.
+     * @param string $url Specifies the current page URL, normalized, in lower case
+     * The URL is specified relative to the website root, it includes the subdirectory name, if any.
+     * @return mixed Returns an array. Returns null if the item cannot be resolved.
+     */
+    public static function resolveMenuItem($item, $url, $theme)
+    {
+        $result = null;
+
+        // CW::info($item);
+
+        if ($item->type == 'repertoire') {
+            if (!$item->reference || !$item->cmsPage)
+                return;
+
+            $category = [
+                'slug' => $item->reference,
+            ];
+
+            $posts = self::ByCategory($item->reference)
+                ->select('title', 'slug')
+                ->get();
+            ;
+
+            // CW::info($posts);
+
+            $posts->each(function ($post) {
+                $post->url = CmsPage::url('theater/performance', ['slug' => $post->slug]);
+            });
+            $postUrls = $posts->lists('url', 'slug');
+
+
+            $pageUrl = self::getCategoryPageUrl($item->cmsPage, $category, $theme);
+            if (!$pageUrl)
+                return;
+
+            $pageUrl = URL::to($pageUrl);
+
+            $result = [];
+            $result['url'] = $pageUrl;
+            $result['isActive'] = $pageUrl == $url || in_array($url, $postUrls);
+            // $result['mtime'] = $category->updated_at;
+        }
+        CW::info($result);
+        return $result;
+    }
+
+    /**
+     * Returns URL of a category page.
+     */
+    protected static function getCategoryPageUrl($pageCode, $category, $theme)
+    {
+        $page = CmsPage::loadCached($theme, $pageCode);
+        if (!$page) return;
+
+        $paramName = 'category';
+        $url = CmsPage::url($page->getBaseFileName(), [$paramName => $category['slug']]);
+
+        return $url;
+    }
+
+
+
     /**
      * Sets the "url" attribute with a URL to this object
      * @param string $pageName
@@ -205,11 +437,5 @@ class Performance extends Model
         ];
 
         return $this->url = $controller->pageUrl($pageName, $params);
-    }
-
-    public function beforeCreate()
-    {
-        // Generate a URL slug for this model
-        $this->slug = Str::slug($this->title);
     }
 }

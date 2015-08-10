@@ -50,4 +50,12 @@ class Taxonomy extends Model
         // $this->slug = Str::slug($this->title);
     }
 
+
+
+    public function scopeListTaxonomies($query, $model)
+    {
+        $query->where('model', $model);
+        return $query->get();
+    }
+
 }

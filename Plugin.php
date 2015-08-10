@@ -93,6 +93,7 @@ class Plugin extends PluginBase
 	{
 		return [
 			'Abnmt\Theater\Components\Theater'      => 'theater',
+			'Abnmt\Theater\Components\Events'       => 'theaterEvents',
 			// 'Abnmt\Theater\Components\Playbill'     => 'theaterPlaybill',
 			// 'Abnmt\Theater\Components\Repertoire'   => 'theaterRepertoire',
 			// 'Abnmt\Theater\Components\Troupe'       => 'theaterTroupe',
@@ -132,16 +133,20 @@ class Plugin extends PluginBase
 		 */
 		Event::listen('pages.menuitem.listTypes', function() {
 			return [
+				'repertoire' => 'Репертуар',
+				'troupe' => 'Труппа',
 				// 'news-category' => 'Новости по категориям',
-				// 'performance-category' => 'Спектакли по категориям',
 				// 'press-category' => 'Архив прессы',
 				// 'playbill-now' => 'Афиша на текущий месяц',
 				// 'playbill-next' => 'Афиша на следующие месяцы',
-				// 'person-category' => 'Люди по категориям',
 			];
 		});
 
 		Event::listen('pages.menuitem.getTypeInfo', function($type) {
+			if ($type == 'repertoire')
+				return PerformanceModel::getMenuTypeInfo($type);
+			if ($type == 'troupe')
+				return PersonModel::getMenuTypeInfo($type);
 			// if ($type == 'news-category')
 			// 	return NewsCategoryModel::getMenuTypeInfo($type);
 			// if ($type == 'performance-category')
@@ -155,6 +160,10 @@ class Plugin extends PluginBase
 		});
 
 		Event::listen('pages.menuitem.resolveItem', function($type, $item, $url, $theme) {
+			if ($type == 'repertoire')
+				return PerformanceModel::resolveMenuItem($item, $url, $theme);
+			if ($type == 'troupe')
+				return PersonModel::resolveMenuItem($item, $url, $theme);
 			// if ($type == 'news-category')
 			// 	return NewsCategoryModel::resolveMenuItem($item, $url, $theme);
 			// if ($type == 'performance-category')
@@ -237,10 +246,13 @@ class Plugin extends PluginBase
 			if ($dateFormat === '%c'){
 				$dateFormat = '%e %h %Y г.';
 			}
-			$months = explode("|", '|января|февраля|марта|апреля|мая|июня|июля|августа|сентября|октября|ноября|декабря');
-			$weekday = explode("|", '|понедельник|вторник|среда|четверг|пятница|суббота|воскресенье');
+			$months       = explode("|", '|января|февраля|марта|апреля|мая|июня|июля|августа|сентября|октября|ноября|декабря');
+			$weekday      = explode("|", '|понедельник|вторник|среда|четверг|пятница|суббота|воскресенье');
+			$weekday_shrt = explode("|", '|пн|вт|ср|чт|пт|сб|вс');
+
 			$dateFormat = preg_replace("~\%h~", $months[date('n', $dateString)], $dateFormat);
 			$dateFormat = preg_replace("~\%A~", $weekday[date('N', $dateString)], $dateFormat);
+			$dateFormat = preg_replace("~\%a~", $weekday_shrt[date('N', $dateString)], $dateFormat);
 
 		}
 
