@@ -25,9 +25,14 @@ class SeedPeopleTable extends Seeder
             'Abnmt\Theater\Models\Article'     => $this->MultiSort( require_once 'data/articles.php',     [ 'published_at'  => [SORT_ASC, SORT_REGULAR] ] ),
         ];
 
+        $path = "./storage/app/images";
+        $fileData = $this->fillArrayWithFileNodes( new \DirectoryIterator( $path ) );
+
         foreach ($data as $modelName => $models) {
             foreach ($models as $model) {
                 $model = $this->createModel($modelName, $model);
+
+                $this->assignImages($model);
             }
         }
 
@@ -239,7 +244,80 @@ class SeedPeopleTable extends Seeder
     }
 
 
+    private function assignImages($model)
+    {
 
+        if ( array_key_exists($model->slug, $this->fileData) ) {
+
+            $images = $this->fileData[$model->slug];
+
+            echo $model->slug . "\n";
+
+            foreach ($images as $key => $filePath)
+            {
+
+                if ( !is_array($filePath) )
+                {
+
+                    $file = new File();
+                    $file->fromFile($filePath);
+                    // $file->save();
+
+                    switch ($key) {
+                        case 'playbill':
+                            $model->playbill()->save($file);
+                            break;
+                        case 'playbill_flat':
+                            $model->playbill_flat()->save($file);
+                            break;
+                        case 'playbill_mask':
+                            $model->playbill_mask()->save($file);
+                            break;
+                        case 'video':
+                            $model->video()->save($file);
+                            break;
+                        case 'repertoire':
+                            $model->repertoire()->save($file);
+                            break;
+                        case 'cover':
+                            $model->cover()->save($file);
+                            break;
+
+                        case 'portrait':
+                            $model->portrait()->save($file);
+                            break;
+
+                        default:
+                            echo 'Image ' . $filePath . ' not saved.' . "\n";
+                            break;
+                    }
+                }
+                elseif ( is_array($filePath) )
+                {
+                    foreach ($filePath as $filename => $filePath) {
+                        $file = new File();
+                        $file->fromFile($filePath);
+                        // $file->save();
+
+                        if ( $key == 'bg' && preg_match('/.+?_flat/', $filename) )
+                            $model->background_flat()->save($file);
+                        elseif ( $key == 'bg' && preg_match('/.+?_mask/', $filename) )
+                            $model->background_mask()->save($file);
+                        elseif ( $key == 'bg' )
+                            $model->background()->save($file);
+
+                        elseif ( $key == 'gallery' )
+                            $model->featured()->save($file);
+
+                        else
+                            echo 'Image ' . $filePath . ' not saved.' . "\n";
+
+                    }
+                }
+            }
+        }
+
+    }
 
 
 
@@ -288,6 +366,23 @@ class SeedPeopleTable extends Seeder
 
         $data = $new;
 
+        return $data;
+    }
+
+    private function fillArrayWithFileNodes( \DirectoryIterator $dir )
+    {
+        $data = array();
+        foreach ( $dir as $node )
+        {
+            if ( $node->isDir() && !$node->isDot() )
+            {
+                $data[$node->getFilename()] = self::fillArrayWithFileNodes( new \DirectoryIterator( $node->getPathname() ) );
+            }
+            else if ( $node->isFile() )
+            {
+                $data[$node->getBasename('.' . $node->getExtension())] = $node->getPathname();
+            }
+        }
         return $data;
     }
 

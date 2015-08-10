@@ -75,13 +75,13 @@ class Performance extends Model
         'playbill_mask'     => ['System\Models\File'],
         'video'             => ['System\Models\File'],
         'repertoire'        => ['System\Models\File'],
-        'background_mobile' => ['System\Models\File'],
+        'cover'             => ['System\Models\File'],
     ];
     public $attachMany = [
-        'background'      => ['System\Models\File'],
-        'background_flat' => ['System\Models\File'],
-        'background_mask' => ['System\Models\File'],
-        'featured'        => ['System\Models\File'],
+        'background'        => ['System\Models\File'],
+        'background_flat'   => ['System\Models\File'],
+        'background_mask'   => ['System\Models\File'],
+        'featured'          => ['System\Models\File'],
     ];
 
 
