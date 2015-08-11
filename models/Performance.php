@@ -137,7 +137,7 @@ class Performance extends Model
     public function scopePerformance($query)
     {
         return $query
-            ->with(['background', 'background_mobile', 'background_flat', 'background_mask', 'featured', 'video', 'participation.person', 'relation'])
+            ->with(['background', 'cover', 'background_flat', 'background_mask', 'featured', 'video', 'participation.person', 'relation'])
             ->with(
                 ['events' => function($q) {
                     $q->where('event_date', '>=', Carbon::now())->take(2);

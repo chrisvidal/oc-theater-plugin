@@ -79,7 +79,7 @@ class Performance extends ComponentBase
     protected function loadPost()
     {
         $post = PerformanceModel::isPublished()
-            ->with(['background', 'background_mobile', 'background_flat', 'background_mask', 'featured', 'video', 'participation.person', 'relation', 'taxonomy'])
+            ->with(['background', 'cover', 'background_flat', 'background_mask', 'featured', 'video', 'participation.person', 'relation', 'taxonomy'])
             ->with(
                 ['events' => function($q) {
                     $q->where('event_date', '>=', Carbon::now())->take(2);

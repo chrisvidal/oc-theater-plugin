@@ -19,8 +19,8 @@ class SeedPeopleTable extends Seeder
 
         // Models
         $data = [
-            // 'Abnmt\Theater\Models\Person'      => $this->MultiSort( require_once 'data/people.php',       [ 'published'     => [SORT_DESC, SORT_NUMERIC], 'family_name' => [SORT_ASC, SORT_STRING] ] ),
-            'Abnmt\Theater\Models\Person'      => $this->Shuffle( require_once 'data/people.php' ),
+            // 'Abnmt\Theater\Models\Person'      => $this->MultiSort( require_once 'data/people.php' ),
+            'Abnmt\Theater\Models\Person'      => $this->MultiSort( require_once 'data/people.php',       [ 'family_name'   => [SORT_ASC, SORT_STRING] ] ),
             'Abnmt\Theater\Models\Performance' => $this->MultiSort( require_once 'data/performances.php', [ 'premiere_date' => [SORT_ASC, SORT_NUMERIC] ] ),
             'Abnmt\Theater\Models\Article'     => $this->MultiSort( require_once 'data/articles.php',     [ 'published_at'  => [SORT_ASC, SORT_REGULAR] ] ),
         ];
@@ -32,7 +32,7 @@ class SeedPeopleTable extends Seeder
             foreach ($models as $model) {
                 $model = $this->createModel($modelName, $model);
 
-                $this->assignImages($model);
+                $this->assignImages($model, $fileData);
             }
         }
 
@@ -49,7 +49,10 @@ class SeedPeopleTable extends Seeder
 
         foreach ($events as $event) {
             $relation = $this->findModel($event['title']);
-            $this->createEvent($event, $relation);
+            if (!is_null($relation)) {
+                $this->createEvent($event, $relation);
+            }
+
         }
     }
 
@@ -149,12 +152,12 @@ class SeedPeopleTable extends Seeder
         if (!is_array($categories)) $categories = [$categories];
 
         foreach ($categories as $key => $category) {
-            $taxonomy = Taxonomy::where('slug', '=', $category)->first();
+            $taxonomy = Taxonomy::where('title', '=', $category)->first();
 
             // echo $category . "\n";
 
             if (is_null($taxonomy)) {
-                $taxonomy = Taxonomy::create(['slug' => $category, 'model' => get_class($model)]);
+                $taxonomy = Taxonomy::create(['title' => $category, 'model' => get_class($model)]);
             }
 
             if (!is_null($taxonomy)) {
@@ -226,7 +229,7 @@ class SeedPeopleTable extends Seeder
             'title'       => $event['title'],
             'event_date'  => $event['event_date'],
             // 'description' => array_key_exists('description', $event) ? $event['description'] : NULL,
-            'description' => array_key_exists('description', $event) ? $event['description'] : $relation->description,
+            'description' => array_key_exists('description', $event) ? $event['description'] : (!is_null($relation)) ? $relation->description : null,
             // 'relation'    => $relation,
         ];
 
@@ -244,28 +247,51 @@ class SeedPeopleTable extends Seeder
     }
 
 
-    private function assignImages($model)
+    private function assignImages($model, $fileData)
     {
 
-        if ( array_key_exists($model->slug, $this->fileData) ) {
+        if (get_class($model) == 'Abnmt\Theater\Models\Article')
+            return;
 
-            $images = $this->fileData[$model->slug];
+        if ( array_key_exists($model->slug, $fileData) ) {
+
+            $images = $fileData[$model->slug];
 
             echo $model->slug . "\n";
+            // echo get_class($model) . "\n";
 
             foreach ($images as $key => $filePath)
             {
 
                 if ( !is_array($filePath) )
                 {
+                    $pathinfo = pathinfo($filePath);
+                    $check = File::where('attachment_id', '=', $model->id)
+                        ->where('attachment_type', '=', get_class($model))
+                        ->where('file_name', '=', $pathinfo['basename'])
+                        ->where('field', '=', $pathinfo['filename'])
+                        ->first();
+
+                    if ( !is_null($check) ) {
+                        // echo $filePath . " ";
+                        // echo filemtime($filePath) . " ";
+                        // echo $check->updated_at->timestamp . "\n";
+                        if (filemtime($filePath) > $check->updated_at->timestamp) {
+                            echo "File " . $filePath . " is Newer. Update!" . "\n";
+                            $check->delete();
+                        } else {
+                            echo "File " . $filePath . " is Older. Skip!" . "\n";
+                            continue;
+                        }
+                    }
 
                     $file = new File();
                     $file->fromFile($filePath);
                     // $file->save();
-
+                    // echo $filePath . "\n";
                     switch ($key) {
                         case 'playbill':
-                            $model->playbill()->save($file);
+                            $model->playbill()->save($file, null, ['title' => $model->title]);
                             break;
                         case 'playbill_flat':
                             $model->playbill_flat()->save($file);
@@ -274,17 +300,17 @@ class SeedPeopleTable extends Seeder
                             $model->playbill_mask()->save($file);
                             break;
                         case 'video':
-                            $model->video()->save($file);
+                            $model->video()->save($file, null, ['title' => $model->title]);
                             break;
                         case 'repertoire':
-                            $model->repertoire()->save($file);
+                            $model->repertoire()->save($file, null, ['title' => $model->title]);
                             break;
                         case 'cover':
-                            $model->cover()->save($file);
+                            $model->cover()->save($file, null, ['title' => $model->title]);
                             break;
 
                         case 'portrait':
-                            $model->portrait()->save($file);
+                            $model->portrait()->save($file, null, ['title' => $model->title]);
                             break;
 
                         default:
@@ -294,7 +320,28 @@ class SeedPeopleTable extends Seeder
                 }
                 elseif ( is_array($filePath) )
                 {
-                    foreach ($filePath as $filename => $filePath) {
+                    foreach ($filePath as $filename => $filePath)
+                    {
+                        $pathinfo = pathinfo($filePath);
+                        $check = File::where('attachment_id', '=', $model->id)
+                            ->where('attachment_type', '=', get_class($model))
+                            ->where('file_name', '=', $pathinfo['basename'])
+                            // ->where('field', '=', $pathinfo['filename'])
+                            ->first();
+
+                        if ( !is_null($check) ) {
+                            // echo $filePath . " ";
+                            // echo filemtime($filePath) . " ";
+                            // echo $check->updated_at->timestamp . "\n";
+                            if (filemtime($filePath) > $check->updated_at->timestamp) {
+                                echo "File " . $filePath . " is Newer. Update!" . "\n";
+                                $check->delete();
+                            } else {
+                                echo "File " . $filePath . " is Older. Skip!" . "\n";
+                                continue;
+                            }
+                        }
+
                         $file = new File();
                         $file->fromFile($filePath);
                         // $file->save();

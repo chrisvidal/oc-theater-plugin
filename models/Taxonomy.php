@@ -47,7 +47,7 @@ class Taxonomy extends Model
     public function beforeCreate()
     {
         // Generate a URL slug for this model
-        // $this->slug = Str::slug($this->title);
+        $this->slug = Str::slug($this->title);
     }
 
 
