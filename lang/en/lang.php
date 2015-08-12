@@ -6,10 +6,11 @@ return [
         'description' => 'A theater platform.',
     ],
     'dates' => [
-        'month_nom'    => ':month,январь,февраль,март,апрель,май,июнь,июль,август,сентябрь,октябрь,ноябрь,декабрь',
-        'month_shrt'   => ':month,янв.,февр.,март,апр.,май,июнь,июль,авг.,сент.,окт.,нояб.,дек.',
-        'month_gen'    => ':month,января,февраля,марта,апреля,мая,июня,июля,августа,сентября,октября,ноября,декабря',
-        'weekday_nom'  => ':weekday,понедельник,вторник,среда,четверг,пятница,суббота,воскресенье',
-        'weekday_shrt' => ':weekday,пн,вт,ср,чт,пт,сб,вс',
+        'dateFormat'    => '%c',
+        'months_nom'    => '|january|febrary|marth|april|may|june|july|august|september|october|november|december',
+        'months_shrt'   => '|jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec',
+        'months_gen'    => '|january|febrary|marth|april|may|june|july|august|september|october|november|december',
+        'weekdays_nom'  => '|monday|tuesday|wednesday|thursday|friday|saturday|sunday|',
+        'weekdays_shrt' => '|mon|tue|wed|thu|fri|sat|sun|',
     ]
 ];

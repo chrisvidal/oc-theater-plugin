@@ -157,15 +157,19 @@ class Performance extends Model
     }
 
     /**
-     * Scope byCategory
+     * Scope byCategories
      */
-    public function scopeByCategory($query, $category)
+    public function scopeByCategories($query, $categories)
     {
-        return $query
-            ->whereHas('taxonomy', function ($q) use ($category) {
-                $q->where('slug', $category);
-            })
-        ;
+        if (!is_array($categories)) $categories = array_map('trim', explode(',', $categories));
+        return $query->whereHas('taxonomy', function($q) use ($categories) {
+            foreach ($categories as $key => $category) {
+                if ($key == 0)
+                    $q->where('slug', '=', $category);
+                else
+                    $q->orWhere('slug', '=', $category);
+            }
+        });
     }
 
     /**
@@ -200,6 +204,9 @@ class Performance extends Model
                 switch ($scope) {
                     case 'Performance':
                         $query->Performance();
+                        break;
+                    case 'Repertoire':
+                        $query->Repertoire();
                         break;
 
                     default:
@@ -239,26 +246,10 @@ class Performance extends Model
          * Categories
          */
         if (isset($categories)) {
-            if (!is_array($categories)) $categories = array_map('trim', explode(',', $categories));
-            $query->whereHas('taxonomy', function($q) use ($categories) {
-                foreach ($categories as $key => $category) {
-                    if ($key == 0)
-                        $q->where('slug', '=', $category);
-                    else
-                        $q->orWhere('slug', '=', $category);
-                }
-            });
+            $query->ByCategories($categories);
         }
 
         return $query->get();
-    }
-
-    public static function getCategories()
-    {
-        $categories = TaxonomyModel::where('model', get_class())->select('id', 'title', 'slug')->get();
-
-        CW::info($categories);
-        return $categories;
     }
 
     /**
@@ -289,6 +280,7 @@ class Performance extends Model
         return $query->first();
     }
 
+
     /**
      * Dropdown options
      */
@@ -315,6 +307,13 @@ class Performance extends Model
     }
 
 
+    public static function getCategories()
+    {
+        $categories = TaxonomyModel::where('model', get_class())->select('id', 'title', 'slug')->get();
+
+        // CW::info($categories);
+        return $categories;
+    }
 
     /**
      * Handler for the pages.menuitem.getTypeInfo event.
@@ -327,6 +326,7 @@ class Performance extends Model
 
         if ($type == 'repertoire') {
 
+            // Сюда все возможные ссылки (категории или scoupe)
             $references = [];
             $categories = self::getCategories();
             foreach ($categories as $category) {
@@ -380,7 +380,7 @@ class Performance extends Model
                 'slug' => $item->reference,
             ];
 
-            $posts = self::ByCategory($item->reference)
+            $posts = self::ByCategories($item->reference)
                 ->select('title', 'slug')
                 ->get();
             ;
@@ -404,7 +404,7 @@ class Performance extends Model
             $result['isActive'] = $pageUrl == $url || in_array($url, $postUrls);
             // $result['mtime'] = $category->updated_at;
         }
-        CW::info($result);
+        // CW::info($result);
         return $result;
     }
 

@@ -3,8 +3,13 @@
 use Model;
 
 use Str;
+use Cms\Classes\Theme;
+use Cms\Classes\Page as CmsPage;
 
 use \Carbon\Carbon as Carbon;
+use \Clockwork\Support\Laravel\Facade as CW;
+
+use Abnmt\Theater\Plugin as Plugin;
 
 /**
  * Event Model
@@ -65,6 +70,17 @@ class Event extends Model
         'Next'     => 'Афиша на следующий месяц',
         'Playbill' => 'Афиша (:date)',
         'Calendar' => 'Календарь',
+        'Current'  => 'Афиша на крайние месяцы',
+    ];
+
+    /**
+     * The attributes of posts Menus
+     * @var array
+     */
+    public static $allowedMenuOptions = [
+        'auto' => 'Афиша на крайние месяцы',
+        'now'  => 'Афиша на текущий месяц',
+        'next' => 'Афиша на следующий месяц',
     ];
 
     // public function beforeCreate()
@@ -193,6 +209,145 @@ class Event extends Model
         }
 
         return $query->get();
+    }
+
+    /**
+     * Handler for the pages.menuitem.getTypeInfo event.
+     * @param string $type Specifies the menu item type
+     * @return array Returns an array
+     */
+    public static function getMenuTypeInfo($type)
+    {
+        $result = [];
+
+        if ($type == 'playbill') {
+            $result = [
+                'dynamicItems' => true
+            ];
+        }
+
+        if ($result) {
+            $theme = Theme::getActiveTheme();
+
+            $pages = CmsPage::listInTheme($theme, true);
+            $cmsPages = [];
+            foreach ($pages as $page) {
+                if (!$page->hasComponent('theaterEvents'))
+                    continue;
+
+                /*
+                 * Component must use a category filter with a routing parameter
+                 * eg: categoryFilter = "{{ :somevalue }}"
+                 */
+                $properties = $page->getComponentProperties('theaterEvents');
+                if (!isset($properties['date']) || !preg_match('/{{\s*:/', $properties['date']))
+                    continue;
+
+                $cmsPages[] = $page;
+            }
+
+            $result['cmsPages'] = $cmsPages;
+        }
+
+        return $result;
+    }
+
+    /**
+     * Handler for the pages.menuitem.resolveItem event.
+     * @param \RainLab\Pages\Classes\MenuItem $item Specifies the menu item.
+     * @param \Cms\Classes\Theme $theme Specifies the current theme.
+     * @param string $url Specifies the current page URL, normalized, in lower case
+     * The URL is specified relative to the website root, it includes the subdirectory name, if any.
+     * @return mixed Returns an array. Returns null if the item cannot be resolved.
+     */
+    public static function resolveMenuItem($item, $url, $theme)
+    {
+
+        $result = null;
+
+        if ($item->type == 'playbill') {
+
+            $result = [
+                'items' => []
+            ];
+
+            $date = Carbon::parse('now');
+            $lastDateInDb = Carbon::parse(self::max('event_date'));
+
+            // CW::info(['last' => $lastDateInDb]);
+
+            if (preg_match('~/playbill/\d+-\d+~', $url)) {
+                $slug = explode('/', $url);
+                $slug_date = Carbon::parse(array_pop($slug))->startOfMonth();
+                // CW::info(['slug' => $slug]);
+                if ( $slug_date->lt($date->startOfMonth()) ) {
+                    $result['items'][] = [
+                        'title' => Plugin::dateLocale($slug_date->format('Y-m'), '%B %Y'),
+                        'isActive' => true,
+                    ];
+                }
+            }
+
+            $i = 1;
+            $limit = 3;
+            $counts = self::Date($date->format('Y-m'))->count();
+
+
+            while ( $i <= $limit ) {
+
+                // CW::info(['date' => $date, 'counts' => $counts]);
+
+                $reference = [
+                    'title' => Plugin::dateLocale($date->format('Y-m'), '%B'),
+                    'url'   => self::getReferencePageUrl($item->cmsPage, $date->format('Y-m'), $theme),
+                ];
+
+                $reference['isActive'] = $reference['url'] == $url;
+
+                if ( $counts > 0 ) {
+                    $result['items'][] = $reference;
+                    $i++;
+                }
+
+                $date = $date->addMonth();
+                $counts = self::Date($date->format('Y-m'))->count();
+
+                if ($date->gt($lastDateInDb))
+                    break;
+            }
+
+        }
+        // CW::info(['url' => $url]);
+        // CW::info(['result' => $result]);
+
+        return $result;
+    }
+
+    /**
+     * Returns URL of a referenced page.
+     */
+    protected static function getReferencePageUrl($pageCode, $slug, $theme)
+    {
+        $page = CmsPage::loadCached($theme, $pageCode);
+        if (!$page) return;
+
+        $properties = $page->getComponentProperties('theaterEvents');
+        if (!isset($properties['date'])) {
+            return;
+        }
+
+        /*
+         * Extract the routing parameter name from the category filter
+         * eg: {{ :someRouteParam }}
+         */
+        if (!preg_match('/^\{\{([^\}]+)\}\}$/', $properties['date'], $matches)) {
+            return;
+        }
+
+        $paramName = substr(trim($matches[1]), 1);
+        $url = CmsPage::url($page->getBaseFileName(), [$paramName => $slug]);
+
+        return $url;
     }
 
     /**

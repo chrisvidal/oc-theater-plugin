@@ -123,9 +123,12 @@ class Plugin extends PluginBase
 	{
 		// App::register( 'Laravelrus\LocalizedCarbon\LocalizedCarbonServiceProvider' );
 
-		// $alias = AliasLoader::getInstance();
+		$alias = AliasLoader::getInstance();
 		// $alias->alias( 'LocalizedCarbon', 'Laravelrus\LocalizedCarbon\LocalizedCarbon' );
 		// $alias->alias( 'DiffFormatter'  , 'Laravelrus\LocalizedCarbon\DiffFactoryFacade' );
+
+		$alias->alias( 'Carbon', '\Carbon\Carbon' );
+		// $alias->alias( 'CW'  ,   '\Clockwork\Support\Laravel\Facade' );
 
 
 		/*
@@ -134,11 +137,8 @@ class Plugin extends PluginBase
 		Event::listen('pages.menuitem.listTypes', function() {
 			return [
 				'repertoire' => 'Репертуар',
-				'troupe' => 'Труппа',
-				// 'news-category' => 'Новости по категориям',
-				// 'press-category' => 'Архив прессы',
-				// 'playbill-now' => 'Афиша на текущий месяц',
-				// 'playbill-next' => 'Афиша на следующие месяцы',
+				'troupe'     => 'Труппа',
+				'playbill'   => 'Афиша',
 			];
 		});
 
@@ -147,16 +147,8 @@ class Plugin extends PluginBase
 				return PerformanceModel::getMenuTypeInfo($type);
 			if ($type == 'troupe')
 				return PersonModel::getMenuTypeInfo($type);
-			// if ($type == 'news-category')
-			// 	return NewsCategoryModel::getMenuTypeInfo($type);
-			// if ($type == 'performance-category')
-			// 	return PerformanceCategoryModel::getMenuTypeInfo($type);
-			// if ($type == 'person-category')
-			// 	return PersonCategoryModel::getMenuTypeInfo($type);
-			// if ($type == 'playbill-now' || $type == 'playbill-next')
-			// 	return PlaybillModel::getMenuTypeInfo($type);
-			// if ($type == 'press-category')
-			//     return PressCategoryModel::getMenuTypeInfo($type);
+			if ($type == 'playbill')
+				return EventModel::getMenuTypeInfo($type);
 		});
 
 		Event::listen('pages.menuitem.resolveItem', function($type, $item, $url, $theme) {
@@ -164,16 +156,8 @@ class Plugin extends PluginBase
 				return PerformanceModel::resolveMenuItem($item, $url, $theme);
 			if ($type == 'troupe')
 				return PersonModel::resolveMenuItem($item, $url, $theme);
-			// if ($type == 'news-category')
-			// 	return NewsCategoryModel::resolveMenuItem($item, $url, $theme);
-			// if ($type == 'performance-category')
-			// 	return PerformanceCategoryModel::resolveMenuItem($item, $url, $theme);
-			// if ($type == 'person-category')
-			// 	return PersonCategoryModel::resolveMenuItem($item, $url, $theme);
-			// if ($type == 'playbill-now' || $type == 'playbill-next')
-			// 	return PlaybillModel::resolveMenuItem($item, $url, $theme);
-			// if ($type == 'press-category')
-			//     return PressCategoryModel::resolveMenuItem($item, $url, $theme);
+			if ($type == 'playbill')
+				return EventModel::resolveMenuItem($item, $url, $theme);
 		});
 	}
 
@@ -185,36 +169,6 @@ class Plugin extends PluginBase
 	{
 		return [
 			'filters' => [
-				'weekday' => function ( $datetime ) {
-					setlocale(LC_ALL, 'Russian');
-					$weekday = \Carbon\Carbon::parse($datetime)->formatLocalized('%a');
-					return mb_convert_encoding($weekday, "UTF-8", "CP1251");
-				},
-				'weekday_long' => function ( $datetime ) {
-					setlocale(LC_ALL, 'Russian');
-					$weekday = \Carbon\Carbon::parse($datetime)->formatLocalized('%A');
-					return mb_convert_encoding($weekday, "UTF-8", "CP1251");
-				},
-				'month' => function ( $datetime ) {
-					// extract(date_parse($datetime));
-					// $months = explode(',', Lang::get('abnmt.theater::lang.dates.month_gen', compact('month')));
-					// $month = $months[$months[0]];
-					// $format = '%1$d %2$s %3$d года';
-					// $string = sprintf($format, $day, $month, $year);
-					setlocale(LC_ALL, 'Russian');
-					$month = \Carbon\Carbon::parse($datetime)->formatLocalized('%B');
-					return $month;
-				},
-				'humanDate' => function ( $datetime ) {
-					// setlocale(LC_ALL, 'Russian');
-					// return $date = LocalizedCarbon::parse($datetime)->formatLocalized('%e %f %Y года');
-					extract(date_parse($datetime));
-					$months = explode(',', Lang::get('abnmt.theater::lang.dates.month_gen', compact('month')));
-					$month = $months[$months[0]];
-					$format = '%1$d %2$s %3$d года';
-					$string = sprintf($format, $day, $month, $year);
-					return $string;
-				},
 				'duration' => function ( $datetime ) {
 					$interval = preg_split('/\:|\:0/', $datetime);
 					$diff = new \DateInterval('PT' . $interval[0] . 'H' . $interval[1] . 'M');
@@ -227,34 +181,23 @@ class Plugin extends PluginBase
 	}
 
 
-	public function dateLocale($dateString, $dateFormat = '%c') {
-		if (class_exists('RainLab\Translate\Behaviors\TranslatableModel')){
-			$locale = Translator::instance()->getLocale();
-			$locales = [
-				'ru' => "ru_RU.UTF-8",
-				'en' => "en_US.UTF-8",
-			];
-			setlocale(LC_ALL, $locales[$locale]);
-		} else {
-			$locale = 'ru';
-			setlocale(LC_ALL, 'ru_RU.UTF-8');
-		}
+	public static function dateLocale($dateString, $dateFormat = '%c') {
 
 		$dateString = strtotime($dateString);
 
-		if ($locale == 'ru') {
-			if ($dateFormat === '%c'){
-				$dateFormat = '%e %h %Y г.';
-			}
-			$months       = explode("|", '|января|февраля|марта|апреля|мая|июня|июля|августа|сентября|октября|ноября|декабря');
-			$weekday      = explode("|", '|понедельник|вторник|среда|четверг|пятница|суббота|воскресенье');
-			$weekday_shrt = explode("|", '|пн|вт|ср|чт|пт|сб|вс');
+		if ($dateFormat === '%c') $dateFormat   = Lang::get('abnmt.theater::lang.dates.dateFormat');
 
-			$dateFormat = preg_replace("~\%h~", $months[date('n', $dateString)], $dateFormat);
-			$dateFormat = preg_replace("~\%A~", $weekday[date('N', $dateString)], $dateFormat);
-			$dateFormat = preg_replace("~\%a~", $weekday_shrt[date('N', $dateString)], $dateFormat);
+		$months_nom    = explode("|", Lang::get('abnmt.theater::lang.dates.months_nom') );
+		$months_shrt   = explode("|", Lang::get('abnmt.theater::lang.dates.months_shrt') );
+		$months_gen    = explode("|", Lang::get('abnmt.theater::lang.dates.months_gen') );
+		$weekdays_nom  = explode("|", Lang::get('abnmt.theater::lang.dates.weekdays_nom') );
+		$weekdays_shrt = explode("|", Lang::get('abnmt.theater::lang.dates.weekdays_shrt') );
 
-		}
+		$dateFormat = preg_replace("~\%B~", $months_nom[date('n', $dateString)], $dateFormat);
+		$dateFormat = preg_replace("~\%h~", $months_gen[date('n', $dateString)], $dateFormat);
+		$dateFormat = preg_replace("~\%A~", $weekdays_nom[date('N', $dateString)], $dateFormat);
+		$dateFormat = preg_replace("~\%a~", $weekdays_shrt[date('N', $dateString)], $dateFormat);
+
 
 		return strftime($dateFormat, $dateString );
 	}

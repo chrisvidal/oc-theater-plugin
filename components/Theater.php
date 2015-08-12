@@ -255,7 +255,7 @@ class Theater extends ComponentBase
         $this->params['perPage'] = $this->property('postsPerPage');
 
         $this->params['slug']    = $this->param('slug');
-        CW::info($this->params);
+        // CW::info($this->params);
     }
 
     protected function listPosts()
@@ -277,7 +277,7 @@ class Theater extends ComponentBase
             $post->setUrl($this->postPage, $this->controller);
         });
 
-        CW::info($posts);
+        // CW::info($posts);
 
         return $posts;
     }
@@ -294,7 +294,7 @@ class Theater extends ComponentBase
          */
         $post = $model::LoadPost($this->params);
 
-        CW::info($post);
+        // CW::info($post);
 
         return $post;
     }

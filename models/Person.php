@@ -151,7 +151,7 @@ class Person extends Model
     {
         $categories = TaxonomyModel::where('model', get_class())->select('id', 'title', 'slug')->get();
 
-        CW::info($categories);
+        // CW::info($categories);
         return $categories;
     }
 
@@ -360,7 +360,7 @@ class Person extends Model
             $result['isActive'] = $pageUrl == $url || in_array($url, $postUrls);
             // $result['mtime'] = $category->updated_at;
         }
-        CW::info($result);
+        // CW::info($result);
         return $result;
     }
 

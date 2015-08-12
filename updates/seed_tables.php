@@ -280,9 +280,10 @@ class SeedPeopleTable extends Seeder
                             echo "File " . $filePath . " is Newer. Update!" . "\n";
                             $check->delete();
                         } else {
-                            echo "File " . $filePath . " is Older. Skip!" . "\n";
                             continue;
                         }
+                    } else {
+                        echo "File " . $filePath . " is New. Create!" . "\n";
                     }
 
                     $file = new File();
@@ -340,6 +341,8 @@ class SeedPeopleTable extends Seeder
                                 echo "File " . $filePath . " is Older. Skip!" . "\n";
                                 continue;
                             }
+                        } else {
+                            echo "File " . $filePath . " is New. Create!" . "\n";
                         }
 
                         $file = new File();
@@ -416,7 +419,7 @@ class SeedPeopleTable extends Seeder
         return $data;
     }
 
-    private function fillArrayWithFileNodes( \DirectoryIterator $dir )
+    private function fillArrayWithFileNodes( \DirectoryIterator $dir, $ext = [".jpg",".png"] )
     {
         $data = array();
         foreach ( $dir as $node )
@@ -425,7 +428,7 @@ class SeedPeopleTable extends Seeder
             {
                 $data[$node->getFilename()] = self::fillArrayWithFileNodes( new \DirectoryIterator( $node->getPathname() ) );
             }
-            else if ( $node->isFile() )
+            else if ( $node->isFile() && in_array($node->getExtension(), $ext)  )
             {
                 $data[$node->getBasename('.' . $node->getExtension())] = $node->getPathname();
             }

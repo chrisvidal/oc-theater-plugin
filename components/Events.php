@@ -89,6 +89,12 @@ class Events extends ComponentBase
     public $posts;
 
     /**
+     * Active menu code
+     * @var Collection
+     */
+    // public $activeMenuItem = 'playbill';
+
+    /**
      * A collection of grouped posts to display
      * @var Collection
      */
@@ -97,6 +103,13 @@ class Events extends ComponentBase
         'child'  => [],
     ];
 
+    /**
+     *  onInit function
+     */
+    // public function onInit()
+    // {
+    //     $this['activeMenuItem'] = 'blog';
+    // }
 
     /**
      *  onRun function
@@ -142,22 +155,22 @@ class Events extends ComponentBase
                 $post->relation->setUrl($performancePage, $this->controller);
 
             // Grouping
-            if ( $this->inArray($post->relation->taxonomy, 'slug', 'child') )
+            if ( $this->inCollection($post->relation->taxonomy, 'title', 'Детский спектакль') )
                 $this->group['child'][] = $post;
             else
                 $this->group['normal'][] = $post;
 
         });
 
-        CW::info($this->group);
-        CW::info($posts);
+        // CW::info($this->group);
+        // CW::info($posts);
         return $posts;
     }
 
     /*
      * Utils
      */
-    protected static function inArray($array, $key, $val)
+    protected static function inCollection($array, $key, $val)
     {
         foreach ($array as $item)
         {
