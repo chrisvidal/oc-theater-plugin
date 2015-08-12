@@ -148,6 +148,7 @@ class Event extends Model
     {
         return $query
             ->where('event_date', '>=', Carbon::now()->subDays(3))
+            ->take(10)
         ;
     }
 

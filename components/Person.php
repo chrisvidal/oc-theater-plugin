@@ -99,24 +99,6 @@ class Person extends ComponentBase
 
         }
 
-        if ($post->featured) {
-
-            $this->addCss('/plugins/abnmt/theater/assets/vendor/photoswipe/photoswipe.css');
-            $this->addCss('/plugins/abnmt/theater/assets/vendor/photoswipe/default-skin/default-skin.css');
-            $this->addJs('/plugins/abnmt/theater/assets/vendor/photoswipe/photoswipe.js');
-            $this->addJs('/plugins/abnmt/theater/assets/vendor/photoswipe/photoswipe-ui-default.js');
-            $this->addJs('/plugins/abnmt/theater/assets/js/performance-gallery.js');
-
-            $post->featured->each(function($image)
-            {
-                $image['sizes'] = getimagesize('./' . $image->getPath());
-                if ($image['sizes'][0] < $image['sizes'][1])
-                    $image['thumb'] = $image->getThumb(177, null);
-                else
-                    $image['thumb'] = $image->getThumb(null, 177);
-            });
-        }
-
         $post->relation->each(function($relation){
 
             $relation->setUrl($this->relationPage, $this->controller);

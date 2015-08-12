@@ -162,8 +162,8 @@ class Events extends ComponentBase
 
         });
 
-        // CW::info($this->group);
-        // CW::info($posts);
+        CW::info($this->group);
+        CW::info($posts);
         return $posts;
     }
 
