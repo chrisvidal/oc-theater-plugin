@@ -40,7 +40,7 @@ class Performance extends Model
     /**
      * @var array With fields
      */
-    protected $with = ['taxonomy'];
+    protected $with = ['taxonomy', 'playbill'];
 
     /**
      * @var array Relations

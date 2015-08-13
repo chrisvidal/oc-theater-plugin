@@ -10,6 +10,7 @@ use Abnmt\Theater\Models\Article       as ArticleModel;
 use Abnmt\Theater\Models\Performance   as PerformanceModel;
 
 use \Clockwork\Support\Laravel\Facade as CW;
+use Carbon;
 
 class Events extends ComponentBase
 {
@@ -145,7 +146,8 @@ class Events extends ComponentBase
         /*
          * Prepare for View
          */
-        $posts->each(function ($post) use ($params) {
+        $active = Carbon::now();
+        $posts->each(function ($post) use ($params, &$active) {
 
             // Assign URLs
             extract($params);
@@ -153,6 +155,10 @@ class Events extends ComponentBase
                 $post->relation->setUrl($newsPage, $this->controller);
             if ($post->relation instanceof PerformanceModel)
                 $post->relation->setUrl($performancePage, $this->controller);
+
+            $date = Carbon::parse($post->event_date);
+            if ( $active != 'active' && $date->gte($active) )
+                $post->active = $active = 'active';
 
             // Grouping
             if ( $this->inCollection($post->relation->taxonomy, 'title', 'Детский спектакль') )
