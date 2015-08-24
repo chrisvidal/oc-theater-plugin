@@ -26,7 +26,9 @@ class SeedPeopleTable extends Seeder
         ];
 
         $path = "./storage/app/images";
-        $fileData = $this->fillArrayWithFileNodes( new \DirectoryIterator( $path ) );
+        $fileData = $this->fillArrayWithFileNodes( new \DirectoryIterator( $path ), ["jpg", "png"] );
+
+        // print_r($fileData);
 
         foreach ($data as $modelName => $models) {
             foreach ($models as $model) {
@@ -257,7 +259,7 @@ class SeedPeopleTable extends Seeder
 
             $images = $fileData[$model->slug];
 
-            echo $model->slug . "\n";
+            echo $model->slug . " [";
             // echo get_class($model) . "\n";
 
             foreach ($images as $key => $filePath)
@@ -269,7 +271,7 @@ class SeedPeopleTable extends Seeder
                     $check = File::where('attachment_id', '=', $model->id)
                         ->where('attachment_type', '=', get_class($model))
                         ->where('file_name', '=', $pathinfo['basename'])
-                        ->where('field', '=', $pathinfo['filename'])
+                        // ->where('field', '=', $pathinfo['filename'])
                         ->first();
 
                     if ( !is_null($check) ) {
@@ -277,13 +279,16 @@ class SeedPeopleTable extends Seeder
                         // echo filemtime($filePath) . " ";
                         // echo $check->updated_at->timestamp . "\n";
                         if (filemtime($filePath) > $check->updated_at->timestamp) {
-                            echo "File " . $filePath . " is Newer. Update!" . "\n";
+                            // echo "File " . $filePath . " is Newer. Update!" . "\n";
+                            echo "^";
                             $check->delete();
                         } else {
+                            echo "~";
                             continue;
                         }
                     } else {
-                        echo "File " . $filePath . " is New. Create!" . "\n";
+                        // echo "File " . $filePath . " is New. Create!" . "\n";
+                        echo "+";
                     }
 
                     $file = new File();
@@ -315,7 +320,7 @@ class SeedPeopleTable extends Seeder
                             break;
 
                         default:
-                            echo 'Image ' . $filePath . ' not saved.' . "\n";
+                            echo ' Image ' . $filePath . ' not saved.' . "\n";
                             break;
                     }
                 }
@@ -335,14 +340,17 @@ class SeedPeopleTable extends Seeder
                             // echo filemtime($filePath) . " ";
                             // echo $check->updated_at->timestamp . "\n";
                             if (filemtime($filePath) > $check->updated_at->timestamp) {
-                                echo "File " . $filePath . " is Newer. Update!" . "\n";
+                                // echo "File " . $filePath . " is Newer. Update!" . "\n";
+                                echo "^";
                                 $check->delete();
                             } else {
-                                echo "File " . $filePath . " is Older. Skip!" . "\n";
+                                // echo "File " . $filePath . " is Older. Skip!" . "\n";
+                                echo "~";
                                 continue;
                             }
                         } else {
-                            echo "File " . $filePath . " is New. Create!" . "\n";
+                            // echo "File " . $filePath . " is New. Create!" . "\n";
+                            echo "+";
                         }
 
                         $file = new File();
@@ -360,11 +368,12 @@ class SeedPeopleTable extends Seeder
                             $model->featured()->save($file);
 
                         else
-                            echo 'Image ' . $filePath . ' not saved.' . "\n";
+                            echo ' Image ' . $filePath . ' not saved.' . "\n";
 
                     }
                 }
             }
+            echo "]\n";
         }
 
     }
@@ -419,7 +428,7 @@ class SeedPeopleTable extends Seeder
         return $data;
     }
 
-    private function fillArrayWithFileNodes( \DirectoryIterator $dir, $ext = [".jpg",".png"] )
+    private function fillArrayWithFileNodes( \DirectoryIterator $dir, $ext = ["jpg", "png"] )
     {
         $data = array();
         foreach ( $dir as $node )
@@ -428,7 +437,7 @@ class SeedPeopleTable extends Seeder
             {
                 $data[$node->getFilename()] = self::fillArrayWithFileNodes( new \DirectoryIterator( $node->getPathname() ) );
             }
-            else if ( $node->isFile() && in_array($node->getExtension(), $ext)  )
+            elseif ( $node->isFile() && in_array($node->getExtension(), $ext) )
             {
                 $data[$node->getBasename('.' . $node->getExtension())] = $node->getPathname();
             }
