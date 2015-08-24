@@ -105,7 +105,7 @@ class Person extends ComponentBase
 
         });
 
-        // CW::info($post);
+        CW::info(['post' => $post]);
 
         return $post;
     }

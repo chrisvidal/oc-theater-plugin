@@ -202,4 +202,10 @@ class Plugin extends PluginBase
 		return strftime($dateFormat, $dateString );
 	}
 
+
+	public function register()
+	{
+		$this->registerConsoleCommand('theater.dev', 'Abnmt\Theater\Console\Dev');
+	}
+
 }
