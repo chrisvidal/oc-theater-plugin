@@ -36,7 +36,7 @@ class Dev extends Command
     {
         $this->output->writeln('Hello world!');
 
-        $data = $this->MultiSort( require_once 'plugins/abnmt/theater/updates/data/journal.php', [ 'published_at'  => [SORT_ASC, SORT_REGULAR] ] );
+        $data = $this->MultiSort( require_once 'plugins/abnmt/theater/updates/data/news.php', [ 'published_at'  => [SORT_ASC, SORT_REGULAR] ] );
 
         File::put('./temp.php', $this->VarExportMin($data, true));
         File::put('./temp.json', json_encode($data));
@@ -154,13 +154,16 @@ class Dev extends Command
     var $scheme = [
         "title",
         "slug",
-        "excerpt",
         "content",
+        "created_at",
         "published_at",
         "updated_at",
         "author",
+        "source",
+        "source_date",
+        "source_link",
         "category",
-        "releases",
+        "relations",
         "published",
     ];
 
