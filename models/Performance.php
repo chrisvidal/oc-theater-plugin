@@ -50,7 +50,13 @@ class Performance extends Model
         'participation' => ['Abnmt\Theater\Models\Participation'],
     ];
     public $belongsTo = [];
-    public $belongsToMany = [];
+    public $belongsToMany = [
+        // 'roles' => [
+        //     'Abnmt\Theater\Models\Person',
+        //     'table' => 'abnmt_theater_participations',
+        //     'pivot' => ['title', 'type', 'group', 'description'],
+        // ],
+    ];
 
     public $morphTo = [];
     public $morphOne = [];
@@ -58,10 +64,10 @@ class Performance extends Model
         'events' => ['Abnmt\Theater\Models\Event', 'name' => 'relation']
     ];
     public $morphToMany = [
-        'relation' => ['Abnmt\Theater\Models\Article',
-            'table' => 'abnmt_theater_articles_relations',
-            'name'  => 'relation',
-        ],
+        // 'relation' => ['Abnmt\Theater\Models\Article',
+        //     'table' => 'abnmt_theater_articles_relations',
+        //     'name'  => 'relation',
+        // ],
         'taxonomy' => ['Abnmt\Theater\Models\Taxonomy',
             'table' => 'abnmt_theater_taxonomies_relations',
             'name'  => 'relation',
@@ -137,7 +143,7 @@ class Performance extends Model
     public function scopePerformance($query)
     {
         return $query
-            ->with(['background', 'cover', 'background_flat', 'background_mask', 'featured', 'video', 'participation.person', 'relation'])
+            ->with(['background', 'cover', 'background_flat', 'background_mask', 'featured', 'video', 'participation.person'])
             ->with(
                 ['events' => function($q) {
                     $q->where('event_date', '>=', Carbon::now())->take(2);

@@ -1,0 +1,10 @@
+<!-- <div style="white-space: nowrap;" > -->
+<div style="font-size: 0;">
+<?
+
+$record->featured->each(function($image){
+    echo '<img src="' . $image->getThumb(33, 33, 'crop') . '" style="display: inline; margin: 0 1px 1px 0;" >' . "\n";
+});
+
+?>
+</div>

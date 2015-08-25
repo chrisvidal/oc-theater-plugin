@@ -9,6 +9,9 @@ use Abnmt\Theater\Models\Participation;
 use Abnmt\Theater\Models\Event;
 use Abnmt\Theater\Models\Taxonomy;
 
+use Abnmt\Theater\Models\News;
+use Abnmt\Theater\Models\Press;
+
 use October\Rain\Database\Updates\Seeder;
 
 class SeedPeopleTable extends Seeder
@@ -22,7 +25,7 @@ class SeedPeopleTable extends Seeder
             // 'Abnmt\Theater\Models\Person'      => $this->MultiSort( require_once 'data/people.php' ),
             'Abnmt\Theater\Models\Person'      => $this->MultiSort( require_once 'data/people.php',       [ 'family_name'   => [SORT_ASC, SORT_STRING] ] ),
             'Abnmt\Theater\Models\Performance' => $this->MultiSort( require_once 'data/performances.php', [ 'premiere_date' => [SORT_ASC, SORT_NUMERIC] ] ),
-            'Abnmt\Theater\Models\Article'     => $this->MultiSort( require_once 'data/articles.php',     [ 'published_at'  => [SORT_ASC, SORT_REGULAR] ] ),
+            // 'Abnmt\Theater\Models\Article'     => $this->MultiSort( require_once 'data/articles.php',     [ 'published_at'  => [SORT_ASC, SORT_REGULAR] ] ),
         ];
 
         $path = "./storage/app/images";
@@ -56,12 +59,44 @@ class SeedPeopleTable extends Seeder
             }
 
         }
+
+        // Sort files
+        $files = File::get();
+        $files->each(function($file){
+
+            preg_match("~^(\d+)~", $file->file_name, $matches);
+
+            if (count($matches) > 0) {
+                $file->sort_order = intval($matches[0], 10);
+                // print_r($file);
+                $file->save();
+            }
+        });
+        // print_r($files);
+
+        // News
+        $news = require_once 'data/news.php';
+        foreach ($news as $key => $post) {
+            $this->createNews($post);
+        }
+        // Press
+        $press = require_once 'data/press.php';
+        foreach ($press as $key => $post) {
+            $this->createPress($post);
+        }
     }
 
 
 
 
-
+    private function createNews($news)
+    {
+        News::create($news);
+    }
+    private function createPress($press)
+    {
+        Press::create($press);
+    }
 
 
     private function createModel($modelName, $model)
@@ -335,6 +370,9 @@ class SeedPeopleTable extends Seeder
                             // ->where('field', '=', $pathinfo['filename'])
                             ->first();
 
+                        // preg_match("~^(\d+)~", $filename, $matches);
+                        // print_r($matches);
+
                         if ( !is_null($check) ) {
                             // echo $filePath . " ";
                             // echo filemtime($filePath) . " ";
@@ -357,18 +395,27 @@ class SeedPeopleTable extends Seeder
                         $file->fromFile($filePath);
                         // $file->save();
 
-                        if ( $key == 'bg' && preg_match('/.+?_flat/', $filename) )
+                        // if (count($matches) > 0) {
+                        //     $file->sort_order = intval($matches[0], 10);
+                        //     print_r($file);
+                        // }
+
+
+                        if ( $key == 'bg' && preg_match('/.+?_flat/', $filename) ) {
                             $model->background_flat()->save($file);
-                        elseif ( $key == 'bg' && preg_match('/.+?_mask/', $filename) )
+                        }
+                        elseif ( $key == 'bg' && preg_match('/.+?_mask/', $filename) ) {
                             $model->background_mask()->save($file);
-                        elseif ( $key == 'bg' )
+                        }
+                        elseif ( $key == 'bg' ) {
                             $model->background()->save($file);
-
-                        elseif ( $key == 'gallery' )
+                        }
+                        elseif ( $key == 'gallery' ) {
                             $model->featured()->save($file);
-
-                        else
-                            echo ' Image ' . $filePath . ' not saved.' . "\n";
+                        }
+                        else {
+                            echo $filePath . ' not saved.' . "\n";
+                        }
 
                     }
                 }

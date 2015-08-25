@@ -4,7 +4,7 @@
 use System\Classes\PluginBase;
 
 use Abnmt\Theater\Models\Event         as EventModel;
-use Abnmt\Theater\Models\Article       as ArticleModel;
+// use Abnmt\Theater\Models\Article       as ArticleModel;
 use Abnmt\Theater\Models\Performance   as PerformanceModel;
 use Abnmt\Theater\Models\Person        as PersonModel;
 use Abnmt\Theater\Models\Taxonomy      as TaxonomyModel;
@@ -50,11 +50,11 @@ class Plugin extends PluginBase
 				'icon' => 'icon-university',
 				'order' => 500,
 				'sideMenu' => [
-					'news' => [
-						'label' => 'Новости',
-						'icon'  => 'icon-newspaper-o',
-						'url'   => \Backend::url('abnmt/theater/news'),
-					],
+					// 'news' => [
+					// 	'label' => 'Новости',
+					// 	'icon'  => 'icon-newspaper-o',
+					// 	'url'   => \Backend::url('abnmt/theater/news'),
+					// ],
 					'events' => [
 						'label' => 'Афиша',
 						'icon'  => 'icon-calendar',
@@ -70,16 +70,16 @@ class Plugin extends PluginBase
 						'icon'  => 'icon-users',
 						'url'   => \Backend::url('abnmt/theater/people'),
 					],
-					'press' => [
-						'label' => 'Пресса',
-						'icon'  => 'icon-newspaper-o',
-						'url'   => \Backend::url('abnmt/theater/press'),
-					],
-					'partners' => [
-						'label' => 'Партнёры',
-						'icon'  => 'icon-ticket',
-						'url'   => \Backend::url('abnmt/theater/partners'),
-					],
+					// 'press' => [
+					// 	'label' => 'Пресса',
+					// 	'icon'  => 'icon-newspaper-o',
+					// 	'url'   => \Backend::url('abnmt/theater/press'),
+					// ],
+					// 'partners' => [
+					// 	'label' => 'Партнёры',
+					// 	'icon'  => 'icon-ticket',
+					// 	'url'   => \Backend::url('abnmt/theater/partners'),
+					// ],
 				],
 			],
 		];
@@ -94,14 +94,8 @@ class Plugin extends PluginBase
 		return [
 			'Abnmt\Theater\Components\Theater'      => 'theater',
 			'Abnmt\Theater\Components\Events'       => 'theaterEvents',
-			// 'Abnmt\Theater\Components\Playbill'     => 'theaterPlaybill',
-			// 'Abnmt\Theater\Components\Repertoire'   => 'theaterRepertoire',
-			// 'Abnmt\Theater\Components\Troupe'       => 'theaterTroupe',
-			// 'Abnmt\Theater\Components\News'         => 'theaterNews',
-			// 'Abnmt\Theater\Components\Press'        => 'theaterPress',
 			'Abnmt\Theater\Components\Person'       => 'theaterPerson',
 			'Abnmt\Theater\Components\Performance'  => 'theaterPerformance',
-			// 'Abnmt\Theater\Components\Partners'     => 'theaterPartners',
 		];
 	}
 
@@ -128,7 +122,7 @@ class Plugin extends PluginBase
 		// $alias->alias( 'DiffFormatter'  , 'Laravelrus\LocalizedCarbon\DiffFactoryFacade' );
 
 		$alias->alias( 'Carbon', '\Carbon\Carbon' );
-		// $alias->alias( 'CW'  ,   '\Clockwork\Support\Laravel\Facade' );
+		$alias->alias( 'CW'  ,   '\Clockwork\Support\Laravel\Facade' );
 
 
 		/*

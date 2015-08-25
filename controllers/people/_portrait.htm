@@ -1,0 +1,3 @@
+<? if($record->portrait): ?>
+<?= '<img src="' . $record->portrait->getThumb('auto', 75) . '" />' ?>
+<? endif; ?>

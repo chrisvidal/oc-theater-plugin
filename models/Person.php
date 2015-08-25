@@ -50,16 +50,22 @@ class Person extends Model
         'participation' => ['Abnmt\Theater\Models\Participation'],
     ];
     public $belongsTo = [];
-    public $belongsToMany = [];
+    public $belongsToMany = [
+        // 'roles' => [
+        //     'Abnmt\Theater\Models\Performance',
+        //     'table' => 'abnmt_theater_participations',
+        //     'pivot' => ['title', 'type', 'group', 'description'],
+        // ],
+    ];
 
     public $morphTo = [];
     public $morphOne = [];
     public $morphMany = [];
     public $morphToMany = [
-        'relation' => ['Abnmt\Theater\Models\Article',
-            'table' => 'abnmt_theater_articles_relations',
-            'name'  => 'relation',
-        ],
+        // 'relation' => ['Abnmt\Theater\Models\Article',
+        //     'table' => 'abnmt_theater_articles_relations',
+        //     'name'  => 'relation',
+        // ],
         'taxonomy' => ['Abnmt\Theater\Models\Taxonomy',
             'table' => 'abnmt_theater_taxonomies_relations',
             'name'  => 'relation',
@@ -121,7 +127,7 @@ class Person extends Model
     public function scopeBiography($query)
     {
         return $query
-            ->with(['portrait', 'participation.performance', 'relation', 'featured'])
+            ->with(['portrait', 'participation.performance', 'featured'])
         ;
     }
 

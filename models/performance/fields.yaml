@@ -49,12 +49,12 @@ tabs:
             size: small
 
 
-        title_html:
-            tab: Дополнительно
-            label: Отформатированное название
-            type: codeeditor
-            size: small
-            language: html
+        # title_html:
+        #     tab: Дополнительно
+        #     label: Отформатированное название
+        #     type: codeeditor
+        #     size: small
+        #     language: html
         duration:
             tab: Дополнительно
             label: Длительность
@@ -109,12 +109,12 @@ tabs:
             mode: image
             span: left
             type: fileupload
-        background_mobile:
-            tab: Медиа
-            label: Бэкграунд для мобильных
-            mode: image
-            span: right
-            type: fileupload
+        # background_mobile:
+        #     tab: Медиа
+        #     label: Бэкграунд для мобильных
+        #     mode: image
+        #     span: right
+        #     type: fileupload
         featured:
             tab: Медиа
             label: Галерея
@@ -128,21 +128,27 @@ tabs:
             span: right
             type: fileupload
 
-        participation:
-            tab: Роли и исполнители
-            type: partial
-            path: $/abnmt/theater/models/performance/_list_participation.htm
+        # participation:
+        #     tab: Роли и исполнители
+        #     type: partial
+        #     path: $/abnmt/theater/models/performance/_list_participation.htm
 
-        press:
-            tab: Пресса
-            label: Пресса
-            type: relation
-            mode: dropdown
-            nameFrom: title
-            options:
-                nameColumn: title
+        # press:
+        #     tab: Пресса
+        #     label: Пресса
+        #     type: relation
+        #     mode: dropdown
+        #     nameFrom: title
+        #     options:
+        #         nameColumn: title
 
-        categories:
-            tab: Категории
-            type: partial
-            path: $/abnmt/theater/models/performance/_list_categories.htm
+        # categories:
+        #     tab: Категории
+        #     type: partial
+        #     path: $/abnmt/theater/models/performance/_list_categories.htm
+
+        # roles:
+        #     tab: Актеры и Создатели
+        #     # type: relation
+        #     type: partial
+        #     # nameFrom: title

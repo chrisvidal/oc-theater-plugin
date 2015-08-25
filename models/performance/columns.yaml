@@ -3,10 +3,10 @@
 # ===================================
 
 columns:
-    repertoire:
-        label: Обложка
-        type: partial
-        sortable: false
+    # repertoire:
+    #     label: Обложка
+    #     type: partial
+    #     sortable: false
     title:
         label: Название спектакля
     author:
@@ -23,23 +23,23 @@ columns:
         label: Дата премьеры
     # rate:
     #     label: Возрастной рейтинг
-    playbill:
-        label: Афиша
-        type: partial
-        sortable: false
-    background_mobile:
-        label: Бэкграунды
-        type: partial
-        sortable: false
+    # playbill:
+    #     label: Афиша
+    #     type: partial
+    #     sortable: false
+    # background_mobile:
+    #     label: Бэкграунды
+    #     type: partial
+    #     sortable: false
     # featured:
     #     label: Галерея
     #     type: partial
     #     sortable: false
     #     with: 100px
-    video:
-        label: Видео
-        type: partial
-        sortable: false
+    # video:
+    #     label: Видео
+    #     type: partial
+    #     sortable: false
     # published:
     #     label: Опубликовано
     #     type: switch
