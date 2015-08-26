@@ -79,7 +79,7 @@ class Performance extends ComponentBase
     protected function loadPost()
     {
         $post = PerformanceModel::isPublished()
-            ->with(['background', 'cover', 'background_flat', 'background_mask', 'featured', 'video', 'participation.person', 'relation', 'taxonomy'])
+            ->with(['background', 'cover', 'background_flat', 'background_mask', 'featured', 'video', 'participation.person', 'taxonomy'])
             ->with(
                 ['events' => function($q) {
                     $q->where('event_date', '>=', Carbon::now())->take(2);
@@ -114,9 +114,9 @@ class Performance extends ComponentBase
 
         // $post->relation = $post->relation->sortByDesc('source_date');
 
-        $post->relation->each(function($relation){
-            $relation->setUrl($this->relationPage, $this->controller);
-        });
+        // $post->relation->each(function($relation){
+        //     $relation->setUrl($this->relationPage, $this->controller);
+        // });
 
 
         $post->background->each(function($image){

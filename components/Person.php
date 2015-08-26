@@ -72,7 +72,7 @@ class Person extends ComponentBase
     protected function loadPost()
     {
         $post = PersonModel::isPublished()
-            ->with(['portrait', 'participation.performance', 'relation', 'featured'])
+            ->with(['portrait', 'participation.performance', 'featured'])
             ->whereSlug($this->slug)
             ->first()
         ;
@@ -99,11 +99,11 @@ class Person extends ComponentBase
 
         }
 
-        $post->relation->each(function($relation){
+        // $post->relation->each(function($relation){
 
-            $relation->setUrl($this->relationPage, $this->controller);
+        //     $relation->setUrl($this->relationPage, $this->controller);
 
-        });
+        // });
 
         CW::info(['post' => $post]);
 
