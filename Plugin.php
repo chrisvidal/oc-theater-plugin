@@ -48,7 +48,7 @@ class Plugin extends PluginBase
 				'label' => 'Театр',
 				'url' => \Backend::url('abnmt/theater/dashboard'),
 				'icon' => 'icon-university',
-				'order' => 500,
+				'order' => 400,
 				'sideMenu' => [
 					// 'news' => [
 					// 	'label' => 'Новости',

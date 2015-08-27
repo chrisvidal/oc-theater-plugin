@@ -72,28 +72,6 @@ class SeedPeopleTable extends Seeder
         });
         // print_r($files);
 
-        // News
-        $news = require_once 'data/news.php';
-        foreach ($news as $key => $post) {
-            $this->createNews($post);
-        }
-        // Press
-        $press = require_once 'data/press.php';
-        foreach ($press as $key => $post) {
-            $this->createPress($post);
-        }
-    }
-
-
-
-
-    private function createNews($news)
-    {
-        News::create($news);
-    }
-    private function createPress($press)
-    {
-        Press::create($press);
     }
 
 
@@ -284,9 +262,6 @@ class SeedPeopleTable extends Seeder
 
     private function assignImages($model, $fileData)
     {
-
-        if (get_class($model) == 'Abnmt\Theater\Models\Article')
-            return;
 
         if ( array_key_exists($model->slug, $fileData) ) {
 
