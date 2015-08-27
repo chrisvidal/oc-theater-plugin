@@ -22,10 +22,8 @@ class SeedPeopleTable extends Seeder
 
         // Models
         $data = [
-            // 'Abnmt\Theater\Models\Person'      => $this->MultiSort( require_once 'data/people.php' ),
             'Abnmt\Theater\Models\Person'      => $this->MultiSort( require_once 'data/people.php',       [ 'family_name'   => [SORT_ASC, SORT_STRING] ] ),
             'Abnmt\Theater\Models\Performance' => $this->MultiSort( require_once 'data/performances.php', [ 'premiere_date' => [SORT_ASC, SORT_NUMERIC] ] ),
-            // 'Abnmt\Theater\Models\Article'     => $this->MultiSort( require_once 'data/articles.php',     [ 'published_at'  => [SORT_ASC, SORT_REGULAR] ] ),
         ];
 
         $path = "./storage/app/images";

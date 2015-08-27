@@ -2,7 +2,6 @@
     - First version of Theater
     - create_performances_table.php
     - create_people_table.php
-    - create_articles_table.php
     - create_events_table.php
     - create_participations_table.php
     - create_taxonomies_table.php
