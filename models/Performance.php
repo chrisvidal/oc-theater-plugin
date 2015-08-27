@@ -9,7 +9,8 @@ use Cms\Classes\Theme;
 
 use Abnmt\Theater\Models\Taxonomy as TaxonomyModel;
 
-use \Clockwork\Support\Laravel\Facade as CW;
+use CW;
+use Carbon;
 
 /**
  * Performance Model
@@ -51,6 +52,12 @@ class Performance extends Model
     ];
     public $belongsTo = [];
     public $belongsToMany = [
+        'press' => [
+            'Abnmt\TheaterPress\Models\Article',
+            'table' => 'abnmt_theaterpress_articles_relations',
+            'key' => 'relation_id',
+            // 'otherKey' => 'article_id',
+        ],
         // 'roles' => [
         //     'Abnmt\Theater\Models\Person',
         //     'table' => 'abnmt_theater_participations',
@@ -146,7 +153,18 @@ class Performance extends Model
             ->with(['background', 'cover', 'background_flat', 'background_mask', 'featured', 'video', 'participation.person'])
             ->with(
                 ['events' => function($q) {
-                    $q->where('event_date', '>=', Carbon::now())->take(2);
+                    $q
+                        ->where('event_date', '>=', Carbon::now())
+                        ->take(2)
+                    ;
+                }]
+            )
+            ->with(
+                ['press' => function($q) {
+                    $q
+                        ->orderBy('published_at', 'desc')
+                        ->take(3)
+                    ;
                 }]
             )
         ;

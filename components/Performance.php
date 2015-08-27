@@ -44,7 +44,7 @@ class Performance extends ComponentBase
      * Reference to the page name for linking to posts.
      * @var string
      */
-    public $relationPage = 'theater/relation';
+    public $pressPage = 'theaterPress/article';
 
 
     public function componentDetails()
@@ -79,18 +79,13 @@ class Performance extends ComponentBase
     protected function loadPost()
     {
         $post = PerformanceModel::isPublished()
-            ->with(['background', 'cover', 'background_flat', 'background_mask', 'featured', 'video', 'participation.person', 'taxonomy'])
-            ->with(
-                ['events' => function($q) {
-                    $q->where('event_date', '>=', Carbon::now())->take(2);
-                }]
-            )
+            ->Performance()
             ->whereSlug($this->slug)
             ->first()
         ;
 
         /*
-         * Add a "URL" helper attribute for linking to each performance and person relation
+         * Add a "URL" helper attribute for linking to each performance and person press
          */
 
         $this->roles = [];
@@ -112,11 +107,9 @@ class Performance extends ComponentBase
             $this->participation[$role['title']]['persons'][] = $role->person;
         });
 
-        // $post->relation = $post->relation->sortByDesc('source_date');
-
-        // $post->relation->each(function($relation){
-        //     $relation->setUrl($this->relationPage, $this->controller);
-        // });
+        $post->press->each(function($press){
+            $press->setUrl($this->pressPage, $this->controller);
+        });
 
 
         $post->background->each(function($image){
@@ -172,7 +165,7 @@ class Performance extends ComponentBase
         $post->roles = $this->roles;
         $post->roles_ng = $this->participation;
 
-        CW::info(['post' => $post]);
+        CW::info(['Performance' => $post]);
 
         return $post;
     }
