@@ -277,7 +277,7 @@ class Event extends Model
 
             // CW::info(['last' => $lastDateInDb]);
 
-            if (preg_match('~/playbill/\d+-\d+~', $url)) {
+            if (preg_match('~/afisha/\d+-\d+~', $url)) {
                 $slug = explode('/', $url);
                 $slug_date = Carbon::parse(array_pop($slug))->startOfMonth();
                 // CW::info(['slug' => $slug]);

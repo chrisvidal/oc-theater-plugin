@@ -7,6 +7,8 @@ use URL;
 use Cms\Classes\Page as CmsPage;
 use Cms\Classes\Theme;
 
+use File;
+
 use Abnmt\Theater\Models\Taxonomy as TaxonomyModel;
 
 use CW;
@@ -26,7 +28,7 @@ class Performance extends Model
     /**
      * @var array JSONable fields
      */
-    protected $jsonable = [];
+    protected $jsonable = ['meta'];
 
     /**
      * @var array Guarded fields
@@ -46,7 +48,8 @@ class Performance extends Model
     /**
      * @var array Relations
      */
-    public $hasOne = [];
+    public $hasOne = [
+    ];
     public $hasMany = [
         'participation' => ['Abnmt\Theater\Models\Participation'],
     ];
@@ -65,8 +68,11 @@ class Performance extends Model
         // ],
     ];
 
-    public $morphTo = [];
-    public $morphOne = [];
+    public $morphTo = [
+    ];
+    public $morphOne = [
+        // 'meta' => ['Abnmt\TheaterMeta\Models\Meta', 'name' => 'owner'],
+    ];
     public $morphMany = [
         'events' => ['Abnmt\Theater\Models\Event', 'name' => 'relation']
     ];
@@ -337,6 +343,14 @@ class Performance extends Model
 
         // CW::info($categories);
         return $categories;
+    }
+
+    public static function listBgImages($keyValue = null, $fieldName = null)
+    {
+        // $images = File::where('model', get_class())->where('id')->select('id', 'title', 'slug')->get();
+
+        CW::info(['listBgImages' => [$keyValue, $fieldName]]);
+        return [$keyValue => $fieldName . $keyValue];
     }
 
     /**

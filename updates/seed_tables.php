@@ -220,7 +220,7 @@ class SeedPeopleTable extends Seeder
     {
         $models = [
             'Abnmt\Theater\Models\Performance',
-            'Abnmt\Theater\Models\Article',
+            // 'Abnmt\Theater\Models\Article',
             'Abnmt\Theater\Models\Person',
         ];
 

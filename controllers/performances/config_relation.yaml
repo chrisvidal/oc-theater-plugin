@@ -30,3 +30,6 @@
 #                     label: Тип
 #                 pivot[group]:
 #                     label: Группа
+
+# meta:
+#     label: Дополнительные данные

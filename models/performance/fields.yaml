@@ -11,6 +11,9 @@ fields:
     title:
         label: Название спектакля
         span: left
+    # title[html]:
+    #     label: Название спектакля (HTML)
+    #     span: left
     slug:
         label: URL
         span: right
@@ -152,3 +155,30 @@ tabs:
         #     # type: relation
         #     type: partial
         #     # nameFrom: title
+
+
+
+        meta[date_block_color]:
+            tab: Meta
+            label: Цвет календарного блока на главной
+            # span: right
+            type: colorpicker
+        meta[html][title]:
+            tab: Meta
+            label: Заголовок в HTML
+            # span: right
+        meta[bg_position]:
+            tab: Meta
+            label: Расположение картинки бэкграунда
+            type: repeater
+            form:
+                fields:
+                    bg:
+                        label: Номер картинки
+                        type: number
+                        span: auto
+                    position:
+                        label: Положение
+                        span: auto
+                        comment: :Left :Top :Right :Bottom CSS format
+

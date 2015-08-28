@@ -50,7 +50,7 @@ tabs:
         bio:
             label: Биография
             type: richeditor
-            size: huge
+            size: giant
         portrait:
             label: Портрет
             type: fileupload

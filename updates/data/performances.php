@@ -15,6 +15,15 @@ return [
         "premiere_date" => "1992-05-14",
         "rate"          => "12+",
         "published"     => "1",
+        "meta"          => [
+            "calendar_date_block_bg_color" => "#E62500",
+            "calendar_date_block_color" => "white",
+            // "calendar_title" => "",
+            "calendar_title_font_size" => "60px",
+            // "performance_bg_position" => [
+            //     1 => ["bg" => "1", "position" => ""],
+            // ],
+        ],
     ],
     [
         "title"         => "Волшебные сосульки",
@@ -30,6 +39,15 @@ return [
         "premiere_date" => "1999-04-03",
         "rate"          => "0+",
         "published"     => "1",
+        "meta"          => [
+            "calendar_date_block_bg_color" => "#033387",
+            "calendar_date_block_color" => "white",
+            // "calendar_title" => "",
+            "calendar_title_font_size" => "60px",
+            // "performance_bg_position" => [
+            //     1 => ["bg" => "1", "position" => ""],
+            // ],
+        ],
     ],
     [
         "title"         => "Ехала деревня мимо мужика",
@@ -45,6 +63,15 @@ return [
         "premiere_date" => "1991-03-12",
         "rate"          => "0+",
         "published"     => "1",
+        "meta"          => [
+            "calendar_date_block_bg_color" => "#0574CE",
+            "calendar_date_block_color" => "white",
+            // "calendar_title" => "",
+            "calendar_title_font_size" => "56px",
+            // "performance_bg_position" => [
+            //     1 => ["bg" => "1", "position" => ""],
+            // ],
+        ],
     ],
     [
         "title"         => "Кот в сапогах",
@@ -60,6 +87,15 @@ return [
         "premiere_date" => "1989-12-25",
         "rate"          => "0+",
         "published"     => "1",
+        "meta"          => [
+            "calendar_date_block_bg_color" => "#00A585",
+            "calendar_date_block_color" => "white",
+            // "calendar_title" => "",
+            "calendar_title_font_size" => "60px",
+            // "performance_bg_position" => [
+            //     1 => ["bg" => "1", "position" => ""],
+            // ],
+        ],
     ],
     [
         "title"         => "Страсти по-итальянски",
@@ -75,6 +111,15 @@ return [
         "premiere_date" => "1990-05-14",
         "rate"          => "16+",
         "published"     => "1",
+        "meta"          => [
+            "calendar_date_block_bg_color" => "#CA292B",
+            "calendar_date_block_color" => "white",
+            // "calendar_title" => "",
+            "calendar_title_font_size" => "60px",
+            // "performance_bg_position" => [
+            //     1 => ["bg" => "1", "position" => ""],
+            // ],
+        ],
     ],
     [
         "title"         => "Женитьба",
@@ -90,6 +135,15 @@ return [
         "premiere_date" => "2000-03-12",
         "rate"          => "16+",
         "published"     => "1",
+        "meta"          => [
+            "calendar_date_block_bg_color" => "#1B3971",
+            "calendar_date_block_color" => "white",
+            // "calendar_title" => "",
+            "calendar_title_font_size" => "60px",
+            // "performance_bg_position" => [
+            //     1 => ["bg" => "1", "position" => ""],
+            // ],
+        ],
     ],
     [
         "title"         => "Сирано де Бержерак",
@@ -105,6 +159,15 @@ return [
         "premiere_date" => "2000-03-12",
         "rate"          => "16+",
         "published"     => "1",
+        "meta"          => [
+            "calendar_date_block_bg_color" => "#E8D6C5",
+            "calendar_date_block_color" => "black",
+            // "calendar_title" => "",
+            "calendar_title_font_size" => "60px",
+            // "performance_bg_position" => [
+            //     1 => ["bg" => "1", "position" => ""],
+            // ],
+        ],
     ],
     [
         "title"         => "Дурочка",
@@ -120,6 +183,15 @@ return [
         "premiere_date" => "2000-09-08",
         "rate"          => "6+",
         "published"     => "1",
+        "meta"          => [
+            "calendar_date_block_bg_color" => "#9C1728",
+            "calendar_date_block_color" => "white",
+            // "calendar_title" => "",
+            "calendar_title_font_size" => "60px",
+            // "performance_bg_position" => [
+            //     1 => ["bg" => "1", "position" => ""],
+            // ],
+        ],
     ],
     [
         "title"         => "Волки и овцы",
@@ -135,6 +207,15 @@ return [
         "premiere_date" => "2000-11-19",
         "rate"          => "12+",
         "published"     => "1",
+        "meta"          => [
+            "calendar_date_block_bg_color" => "#BB0028",
+            "calendar_date_block_color" => "white",
+            // "calendar_title" => "",
+            "calendar_title_font_size" => "60px",
+            // "performance_bg_position" => [
+            //     1 => ["bg" => "1", "position" => ""],
+            // ],
+        ],
     ],
     [
         "title"         => "Брысь! или Истории кота Филофея",
@@ -150,6 +231,15 @@ return [
         "premiere_date" => "2002-11-30",
         "rate"          => "0+",
         "published"     => "1",
+        "meta"          => [
+            "calendar_date_block_bg_color" => "#F73B0F",
+            "calendar_date_block_color" => "white",
+            // "calendar_title" => "",
+            "calendar_title_font_size" => "50px",
+            // "performance_bg_position" => [
+            //     1 => ["bg" => "1", "position" => ""],
+            // ],
+        ],
     ],
     [
         "title"         => "Дачницы",
@@ -165,6 +255,15 @@ return [
         "premiere_date" => "2003-03-06",
         "rate"          => "12+",
         "published"     => "1",
+        "meta"          => [
+            "calendar_date_block_bg_color" => "#D98F1B",
+            "calendar_date_block_color" => "black",
+            // "calendar_title" => "",
+            "calendar_title_font_size" => "60px",
+            // "performance_bg_position" => [
+            //     1 => ["bg" => "1", "position" => ""],
+            // ],
+        ],
     ],
     [
         "title"         => "Не всякий вор — грабитель",
@@ -180,6 +279,15 @@ return [
         "premiere_date" => "2003-06-17",
         "rate"          => "16+",
         "published"     => "1",
+        "meta"          => [
+            "calendar_date_block_bg_color" => "#273683",
+            "calendar_date_block_color" => "white",
+            // "calendar_title" => "",
+            "calendar_title_font_size" => "56px",
+            // "performance_bg_position" => [
+            //     1 => ["bg" => "1", "position" => ""],
+            // ],
+        ],
     ],
     [
         "title"         => "В Париж!",
@@ -195,6 +303,15 @@ return [
         "premiere_date" => "2006-12-15",
         "rate"          => "12+",
         "published"     => "1",
+        "meta"          => [
+            "calendar_date_block_bg_color" => "#1E52A5",
+            "calendar_date_block_color" => "white",
+            // "calendar_title" => "",
+            "calendar_title_font_size" => "60px",
+            // "performance_bg_position" => [
+            //     1 => ["bg" => "1", "position" => ""],
+            // ],
+        ],
     ],
     [
         "title"         => "Провинциальные анекдоты",
@@ -210,6 +327,15 @@ return [
         "premiere_date" => "2007-03-17",
         "rate"          => "16+",
         "published"     => "1",
+        "meta"          => [
+            "calendar_date_block_bg_color" => "#FAE9CF",
+            "calendar_date_block_color" => "black",
+            // "calendar_title" => "",
+            "calendar_title_font_size" => "56px",
+            // "performance_bg_position" => [
+            //     1 => ["bg" => "1", "position" => ""],
+            // ],
+        ],
     ],
     [
         "title"         => "Записные книжки Тригорина",
@@ -225,6 +351,15 @@ return [
         "premiere_date" => "2008-04-17",
         "rate"          => "16+",
         "published"     => "1",
+        "meta"          => [
+            "calendar_date_block_bg_color" => "#033387",
+            "calendar_date_block_color" => "white",
+            // "calendar_title" => "",
+            "calendar_title_font_size" => "60px",
+            // "performance_bg_position" => [
+            //     1 => ["bg" => "1", "position" => ""],
+            // ],
+        ],
     ],
     [
         "title"         => "Прогулка в Лю-Блё",
@@ -240,6 +375,15 @@ return [
         "premiere_date" => "2009-04-30",
         "rate"          => "16+",
         "published"     => "1",
+        "meta"          => [
+            "calendar_date_block_bg_color" => "#0947AA",
+            "calendar_date_block_color" => "white",
+            // "calendar_title" => "",
+            "calendar_title_font_size" => "60px",
+            // "performance_bg_position" => [
+            //     1 => ["bg" => "1", "position" => ""],
+            // ],
+        ],
     ],
     [
         "title"         => "Старая зайчиха",
@@ -255,6 +399,15 @@ return [
         "premiere_date" => "2009-05-28",
         "rate"          => "16+",
         "published"     => "1",
+        "meta"          => [
+            "calendar_date_block_bg_color" => "#DCC1B5",
+            "calendar_date_block_color" => "black",
+            // "calendar_title" => "",
+            "calendar_title_font_size" => "60px",
+            // "performance_bg_position" => [
+            //     1 => ["bg" => "1", "position" => ""],
+            // ],
+        ],
     ],
     [
         "title"         => "Кыцик, Мыцик и тётушка Мари",
@@ -270,6 +423,15 @@ return [
         "premiere_date" => "2009-11-04",
         "rate"          => "0+",
         "published"     => "1",
+        "meta"          => [
+            "calendar_date_block_bg_color" => "#F13516",
+            "calendar_date_block_color" => "white",
+            // "calendar_title" => "",
+            "calendar_title_font_size" => "50px",
+            // "performance_bg_position" => [
+            //     1 => ["bg" => "1", "position" => ""],
+            // ],
+        ],
     ],
     [
         "title"         => "Крепостная любовь",
@@ -285,6 +447,15 @@ return [
         "premiere_date" => "2010-11-27",
         "rate"          => "12+",
         "published"     => "1",
+        "meta"          => [
+            "calendar_date_block_bg_color" => "#00A585",
+            "calendar_date_block_color" => "white",
+            // "calendar_title" => "",
+            "calendar_title_font_size" => "60px",
+            // "performance_bg_position" => [
+            //     1 => ["bg" => "1", "position" => ""],
+            // ],
+        ],
     ],
     [
         "title"         => "Училка из будущего",
@@ -300,6 +471,15 @@ return [
         "premiere_date" => "2011-03-27",
         "rate"          => "12+",
         "published"     => "1",
+        "meta"          => [
+            "calendar_date_block_bg_color" => "#13B3B5",
+            "calendar_date_block_color" => "white",
+            // "calendar_title" => "",
+            "calendar_title_font_size" => "60px",
+            // "performance_bg_position" => [
+            //     1 => ["bg" => "1", "position" => ""],
+            // ],
+        ],
     ],
     [
         "title"         => "Карлсон",
@@ -315,6 +495,15 @@ return [
         "premiere_date" => "2011-12-11",
         "rate"          => "0+",
         "published"     => "1",
+        "meta"          => [
+            "calendar_date_block_bg_color" => "#F13516",
+            "calendar_date_block_color" => "white",
+            // "calendar_title" => "",
+            "calendar_title_font_size" => "60px",
+            // "performance_bg_position" => [
+            //     1 => ["bg" => "1", "position" => ""],
+            // ],
+        ],
     ],
     [
         "title"         => "Лес",
@@ -330,6 +519,15 @@ return [
         "premiere_date" => "2012-12-08",
         "rate"          => "12+",
         "published"     => "1",
+        "meta"          => [
+            "calendar_date_block_bg_color" => "#0B3374",
+            "calendar_date_block_color" => "white",
+            // "calendar_title" => "",
+            "calendar_title_font_size" => "60px",
+            // "performance_bg_position" => [
+            //     1 => ["bg" => "1", "position" => ""],
+            // ],
+        ],
     ],
     [
         "title"         => "Поминальная молитва",
@@ -345,6 +543,15 @@ return [
         "premiere_date" => "2013-02-23",
         "rate"          => "12+",
         "published"     => "1",
+        "meta"          => [
+            "calendar_date_block_bg_color" => "#FFF5DA",
+            "calendar_date_block_color" => "black",
+            // "calendar_title" => "",
+            "calendar_title_font_size" => "56px",
+            // "performance_bg_position" => [
+            //     1 => ["bg" => "1", "position" => ""],
+            // ],
+        ],
     ],
     [
         "title"         => "Компромисс",
@@ -360,6 +567,15 @@ return [
         "premiere_date" => "2013-10-19",
         "rate"          => "16+",
         "published"     => "1",
+        "meta"          => [
+            "calendar_date_block_bg_color" => "#E8C450",
+            "calendar_date_block_color" => "black",
+            // "calendar_title" => "",
+            "calendar_title_font_size" => "60px",
+            // "performance_bg_position" => [
+            //     1 => ["bg" => "1", "position" => ""],
+            // ],
+        ],
     ],
     [
         "title"         => "Если поженились, значит, жить придётся!",
@@ -375,6 +591,15 @@ return [
         "premiere_date" => "2014-12-17",
         "rate"          => "12+",
         "published"     => "1",
+        "meta"          => [
+            "calendar_date_block_bg_color" => "#76000E",
+            "calendar_date_block_color" => "white",
+            "calendar_title" => "Если поженились,<br>значит, жить придётся!",
+            "calendar_title_font_size" => "50px",
+            // "performance_bg_position" => [
+            //     1 => ["bg" => "1", "position" => ""],
+            // ],
+        ],
     ],
     [
         "title"         => "Земляки",
@@ -390,6 +615,15 @@ return [
         "premiere_date" => "2014-03-27",
         "rate"          => "12+",
         "published"     => "1",
+        "meta"          => [
+            "calendar_date_block_bg_color" => "#151D69",
+            "calendar_date_block_color" => "white",
+            // "calendar_title" => "",
+            "calendar_title_font_size" => "60px",
+            // "performance_bg_position" => [
+            //     1 => ["bg" => "1", "position" => ""],
+            // ],
+        ],
     ],
     [
         "title"         => "Марлен, рожденная для любви",
@@ -405,6 +639,15 @@ return [
         "premiere_date" => "2014-11-20",
         "rate"          => "12+",
         "published"     => "1",
+        "meta"          => [
+            "calendar_date_block_bg_color" => "#A00042",
+            "calendar_date_block_color" => "white",
+            "calendar_title" => "Марлен,<br>рожденная для любви",
+            "calendar_title_font_size" => "56px",
+            // "performance_bg_position" => [
+            //     1 => ["bg" => "1", "position" => ""],
+            // ],
+        ],
     ],
     [
         "title"         => "В день свадьбы",
@@ -420,6 +663,15 @@ return [
         "premiere_date" => "2015-05-07",
         "rate"          => "16+",
         "published"     => "1",
+        "meta"          => [
+            // "calendar_date_block_bg_color" => "",
+            "calendar_date_block_color" => "white",
+            // "calendar_title" => "",
+            "calendar_title_font_size" => "50px",
+            // "performance_bg_position" => [
+            //     1 => ["bg" => "1", "position" => ""],
+            // ],
+        ],
     ],
 
     // ARCHIVE

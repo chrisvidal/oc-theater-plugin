@@ -151,8 +151,8 @@ class Events extends ComponentBase
 
             // Assign URLs
             extract($params);
-            if ($post->relation instanceof ArticleModel)
-                $post->relation->setUrl($newsPage, $this->controller);
+            // if ($post->relation instanceof ArticleModel)
+            //     $post->relation->setUrl($newsPage, $this->controller);
             if ($post->relation instanceof PerformanceModel)
                 $post->relation->setUrl($performancePage, $this->controller);
 
@@ -180,7 +180,7 @@ class Events extends ComponentBase
     {
         foreach ($array as $item)
         {
-           if (is_array($item)) self::inArray($item, $key, $val);
+           if (is_array($item)) self::inCollection($item, $key, $val);
            if (isset($item[$key]) && $item[$key] == $val) return true;
         }
         return false;

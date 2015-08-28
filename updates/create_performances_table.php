@@ -31,6 +31,8 @@ class CreatePerformancesTable extends Migration
 
             $table->string('rate')->nullable();
 
+            $table->json('meta')->nullable();
+
             $table->boolean('published')->default(false);
             $table->timestamps();
         });
