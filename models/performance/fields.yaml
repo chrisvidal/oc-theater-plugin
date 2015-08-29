@@ -158,27 +158,81 @@ tabs:
 
 
 
-        meta[date_block_color]:
+        meta[calendar_date_block_bg_color]:
             tab: Meta
             label: Цвет календарного блока на главной
             # span: right
             type: colorpicker
-        meta[html][title]:
+        meta[calendar_date_block_color]:
+            tab: Meta
+            label: Цвет надписи календарного блока на главной
+            # span: right
+            type: colorpicker
+        meta[calendar_title]:
             tab: Meta
             label: Заголовок в HTML
-            # span: right
-        meta[bg_position]:
+        meta[calendar_title_font_size]:
             tab: Meta
-            label: Расположение картинки бэкграунда
+            label: Размер заголовка в календарном блоке на главной
+            # span: right
+        # meta[bg_position]:
+        #     tab: Meta
+        #     label: Расположение картинки бэкграунда
+        #     type: repeater
+        #     form:
+        #         fields:
+        #             bg:
+        #                 label: Номер картинки
+        #                 type: number
+        #                 span: auto
+        #             position:
+        #                 label: Положение
+        #                 span: auto
+        #                 comment: :Left :Top :Right :Bottom CSS format
+        meta[layouts]:
+            tab: Meta
+            label: Макеты
             type: repeater
             form:
                 fields:
-                    bg:
-                        label: Номер картинки
+                    query:
+                        label: Ширина макета
                         type: number
-                        span: auto
-                    position:
-                        label: Положение
-                        span: auto
-                        comment: :Left :Top :Right :Bottom CSS format
+                        span: full
+                    left:
+                        label: Левая колонка
+                        type: number
+                        span: left
+                    right:
+                        label: Правая колонка
+                        type: number
+                        span: right
+                    left_bg:
+                        # label: Расположение картинки бэкграунда
+                        type: repeater
+                        span: left
+                        form:
+                            fields:
+                                bg:
+                                    label: Номер картинки
+                                    type: number
+                                    span: auto
+                                position:
+                                    label: Положение
+                                    span: auto
+                                    comment: :Left :Top :Right :Bottom CSS format
+                    right_bg:
+                        type: repeater
+                        span: right
+                        form:
+                            fields:
+                                bg:
+                                    label: Номер картинки
+                                    type: number
+                                    span: auto
+                                position:
+                                    label: Положение
+                                    span: auto
+                                    comment: :Left :Top :Right :Bottom CSS format
+
 

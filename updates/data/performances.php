@@ -20,6 +20,23 @@ return [
             "calendar_date_block_color" => "white",
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
+            "layouts" => [
+                1 => [
+                    'query' => '1920',
+                    'right' => 3,
+                    'left' => 3,
+                    'left_bg' => [
+                        1 => ['bg' => 6, 'position' => '304 top'],
+                        2 => ['bg' => 5, 'position' => '592 middle'],
+                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    ],
+                    'right_bg' => [
+                        1 => ['bg' => 1, 'position' => '960 top'],
+                        2 => ['bg' => 2, 'position' => '768 middle'],
+                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                    ],
+                ],
+            ],
             // "performance_bg_position" => [
             //     1 => ["bg" => "1", "position" => ""],
             // ],
@@ -44,6 +61,23 @@ return [
             "calendar_date_block_color" => "white",
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
+            "layouts" => [
+                1 => [
+                    'query' => '1920',
+                    'right' => 3,
+                    'left' => 3,
+                    'left_bg' => [
+                        1 => ['bg' => 6, 'position' => '304 top'],
+                        2 => ['bg' => 5, 'position' => '592 middle'],
+                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    ],
+                    'right_bg' => [
+                        1 => ['bg' => 1, 'position' => '960 top'],
+                        2 => ['bg' => 2, 'position' => '768 middle'],
+                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                    ],
+                ],
+            ],
             // "performance_bg_position" => [
             //     1 => ["bg" => "1", "position" => ""],
             // ],
@@ -68,6 +102,23 @@ return [
             "calendar_date_block_color" => "white",
             // "calendar_title" => "",
             "calendar_title_font_size" => "56px",
+            "layouts" => [
+                1 => [
+                    'query' => '1920',
+                    'right' => 3,
+                    'left' => 3,
+                    'left_bg' => [
+                        1 => ['bg' => 6, 'position' => '304 top'],
+                        2 => ['bg' => 5, 'position' => '592 middle'],
+                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    ],
+                    'right_bg' => [
+                        1 => ['bg' => 1, 'position' => '960 top'],
+                        2 => ['bg' => 2, 'position' => '768 middle'],
+                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                    ],
+                ],
+            ],
             // "performance_bg_position" => [
             //     1 => ["bg" => "1", "position" => ""],
             // ],
@@ -92,6 +143,23 @@ return [
             "calendar_date_block_color" => "white",
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
+            "layouts" => [
+                1 => [
+                    'query' => '1920',
+                    'right' => 3,
+                    'left' => 3,
+                    'left_bg' => [
+                        1 => ['bg' => 6, 'position' => '304 top'],
+                        2 => ['bg' => 5, 'position' => '592 middle'],
+                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    ],
+                    'right_bg' => [
+                        1 => ['bg' => 1, 'position' => '960 top'],
+                        2 => ['bg' => 2, 'position' => '768 middle'],
+                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                    ],
+                ],
+            ],
             // "performance_bg_position" => [
             //     1 => ["bg" => "1", "position" => ""],
             // ],
@@ -116,6 +184,23 @@ return [
             "calendar_date_block_color" => "white",
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
+            "layouts" => [
+                1 => [
+                    'query' => '1920',
+                    'right' => 3,
+                    'left' => 3,
+                    'left_bg' => [
+                        1 => ['bg' => 6, 'position' => '304 top'],
+                        2 => ['bg' => 5, 'position' => '592 middle'],
+                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    ],
+                    'right_bg' => [
+                        1 => ['bg' => 1, 'position' => '960 top'],
+                        2 => ['bg' => 2, 'position' => '768 middle'],
+                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                    ],
+                ],
+            ],
             // "performance_bg_position" => [
             //     1 => ["bg" => "1", "position" => ""],
             // ],
@@ -140,6 +225,23 @@ return [
             "calendar_date_block_color" => "white",
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
+            "layouts" => [
+                1 => [
+                    'query' => '1920',
+                    'right' => 3,
+                    'left' => 3,
+                    'left_bg' => [
+                        1 => ['bg' => 6, 'position' => '304 top'],
+                        2 => ['bg' => 5, 'position' => '592 middle'],
+                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    ],
+                    'right_bg' => [
+                        1 => ['bg' => 1, 'position' => '960 top'],
+                        2 => ['bg' => 2, 'position' => '768 middle'],
+                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                    ],
+                ],
+            ],
             // "performance_bg_position" => [
             //     1 => ["bg" => "1", "position" => ""],
             // ],
@@ -164,6 +266,23 @@ return [
             "calendar_date_block_color" => "black",
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
+            "layouts" => [
+                1 => [
+                    'query' => '1920',
+                    'right' => 3,
+                    'left' => 3,
+                    'left_bg' => [
+                        1 => ['bg' => 6, 'position' => '304 top'],
+                        2 => ['bg' => 5, 'position' => '592 middle'],
+                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    ],
+                    'right_bg' => [
+                        1 => ['bg' => 1, 'position' => '960 top'],
+                        2 => ['bg' => 2, 'position' => '768 middle'],
+                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                    ],
+                ],
+            ],
             // "performance_bg_position" => [
             //     1 => ["bg" => "1", "position" => ""],
             // ],
@@ -188,6 +307,23 @@ return [
             "calendar_date_block_color" => "white",
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
+            "layouts" => [
+                1 => [
+                    'query' => '1920',
+                    'right' => 3,
+                    'left' => 3,
+                    'left_bg' => [
+                        1 => ['bg' => 6, 'position' => '304 top'],
+                        2 => ['bg' => 5, 'position' => '592 middle'],
+                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    ],
+                    'right_bg' => [
+                        1 => ['bg' => 1, 'position' => '960 top'],
+                        2 => ['bg' => 2, 'position' => '768 middle'],
+                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                    ],
+                ],
+            ],
             // "performance_bg_position" => [
             //     1 => ["bg" => "1", "position" => ""],
             // ],
@@ -212,6 +348,23 @@ return [
             "calendar_date_block_color" => "white",
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
+            "layouts" => [
+                1 => [
+                    'query' => '1920',
+                    'right' => 3,
+                    'left' => 3,
+                    'left_bg' => [
+                        1 => ['bg' => 6, 'position' => '304 top'],
+                        2 => ['bg' => 5, 'position' => '592 middle'],
+                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    ],
+                    'right_bg' => [
+                        1 => ['bg' => 1, 'position' => '960 top'],
+                        2 => ['bg' => 2, 'position' => '768 middle'],
+                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                    ],
+                ],
+            ],
             // "performance_bg_position" => [
             //     1 => ["bg" => "1", "position" => ""],
             // ],
@@ -236,6 +389,23 @@ return [
             "calendar_date_block_color" => "white",
             // "calendar_title" => "",
             "calendar_title_font_size" => "50px",
+            "layouts" => [
+                1 => [
+                    'query' => '1920',
+                    'right' => 3,
+                    'left' => 3,
+                    'left_bg' => [
+                        1 => ['bg' => 6, 'position' => '304 top'],
+                        2 => ['bg' => 5, 'position' => '592 middle'],
+                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    ],
+                    'right_bg' => [
+                        1 => ['bg' => 1, 'position' => '960 top'],
+                        2 => ['bg' => 2, 'position' => '768 middle'],
+                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                    ],
+                ],
+            ],
             // "performance_bg_position" => [
             //     1 => ["bg" => "1", "position" => ""],
             // ],
@@ -260,6 +430,23 @@ return [
             "calendar_date_block_color" => "black",
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
+            "layouts" => [
+                1 => [
+                    'query' => '1920',
+                    'right' => 3,
+                    'left' => 3,
+                    'left_bg' => [
+                        1 => ['bg' => 6, 'position' => '304 top'],
+                        2 => ['bg' => 5, 'position' => '592 middle'],
+                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    ],
+                    'right_bg' => [
+                        1 => ['bg' => 1, 'position' => '960 top'],
+                        2 => ['bg' => 2, 'position' => '768 middle'],
+                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                    ],
+                ],
+            ],
             // "performance_bg_position" => [
             //     1 => ["bg" => "1", "position" => ""],
             // ],
@@ -284,6 +471,23 @@ return [
             "calendar_date_block_color" => "white",
             // "calendar_title" => "",
             "calendar_title_font_size" => "56px",
+            "layouts" => [
+                1 => [
+                    'query' => '1920',
+                    'right' => 3,
+                    'left' => 3,
+                    'left_bg' => [
+                        1 => ['bg' => 6, 'position' => '304 top'],
+                        2 => ['bg' => 5, 'position' => '592 middle'],
+                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    ],
+                    'right_bg' => [
+                        1 => ['bg' => 1, 'position' => '960 top'],
+                        2 => ['bg' => 2, 'position' => '768 middle'],
+                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                    ],
+                ],
+            ],
             // "performance_bg_position" => [
             //     1 => ["bg" => "1", "position" => ""],
             // ],
@@ -308,6 +512,23 @@ return [
             "calendar_date_block_color" => "white",
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
+            "layouts" => [
+                1 => [
+                    'query' => '1920',
+                    'right' => 3,
+                    'left' => 3,
+                    'left_bg' => [
+                        1 => ['bg' => 6, 'position' => '304 top'],
+                        2 => ['bg' => 5, 'position' => '592 middle'],
+                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    ],
+                    'right_bg' => [
+                        1 => ['bg' => 1, 'position' => '960 top'],
+                        2 => ['bg' => 2, 'position' => '768 middle'],
+                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                    ],
+                ],
+            ],
             // "performance_bg_position" => [
             //     1 => ["bg" => "1", "position" => ""],
             // ],
@@ -332,6 +553,23 @@ return [
             "calendar_date_block_color" => "black",
             // "calendar_title" => "",
             "calendar_title_font_size" => "56px",
+            "layouts" => [
+                1 => [
+                    'query' => '1920',
+                    'right' => 3,
+                    'left' => 3,
+                    'left_bg' => [
+                        1 => ['bg' => 6, 'position' => '304 top'],
+                        2 => ['bg' => 5, 'position' => '592 middle'],
+                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    ],
+                    'right_bg' => [
+                        1 => ['bg' => 1, 'position' => '960 top'],
+                        2 => ['bg' => 2, 'position' => '768 middle'],
+                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                    ],
+                ],
+            ],
             // "performance_bg_position" => [
             //     1 => ["bg" => "1", "position" => ""],
             // ],
@@ -356,6 +594,23 @@ return [
             "calendar_date_block_color" => "white",
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
+            "layouts" => [
+                1 => [
+                    'query' => '1920',
+                    'right' => 3,
+                    'left' => 3,
+                    'left_bg' => [
+                        1 => ['bg' => 6, 'position' => '304 top'],
+                        2 => ['bg' => 5, 'position' => '592 middle'],
+                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    ],
+                    'right_bg' => [
+                        1 => ['bg' => 1, 'position' => '960 top'],
+                        2 => ['bg' => 2, 'position' => '768 middle'],
+                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                    ],
+                ],
+            ],
             // "performance_bg_position" => [
             //     1 => ["bg" => "1", "position" => ""],
             // ],
@@ -380,6 +635,23 @@ return [
             "calendar_date_block_color" => "white",
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
+            "layouts" => [
+                1 => [
+                    'query' => '1920',
+                    'right' => 3,
+                    'left' => 3,
+                    'left_bg' => [
+                        1 => ['bg' => 6, 'position' => '304 top'],
+                        2 => ['bg' => 5, 'position' => '592 middle'],
+                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    ],
+                    'right_bg' => [
+                        1 => ['bg' => 1, 'position' => '960 top'],
+                        2 => ['bg' => 2, 'position' => '768 middle'],
+                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                    ],
+                ],
+            ],
             // "performance_bg_position" => [
             //     1 => ["bg" => "1", "position" => ""],
             // ],
@@ -404,6 +676,23 @@ return [
             "calendar_date_block_color" => "black",
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
+            "layouts" => [
+                1 => [
+                    'query' => '1920',
+                    'right' => 3,
+                    'left' => 3,
+                    'left_bg' => [
+                        1 => ['bg' => 6, 'position' => '304 top'],
+                        2 => ['bg' => 5, 'position' => '592 middle'],
+                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    ],
+                    'right_bg' => [
+                        1 => ['bg' => 1, 'position' => '960 top'],
+                        2 => ['bg' => 2, 'position' => '768 middle'],
+                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                    ],
+                ],
+            ],
             // "performance_bg_position" => [
             //     1 => ["bg" => "1", "position" => ""],
             // ],
@@ -428,6 +717,23 @@ return [
             "calendar_date_block_color" => "white",
             // "calendar_title" => "",
             "calendar_title_font_size" => "50px",
+            "layouts" => [
+                1 => [
+                    'query' => '1920',
+                    'right' => 3,
+                    'left' => 3,
+                    'left_bg' => [
+                        1 => ['bg' => 6, 'position' => '304 top'],
+                        2 => ['bg' => 5, 'position' => '592 middle'],
+                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    ],
+                    'right_bg' => [
+                        1 => ['bg' => 1, 'position' => '960 top'],
+                        2 => ['bg' => 2, 'position' => '768 middle'],
+                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                    ],
+                ],
+            ],
             // "performance_bg_position" => [
             //     1 => ["bg" => "1", "position" => ""],
             // ],
@@ -452,6 +758,23 @@ return [
             "calendar_date_block_color" => "white",
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
+            "layouts" => [
+                1 => [
+                    'query' => '1920',
+                    'right' => 3,
+                    'left' => 3,
+                    'left_bg' => [
+                        1 => ['bg' => 6, 'position' => '304 top'],
+                        2 => ['bg' => 5, 'position' => '592 middle'],
+                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    ],
+                    'right_bg' => [
+                        1 => ['bg' => 1, 'position' => '960 top'],
+                        2 => ['bg' => 2, 'position' => '768 middle'],
+                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                    ],
+                ],
+            ],
             // "performance_bg_position" => [
             //     1 => ["bg" => "1", "position" => ""],
             // ],
@@ -476,6 +799,23 @@ return [
             "calendar_date_block_color" => "white",
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
+            "layouts" => [
+                1 => [
+                    'query' => '1920',
+                    'right' => 3,
+                    'left' => 3,
+                    'left_bg' => [
+                        1 => ['bg' => 6, 'position' => '304 top'],
+                        2 => ['bg' => 5, 'position' => '592 middle'],
+                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    ],
+                    'right_bg' => [
+                        1 => ['bg' => 1, 'position' => '960 top'],
+                        2 => ['bg' => 2, 'position' => '768 middle'],
+                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                    ],
+                ],
+            ],
             // "performance_bg_position" => [
             //     1 => ["bg" => "1", "position" => ""],
             // ],
@@ -500,6 +840,23 @@ return [
             "calendar_date_block_color" => "white",
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
+            "layouts" => [
+                1 => [
+                    'query' => '1920',
+                    'right' => 3,
+                    'left' => 3,
+                    'left_bg' => [
+                        1 => ['bg' => 6, 'position' => '304 top'],
+                        2 => ['bg' => 5, 'position' => '592 middle'],
+                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    ],
+                    'right_bg' => [
+                        1 => ['bg' => 1, 'position' => '960 top'],
+                        2 => ['bg' => 2, 'position' => '768 middle'],
+                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                    ],
+                ],
+            ],
             // "performance_bg_position" => [
             //     1 => ["bg" => "1", "position" => ""],
             // ],
@@ -524,6 +881,23 @@ return [
             "calendar_date_block_color" => "white",
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
+            "layouts" => [
+                1 => [
+                    'query' => '1920',
+                    'right' => 3,
+                    'left' => 3,
+                    'left_bg' => [
+                        1 => ['bg' => 6, 'position' => '304 top'],
+                        2 => ['bg' => 5, 'position' => '592 middle'],
+                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    ],
+                    'right_bg' => [
+                        1 => ['bg' => 1, 'position' => '960 top'],
+                        2 => ['bg' => 2, 'position' => '768 middle'],
+                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                    ],
+                ],
+            ],
             // "performance_bg_position" => [
             //     1 => ["bg" => "1", "position" => ""],
             // ],
@@ -548,6 +922,23 @@ return [
             "calendar_date_block_color" => "black",
             // "calendar_title" => "",
             "calendar_title_font_size" => "56px",
+            "layouts" => [
+                1 => [
+                    'query' => '1920',
+                    'right' => 3,
+                    'left' => 3,
+                    'left_bg' => [
+                        1 => ['bg' => 6, 'position' => '304 top'],
+                        2 => ['bg' => 5, 'position' => '592 middle'],
+                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    ],
+                    'right_bg' => [
+                        1 => ['bg' => 1, 'position' => '960 top'],
+                        2 => ['bg' => 2, 'position' => '768 middle'],
+                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                    ],
+                ],
+            ],
             // "performance_bg_position" => [
             //     1 => ["bg" => "1", "position" => ""],
             // ],
@@ -572,6 +963,23 @@ return [
             "calendar_date_block_color" => "black",
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
+            "layouts" => [
+                1 => [
+                    'query' => '1920',
+                    'right' => 3,
+                    'left' => 3,
+                    'left_bg' => [
+                        1 => ['bg' => 6, 'position' => '304 top'],
+                        2 => ['bg' => 5, 'position' => '592 middle'],
+                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    ],
+                    'right_bg' => [
+                        1 => ['bg' => 1, 'position' => '960 top'],
+                        2 => ['bg' => 2, 'position' => '768 middle'],
+                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                    ],
+                ],
+            ],
             // "performance_bg_position" => [
             //     1 => ["bg" => "1", "position" => ""],
             // ],
@@ -596,6 +1004,23 @@ return [
             "calendar_date_block_color" => "white",
             "calendar_title" => "Если поженились,<br>значит, жить придётся!",
             "calendar_title_font_size" => "50px",
+            "layouts" => [
+                1 => [
+                    'query' => '1920',
+                    'right' => 3,
+                    'left' => 3,
+                    'left_bg' => [
+                        1 => ['bg' => 6, 'position' => '304 top'],
+                        2 => ['bg' => 5, 'position' => '592 middle'],
+                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    ],
+                    'right_bg' => [
+                        1 => ['bg' => 1, 'position' => '960 top'],
+                        2 => ['bg' => 2, 'position' => '768 middle'],
+                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                    ],
+                ],
+            ],
             // "performance_bg_position" => [
             //     1 => ["bg" => "1", "position" => ""],
             // ],
@@ -620,6 +1045,23 @@ return [
             "calendar_date_block_color" => "white",
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
+            "layouts" => [
+                1 => [
+                    'query' => '1920',
+                    'right' => 3,
+                    'left' => 3,
+                    'left_bg' => [
+                        1 => ['bg' => 6, 'position' => '304 top'],
+                        2 => ['bg' => 5, 'position' => '592 middle'],
+                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    ],
+                    'right_bg' => [
+                        1 => ['bg' => 1, 'position' => '960 top'],
+                        2 => ['bg' => 2, 'position' => '768 middle'],
+                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                    ],
+                ],
+            ],
             // "performance_bg_position" => [
             //     1 => ["bg" => "1", "position" => ""],
             // ],
@@ -644,6 +1086,23 @@ return [
             "calendar_date_block_color" => "white",
             "calendar_title" => "Марлен,<br>рожденная для любви",
             "calendar_title_font_size" => "56px",
+            "layouts" => [
+                1 => [
+                    'query' => '1920',
+                    'right' => 3,
+                    'left' => 3,
+                    'left_bg' => [
+                        1 => ['bg' => 6, 'position' => '304 top'],
+                        2 => ['bg' => 5, 'position' => '592 middle'],
+                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    ],
+                    'right_bg' => [
+                        1 => ['bg' => 1, 'position' => '960 top'],
+                        2 => ['bg' => 2, 'position' => '768 middle'],
+                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                    ],
+                ],
+            ],
             // "performance_bg_position" => [
             //     1 => ["bg" => "1", "position" => ""],
             // ],
@@ -668,6 +1127,23 @@ return [
             "calendar_date_block_color" => "white",
             // "calendar_title" => "",
             "calendar_title_font_size" => "50px",
+            "layouts" => [
+                1 => [
+                    'query' => '1920',
+                    'right' => 3,
+                    'left' => 3,
+                    'left_bg' => [
+                        1 => ['bg' => 6, 'position' => '304 top'],
+                        2 => ['bg' => 5, 'position' => '592 middle'],
+                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    ],
+                    'right_bg' => [
+                        1 => ['bg' => 1, 'position' => '960 top'],
+                        2 => ['bg' => 2, 'position' => '768 middle'],
+                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                    ],
+                ],
+            ],
             // "performance_bg_position" => [
             //     1 => ["bg" => "1", "position" => ""],
             // ],

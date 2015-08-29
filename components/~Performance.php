@@ -112,60 +112,60 @@ class Performance extends ComponentBase
         });
 
 
-        // BACKGROUNDS
+        $post->background->each(function($image){
+            $image['sizes'] = getimagesize('./' . $image->getPath());
 
-        $bgs = [];
-        $key = 0;
+            preg_match('/.+?_(\d+)\.png/', $image->file_name, $matches);
 
-        $summ = [0];
+            $width = $matches[1];
+            $height = round($width/$image->sizes[0]*$image->sizes[1]);
 
-        $bg = [
-            ['top right', 960],
-            ['middle right', 768],
-            ['bottom right', 768],
-            ['bottom left', 592],
-            ['middle left', 592],
-            ['top left', 304],
-        ];
+            $image['dest'] = $image->getThumb($width, $height, ['extension' => 'png']);
 
-        $post->background->each(function($image) use (&$bgs, $bg, &$key, &$summ) {
-            $image['sizes'] = $sizes = getimagesize('./' . $image->getPath());
-            $bgs[] = [
-                'width'  => $sizes[0],
-                'height' => $sizes[1],
-                'class'  => $bg[$key][0],
-                'dest_width'  => $bg[$key][1],
-                'dest_height' => round($bg[$key][1]/$sizes[0]*$sizes[1]),
-            ];
-            $summ[$key+1] = $summ[$key] + $bgs[$key]['dest_height'];
-            $key++;
+            // $flat = $this->post->background_flat[$pos];
+            // $mask = $this->post->background_masq[$pos];
+
+            // $image['dest_flat'] = $flat->getThumb($width, $height);
+            // $image['dest_mask'] = $mask->getThumb($width, $height);
+
+            $image['dest_sizes'] = getimagesize('./' . $image->dest);
+
+            // $pos++;
+        });
+        $post->background_flat->each(function($image){
+            $image['sizes'] = getimagesize('./' . $image->getPath());
+
+            preg_match('/.+?_(\d+)_flat\.jpg/', $image->file_name, $matches);
+
+            $width = $matches[1];
+            $height = round($width/$image->sizes[0]*$image->sizes[1]);
+
+            $image['dest'] = $image->getThumb($width, $height);
+            $image['dest_sizes'] = getimagesize('./' . $image->dest);
+        });
+        $post->background_mask->each(function($image){
+            $image['sizes'] = getimagesize('./' . $image->getPath());
+
+            preg_match('/.+?_(\d+)_mask\.jpg/', $image->file_name, $matches);
+
+            $width = $matches[1];
+            $height = round($width/$image->sizes[0]*$image->sizes[1]);
+
+            $image['dest'] = $image->getThumb($width, $height);
+            $image['dest_sizes'] = getimagesize('./' . $image->dest);
         });
 
-        $count = count($bgs);
-        foreach ($bgs as $pos => &$bg) {
-            $bg_pos[$pos] = [];
-            $i = $pos;
-            while ($i < $count) {
-                $bg_pos[$pos][$i] = [
-                    'top'    => $summ[$pos],
-                    'width'  => $bg['dest_width'],
-                    'height' => $bg['dest_height'],
-                    'bottom' => $summ[$i+1] - $bg['dest_height'] - $summ[$pos],
-                    'all'    => $summ[$i+1],
-                    'top_perc'    => $summ[$pos]/$summ[$i+1]*100 . '%',
-                    'height_perc' => $bg['dest_height']/$summ[$i+1]*100 . '%',
-                    'bottom_perc' => ($summ[$i+1] - $bg['dest_height'] - $summ[$pos])/$summ[$i+1]*100 . '%',
-                ];
-                $i++;
-            }
-        }
+        if ( $bg_min = $post->background_mobile ) {
+            $bg_min['dest'] = $bg_min->getThumb(960, null);
+            $bg_min['dest_sizes'] = getimagesize('./' . $bg_min->dest);
 
-        $post->bg_pos = $bg_pos;
+            $post->background_mobile = $bg_min;
+        }
 
         $post->roles = $this->roles;
         $post->roles_ng = $this->participation;
 
-        CW::info(['Performance' => $post, $bgs, $summ]);
+        CW::info(['Performance' => $post]);
 
         return $post;
     }
