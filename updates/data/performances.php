@@ -22,18 +22,47 @@ return [
             "calendar_title_font_size" => "60px",
             "layouts" => [
                 1 => [
-                    'query' => '1920',
-                    'right' => 3,
-                    'left' => 3,
-                    'left_bg' => [
-                        1 => ['bg' => 6, 'position' => '304 top'],
-                        2 => ['bg' => 5, 'position' => '592 middle'],
-                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    'query' => '@media screen and (min-width: 1601px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                        4 => ['bg' => 4, 'position' => '592 left bottom'],
+                        5 => ['bg' => 5, 'position' => '592 left middle'],
+                        6 => ['bg' => 6, 'position' => '304 left top'],
                     ],
-                    'right_bg' => [
-                        1 => ['bg' => 1, 'position' => '960 top'],
-                        2 => ['bg' => 2, 'position' => '768 middle'],
-                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                ],
+                2 => [
+                    'query' => '@media screen and (min-width: 1441px) and (max-width: 1600px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                    ],
+                ],
+                3 => [
+                    'query' => '@media screen and (max-width: 1700px)',
+                    'bgs' => [
+                        1 => ['bg' => 6, 'position' => 'hidden'],
+                    ],
+                ],
+                4 => [
+                    'query' => '@media screen and (max-width: 1440px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right bottom'],
+                    ],
+                ],
+                5 => [
+                    'query' => '@media screen and (max-width: 1280px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right middle'],
+                        5 => ['bg' => 5, 'position' => '736 right bottom center'],
                     ],
                 ],
             ],
@@ -63,18 +92,47 @@ return [
             "calendar_title_font_size" => "60px",
             "layouts" => [
                 1 => [
-                    'query' => '1920',
-                    'right' => 3,
-                    'left' => 3,
-                    'left_bg' => [
-                        1 => ['bg' => 6, 'position' => '304 top'],
-                        2 => ['bg' => 5, 'position' => '592 middle'],
-                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    'query' => '@media screen and (min-width: 1601px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                        4 => ['bg' => 4, 'position' => '592 left bottom'],
+                        5 => ['bg' => 5, 'position' => '592 left middle'],
+                        6 => ['bg' => 6, 'position' => '304 left top'],
                     ],
-                    'right_bg' => [
-                        1 => ['bg' => 1, 'position' => '960 top'],
-                        2 => ['bg' => 2, 'position' => '768 middle'],
-                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                ],
+                2 => [
+                    'query' => '@media screen and (min-width: 1441px) and (max-width: 1600px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                    ],
+                ],
+                3 => [
+                    'query' => '@media screen and (max-width: 1700px)',
+                    'bgs' => [
+                        1 => ['bg' => 6, 'position' => 'hidden'],
+                    ],
+                ],
+                4 => [
+                    'query' => '@media screen and (max-width: 1440px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right bottom'],
+                    ],
+                ],
+                5 => [
+                    'query' => '@media screen and (max-width: 1280px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right middle'],
+                        5 => ['bg' => 5, 'position' => '736 right bottom center'],
                     ],
                 ],
             ],
@@ -104,18 +162,47 @@ return [
             "calendar_title_font_size" => "56px",
             "layouts" => [
                 1 => [
-                    'query' => '1920',
-                    'right' => 3,
-                    'left' => 3,
-                    'left_bg' => [
-                        1 => ['bg' => 6, 'position' => '304 top'],
-                        2 => ['bg' => 5, 'position' => '592 middle'],
-                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    'query' => '@media screen and (min-width: 1601px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                        4 => ['bg' => 4, 'position' => '592 left bottom'],
+                        5 => ['bg' => 5, 'position' => '592 left middle'],
+                        6 => ['bg' => 6, 'position' => '304 left top'],
                     ],
-                    'right_bg' => [
-                        1 => ['bg' => 1, 'position' => '960 top'],
-                        2 => ['bg' => 2, 'position' => '768 middle'],
-                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                ],
+                2 => [
+                    'query' => '@media screen and (min-width: 1441px) and (max-width: 1600px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                    ],
+                ],
+                3 => [
+                    'query' => '@media screen and (max-width: 1700px)',
+                    'bgs' => [
+                        1 => ['bg' => 6, 'position' => 'hidden'],
+                    ],
+                ],
+                4 => [
+                    'query' => '@media screen and (max-width: 1440px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right bottom'],
+                    ],
+                ],
+                5 => [
+                    'query' => '@media screen and (max-width: 1280px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right middle'],
+                        5 => ['bg' => 5, 'position' => '736 right bottom center'],
                     ],
                 ],
             ],
@@ -145,18 +232,47 @@ return [
             "calendar_title_font_size" => "60px",
             "layouts" => [
                 1 => [
-                    'query' => '1920',
-                    'right' => 3,
-                    'left' => 3,
-                    'left_bg' => [
-                        1 => ['bg' => 6, 'position' => '304 top'],
-                        2 => ['bg' => 5, 'position' => '592 middle'],
-                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    'query' => '@media screen and (min-width: 1601px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                        4 => ['bg' => 4, 'position' => '592 left bottom'],
+                        5 => ['bg' => 5, 'position' => '592 left middle'],
+                        6 => ['bg' => 6, 'position' => '304 left top'],
                     ],
-                    'right_bg' => [
-                        1 => ['bg' => 1, 'position' => '960 top'],
-                        2 => ['bg' => 2, 'position' => '768 middle'],
-                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                ],
+                2 => [
+                    'query' => '@media screen and (min-width: 1441px) and (max-width: 1600px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                    ],
+                ],
+                3 => [
+                    'query' => '@media screen and (max-width: 1700px)',
+                    'bgs' => [
+                        1 => ['bg' => 6, 'position' => 'hidden'],
+                    ],
+                ],
+                4 => [
+                    'query' => '@media screen and (max-width: 1440px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right bottom'],
+                    ],
+                ],
+                5 => [
+                    'query' => '@media screen and (max-width: 1280px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right middle'],
+                        5 => ['bg' => 5, 'position' => '736 right bottom center'],
                     ],
                 ],
             ],
@@ -186,18 +302,47 @@ return [
             "calendar_title_font_size" => "60px",
             "layouts" => [
                 1 => [
-                    'query' => '1920',
-                    'right' => 3,
-                    'left' => 3,
-                    'left_bg' => [
-                        1 => ['bg' => 6, 'position' => '304 top'],
-                        2 => ['bg' => 5, 'position' => '592 middle'],
-                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    'query' => '@media screen and (min-width: 1601px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                        4 => ['bg' => 4, 'position' => '592 left bottom'],
+                        5 => ['bg' => 5, 'position' => '592 left middle'],
+                        6 => ['bg' => 6, 'position' => '304 left top'],
                     ],
-                    'right_bg' => [
-                        1 => ['bg' => 1, 'position' => '960 top'],
-                        2 => ['bg' => 2, 'position' => '768 middle'],
-                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                ],
+                2 => [
+                    'query' => '@media screen and (min-width: 1441px) and (max-width: 1600px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                    ],
+                ],
+                3 => [
+                    'query' => '@media screen and (max-width: 1700px)',
+                    'bgs' => [
+                        1 => ['bg' => 6, 'position' => 'hidden'],
+                    ],
+                ],
+                4 => [
+                    'query' => '@media screen and (max-width: 1440px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right bottom'],
+                    ],
+                ],
+                5 => [
+                    'query' => '@media screen and (max-width: 1280px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right middle'],
+                        5 => ['bg' => 5, 'position' => '736 right bottom center'],
                     ],
                 ],
             ],
@@ -227,18 +372,47 @@ return [
             "calendar_title_font_size" => "60px",
             "layouts" => [
                 1 => [
-                    'query' => '1920',
-                    'right' => 3,
-                    'left' => 3,
-                    'left_bg' => [
-                        1 => ['bg' => 6, 'position' => '304 top'],
-                        2 => ['bg' => 5, 'position' => '592 middle'],
-                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    'query' => '@media screen and (min-width: 1601px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                        4 => ['bg' => 4, 'position' => '592 left bottom'],
+                        5 => ['bg' => 5, 'position' => '592 left middle'],
+                        6 => ['bg' => 6, 'position' => '304 left top'],
                     ],
-                    'right_bg' => [
-                        1 => ['bg' => 1, 'position' => '960 top'],
-                        2 => ['bg' => 2, 'position' => '768 middle'],
-                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                ],
+                2 => [
+                    'query' => '@media screen and (min-width: 1441px) and (max-width: 1600px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                    ],
+                ],
+                3 => [
+                    'query' => '@media screen and (max-width: 1700px)',
+                    'bgs' => [
+                        1 => ['bg' => 6, 'position' => 'hidden'],
+                    ],
+                ],
+                4 => [
+                    'query' => '@media screen and (max-width: 1440px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right bottom'],
+                    ],
+                ],
+                5 => [
+                    'query' => '@media screen and (max-width: 1280px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right middle'],
+                        5 => ['bg' => 5, 'position' => '736 right bottom center'],
                     ],
                 ],
             ],
@@ -268,18 +442,47 @@ return [
             "calendar_title_font_size" => "60px",
             "layouts" => [
                 1 => [
-                    'query' => '1920',
-                    'right' => 3,
-                    'left' => 3,
-                    'left_bg' => [
-                        1 => ['bg' => 6, 'position' => '304 top'],
-                        2 => ['bg' => 5, 'position' => '592 middle'],
-                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    'query' => '@media screen and (min-width: 1601px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                        4 => ['bg' => 4, 'position' => '592 left bottom'],
+                        5 => ['bg' => 5, 'position' => '592 left middle'],
+                        6 => ['bg' => 6, 'position' => '304 left top'],
                     ],
-                    'right_bg' => [
-                        1 => ['bg' => 1, 'position' => '960 top'],
-                        2 => ['bg' => 2, 'position' => '768 middle'],
-                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                ],
+                2 => [
+                    'query' => '@media screen and (min-width: 1441px) and (max-width: 1600px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                    ],
+                ],
+                3 => [
+                    'query' => '@media screen and (max-width: 1700px)',
+                    'bgs' => [
+                        1 => ['bg' => 6, 'position' => 'hidden'],
+                    ],
+                ],
+                4 => [
+                    'query' => '@media screen and (max-width: 1440px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right bottom'],
+                    ],
+                ],
+                5 => [
+                    'query' => '@media screen and (max-width: 1280px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right middle'],
+                        5 => ['bg' => 5, 'position' => '736 right bottom center'],
                     ],
                 ],
             ],
@@ -309,18 +512,47 @@ return [
             "calendar_title_font_size" => "60px",
             "layouts" => [
                 1 => [
-                    'query' => '1920',
-                    'right' => 3,
-                    'left' => 3,
-                    'left_bg' => [
-                        1 => ['bg' => 6, 'position' => '304 top'],
-                        2 => ['bg' => 5, 'position' => '592 middle'],
-                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    'query' => '@media screen and (min-width: 1601px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                        4 => ['bg' => 4, 'position' => '592 left bottom'],
+                        5 => ['bg' => 5, 'position' => '592 left middle'],
+                        6 => ['bg' => 6, 'position' => '304 left top'],
                     ],
-                    'right_bg' => [
-                        1 => ['bg' => 1, 'position' => '960 top'],
-                        2 => ['bg' => 2, 'position' => '768 middle'],
-                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                ],
+                2 => [
+                    'query' => '@media screen and (min-width: 1441px) and (max-width: 1600px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                    ],
+                ],
+                3 => [
+                    'query' => '@media screen and (max-width: 1700px)',
+                    'bgs' => [
+                        1 => ['bg' => 6, 'position' => 'hidden'],
+                    ],
+                ],
+                4 => [
+                    'query' => '@media screen and (max-width: 1440px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right bottom'],
+                    ],
+                ],
+                5 => [
+                    'query' => '@media screen and (max-width: 1280px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right middle'],
+                        5 => ['bg' => 5, 'position' => '736 right bottom center'],
                     ],
                 ],
             ],
@@ -350,18 +582,47 @@ return [
             "calendar_title_font_size" => "60px",
             "layouts" => [
                 1 => [
-                    'query' => '1920',
-                    'right' => 3,
-                    'left' => 3,
-                    'left_bg' => [
-                        1 => ['bg' => 6, 'position' => '304 top'],
-                        2 => ['bg' => 5, 'position' => '592 middle'],
-                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    'query' => '@media screen and (min-width: 1601px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                        4 => ['bg' => 4, 'position' => '592 left bottom'],
+                        5 => ['bg' => 5, 'position' => '592 left middle'],
+                        6 => ['bg' => 6, 'position' => '304 left top'],
                     ],
-                    'right_bg' => [
-                        1 => ['bg' => 1, 'position' => '960 top'],
-                        2 => ['bg' => 2, 'position' => '768 middle'],
-                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                ],
+                2 => [
+                    'query' => '@media screen and (min-width: 1441px) and (max-width: 1600px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                    ],
+                ],
+                3 => [
+                    'query' => '@media screen and (max-width: 1700px)',
+                    'bgs' => [
+                        1 => ['bg' => 6, 'position' => 'hidden'],
+                    ],
+                ],
+                4 => [
+                    'query' => '@media screen and (max-width: 1440px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right bottom'],
+                    ],
+                ],
+                5 => [
+                    'query' => '@media screen and (max-width: 1280px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right middle'],
+                        5 => ['bg' => 5, 'position' => '736 right bottom center'],
                     ],
                 ],
             ],
@@ -391,18 +652,47 @@ return [
             "calendar_title_font_size" => "50px",
             "layouts" => [
                 1 => [
-                    'query' => '1920',
-                    'right' => 3,
-                    'left' => 3,
-                    'left_bg' => [
-                        1 => ['bg' => 6, 'position' => '304 top'],
-                        2 => ['bg' => 5, 'position' => '592 middle'],
-                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    'query' => '@media screen and (min-width: 1601px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                        4 => ['bg' => 4, 'position' => '592 left bottom'],
+                        5 => ['bg' => 5, 'position' => '592 left middle'],
+                        6 => ['bg' => 6, 'position' => '304 left top'],
                     ],
-                    'right_bg' => [
-                        1 => ['bg' => 1, 'position' => '960 top'],
-                        2 => ['bg' => 2, 'position' => '768 middle'],
-                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                ],
+                2 => [
+                    'query' => '@media screen and (min-width: 1441px) and (max-width: 1600px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                    ],
+                ],
+                3 => [
+                    'query' => '@media screen and (max-width: 1700px)',
+                    'bgs' => [
+                        1 => ['bg' => 6, 'position' => 'hidden'],
+                    ],
+                ],
+                4 => [
+                    'query' => '@media screen and (max-width: 1440px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right bottom'],
+                    ],
+                ],
+                5 => [
+                    'query' => '@media screen and (max-width: 1280px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right middle'],
+                        5 => ['bg' => 5, 'position' => '736 right bottom center'],
                     ],
                 ],
             ],
@@ -432,18 +722,47 @@ return [
             "calendar_title_font_size" => "60px",
             "layouts" => [
                 1 => [
-                    'query' => '1920',
-                    'right' => 3,
-                    'left' => 3,
-                    'left_bg' => [
-                        1 => ['bg' => 6, 'position' => '304 top'],
-                        2 => ['bg' => 5, 'position' => '592 middle'],
-                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    'query' => '@media screen and (min-width: 1601px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                        4 => ['bg' => 4, 'position' => '592 left bottom'],
+                        5 => ['bg' => 5, 'position' => '592 left middle'],
+                        6 => ['bg' => 6, 'position' => '304 left top'],
                     ],
-                    'right_bg' => [
-                        1 => ['bg' => 1, 'position' => '960 top'],
-                        2 => ['bg' => 2, 'position' => '768 middle'],
-                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                ],
+                2 => [
+                    'query' => '@media screen and (min-width: 1441px) and (max-width: 1600px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                    ],
+                ],
+                3 => [
+                    'query' => '@media screen and (max-width: 1700px)',
+                    'bgs' => [
+                        1 => ['bg' => 6, 'position' => 'hidden'],
+                    ],
+                ],
+                4 => [
+                    'query' => '@media screen and (max-width: 1440px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right bottom'],
+                    ],
+                ],
+                5 => [
+                    'query' => '@media screen and (max-width: 1280px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right middle'],
+                        5 => ['bg' => 5, 'position' => '736 right bottom center'],
                     ],
                 ],
             ],
@@ -473,18 +792,47 @@ return [
             "calendar_title_font_size" => "56px",
             "layouts" => [
                 1 => [
-                    'query' => '1920',
-                    'right' => 3,
-                    'left' => 3,
-                    'left_bg' => [
-                        1 => ['bg' => 6, 'position' => '304 top'],
-                        2 => ['bg' => 5, 'position' => '592 middle'],
-                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    'query' => '@media screen and (min-width: 1601px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                        4 => ['bg' => 4, 'position' => '592 left bottom'],
+                        5 => ['bg' => 5, 'position' => '592 left middle'],
+                        6 => ['bg' => 6, 'position' => '304 left top'],
                     ],
-                    'right_bg' => [
-                        1 => ['bg' => 1, 'position' => '960 top'],
-                        2 => ['bg' => 2, 'position' => '768 middle'],
-                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                ],
+                2 => [
+                    'query' => '@media screen and (min-width: 1441px) and (max-width: 1600px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                    ],
+                ],
+                3 => [
+                    'query' => '@media screen and (max-width: 1700px)',
+                    'bgs' => [
+                        1 => ['bg' => 6, 'position' => 'hidden'],
+                    ],
+                ],
+                4 => [
+                    'query' => '@media screen and (max-width: 1440px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right bottom'],
+                    ],
+                ],
+                5 => [
+                    'query' => '@media screen and (max-width: 1280px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right middle'],
+                        5 => ['bg' => 5, 'position' => '736 right bottom center'],
                     ],
                 ],
             ],
@@ -514,18 +862,47 @@ return [
             "calendar_title_font_size" => "60px",
             "layouts" => [
                 1 => [
-                    'query' => '1920',
-                    'right' => 3,
-                    'left' => 3,
-                    'left_bg' => [
-                        1 => ['bg' => 6, 'position' => '304 top'],
-                        2 => ['bg' => 5, 'position' => '592 middle'],
-                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    'query' => '@media screen and (min-width: 1601px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                        4 => ['bg' => 4, 'position' => '592 left bottom'],
+                        5 => ['bg' => 5, 'position' => '592 left middle'],
+                        6 => ['bg' => 6, 'position' => '304 left top'],
                     ],
-                    'right_bg' => [
-                        1 => ['bg' => 1, 'position' => '960 top'],
-                        2 => ['bg' => 2, 'position' => '768 middle'],
-                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                ],
+                2 => [
+                    'query' => '@media screen and (min-width: 1441px) and (max-width: 1600px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                    ],
+                ],
+                3 => [
+                    'query' => '@media screen and (max-width: 1700px)',
+                    'bgs' => [
+                        1 => ['bg' => 6, 'position' => 'hidden'],
+                    ],
+                ],
+                4 => [
+                    'query' => '@media screen and (max-width: 1440px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right bottom'],
+                    ],
+                ],
+                5 => [
+                    'query' => '@media screen and (max-width: 1280px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right middle'],
+                        5 => ['bg' => 5, 'position' => '736 right bottom center'],
                     ],
                 ],
             ],
@@ -555,18 +932,47 @@ return [
             "calendar_title_font_size" => "56px",
             "layouts" => [
                 1 => [
-                    'query' => '1920',
-                    'right' => 3,
-                    'left' => 3,
-                    'left_bg' => [
-                        1 => ['bg' => 6, 'position' => '304 top'],
-                        2 => ['bg' => 5, 'position' => '592 middle'],
-                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    'query' => '@media screen and (min-width: 1601px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                        4 => ['bg' => 4, 'position' => '592 left bottom'],
+                        5 => ['bg' => 5, 'position' => '592 left middle'],
+                        6 => ['bg' => 6, 'position' => '304 left top'],
                     ],
-                    'right_bg' => [
-                        1 => ['bg' => 1, 'position' => '960 top'],
-                        2 => ['bg' => 2, 'position' => '768 middle'],
-                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                ],
+                2 => [
+                    'query' => '@media screen and (min-width: 1441px) and (max-width: 1600px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                    ],
+                ],
+                3 => [
+                    'query' => '@media screen and (max-width: 1700px)',
+                    'bgs' => [
+                        1 => ['bg' => 6, 'position' => 'hidden'],
+                    ],
+                ],
+                4 => [
+                    'query' => '@media screen and (max-width: 1440px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right bottom'],
+                    ],
+                ],
+                5 => [
+                    'query' => '@media screen and (max-width: 1280px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right middle'],
+                        5 => ['bg' => 5, 'position' => '736 right bottom center'],
                     ],
                 ],
             ],
@@ -596,18 +1002,47 @@ return [
             "calendar_title_font_size" => "60px",
             "layouts" => [
                 1 => [
-                    'query' => '1920',
-                    'right' => 3,
-                    'left' => 3,
-                    'left_bg' => [
-                        1 => ['bg' => 6, 'position' => '304 top'],
-                        2 => ['bg' => 5, 'position' => '592 middle'],
-                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    'query' => '@media screen and (min-width: 1601px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                        4 => ['bg' => 4, 'position' => '592 left bottom'],
+                        5 => ['bg' => 5, 'position' => '592 left middle'],
+                        6 => ['bg' => 6, 'position' => '304 left top'],
                     ],
-                    'right_bg' => [
-                        1 => ['bg' => 1, 'position' => '960 top'],
-                        2 => ['bg' => 2, 'position' => '768 middle'],
-                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                ],
+                2 => [
+                    'query' => '@media screen and (min-width: 1441px) and (max-width: 1600px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                    ],
+                ],
+                3 => [
+                    'query' => '@media screen and (max-width: 1700px)',
+                    'bgs' => [
+                        1 => ['bg' => 6, 'position' => 'hidden'],
+                    ],
+                ],
+                4 => [
+                    'query' => '@media screen and (max-width: 1440px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right bottom'],
+                    ],
+                ],
+                5 => [
+                    'query' => '@media screen and (max-width: 1280px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right middle'],
+                        5 => ['bg' => 5, 'position' => '736 right bottom center'],
                     ],
                 ],
             ],
@@ -637,18 +1072,47 @@ return [
             "calendar_title_font_size" => "60px",
             "layouts" => [
                 1 => [
-                    'query' => '1920',
-                    'right' => 3,
-                    'left' => 3,
-                    'left_bg' => [
-                        1 => ['bg' => 6, 'position' => '304 top'],
-                        2 => ['bg' => 5, 'position' => '592 middle'],
-                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    'query' => '@media screen and (min-width: 1601px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                        4 => ['bg' => 4, 'position' => '592 left bottom'],
+                        5 => ['bg' => 5, 'position' => '592 left middle'],
+                        6 => ['bg' => 6, 'position' => '304 left top'],
                     ],
-                    'right_bg' => [
-                        1 => ['bg' => 1, 'position' => '960 top'],
-                        2 => ['bg' => 2, 'position' => '768 middle'],
-                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                ],
+                2 => [
+                    'query' => '@media screen and (min-width: 1441px) and (max-width: 1600px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                    ],
+                ],
+                3 => [
+                    'query' => '@media screen and (max-width: 1700px)',
+                    'bgs' => [
+                        1 => ['bg' => 6, 'position' => 'hidden'],
+                    ],
+                ],
+                4 => [
+                    'query' => '@media screen and (max-width: 1440px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right bottom'],
+                    ],
+                ],
+                5 => [
+                    'query' => '@media screen and (max-width: 1280px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right middle'],
+                        5 => ['bg' => 5, 'position' => '736 right bottom center'],
                     ],
                 ],
             ],
@@ -678,18 +1142,47 @@ return [
             "calendar_title_font_size" => "60px",
             "layouts" => [
                 1 => [
-                    'query' => '1920',
-                    'right' => 3,
-                    'left' => 3,
-                    'left_bg' => [
-                        1 => ['bg' => 6, 'position' => '304 top'],
-                        2 => ['bg' => 5, 'position' => '592 middle'],
-                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    'query' => '@media screen and (min-width: 1601px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                        4 => ['bg' => 4, 'position' => '592 left bottom'],
+                        5 => ['bg' => 5, 'position' => '592 left middle'],
+                        6 => ['bg' => 6, 'position' => '304 left top'],
                     ],
-                    'right_bg' => [
-                        1 => ['bg' => 1, 'position' => '960 top'],
-                        2 => ['bg' => 2, 'position' => '768 middle'],
-                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                ],
+                2 => [
+                    'query' => '@media screen and (min-width: 1441px) and (max-width: 1600px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                    ],
+                ],
+                3 => [
+                    'query' => '@media screen and (max-width: 1700px)',
+                    'bgs' => [
+                        1 => ['bg' => 6, 'position' => 'hidden'],
+                    ],
+                ],
+                4 => [
+                    'query' => '@media screen and (max-width: 1440px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right bottom'],
+                    ],
+                ],
+                5 => [
+                    'query' => '@media screen and (max-width: 1280px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right middle'],
+                        5 => ['bg' => 5, 'position' => '736 right bottom center'],
                     ],
                 ],
             ],
@@ -719,18 +1212,47 @@ return [
             "calendar_title_font_size" => "50px",
             "layouts" => [
                 1 => [
-                    'query' => '1920',
-                    'right' => 3,
-                    'left' => 3,
-                    'left_bg' => [
-                        1 => ['bg' => 6, 'position' => '304 top'],
-                        2 => ['bg' => 5, 'position' => '592 middle'],
-                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    'query' => '@media screen and (min-width: 1601px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                        4 => ['bg' => 4, 'position' => '592 left bottom'],
+                        5 => ['bg' => 5, 'position' => '592 left middle'],
+                        6 => ['bg' => 6, 'position' => '304 left top'],
                     ],
-                    'right_bg' => [
-                        1 => ['bg' => 1, 'position' => '960 top'],
-                        2 => ['bg' => 2, 'position' => '768 middle'],
-                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                ],
+                2 => [
+                    'query' => '@media screen and (min-width: 1441px) and (max-width: 1600px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                    ],
+                ],
+                3 => [
+                    'query' => '@media screen and (max-width: 1700px)',
+                    'bgs' => [
+                        1 => ['bg' => 6, 'position' => 'hidden'],
+                    ],
+                ],
+                4 => [
+                    'query' => '@media screen and (max-width: 1440px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right bottom'],
+                    ],
+                ],
+                5 => [
+                    'query' => '@media screen and (max-width: 1280px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right middle'],
+                        5 => ['bg' => 5, 'position' => '736 right bottom center'],
                     ],
                 ],
             ],
@@ -760,18 +1282,47 @@ return [
             "calendar_title_font_size" => "60px",
             "layouts" => [
                 1 => [
-                    'query' => '1920',
-                    'right' => 3,
-                    'left' => 3,
-                    'left_bg' => [
-                        1 => ['bg' => 6, 'position' => '304 top'],
-                        2 => ['bg' => 5, 'position' => '592 middle'],
-                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    'query' => '@media screen and (min-width: 1601px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                        4 => ['bg' => 4, 'position' => '592 left bottom'],
+                        5 => ['bg' => 5, 'position' => '592 left middle'],
+                        6 => ['bg' => 6, 'position' => '304 left top'],
                     ],
-                    'right_bg' => [
-                        1 => ['bg' => 1, 'position' => '960 top'],
-                        2 => ['bg' => 2, 'position' => '768 middle'],
-                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                ],
+                2 => [
+                    'query' => '@media screen and (min-width: 1441px) and (max-width: 1600px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                    ],
+                ],
+                3 => [
+                    'query' => '@media screen and (max-width: 1700px)',
+                    'bgs' => [
+                        1 => ['bg' => 6, 'position' => 'hidden'],
+                    ],
+                ],
+                4 => [
+                    'query' => '@media screen and (max-width: 1440px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right bottom'],
+                    ],
+                ],
+                5 => [
+                    'query' => '@media screen and (max-width: 1280px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right middle'],
+                        5 => ['bg' => 5, 'position' => '736 right bottom center'],
                     ],
                 ],
             ],
@@ -801,18 +1352,47 @@ return [
             "calendar_title_font_size" => "60px",
             "layouts" => [
                 1 => [
-                    'query' => '1920',
-                    'right' => 3,
-                    'left' => 3,
-                    'left_bg' => [
-                        1 => ['bg' => 6, 'position' => '304 top'],
-                        2 => ['bg' => 5, 'position' => '592 middle'],
-                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    'query' => '@media screen and (min-width: 1601px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                        4 => ['bg' => 4, 'position' => '592 left bottom'],
+                        5 => ['bg' => 5, 'position' => '592 left middle'],
+                        6 => ['bg' => 6, 'position' => '304 left top'],
                     ],
-                    'right_bg' => [
-                        1 => ['bg' => 1, 'position' => '960 top'],
-                        2 => ['bg' => 2, 'position' => '768 middle'],
-                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                ],
+                2 => [
+                    'query' => '@media screen and (min-width: 1441px) and (max-width: 1600px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                    ],
+                ],
+                3 => [
+                    'query' => '@media screen and (max-width: 1700px)',
+                    'bgs' => [
+                        1 => ['bg' => 6, 'position' => 'hidden'],
+                    ],
+                ],
+                4 => [
+                    'query' => '@media screen and (max-width: 1440px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right bottom'],
+                    ],
+                ],
+                5 => [
+                    'query' => '@media screen and (max-width: 1280px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right middle'],
+                        5 => ['bg' => 5, 'position' => '736 right bottom center'],
                     ],
                 ],
             ],
@@ -842,18 +1422,47 @@ return [
             "calendar_title_font_size" => "60px",
             "layouts" => [
                 1 => [
-                    'query' => '1920',
-                    'right' => 3,
-                    'left' => 3,
-                    'left_bg' => [
-                        1 => ['bg' => 6, 'position' => '304 top'],
-                        2 => ['bg' => 5, 'position' => '592 middle'],
-                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    'query' => '@media screen and (min-width: 1601px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                        4 => ['bg' => 4, 'position' => '592 left bottom'],
+                        5 => ['bg' => 5, 'position' => '592 left middle'],
+                        6 => ['bg' => 6, 'position' => '304 left top'],
                     ],
-                    'right_bg' => [
-                        1 => ['bg' => 1, 'position' => '960 top'],
-                        2 => ['bg' => 2, 'position' => '768 middle'],
-                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                ],
+                2 => [
+                    'query' => '@media screen and (min-width: 1441px) and (max-width: 1600px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                    ],
+                ],
+                3 => [
+                    'query' => '@media screen and (max-width: 1700px)',
+                    'bgs' => [
+                        1 => ['bg' => 6, 'position' => 'hidden'],
+                    ],
+                ],
+                4 => [
+                    'query' => '@media screen and (max-width: 1440px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right bottom'],
+                    ],
+                ],
+                5 => [
+                    'query' => '@media screen and (max-width: 1280px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right middle'],
+                        5 => ['bg' => 5, 'position' => '736 right bottom center'],
                     ],
                 ],
             ],
@@ -883,18 +1492,47 @@ return [
             "calendar_title_font_size" => "60px",
             "layouts" => [
                 1 => [
-                    'query' => '1920',
-                    'right' => 3,
-                    'left' => 3,
-                    'left_bg' => [
-                        1 => ['bg' => 6, 'position' => '304 top'],
-                        2 => ['bg' => 5, 'position' => '592 middle'],
-                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    'query' => '@media screen and (min-width: 1601px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                        4 => ['bg' => 4, 'position' => '592 left bottom'],
+                        5 => ['bg' => 5, 'position' => '592 left middle'],
+                        6 => ['bg' => 6, 'position' => '304 left top'],
                     ],
-                    'right_bg' => [
-                        1 => ['bg' => 1, 'position' => '960 top'],
-                        2 => ['bg' => 2, 'position' => '768 middle'],
-                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                ],
+                2 => [
+                    'query' => '@media screen and (min-width: 1441px) and (max-width: 1600px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                    ],
+                ],
+                3 => [
+                    'query' => '@media screen and (max-width: 1700px)',
+                    'bgs' => [
+                        1 => ['bg' => 6, 'position' => 'hidden'],
+                    ],
+                ],
+                4 => [
+                    'query' => '@media screen and (max-width: 1440px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right bottom'],
+                    ],
+                ],
+                5 => [
+                    'query' => '@media screen and (max-width: 1280px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right middle'],
+                        5 => ['bg' => 5, 'position' => '736 right bottom center'],
                     ],
                 ],
             ],
@@ -924,18 +1562,47 @@ return [
             "calendar_title_font_size" => "56px",
             "layouts" => [
                 1 => [
-                    'query' => '1920',
-                    'right' => 3,
-                    'left' => 3,
-                    'left_bg' => [
-                        1 => ['bg' => 6, 'position' => '304 top'],
-                        2 => ['bg' => 5, 'position' => '592 middle'],
-                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    'query' => '@media screen and (min-width: 1601px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                        4 => ['bg' => 4, 'position' => '592 left bottom'],
+                        5 => ['bg' => 5, 'position' => '592 left middle'],
+                        6 => ['bg' => 6, 'position' => '304 left top'],
                     ],
-                    'right_bg' => [
-                        1 => ['bg' => 1, 'position' => '960 top'],
-                        2 => ['bg' => 2, 'position' => '768 middle'],
-                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                ],
+                2 => [
+                    'query' => '@media screen and (min-width: 1441px) and (max-width: 1600px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                    ],
+                ],
+                3 => [
+                    'query' => '@media screen and (max-width: 1700px)',
+                    'bgs' => [
+                        1 => ['bg' => 6, 'position' => 'hidden'],
+                    ],
+                ],
+                4 => [
+                    'query' => '@media screen and (max-width: 1440px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right bottom'],
+                    ],
+                ],
+                5 => [
+                    'query' => '@media screen and (max-width: 1280px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right middle'],
+                        5 => ['bg' => 5, 'position' => '736 right bottom center'],
                     ],
                 ],
             ],
@@ -965,18 +1632,47 @@ return [
             "calendar_title_font_size" => "60px",
             "layouts" => [
                 1 => [
-                    'query' => '1920',
-                    'right' => 3,
-                    'left' => 3,
-                    'left_bg' => [
-                        1 => ['bg' => 6, 'position' => '304 top'],
-                        2 => ['bg' => 5, 'position' => '592 middle'],
-                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    'query' => '@media screen and (min-width: 1601px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                        4 => ['bg' => 4, 'position' => '592 left bottom'],
+                        5 => ['bg' => 5, 'position' => '592 left middle'],
+                        6 => ['bg' => 6, 'position' => '304 left top'],
                     ],
-                    'right_bg' => [
-                        1 => ['bg' => 1, 'position' => '960 top'],
-                        2 => ['bg' => 2, 'position' => '768 middle'],
-                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                ],
+                2 => [
+                    'query' => '@media screen and (min-width: 1441px) and (max-width: 1600px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                    ],
+                ],
+                3 => [
+                    'query' => '@media screen and (max-width: 1700px)',
+                    'bgs' => [
+                        1 => ['bg' => 6, 'position' => 'hidden'],
+                    ],
+                ],
+                4 => [
+                    'query' => '@media screen and (max-width: 1440px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right bottom'],
+                    ],
+                ],
+                5 => [
+                    'query' => '@media screen and (max-width: 1280px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right middle'],
+                        5 => ['bg' => 5, 'position' => '736 right bottom center'],
                     ],
                 ],
             ],
@@ -1006,18 +1702,47 @@ return [
             "calendar_title_font_size" => "50px",
             "layouts" => [
                 1 => [
-                    'query' => '1920',
-                    'right' => 3,
-                    'left' => 3,
-                    'left_bg' => [
-                        1 => ['bg' => 6, 'position' => '304 top'],
-                        2 => ['bg' => 5, 'position' => '592 middle'],
-                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    'query' => '@media screen and (min-width: 1601px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                        4 => ['bg' => 4, 'position' => '592 left bottom'],
+                        5 => ['bg' => 5, 'position' => '592 left middle'],
+                        6 => ['bg' => 6, 'position' => '304 left top'],
                     ],
-                    'right_bg' => [
-                        1 => ['bg' => 1, 'position' => '960 top'],
-                        2 => ['bg' => 2, 'position' => '768 middle'],
-                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                ],
+                2 => [
+                    'query' => '@media screen and (min-width: 1441px) and (max-width: 1600px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                    ],
+                ],
+                3 => [
+                    'query' => '@media screen and (max-width: 1700px)',
+                    'bgs' => [
+                        1 => ['bg' => 6, 'position' => 'hidden'],
+                    ],
+                ],
+                4 => [
+                    'query' => '@media screen and (max-width: 1440px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right bottom'],
+                    ],
+                ],
+                5 => [
+                    'query' => '@media screen and (max-width: 1280px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right middle'],
+                        5 => ['bg' => 5, 'position' => '736 right bottom center'],
                     ],
                 ],
             ],
@@ -1047,18 +1772,47 @@ return [
             "calendar_title_font_size" => "60px",
             "layouts" => [
                 1 => [
-                    'query' => '1920',
-                    'right' => 3,
-                    'left' => 3,
-                    'left_bg' => [
-                        1 => ['bg' => 6, 'position' => '304 top'],
-                        2 => ['bg' => 5, 'position' => '592 middle'],
-                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    'query' => '@media screen and (min-width: 1601px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                        4 => ['bg' => 4, 'position' => '592 left bottom'],
+                        5 => ['bg' => 5, 'position' => '592 left middle'],
+                        6 => ['bg' => 6, 'position' => '304 left top'],
                     ],
-                    'right_bg' => [
-                        1 => ['bg' => 1, 'position' => '960 top'],
-                        2 => ['bg' => 2, 'position' => '768 middle'],
-                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                ],
+                2 => [
+                    'query' => '@media screen and (min-width: 1441px) and (max-width: 1600px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                    ],
+                ],
+                3 => [
+                    'query' => '@media screen and (max-width: 1700px)',
+                    'bgs' => [
+                        1 => ['bg' => 6, 'position' => 'hidden'],
+                    ],
+                ],
+                4 => [
+                    'query' => '@media screen and (max-width: 1440px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right bottom'],
+                    ],
+                ],
+                5 => [
+                    'query' => '@media screen and (max-width: 1280px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right middle'],
+                        5 => ['bg' => 5, 'position' => '736 right bottom center'],
                     ],
                 ],
             ],
@@ -1088,18 +1842,47 @@ return [
             "calendar_title_font_size" => "56px",
             "layouts" => [
                 1 => [
-                    'query' => '1920',
-                    'right' => 3,
-                    'left' => 3,
-                    'left_bg' => [
-                        1 => ['bg' => 6, 'position' => '304 top'],
-                        2 => ['bg' => 5, 'position' => '592 middle'],
-                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    'query' => '@media screen and (min-width: 1601px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                        4 => ['bg' => 4, 'position' => '592 left bottom'],
+                        5 => ['bg' => 5, 'position' => '592 left middle'],
+                        6 => ['bg' => 6, 'position' => '304 left top'],
                     ],
-                    'right_bg' => [
-                        1 => ['bg' => 1, 'position' => '960 top'],
-                        2 => ['bg' => 2, 'position' => '768 middle'],
-                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                ],
+                2 => [
+                    'query' => '@media screen and (min-width: 1441px) and (max-width: 1600px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                    ],
+                ],
+                3 => [
+                    'query' => '@media screen and (max-width: 1700px)',
+                    'bgs' => [
+                        1 => ['bg' => 6, 'position' => 'hidden'],
+                    ],
+                ],
+                4 => [
+                    'query' => '@media screen and (max-width: 1440px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right bottom'],
+                    ],
+                ],
+                5 => [
+                    'query' => '@media screen and (max-width: 1280px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right middle'],
+                        5 => ['bg' => 5, 'position' => '736 right bottom center'],
                     ],
                 ],
             ],
@@ -1129,18 +1912,47 @@ return [
             "calendar_title_font_size" => "50px",
             "layouts" => [
                 1 => [
-                    'query' => '1920',
-                    'right' => 3,
-                    'left' => 3,
-                    'left_bg' => [
-                        1 => ['bg' => 6, 'position' => '304 top'],
-                        2 => ['bg' => 5, 'position' => '592 middle'],
-                        3 => ['bg' => 4, 'position' => '592 bottom'],
+                    'query' => '@media screen and (min-width: 1601px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                        4 => ['bg' => 4, 'position' => '592 left bottom'],
+                        5 => ['bg' => 5, 'position' => '592 left middle'],
+                        6 => ['bg' => 6, 'position' => '304 left top'],
                     ],
-                    'right_bg' => [
-                        1 => ['bg' => 1, 'position' => '960 top'],
-                        2 => ['bg' => 2, 'position' => '768 middle'],
-                        3 => ['bg' => 3, 'position' => '768 bottom'],
+                ],
+                2 => [
+                    'query' => '@media screen and (min-width: 1441px) and (max-width: 1600px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '960 right top'],
+                        2 => ['bg' => 2, 'position' => '768 right middle center'],
+                        3 => ['bg' => 3, 'position' => '768 right bottom'],
+                    ],
+                ],
+                3 => [
+                    'query' => '@media screen and (max-width: 1700px)',
+                    'bgs' => [
+                        1 => ['bg' => 6, 'position' => 'hidden'],
+                    ],
+                ],
+                4 => [
+                    'query' => '@media screen and (max-width: 1440px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right bottom'],
+                    ],
+                ],
+                5 => [
+                    'query' => '@media screen and (max-width: 1280px)',
+                    'bgs' => [
+                        1 => ['bg' => 1, 'position' => '880 right top'],
+                        2 => ['bg' => 2, 'position' => '736 right middle center'],
+                        3 => ['bg' => 3, 'position' => '736 right middle'],
+                        4 => ['bg' => 4, 'position' => '736 right middle'],
+                        5 => ['bg' => 5, 'position' => '736 right bottom center'],
                     ],
                 ],
             ],

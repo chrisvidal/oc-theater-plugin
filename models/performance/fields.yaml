@@ -196,21 +196,12 @@ tabs:
             form:
                 fields:
                     query:
-                        label: Ширина макета
+                        label: MediaQuery
                         type: number
                         span: full
-                    left:
-                        label: Левая колонка
-                        type: number
-                        span: left
-                    right:
-                        label: Правая колонка
-                        type: number
-                        span: right
-                    left_bg:
-                        # label: Расположение картинки бэкграунда
+                    bgs:
                         type: repeater
-                        span: left
+                        span: full
                         form:
                             fields:
                                 bg:
@@ -220,19 +211,6 @@ tabs:
                                 position:
                                     label: Положение
                                     span: auto
-                                    comment: :Left :Top :Right :Bottom CSS format
-                    right_bg:
-                        type: repeater
-                        span: right
-                        form:
-                            fields:
-                                bg:
-                                    label: Номер картинки
-                                    type: number
-                                    span: auto
-                                position:
-                                    label: Положение
-                                    span: auto
-                                    comment: :Left :Top :Right :Bottom CSS format
+                                    comment: :Width :Top|:Middle|:Bottom :Right|:Left or :Hidden
 
 
