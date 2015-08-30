@@ -124,57 +124,9 @@ class Performance extends ComponentBase
         foreach ($bg_layouts as &$layout) {
             $layout['positions'] = $this->processBgs($layout['bgs'], $post->background);
         }
-        CW::info(['Layouts' => $bg_layouts]);
+        // CW::info(['Layouts' => $bg_layouts]);
 
         $post->bg_layouts = $bg_layouts;
-
-        // $bgs = [];
-        // $key = 0;
-
-        // $summ = [0];
-
-        // $bg = [
-        //     ['top right', 960],
-        //     ['middle right', 768],
-        //     ['bottom right', 768],
-        //     ['bottom left', 592],
-        //     ['middle left', 592],
-        //     ['top left', 304],
-        // ];
-
-        // $post->background->each(function($image) use (&$bgs, $bg, &$key, &$summ) {
-        //     $image['sizes'] = $sizes = getimagesize('./' . $image->getPath());
-        //     $bgs[] = [
-        //         'width'  => $sizes[0],
-        //         'height' => $sizes[1],
-        //         'class'  => $bg[$key][0],
-        //         'dest_width'  => $bg[$key][1],
-        //         'dest_height' => round($bg[$key][1]/$sizes[0]*$sizes[1]),
-        //     ];
-        //     $summ[$key+1] = $summ[$key] + $bgs[$key]['dest_height'];
-        //     $key++;
-        // });
-
-        // $count = count($bgs);
-        // foreach ($bgs as $pos => &$bg) {
-        //     $bg_pos[$pos] = [];
-        //     $i = $pos;
-        //     while ($i < $count) {
-        //         $bg_pos[$pos][$i] = [
-        //             'top'    => $summ[$pos],
-        //             'width'  => $bg['dest_width'],
-        //             'height' => $bg['dest_height'],
-        //             'bottom' => $summ[$i+1] - $bg['dest_height'] - $summ[$pos],
-        //             'all'    => $summ[$i+1],
-        //             'top_perc'    => $summ[$pos]/$summ[$i+1]*100 . '%',
-        //             'height_perc' => $bg['dest_height']/$summ[$i+1]*100 . '%',
-        //             'bottom_perc' => ($summ[$i+1] - $bg['dest_height'] - $summ[$pos])/$summ[$i+1]*100 . '%',
-        //         ];
-        //         $i++;
-        //     }
-        // }
-
-        // $post->bg_pos = $bg_pos;
 
         $post->roles = $this->roles;
         $post->roles_ng = $this->participation;
@@ -214,16 +166,23 @@ class Performance extends ComponentBase
                     'hidden' => 'true',
                 ];
             } else {
+                $class = [
+                    'column' => (count($_param) > 1) ? $_param[1] : null,
+                    'valign' => (count($_param) > 2) ? $_param[2] : null,
+                    'halign' => (count($_param) > 3) ? $_param[3] : null,
+                ];
                 $positions = [
                     'bg' => $bg,
                     'orig_width' => $sizes[0],
                     'orig_height' => $sizes[1],
                     'width'  => (count($_param) > 0) ? intval($_param[0], 10) : null,
                     'height' => (count($_param) > 0) ? round($_param[0]/$sizes[0]*$sizes[1]) : null,
-                    'column' => (count($_param) > 1) ? $_param[1] : null,
-                    'valign' => (count($_param) > 2) ? $_param[2] : null,
-                    'halign' => (count($_param) > 3) ? $_param[3] : null,
+                    'class' => join(' ', $class),
+                    // 'column' => (count($_param) > 1) ? $_param[1] : null,
+                    // 'valign' => (count($_param) > 2) ? $_param[2] : null,
+                    // 'halign' => (count($_param) > 3) ? $_param[3] : null,
                 ];
+                $positions += $class;
             }
 
             // CW::info(['Param' => $positions]);

@@ -175,20 +175,6 @@ tabs:
             tab: Meta
             label: Размер заголовка в календарном блоке на главной
             # span: right
-        # meta[bg_position]:
-        #     tab: Meta
-        #     label: Расположение картинки бэкграунда
-        #     type: repeater
-        #     form:
-        #         fields:
-        #             bg:
-        #                 label: Номер картинки
-        #                 type: number
-        #                 span: auto
-        #             position:
-        #                 label: Положение
-        #                 span: auto
-        #                 comment: :Left :Top :Right :Bottom CSS format
         meta[layouts]:
             tab: Meta
             label: Макеты
@@ -197,8 +183,14 @@ tabs:
                 fields:
                     query:
                         label: MediaQuery
-                        type: number
+                        type: dropdown
                         span: full
+                        options:
+                            w1920: 1920
+                            w1700: 1700
+                            w1600: 1600
+                            w1440: 1440
+                            w1280: 1280
                     bgs:
                         type: repeater
                         span: full
@@ -211,6 +203,6 @@ tabs:
                                 position:
                                     label: Положение
                                     span: auto
-                                    comment: :Width :Top|:Middle|:Bottom :Right|:Left or :Hidden
+                                    comment: :Width :Right|:Left :Top|:Middle|:Bottom
 
 

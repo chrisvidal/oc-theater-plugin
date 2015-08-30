@@ -345,13 +345,10 @@ class Performance extends Model
         return $categories;
     }
 
-    public static function listBgImages($keyValue = null, $fieldName = null)
-    {
-        // $images = File::where('model', get_class())->where('id')->select('id', 'title', 'slug')->get();
-
-        CW::info(['listBgImages' => [$keyValue, $fieldName]]);
-        return [$keyValue => $fieldName . $keyValue];
-    }
+    // public static function listBgImages($keyValue = null, $fieldName = null)
+    // {
+    //     return
+    // }
 
     /**
      * Handler for the pages.menuitem.getTypeInfo event.
