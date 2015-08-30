@@ -128,6 +128,8 @@ class Performance extends ComponentBase
 
         $post->bg_layouts = $bg_layouts;
 
+
+        // Roles
         $post->roles = $this->roles;
         $post->roles_ng = $this->participation;
 
@@ -135,11 +137,6 @@ class Performance extends ComponentBase
 
         return $post;
     }
-
-    // protected function loadEvents($post)
-    // {
-    //     $post->events();
-    // }
 
     protected function processBgs($params, $backgrounds)
     {
@@ -178,6 +175,7 @@ class Performance extends ComponentBase
                     'width'  => (count($_param) > 0) ? intval($_param[0], 10) : null,
                     'height' => (count($_param) > 0) ? round($_param[0]/$sizes[0]*$sizes[1]) : null,
                     'class' => join(' ', $class),
+                    'inc' => (count($_param) > 4) ? $_param[4] : null,
                     // 'column' => (count($_param) > 1) ? $_param[1] : null,
                     // 'valign' => (count($_param) > 2) ? $_param[2] : null,
                     // 'halign' => (count($_param) > 3) ? $_param[3] : null,
@@ -191,18 +189,14 @@ class Performance extends ComponentBase
         }
 
         $collection = collect($return);
-
         $columns = $collection->groupBy('column')->toArray();
-
-        // if ( $columns->count() > 1 )
-        //     $columns->left = $columns->left->reverse();
 
         $return = [];
 
         if (array_key_exists('right', $columns)) {
             $right = $columns['right'];
 
-            $right_height = $this->defineHeight($right);
+            $right_height = $this->defineHeight($right, 'right');
 
             // CW::info(['Right' => $right_height]);
 
@@ -214,11 +208,22 @@ class Performance extends ComponentBase
         if (array_key_exists('left', $columns)) {
             $left  = array_reverse($columns['left']);
 
-            $left_height = $this->defineHeight($left);
+            $left_height = $this->defineHeight($left, 'left');
 
             // CW::info(['Left' => $left_height]);
 
             foreach ($left_height as $key => $item) {
+                $return[] = $item;
+            }
+        }
+
+        if (array_key_exists('side', $columns)) {
+            $side  = $columns['side'];
+
+            foreach ($side as $key => $item) {
+                $item += [
+                    'height_perc' => '475px',
+                ];
                 $return[] = $item;
             }
         }
@@ -229,11 +234,21 @@ class Performance extends ComponentBase
         return $return;
     }
 
-    protected function defineHeight($list)
+    protected function defineHeight($list, $column)
     {
+
+        CW::info(['List' => $list]);
+
         $summ = [0];
+        if ($column == 'left' & $list[0]['width'] == '592')
+            $summ = [635];
+        if ($column == 'left' & $list[0]['width'] == '443')
+            $summ = [475];
+
         foreach ($list as $pos => $bg) {
             $summ[$pos+1] = $summ[$pos] + $bg['height'];
+            // if (array_key_exists('inc', $bg))
+            //     $summ[$pos+1] += $bg['inc'];
         }
 
         foreach ($list as $pos => &$bg) {
@@ -243,6 +258,7 @@ class Performance extends ComponentBase
                 'top_perc'    => $summ[$pos]/end($summ)*100 . '%',
                 'height_perc' => $bg['height']/end($summ)*100 . '%',
                 'bottom_perc' => (end($summ) - $bg['height'] - $summ[$pos])/end($summ)*100 . '%',
+                'summ' => $summ,
             ];
         }
 

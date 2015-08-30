@@ -181,16 +181,28 @@ tabs:
             type: repeater
             form:
                 fields:
-                    query:
-                        label: MediaQuery
+                    query[min]:
+                        label: Min Width
                         type: dropdown
-                        span: full
+                        span: left
                         options:
-                            w1920: 1920
-                            w1700: 1700
-                            w1600: 1600
-                            w1440: 1440
-                            w1280: 1280
+                            no: no
+                            1280: 1280
+                            1440: 1440
+                            1600: 1600
+                            1700: 1700
+                            1920: 1920
+                    query[max]:
+                        label: MaxWidth
+                        type: dropdown
+                        span: right
+                        options:
+                            no: no
+                            1280: 1280
+                            1440: 1440
+                            1600: 1600
+                            1700: 1700
+                            1920: 1920
                     bgs:
                         type: repeater
                         span: full
@@ -203,6 +215,6 @@ tabs:
                                 position:
                                     label: Положение
                                     span: auto
-                                    comment: :Width :Right|:Left :Top|:Middle|:Bottom
+                                    comment: :Width :Right|:Left|:Side :Top|:Middle|:Bottom
 
 
