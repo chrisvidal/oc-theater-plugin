@@ -132,6 +132,9 @@ class Performance extends ComponentBase
             preg_match('/.+?_(\d+)\.png/', $image->file_name, $matches);
             $width = $matches[1];
             $height = round($width/$image->sizes[0]*$image->sizes[1]);
+            $ratio = $width/$height;
+
+            $image['class'] = join(' ', $bg_data->where('key', strval($key))->lists('class'));
 
             // Read params
             $params = $bg_data->where('key', strval($key))->all();
@@ -146,22 +149,63 @@ class Performance extends ComponentBase
             foreach ($this->rules as $query => $columns) {
                 $rules['q' . $query] = [];
                 foreach ($columns as $column => $rule) {
-                    $rules['q' . $query][$column] = $this->processRule($query, $column, $width, $height, $rule, $params, $key);
+                    $rules['q' . $query][$column] = $this->processRule($query, $column, $width, $height, $rule, $params, $key, $ratio);
                 }
             }
 
-            CW::info(['Rules' => $rules]);
+            // CW::info(['Rules' => $rules]);
 
             $image['width']  = $width;
             $image['height'] = $height;
 
             $data = array_merge_recursive($data, $rules);
+
+
             // $data += $rules;
             // $image['class'] = join(' ', $class_names);
 
             $key++;
         });
 
+        foreach ($data as $query => $columns) {
+            foreach ($columns as $column => $rule) {
+                if ($column == 'side')
+                    continue;
+
+                $cols = collect($data[$query][$column]);
+
+                $sort = collect($data[$query][$column])->sortBy('sort')->values()->all();
+                $summ = $cols->sum('height');
+
+                if ($column == 'left') {
+                    $sort = collect($data[$query][$column])->sortBy('sort')->reverse()->values()->all();
+                    $summ = $cols->sum('height') + 475;
+                }
+
+                $top = 0;
+
+                foreach ($sort as $key => &$value) {
+
+                    if ($column == 'left' & $key == 0 && array_key_exists('height', $value)) {
+                        $value['height'] += 475;
+                        $value['padding_top'] = 475;
+                    }
+
+                    if (!array_key_exists('height', $value)) {
+                        CW::info($value);
+                        continue;
+                    }
+
+                    $value['height_perc'] = ($value['height'] / $summ * 100) . '%';
+                    $value['top'] = $top . '%';
+                    $top += $value['height_perc'];
+                }
+
+                $data[$query][$column] = $sort;
+
+
+            }
+        }
 
         $post->bg_query = collect($data)->groupBy('query');
         $post->bg_data = $data;
@@ -172,11 +216,12 @@ class Performance extends ComponentBase
         return $post;
     }
 
-    protected function processRule($query, $column, $width, $height, $rule, $params, $key)
+    protected function processRule($query, $column, $width, $height, $rule, $params, $key, $ratio)
     {
 
         $return = [];
 
+        $param_count = count($params);
 
         foreach ($params as $id => $param) {
 
@@ -186,8 +231,20 @@ class Performance extends ComponentBase
             // Clean param
             $param = array_filter($param);
 
-            if ( array_key_exists('query', $param) && $query != $param['query'])
+            if ( array_key_exists('params', $param) ) {
+                $_params = [];
+                foreach ($param['params'] as $entry) {
+                    $_params[$entry['param']] = $entry['value'];
+                }
+                $param = array_merge($param, $_params);
+                // CW::info(['param' => [$param, $_params]]);
+            }
+
+
+            if ( array_key_exists('query', $param) && $query > $param['query'] ) {
+                // CW::info(['reject' => [$param['query'], $query ]]);
                 continue;
+            }
 
             if (in_array($param['class'], ['rt', 'rm', 'rb']) & $column != 'right')
                 continue;
@@ -204,9 +261,10 @@ class Performance extends ComponentBase
 
             if ($rule == 'none') {
                 $return[] = [
-                    'class' => 'bg-' . ($key+1),
+                    'class' => '.bg-' . ($key+1) . '.' . $param['class'],
                     'display' => 'none',
                 ];
+                $this->rule_temp['display'] = 'none';
                 continue;
             }
 
@@ -216,6 +274,12 @@ class Performance extends ComponentBase
             else
                 $delta = $this->rule_temp['delta'] = $width / $rule['width'];
 
+            $sort = $id;
+            if ( array_key_exists('sort', $param) )
+                $sort = intval($param['sort'], 10);
+
+            $display = 'block';
+
             if ( array_key_exists('width', $param) ) {
                 if ( !(array_key_exists('param_id', $this->rule_temp) && $this->rule_temp['param_id'] == $id) ) {
 
@@ -224,23 +288,53 @@ class Performance extends ComponentBase
 
                     $delta = $this->rule_temp['delta'] = $param['width'] / $rule['width'];
                     $this->rule_temp['param_id'] = $id;
+                    $display = $this->rule_temp['display'] = 'block';
                 }
             }
 
-            $padding = round($query * $rule['percent'] - $rule['width'] * $delta);
+            if ( array_key_exists('display', $this->rule_temp) )
+                $display = $this->rule_temp['display'];
+
+            $width = round($rule['width'] * $delta);
+            $height = round($width / $ratio);
+            $padding = round($query * $rule['percent'] - $width);
 
             // if ( $column == 'left' && in_array($query, ['1622'])) {
             //     // CW::info([$width, $rule['width']]);
             //     $padding = round($rule['width'] * $delta);
             // }
 
-
-            $return[] =  [
-                'class' => 'bg-' . ($key+1),
-                'padding' => $padding,
-                'width' => round($rule['width'] * $delta),
-                'delta' => $delta,
+            $_ret = [
+                'id'      => $id,
+                'class'   => '.bg-' . ($key+1) . '.' . $param['class'],
+                'width'   => $width,
+                'height'  => $height,
+                'delta'   => $delta,
+                'sort'    => $sort,
+                'ratio'   => $ratio,
+                'display' => $display,
             ];
+
+
+            switch ($column) {
+                case 'left':
+                    $_ret['padding_right'] = array_key_exists('padding_right', $rule) ? $rule['padding_right'] : $padding;
+                    break;
+                case 'side':
+                    $_ret['padding_right'] = $padding;
+                    break;
+                case 'right':
+                    $_ret['padding_left'] = $padding;
+                    break;
+            }
+
+            if ($param_count > 1) {
+                $_ret['clean'] = 'true';
+                if (array_key_exists('clean', $rule))
+                    $_ret = array_merge($rule['clean'], $_ret);
+            }
+
+            $return[] =  $_ret;
 
         }
 
@@ -290,6 +384,7 @@ class Performance extends ComponentBase
             'left' => [
                 'width'   => 443,
                 'percent' => 0,
+                'padding_right' => 0,
                 'delta'   => 'width(param) / width(443)',
                 // 'width'   => 'width(443) * delta',
             ],
@@ -299,6 +394,13 @@ class Performance extends ComponentBase
                 'width'   => 725,
                 'padding' => 715,
                 'percent' => 1,
+                'clean' => [
+                    'padding' => 0,
+                    'right' => 0,
+                    'left' => 0,
+                    'vertical_align' => 'middle',
+                    'text_align' => 'right',
+                ],
                 'delta'   => 'width(param) / width(725)',
                 'padding' => '1440 * 100% - width(725) * delta',
             ],

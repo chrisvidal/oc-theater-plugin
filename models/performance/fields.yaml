@@ -222,6 +222,7 @@ tabs:
                                     type: dropdown
                                     span: left
                                     options:
+                                        sort: Порядок
                                         height: Высота
                                         top: Положение сверху
                                         bottom: Положение снизу
