@@ -175,46 +175,112 @@ tabs:
             tab: Meta
             label: Размер заголовка в календарном блоке на главной
             # span: right
-        meta[layouts]:
-            tab: Meta
-            label: Макеты
+
+
+        meta[backgrounds]:
+            tab: Бэкграунды
+            label: Бэкграунды
             type: repeater
             form:
                 fields:
-                    query[min]:
-                        label: Min Width
+                    key:
+                        label: Номер бэкграунда
                         type: dropdown
                         span: left
                         options:
-                            no: no
-                            1280: 1280
-                            1440: 1440
-                            1600: 1600
-                            1700: 1700
-                            1920: 1920
-                    query[max]:
-                        label: MaxWidth
+                            0: 01
+                            1: 02
+                            2: 03
+                            3: 04
+                            4: 05
+                            5: 06
+                    class:
+                        label: Позиция/Класс
                         type: dropdown
                         span: right
                         options:
-                            no: no
-                            1280: 1280
-                            1440: 1440
-                            1600: 1600
-                            1700: 1700
-                            1920: 1920
-                    bgs:
+                            rt: Right Top (01)
+                            rm: Right Middle (02)
+                            rb: Right Bottom (03)
+                            lb: Left Bottom (04)
+                            lm: Left Middle (05)
+                            ls: Left Side (06)
+                    query:
+                        label: Ширина макета (Медиазапрос)
+                        span: left
+                        default: all
+                    width:
+                        label: Ширина (px)
+                        span: right
+                    params:
+                        label: Параметры
                         type: repeater
                         span: full
                         form:
                             fields:
-                                bg:
-                                    label: Номер картинки
-                                    type: number
-                                    span: auto
-                                position:
-                                    label: Положение
-                                    span: auto
-                                    comment: :Width :Right|:Left|:Side :Top|:Middle|:Bottom
+                                param:
+                                    type: dropdown
+                                    span: left
+                                    options:
+                                        height: Высота
+                                        top: Положение сверху
+                                        bottom: Положение снизу
+                                        left: Положение слева
+                                        right: Положение справа
+                                        padding-left: Отступ слева
+                                        padding-right: Отступ справа
+                                        padding-top: Отступ сверху
+                                        padding-bottom: Отступ снизу
+                                        margin-left: Поле слева
+                                        margin-right: Поле справа
+                                        margin-top: Поле сверху
+                                        margin-bottom: Поле снизу
+                                        text-align: Выравнивание по горизонтали
+                                        vertical-align: Выравнивание по вертикали
+                                value:
+                                    span: right
+
+
+        # meta[layouts]:
+        #     tab: Meta
+        #     label: Макеты
+        #     type: repeater
+        #     form:
+        #         fields:
+        #             query[min]:
+        #                 label: Min Width
+        #                 type: dropdown
+        #                 span: left
+        #                 options:
+        #                     no: no
+        #                     1280: 1280
+        #                     1440: 1440
+        #                     1600: 1600
+        #                     1700: 1700
+        #                     1920: 1920
+        #             query[max]:
+        #                 label: MaxWidth
+        #                 type: dropdown
+        #                 span: right
+        #                 options:
+        #                     no: no
+        #                     1280: 1280
+        #                     1440: 1440
+        #                     1600: 1600
+        #                     1700: 1700
+        #                     1920: 1920
+        #             bgs:
+        #                 type: repeater
+        #                 span: full
+        #                 form:
+        #                     fields:
+        #                         bg:
+        #                             label: Номер картинки
+        #                             type: number
+        #                             span: auto
+        #                         position:
+        #                             label: Положение
+        #                             span: auto
+        #                             comment: :Width :Right|:Left|:Side :Top|:Middle|:Bottom
 
 

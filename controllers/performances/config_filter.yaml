@@ -1,0 +1,9 @@
+scopes:
+    is_published:
+        label: Скрыть не опубликованые
+        type: checkbox
+        scope: isPublished
+    main:
+        label: Основные
+        type: checkbox
+        scope: listMain

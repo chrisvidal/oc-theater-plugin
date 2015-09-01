@@ -203,6 +203,19 @@ class Performance extends Model
     }
 
     /**
+     * Scope listMain
+     */
+    public function scopeListMain($query)
+    {
+        return $query->whereHas('taxonomy', function($q) {
+            $q
+                ->where('slug', '=', 'spektakl')
+                ->orWhere('slug', '=', 'detskiy-spektakl')
+            ;
+        });
+    }
+
+    /**
      * Lists posts for the front end
      * @param  array $options Display options
      * @return self

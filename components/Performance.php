@@ -111,157 +111,218 @@ class Performance extends ComponentBase
             $press->setUrl($this->pressPage, $this->controller);
         });
 
-
-        // BACKGROUNDS
-
-        $post->background->each(function($image) {
-            $image['sizes'] = $sizes = getimagesize('./' . $image->getPath());
-        });
-
-        $bg_layouts = $post->meta['layouts'];
-
-
-        foreach ($bg_layouts as &$layout) {
-            $layout['positions'] = $this->processBgs($layout['bgs'], $post->background);
-        }
-        // CW::info(['Layouts' => $bg_layouts]);
-
-        $post->bg_layouts = $bg_layouts;
-
-
-        // Roles
+        // ROLES
         $post->roles = $this->roles;
         $post->roles_ng = $this->participation;
 
+
+        // BACKGROUNDS
+
+        $key = 0;
+        $bg = $post->background;
+        $bg_data = collect($post->meta['backgrounds']);
+
+        // $default = $this->$bg_default;
+        $data = [];
+
+        $bg->each(function($image) use (&$key, $bg_data, &$data){
+            $image['sizes'] = $sizes = getimagesize('./' . $image->getPath());
+
+            // Width from filename
+            preg_match('/.+?_(\d+)\.png/', $image->file_name, $matches);
+            $width = $matches[1];
+            $height = round($width/$image->sizes[0]*$image->sizes[1]);
+
+            // Read params
+            $params = $bg_data->where('key', strval($key))->all();
+
+            // Set dest array
+            $rules = [];
+
+            // Clean temp var
+            $this->rule_temp = [];
+
+            // Process image params for every rules (default turn)
+            foreach ($this->rules as $query => $columns) {
+                $rules['q' . $query] = [];
+                foreach ($columns as $column => $rule) {
+                    $rules['q' . $query][$column] = $this->processRule($query, $column, $width, $height, $rule, $params, $key);
+                }
+            }
+
+            CW::info(['Rules' => $rules]);
+
+            $image['width']  = $width;
+            $image['height'] = $height;
+
+            $data = array_merge_recursive($data, $rules);
+            // $data += $rules;
+            // $image['class'] = join(' ', $class_names);
+
+            $key++;
+        });
+
+
+        $post->bg_query = collect($data)->groupBy('query');
+        $post->bg_data = $data;
+
+        CW::info(['Data' => $data]);
         CW::info(['Performance' => $post]);
 
         return $post;
     }
 
-    protected function processBgs($params, $backgrounds)
+    protected function processRule($query, $column, $width, $height, $rule, $params, $key)
     {
+
         $return = [];
 
-        foreach ($params as $param) {
-            $_param = explode(' ', $param['position']);
 
-            $bg = $param['bg']-1;
+        foreach ($params as $id => $param) {
 
-            $background = $backgrounds->slice($bg,1)->first();
-            if (is_null($background)) {
-                CW::info('Background 5 is null');
-                // $positions = [
-                //     'hidden' = 'true';
-                // ];
+            // CW::info(['param' => $param]);
+            // return;
+
+            // Clean param
+            $param = array_filter($param);
+
+            if ( array_key_exists('query', $param) && $query != $param['query'])
+                continue;
+
+            if (in_array($param['class'], ['rt', 'rm', 'rb']) & $column != 'right')
+                continue;
+            if (in_array($param['class'], ['lt', 'lm', 'lb']) & $column != 'left')
+                continue;
+            if (in_array($param['class'], ['ls']) & $column != 'side')
+                continue;
+
+            if (array_key_exists('width', $this->rule_temp))
+                $width = $this->rule_temp['width'];
+            else
+                $rule_temp['width'] = $width;
+
+
+            if ($rule == 'none') {
+                $return[] = [
+                    'class' => 'bg-' . ($key+1),
+                    'display' => 'none',
+                ];
                 continue;
             }
 
-            $sizes = $background['sizes'];
 
-            if ( count($_param) == 1 && $_param[0] == 'hidden' ) {
-                $positions = [
-                    'hidden' => 'true',
-                ];
-            } else {
-                $class = [
-                    'column' => (count($_param) > 1) ? $_param[1] : null,
-                    'valign' => (count($_param) > 2) ? $_param[2] : null,
-                    'halign' => (count($_param) > 3) ? $_param[3] : null,
-                ];
-                $positions = [
-                    'bg' => $bg,
-                    'orig_width' => $sizes[0],
-                    'orig_height' => $sizes[1],
-                    'width'  => (count($_param) > 0) ? intval($_param[0], 10) : null,
-                    'height' => (count($_param) > 0) ? round($_param[0]/$sizes[0]*$sizes[1]) : null,
-                    'class' => join(' ', $class),
-                    'inc' => (count($_param) > 4) ? $_param[4] : null,
-                    // 'column' => (count($_param) > 1) ? $_param[1] : null,
-                    // 'valign' => (count($_param) > 2) ? $_param[2] : null,
-                    // 'halign' => (count($_param) > 3) ? $_param[3] : null,
-                ];
-                $positions += $class;
+            if (array_key_exists('delta', $this->rule_temp))
+                $delta = $this->rule_temp['delta'];
+            else
+                $delta = $this->rule_temp['delta'] = $width / $rule['width'];
+
+            if ( array_key_exists('width', $param) ) {
+                if ( !(array_key_exists('param_id', $this->rule_temp) && $this->rule_temp['param_id'] == $id) ) {
+
+                    if ($param['width'] > $width)
+                        $this->rule_temp['width'] = $param['width'];
+
+                    $delta = $this->rule_temp['delta'] = $param['width'] / $rule['width'];
+                    $this->rule_temp['param_id'] = $id;
+                }
             }
 
-            // CW::info(['Param' => $positions]);
-            $return[] = $positions;
+            $padding = round($query * $rule['percent'] - $rule['width'] * $delta);
 
-        }
-
-        $collection = collect($return);
-        $columns = $collection->groupBy('column')->toArray();
-
-        $return = [];
-
-        if (array_key_exists('right', $columns)) {
-            $right = $columns['right'];
-
-            $right_height = $this->defineHeight($right, 'right');
-
-            // CW::info(['Right' => $right_height]);
-
-            foreach ($right_height as $key => $item) {
-                $return[] = $item;
-            }
-        }
-
-        if (array_key_exists('left', $columns)) {
-            $left  = array_reverse($columns['left']);
-
-            $left_height = $this->defineHeight($left, 'left');
-
-            // CW::info(['Left' => $left_height]);
-
-            foreach ($left_height as $key => $item) {
-                $return[] = $item;
-            }
-        }
-
-        if (array_key_exists('side', $columns)) {
-            $side  = $columns['side'];
-
-            foreach ($side as $key => $item) {
-                $item += [
-                    'height_perc' => '475px',
-                ];
-                $return[] = $item;
-            }
-        }
+            // if ( $column == 'left' && in_array($query, ['1622'])) {
+            //     // CW::info([$width, $rule['width']]);
+            //     $padding = round($rule['width'] * $delta);
+            // }
 
 
-        // CW::info(['Cols' => $return]);
-
-        return $return;
-    }
-
-    protected function defineHeight($list, $column)
-    {
-
-        CW::info(['List' => $list]);
-
-        $summ = [0];
-        if ($column == 'left' & $list[0]['width'] == '592')
-            $summ = [635];
-        if ($column == 'left' & $list[0]['width'] == '443')
-            $summ = [475];
-
-        foreach ($list as $pos => $bg) {
-            $summ[$pos+1] = $summ[$pos] + $bg['height'];
-            // if (array_key_exists('inc', $bg))
-            //     $summ[$pos+1] += $bg['inc'];
-        }
-
-        foreach ($list as $pos => &$bg) {
-            $bg += [
-                'top'    => $summ[$pos],
-                'bottom' => end($summ) - $bg['height'] - $summ[$pos],
-                'top_perc'    => $summ[$pos]/end($summ)*100 . '%',
-                'height_perc' => $bg['height']/end($summ)*100 . '%',
-                'bottom_perc' => (end($summ) - $bg['height'] - $summ[$pos])/end($summ)*100 . '%',
-                'summ' => $summ,
+            $return[] =  [
+                'class' => 'bg-' . ($key+1),
+                'padding' => $padding,
+                'width' => round($rule['width'] * $delta),
+                'delta' => $delta,
             ];
+
         }
 
-        return $list;
+        return array_filter($return);
+
+        // $return['width'] = $width; // width for thumb
+        // $return['delta'] = $width / $rule['width'];
     }
+
+    protected $rule_temp = [];
+
+    protected $rules = [
+        '1920' => [
+            'right' => [
+                'width'   => 768,
+                'padding' => 192,
+                'percent' => 0.5,
+                'delta'   => 'width(file) / width(768)',
+                'padding' => '1920 * 50% - width(768) * delta',
+            ],
+            'left' => [
+                'width'   => 592,
+                'padding' => 368,
+                'percent' => 0.5,
+                'delta'   => 'width(file) / width(592)',
+                'padding' => '1920 * 50% - width(592) * delta',
+            ],
+            'side' => [
+                'width'   => 304,
+                'padding' => 656,
+                'percent' => 0.5,
+                'delta'   => 'width(file) / width(592)',
+                'padding' => '1920 * 50% - width(592) * delta',
+            ],
+        ],
+        '1700' => [
+            'side' => 'none',
+        ],
+        '1622' => [
+            'right' => [
+                'width'   => 619,
+                'padding' => 1003,
+                'percent' => 1,
+                'delta'   => 'width(param) / width(619)',
+                'padding' => '1622 * 100% - width(619) * delta',
+            ],
+            'left' => [
+                'width'   => 443,
+                'percent' => 0,
+                'delta'   => 'width(param) / width(443)',
+                // 'width'   => 'width(443) * delta',
+            ],
+        ],
+        '1440' => [
+            'right' => [
+                'width'   => 725,
+                'padding' => 715,
+                'percent' => 1,
+                'delta'   => 'width(param) / width(725)',
+                'padding' => '1440 * 100% - width(725) * delta',
+            ],
+            'left' => 'none',
+        ],
+        '1360' => [
+            'right' => [
+                'width'   => 690,
+                'padding' => 670,
+                'percent' => 1,
+                'delta'   => 'width(param) / width(690)',
+                'padding' => '1360 * 100% - width(690) * delta',
+            ],
+        ],
+        '1280' => [
+            'right' => [
+                'width'   => 610,
+                'padding' => 670,
+                'percent' => 1,
+                'delta'   => 'width(param) / width(610)',
+                'padding' => '1280 * 100% - width(610) * delta',
+            ],
+        ],
+    ];
+
+
 }

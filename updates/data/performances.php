@@ -20,73 +20,15 @@ return [
             "calendar_date_block_color" => "white",
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
-            "layouts" => [
-                1 => [
-                    'query' => [
-                        'min' => 1623,
-                        'max' => 1920,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '768 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '768 right middle center'],
-                        3 => ['bg' => 3, 'position' => '768 right bottom'],
-                        4 => ['bg' => 4, 'position' => '592 left bottom'],
-                        5 => ['bg' => 5, 'position' => '592 left middle'],
-                        6 => ['bg' => 6, 'position' => '304 side bottom'],
-                    ],
-                ],
-                2 => [
-                    'query' => [
-                        'min' => 1441,
-                        'max' => 1622,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '619 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '619 right middle center'],
-                        3 => ['bg' => 3, 'position' => '619 right bottom'],
-                        4 => ['bg' => 4, 'position' => '443 left bottom'],
-                        5 => ['bg' => 5, 'position' => '443 left middle'],
-                    ],
-                ],
-                3 => [
-                    'query' => [
-                        'min' => 1361,
-                        'max' => 1440,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '725 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '725 right middle center'],
-                        3 => ['bg' => 3, 'position' => '725 right bottom'],
-                    ],
-                ],
-                4 => [
-                    'query' => [
-                        'min' => 1281,
-                        'max' => 1360,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '648 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '648 right middle center'],
-                        3 => ['bg' => 3, 'position' => '648 right middle'],
-                        4 => ['bg' => 4, 'position' => '648 right bottom'],
-                    ],
-                ],
-                5 => [
-                    'query' => [
-                        'min' => 'no',
-                        'max' => 1280,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '610 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '610 right middle center'],
-                        3 => ['bg' => 3, 'position' => '610 right middle'],
-                        4 => ['bg' => 4, 'position' => '610 right bottom'],
-                    ],
-                ],
+            "backgrounds" => [
+                1 => ['key' => '0', 'class' => 'rt'],
+                2 => ['key' => '1', 'class' => 'rm'],
+                3 => ['key' => '2', 'class' => 'rb'],
+                4 => ['key' => '3', 'class' => 'lb'],
+                5 => ['key' => '4', 'class' => 'lm'],
+                6 => ['key' => '5', 'class' => 'ls'],
             ],
-            // "performance_bg_position" => [
-            //     1 => ["bg" => "1", "position" => ""],
-            // ],
+
         ],
     ],
     [
@@ -108,73 +50,15 @@ return [
             "calendar_date_block_color" => "white",
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
-            "layouts" => [
-                1 => [
-                    'query' => [
-                        'min' => 1623,
-                        'max' => 1920,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '768 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '768 right middle center'],
-                        3 => ['bg' => 3, 'position' => '768 right bottom'],
-                        4 => ['bg' => 4, 'position' => '592 left bottom'],
-                        5 => ['bg' => 5, 'position' => '592 left middle'],
-                        6 => ['bg' => 6, 'position' => '304 side bottom'],
-                    ],
-                ],
-                2 => [
-                    'query' => [
-                        'min' => 1441,
-                        'max' => 1622,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '619 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '619 right middle center'],
-                        3 => ['bg' => 3, 'position' => '619 right bottom'],
-                        4 => ['bg' => 4, 'position' => '443 left bottom'],
-                        5 => ['bg' => 5, 'position' => '443 left middle'],
-                    ],
-                ],
-                3 => [
-                    'query' => [
-                        'min' => 1361,
-                        'max' => 1440,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '725 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '725 right middle center'],
-                        3 => ['bg' => 3, 'position' => '725 right bottom'],
-                    ],
-                ],
-                4 => [
-                    'query' => [
-                        'min' => 1281,
-                        'max' => 1360,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '648 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '648 right middle center'],
-                        3 => ['bg' => 3, 'position' => '648 right middle'],
-                        4 => ['bg' => 4, 'position' => '648 right bottom'],
-                    ],
-                ],
-                5 => [
-                    'query' => [
-                        'min' => 'no',
-                        'max' => 1280,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '610 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '610 right middle center'],
-                        3 => ['bg' => 3, 'position' => '610 right middle'],
-                        4 => ['bg' => 4, 'position' => '610 right bottom'],
-                    ],
-                ],
+            "backgrounds" => [
+                1 => ['key' => '0', 'class' => 'rt'],
+                2 => ['key' => '1', 'class' => 'rm'],
+                3 => ['key' => '2', 'class' => 'rb'],
+                4 => ['key' => '3', 'class' => 'lb'],
+                5 => ['key' => '4', 'class' => 'lm'],
+                6 => ['key' => '5', 'class' => 'ls'],
             ],
-            // "performance_bg_position" => [
-            //     1 => ["bg" => "1", "position" => ""],
-            // ],
+
         ],
     ],
     [
@@ -196,73 +80,15 @@ return [
             "calendar_date_block_color" => "white",
             // "calendar_title" => "",
             "calendar_title_font_size" => "56px",
-            "layouts" => [
-                1 => [
-                    'query' => [
-                        'min' => 1623,
-                        'max' => 1920,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '768 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '768 right middle center'],
-                        3 => ['bg' => 3, 'position' => '768 right bottom'],
-                        4 => ['bg' => 4, 'position' => '592 left bottom'],
-                        5 => ['bg' => 5, 'position' => '592 left middle'],
-                        6 => ['bg' => 6, 'position' => '304 side bottom'],
-                    ],
-                ],
-                2 => [
-                    'query' => [
-                        'min' => 1441,
-                        'max' => 1622,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '619 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '619 right middle center'],
-                        3 => ['bg' => 3, 'position' => '619 right bottom'],
-                        4 => ['bg' => 4, 'position' => '443 left bottom'],
-                        5 => ['bg' => 5, 'position' => '443 left middle'],
-                    ],
-                ],
-                3 => [
-                    'query' => [
-                        'min' => 1361,
-                        'max' => 1440,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '725 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '725 right middle center'],
-                        3 => ['bg' => 3, 'position' => '725 right bottom'],
-                    ],
-                ],
-                4 => [
-                    'query' => [
-                        'min' => 1281,
-                        'max' => 1360,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '648 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '648 right middle center'],
-                        3 => ['bg' => 3, 'position' => '648 right middle'],
-                        4 => ['bg' => 4, 'position' => '648 right bottom'],
-                    ],
-                ],
-                5 => [
-                    'query' => [
-                        'min' => 'no',
-                        'max' => 1280,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '610 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '610 right middle center'],
-                        3 => ['bg' => 3, 'position' => '610 right middle'],
-                        4 => ['bg' => 4, 'position' => '610 right bottom'],
-                    ],
-                ],
+            "backgrounds" => [
+                1 => ['key' => '0', 'class' => 'rt'],
+                2 => ['key' => '1', 'class' => 'rm'],
+                3 => ['key' => '2', 'class' => 'rb'],
+                4 => ['key' => '3', 'class' => 'lb'],
+                5 => ['key' => '4', 'class' => 'lm'],
+                6 => ['key' => '5', 'class' => 'ls'],
             ],
-            // "performance_bg_position" => [
-            //     1 => ["bg" => "1", "position" => ""],
-            // ],
+
         ],
     ],
     [
@@ -284,73 +110,15 @@ return [
             "calendar_date_block_color" => "white",
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
-            "layouts" => [
-                1 => [
-                    'query' => [
-                        'min' => 1623,
-                        'max' => 1920,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '768 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '768 right middle center'],
-                        3 => ['bg' => 3, 'position' => '768 right bottom'],
-                        4 => ['bg' => 4, 'position' => '592 left bottom'],
-                        5 => ['bg' => 5, 'position' => '592 left middle'],
-                        6 => ['bg' => 6, 'position' => '304 side bottom'],
-                    ],
-                ],
-                2 => [
-                    'query' => [
-                        'min' => 1441,
-                        'max' => 1622,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '619 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '619 right middle center'],
-                        3 => ['bg' => 3, 'position' => '619 right bottom'],
-                        4 => ['bg' => 4, 'position' => '443 left bottom'],
-                        5 => ['bg' => 5, 'position' => '443 left middle'],
-                    ],
-                ],
-                3 => [
-                    'query' => [
-                        'min' => 1361,
-                        'max' => 1440,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '725 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '725 right middle center'],
-                        3 => ['bg' => 3, 'position' => '725 right bottom'],
-                    ],
-                ],
-                4 => [
-                    'query' => [
-                        'min' => 1281,
-                        'max' => 1360,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '648 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '648 right middle center'],
-                        3 => ['bg' => 3, 'position' => '648 right middle'],
-                        4 => ['bg' => 4, 'position' => '648 right bottom'],
-                    ],
-                ],
-                5 => [
-                    'query' => [
-                        'min' => 'no',
-                        'max' => 1280,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '610 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '610 right middle center'],
-                        3 => ['bg' => 3, 'position' => '610 right middle'],
-                        4 => ['bg' => 4, 'position' => '610 right bottom'],
-                    ],
-                ],
+            "backgrounds" => [
+                1 => ['key' => '0', 'class' => 'rt'],
+                2 => ['key' => '1', 'class' => 'rm'],
+                3 => ['key' => '2', 'class' => 'rb'],
+                4 => ['key' => '3', 'class' => 'lb'],
+                5 => ['key' => '4', 'class' => 'lm'],
+                6 => ['key' => '5', 'class' => 'ls'],
             ],
-            // "performance_bg_position" => [
-            //     1 => ["bg" => "1", "position" => ""],
-            // ],
+
         ],
     ],
     [
@@ -372,73 +140,15 @@ return [
             "calendar_date_block_color" => "white",
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
-            "layouts" => [
-                1 => [
-                    'query' => [
-                        'min' => 1623,
-                        'max' => 1920,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '768 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '768 right middle center'],
-                        3 => ['bg' => 3, 'position' => '768 right bottom'],
-                        4 => ['bg' => 4, 'position' => '592 left bottom'],
-                        5 => ['bg' => 5, 'position' => '592 left middle'],
-                        6 => ['bg' => 6, 'position' => '304 side bottom'],
-                    ],
-                ],
-                2 => [
-                    'query' => [
-                        'min' => 1441,
-                        'max' => 1622,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '619 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '619 right middle center'],
-                        3 => ['bg' => 3, 'position' => '619 right bottom'],
-                        4 => ['bg' => 4, 'position' => '443 left bottom'],
-                        5 => ['bg' => 5, 'position' => '443 left middle'],
-                    ],
-                ],
-                3 => [
-                    'query' => [
-                        'min' => 1361,
-                        'max' => 1440,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '725 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '725 right middle center'],
-                        3 => ['bg' => 3, 'position' => '725 right bottom'],
-                    ],
-                ],
-                4 => [
-                    'query' => [
-                        'min' => 1281,
-                        'max' => 1360,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '648 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '648 right middle center'],
-                        3 => ['bg' => 3, 'position' => '648 right middle'],
-                        4 => ['bg' => 4, 'position' => '648 right bottom'],
-                    ],
-                ],
-                5 => [
-                    'query' => [
-                        'min' => 'no',
-                        'max' => 1280,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '610 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '610 right middle center'],
-                        3 => ['bg' => 3, 'position' => '610 right middle'],
-                        4 => ['bg' => 4, 'position' => '610 right bottom'],
-                    ],
-                ],
+            "backgrounds" => [
+                1 => ['key' => '0', 'class' => 'rt'],
+                2 => ['key' => '1', 'class' => 'rm'],
+                3 => ['key' => '2', 'class' => 'rb'],
+                4 => ['key' => '3', 'class' => 'lb'],
+                5 => ['key' => '4', 'class' => 'lm'],
+                6 => ['key' => '5', 'class' => 'ls'],
             ],
-            // "performance_bg_position" => [
-            //     1 => ["bg" => "1", "position" => ""],
-            // ],
+
         ],
     ],
     [
@@ -460,73 +170,15 @@ return [
             "calendar_date_block_color" => "white",
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
-            "layouts" => [
-                1 => [
-                    'query' => [
-                        'min' => 1623,
-                        'max' => 1920,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '768 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '768 right middle center'],
-                        3 => ['bg' => 3, 'position' => '768 right bottom'],
-                        4 => ['bg' => 4, 'position' => '592 left bottom'],
-                        5 => ['bg' => 5, 'position' => '592 left middle'],
-                        6 => ['bg' => 6, 'position' => '304 side bottom'],
-                    ],
-                ],
-                2 => [
-                    'query' => [
-                        'min' => 1441,
-                        'max' => 1622,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '619 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '619 right middle center'],
-                        3 => ['bg' => 3, 'position' => '619 right bottom'],
-                        4 => ['bg' => 4, 'position' => '443 left bottom'],
-                        5 => ['bg' => 5, 'position' => '443 left middle'],
-                    ],
-                ],
-                3 => [
-                    'query' => [
-                        'min' => 1361,
-                        'max' => 1440,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '725 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '725 right middle center'],
-                        3 => ['bg' => 3, 'position' => '725 right bottom'],
-                    ],
-                ],
-                4 => [
-                    'query' => [
-                        'min' => 1281,
-                        'max' => 1360,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '648 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '648 right middle center'],
-                        3 => ['bg' => 3, 'position' => '648 right middle'],
-                        4 => ['bg' => 4, 'position' => '648 right bottom'],
-                    ],
-                ],
-                5 => [
-                    'query' => [
-                        'min' => 'no',
-                        'max' => 1280,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '610 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '610 right middle center'],
-                        3 => ['bg' => 3, 'position' => '610 right middle'],
-                        4 => ['bg' => 4, 'position' => '610 right bottom'],
-                    ],
-                ],
+            "backgrounds" => [
+                1 => ['key' => '0', 'class' => 'rt'],
+                2 => ['key' => '1', 'class' => 'rm'],
+                3 => ['key' => '2', 'class' => 'rb'],
+                4 => ['key' => '3', 'class' => 'lb'],
+                5 => ['key' => '4', 'class' => 'lm'],
+                6 => ['key' => '5', 'class' => 'ls'],
             ],
-            // "performance_bg_position" => [
-            //     1 => ["bg" => "1", "position" => ""],
-            // ],
+
         ],
     ],
     [
@@ -548,73 +200,15 @@ return [
             "calendar_date_block_color" => "black",
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
-            "layouts" => [
-                1 => [
-                    'query' => [
-                        'min' => 1623,
-                        'max' => 1920,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '768 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '768 right middle center'],
-                        3 => ['bg' => 3, 'position' => '768 right bottom'],
-                        4 => ['bg' => 4, 'position' => '592 left bottom'],
-                        5 => ['bg' => 5, 'position' => '592 left middle'],
-                        6 => ['bg' => 6, 'position' => '304 side bottom'],
-                    ],
-                ],
-                2 => [
-                    'query' => [
-                        'min' => 1441,
-                        'max' => 1622,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '619 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '619 right middle center'],
-                        3 => ['bg' => 3, 'position' => '619 right bottom'],
-                        4 => ['bg' => 4, 'position' => '443 left bottom'],
-                        5 => ['bg' => 5, 'position' => '443 left middle'],
-                    ],
-                ],
-                3 => [
-                    'query' => [
-                        'min' => 1361,
-                        'max' => 1440,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '725 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '725 right middle center'],
-                        3 => ['bg' => 3, 'position' => '725 right bottom'],
-                    ],
-                ],
-                4 => [
-                    'query' => [
-                        'min' => 1281,
-                        'max' => 1360,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '648 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '648 right middle center'],
-                        3 => ['bg' => 3, 'position' => '648 right middle'],
-                        4 => ['bg' => 4, 'position' => '648 right bottom'],
-                    ],
-                ],
-                5 => [
-                    'query' => [
-                        'min' => 'no',
-                        'max' => 1280,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '610 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '610 right middle center'],
-                        3 => ['bg' => 3, 'position' => '610 right middle'],
-                        4 => ['bg' => 4, 'position' => '610 right bottom'],
-                    ],
-                ],
+            "backgrounds" => [
+                1 => ['key' => '0', 'class' => 'rt'],
+                2 => ['key' => '1', 'class' => 'rm'],
+                3 => ['key' => '2', 'class' => 'rb'],
+                4 => ['key' => '3', 'class' => 'lb'],
+                5 => ['key' => '4', 'class' => 'lm'],
+                6 => ['key' => '5', 'class' => 'ls'],
             ],
-            // "performance_bg_position" => [
-            //     1 => ["bg" => "1", "position" => ""],
-            // ],
+
         ],
     ],
     [
@@ -636,73 +230,15 @@ return [
             "calendar_date_block_color" => "white",
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
-            "layouts" => [
-                1 => [
-                    'query' => [
-                        'min' => 1623,
-                        'max' => 1920,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '768 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '768 right middle center'],
-                        3 => ['bg' => 3, 'position' => '768 right bottom'],
-                        4 => ['bg' => 4, 'position' => '592 left bottom'],
-                        5 => ['bg' => 5, 'position' => '592 left middle'],
-                        6 => ['bg' => 6, 'position' => '304 side bottom'],
-                    ],
-                ],
-                2 => [
-                    'query' => [
-                        'min' => 1441,
-                        'max' => 1622,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '619 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '619 right middle center'],
-                        3 => ['bg' => 3, 'position' => '619 right bottom'],
-                        4 => ['bg' => 4, 'position' => '443 left bottom'],
-                        5 => ['bg' => 5, 'position' => '443 left middle'],
-                    ],
-                ],
-                3 => [
-                    'query' => [
-                        'min' => 1361,
-                        'max' => 1440,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '725 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '725 right middle center'],
-                        3 => ['bg' => 3, 'position' => '725 right bottom'],
-                    ],
-                ],
-                4 => [
-                    'query' => [
-                        'min' => 1281,
-                        'max' => 1360,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '648 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '648 right middle center'],
-                        3 => ['bg' => 3, 'position' => '648 right middle'],
-                        4 => ['bg' => 4, 'position' => '648 right bottom'],
-                    ],
-                ],
-                5 => [
-                    'query' => [
-                        'min' => 'no',
-                        'max' => 1280,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '610 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '610 right middle center'],
-                        3 => ['bg' => 3, 'position' => '610 right middle'],
-                        4 => ['bg' => 4, 'position' => '610 right bottom'],
-                    ],
-                ],
+            "backgrounds" => [
+                1 => ['key' => '0', 'class' => 'rt'],
+                2 => ['key' => '1', 'class' => 'rm'],
+                3 => ['key' => '2', 'class' => 'rb'],
+                4 => ['key' => '3', 'class' => 'lb'],
+                5 => ['key' => '4', 'class' => 'lm'],
+                6 => ['key' => '5', 'class' => 'ls'],
             ],
-            // "performance_bg_position" => [
-            //     1 => ["bg" => "1", "position" => ""],
-            // ],
+
         ],
     ],
     [
@@ -724,73 +260,15 @@ return [
             "calendar_date_block_color" => "white",
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
-            "layouts" => [
-                1 => [
-                    'query' => [
-                        'min' => 1623,
-                        'max' => 1920,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '768 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '768 right middle center'],
-                        3 => ['bg' => 3, 'position' => '768 right bottom'],
-                        4 => ['bg' => 4, 'position' => '592 left bottom'],
-                        5 => ['bg' => 5, 'position' => '592 left middle'],
-                        6 => ['bg' => 6, 'position' => '304 side bottom'],
-                    ],
-                ],
-                2 => [
-                    'query' => [
-                        'min' => 1441,
-                        'max' => 1622,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '619 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '619 right middle center'],
-                        3 => ['bg' => 3, 'position' => '619 right bottom'],
-                        4 => ['bg' => 4, 'position' => '443 left bottom'],
-                        5 => ['bg' => 5, 'position' => '443 left middle'],
-                    ],
-                ],
-                3 => [
-                    'query' => [
-                        'min' => 1361,
-                        'max' => 1440,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '725 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '725 right middle center'],
-                        3 => ['bg' => 3, 'position' => '725 right bottom'],
-                    ],
-                ],
-                4 => [
-                    'query' => [
-                        'min' => 1281,
-                        'max' => 1360,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '648 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '648 right middle center'],
-                        3 => ['bg' => 3, 'position' => '648 right middle'],
-                        4 => ['bg' => 4, 'position' => '648 right bottom'],
-                    ],
-                ],
-                5 => [
-                    'query' => [
-                        'min' => 'no',
-                        'max' => 1280,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '610 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '610 right middle center'],
-                        3 => ['bg' => 3, 'position' => '610 right middle'],
-                        4 => ['bg' => 4, 'position' => '610 right bottom'],
-                    ],
-                ],
+            "backgrounds" => [
+                1 => ['key' => '0', 'class' => 'rt'],
+                2 => ['key' => '1', 'class' => 'rm'],
+                3 => ['key' => '2', 'class' => 'rb'],
+                4 => ['key' => '3', 'class' => 'lb'],
+                5 => ['key' => '4', 'class' => 'lm'],
+                6 => ['key' => '5', 'class' => 'ls'],
             ],
-            // "performance_bg_position" => [
-            //     1 => ["bg" => "1", "position" => ""],
-            // ],
+
         ],
     ],
     [
@@ -812,73 +290,15 @@ return [
             "calendar_date_block_color" => "white",
             // "calendar_title" => "",
             "calendar_title_font_size" => "50px",
-            "layouts" => [
-                1 => [
-                    'query' => [
-                        'min' => 1623,
-                        'max' => 1920,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '768 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '768 right middle center'],
-                        3 => ['bg' => 3, 'position' => '768 right bottom'],
-                        4 => ['bg' => 4, 'position' => '592 left bottom'],
-                        5 => ['bg' => 5, 'position' => '592 left middle'],
-                        6 => ['bg' => 6, 'position' => '304 side bottom'],
-                    ],
-                ],
-                2 => [
-                    'query' => [
-                        'min' => 1441,
-                        'max' => 1622,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '619 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '619 right middle center'],
-                        3 => ['bg' => 3, 'position' => '619 right bottom'],
-                        4 => ['bg' => 4, 'position' => '443 left bottom'],
-                        5 => ['bg' => 5, 'position' => '443 left middle'],
-                    ],
-                ],
-                3 => [
-                    'query' => [
-                        'min' => 1361,
-                        'max' => 1440,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '725 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '725 right middle center'],
-                        3 => ['bg' => 3, 'position' => '725 right bottom'],
-                    ],
-                ],
-                4 => [
-                    'query' => [
-                        'min' => 1281,
-                        'max' => 1360,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '648 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '648 right middle center'],
-                        3 => ['bg' => 3, 'position' => '648 right middle'],
-                        4 => ['bg' => 4, 'position' => '648 right bottom'],
-                    ],
-                ],
-                5 => [
-                    'query' => [
-                        'min' => 'no',
-                        'max' => 1280,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '610 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '610 right middle center'],
-                        3 => ['bg' => 3, 'position' => '610 right middle'],
-                        4 => ['bg' => 4, 'position' => '610 right bottom'],
-                    ],
-                ],
+            "backgrounds" => [
+                1 => ['key' => '0', 'class' => 'rt'],
+                2 => ['key' => '1', 'class' => 'rm'],
+                3 => ['key' => '2', 'class' => 'rb'],
+                4 => ['key' => '3', 'class' => 'lb'],
+                5 => ['key' => '4', 'class' => 'lm'],
+                6 => ['key' => '5', 'class' => 'ls'],
             ],
-            // "performance_bg_position" => [
-            //     1 => ["bg" => "1", "position" => ""],
-            // ],
+
         ],
     ],
     [
@@ -900,73 +320,15 @@ return [
             "calendar_date_block_color" => "black",
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
-            "layouts" => [
-                1 => [
-                    'query' => [
-                        'min' => 1623,
-                        'max' => 1920,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '768 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '768 right middle center'],
-                        3 => ['bg' => 3, 'position' => '768 right bottom'],
-                        4 => ['bg' => 4, 'position' => '592 left bottom'],
-                        5 => ['bg' => 5, 'position' => '592 left middle'],
-                        6 => ['bg' => 6, 'position' => '304 side bottom'],
-                    ],
-                ],
-                2 => [
-                    'query' => [
-                        'min' => 1441,
-                        'max' => 1622,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '619 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '619 right middle center'],
-                        3 => ['bg' => 3, 'position' => '619 right bottom'],
-                        4 => ['bg' => 4, 'position' => '443 left bottom'],
-                        5 => ['bg' => 5, 'position' => '443 left middle'],
-                    ],
-                ],
-                3 => [
-                    'query' => [
-                        'min' => 1361,
-                        'max' => 1440,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '725 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '725 right middle center'],
-                        3 => ['bg' => 3, 'position' => '725 right bottom'],
-                    ],
-                ],
-                4 => [
-                    'query' => [
-                        'min' => 1281,
-                        'max' => 1360,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '648 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '648 right middle center'],
-                        3 => ['bg' => 3, 'position' => '648 right middle'],
-                        4 => ['bg' => 4, 'position' => '648 right bottom'],
-                    ],
-                ],
-                5 => [
-                    'query' => [
-                        'min' => 'no',
-                        'max' => 1280,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '610 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '610 right middle center'],
-                        3 => ['bg' => 3, 'position' => '610 right middle'],
-                        4 => ['bg' => 4, 'position' => '610 right bottom'],
-                    ],
-                ],
+            "backgrounds" => [
+                1 => ['key' => '0', 'class' => 'rt'],
+                2 => ['key' => '1', 'class' => 'rm'],
+                3 => ['key' => '2', 'class' => 'rb'],
+                4 => ['key' => '3', 'class' => 'lb'],
+                5 => ['key' => '4', 'class' => 'lm'],
+                6 => ['key' => '5', 'class' => 'ls'],
             ],
-            // "performance_bg_position" => [
-            //     1 => ["bg" => "1", "position" => ""],
-            // ],
+
         ],
     ],
     [
@@ -988,73 +350,15 @@ return [
             "calendar_date_block_color" => "white",
             // "calendar_title" => "",
             "calendar_title_font_size" => "56px",
-            "layouts" => [
-                1 => [
-                    'query' => [
-                        'min' => 1623,
-                        'max' => 1920,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '768 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '768 right middle center'],
-                        3 => ['bg' => 3, 'position' => '768 right bottom'],
-                        4 => ['bg' => 4, 'position' => '592 left bottom'],
-                        5 => ['bg' => 5, 'position' => '592 left middle'],
-                        6 => ['bg' => 6, 'position' => '304 side bottom'],
-                    ],
-                ],
-                2 => [
-                    'query' => [
-                        'min' => 1441,
-                        'max' => 1622,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '619 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '619 right middle center'],
-                        3 => ['bg' => 3, 'position' => '619 right bottom'],
-                        4 => ['bg' => 4, 'position' => '443 left bottom'],
-                        5 => ['bg' => 5, 'position' => '443 left middle'],
-                    ],
-                ],
-                3 => [
-                    'query' => [
-                        'min' => 1361,
-                        'max' => 1440,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '725 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '725 right middle center'],
-                        3 => ['bg' => 3, 'position' => '725 right bottom'],
-                    ],
-                ],
-                4 => [
-                    'query' => [
-                        'min' => 1281,
-                        'max' => 1360,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '648 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '648 right middle center'],
-                        3 => ['bg' => 3, 'position' => '648 right middle'],
-                        4 => ['bg' => 4, 'position' => '648 right bottom'],
-                    ],
-                ],
-                5 => [
-                    'query' => [
-                        'min' => 'no',
-                        'max' => 1280,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '610 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '610 right middle center'],
-                        3 => ['bg' => 3, 'position' => '610 right middle'],
-                        4 => ['bg' => 4, 'position' => '610 right bottom'],
-                    ],
-                ],
+            "backgrounds" => [
+                1 => ['key' => '0', 'class' => 'rt'],
+                2 => ['key' => '1', 'class' => 'rm'],
+                3 => ['key' => '2', 'class' => 'rb'],
+                4 => ['key' => '3', 'class' => 'lb'],
+                5 => ['key' => '4', 'class' => 'lm'],
+                6 => ['key' => '5', 'class' => 'ls'],
             ],
-            // "performance_bg_position" => [
-            //     1 => ["bg" => "1", "position" => ""],
-            // ],
+
         ],
     ],
     [
@@ -1076,73 +380,15 @@ return [
             "calendar_date_block_color" => "white",
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
-            "layouts" => [
-                1 => [
-                    'query' => [
-                        'min' => 1623,
-                        'max' => 1920,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '768 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '768 right middle center'],
-                        3 => ['bg' => 3, 'position' => '768 right bottom'],
-                        4 => ['bg' => 4, 'position' => '592 left bottom'],
-                        5 => ['bg' => 5, 'position' => '592 left middle'],
-                        6 => ['bg' => 6, 'position' => '304 side bottom'],
-                    ],
-                ],
-                2 => [
-                    'query' => [
-                        'min' => 1441,
-                        'max' => 1622,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '619 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '619 right middle center'],
-                        3 => ['bg' => 3, 'position' => '619 right bottom'],
-                        4 => ['bg' => 4, 'position' => '443 left bottom'],
-                        5 => ['bg' => 5, 'position' => '443 left middle'],
-                    ],
-                ],
-                3 => [
-                    'query' => [
-                        'min' => 1361,
-                        'max' => 1440,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '725 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '725 right middle center'],
-                        3 => ['bg' => 3, 'position' => '725 right bottom'],
-                    ],
-                ],
-                4 => [
-                    'query' => [
-                        'min' => 1281,
-                        'max' => 1360,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '648 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '648 right middle center'],
-                        3 => ['bg' => 3, 'position' => '648 right middle'],
-                        4 => ['bg' => 4, 'position' => '648 right bottom'],
-                    ],
-                ],
-                5 => [
-                    'query' => [
-                        'min' => 'no',
-                        'max' => 1280,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '610 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '610 right middle center'],
-                        3 => ['bg' => 3, 'position' => '610 right middle'],
-                        4 => ['bg' => 4, 'position' => '610 right bottom'],
-                    ],
-                ],
+            "backgrounds" => [
+                1 => ['key' => '0', 'class' => 'rt'],
+                2 => ['key' => '1', 'class' => 'rm'],
+                3 => ['key' => '2', 'class' => 'rb'],
+                4 => ['key' => '3', 'class' => 'lb'],
+                5 => ['key' => '4', 'class' => 'lm'],
+                6 => ['key' => '5', 'class' => 'ls'],
             ],
-            // "performance_bg_position" => [
-            //     1 => ["bg" => "1", "position" => ""],
-            // ],
+
         ],
     ],
     [
@@ -1164,73 +410,15 @@ return [
             "calendar_date_block_color" => "black",
             // "calendar_title" => "",
             "calendar_title_font_size" => "56px",
-            "layouts" => [
-                1 => [
-                    'query' => [
-                        'min' => 1623,
-                        'max' => 1920,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '768 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '768 right middle center'],
-                        3 => ['bg' => 3, 'position' => '768 right bottom'],
-                        4 => ['bg' => 4, 'position' => '592 left bottom'],
-                        5 => ['bg' => 5, 'position' => '592 left middle'],
-                        6 => ['bg' => 6, 'position' => '304 side bottom'],
-                    ],
-                ],
-                2 => [
-                    'query' => [
-                        'min' => 1441,
-                        'max' => 1622,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '619 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '619 right middle center'],
-                        3 => ['bg' => 3, 'position' => '619 right bottom'],
-                        4 => ['bg' => 4, 'position' => '443 left bottom'],
-                        5 => ['bg' => 5, 'position' => '443 left middle'],
-                    ],
-                ],
-                3 => [
-                    'query' => [
-                        'min' => 1361,
-                        'max' => 1440,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '725 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '725 right middle center'],
-                        3 => ['bg' => 3, 'position' => '725 right bottom'],
-                    ],
-                ],
-                4 => [
-                    'query' => [
-                        'min' => 1281,
-                        'max' => 1360,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '648 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '648 right middle center'],
-                        3 => ['bg' => 3, 'position' => '648 right middle'],
-                        4 => ['bg' => 4, 'position' => '648 right bottom'],
-                    ],
-                ],
-                5 => [
-                    'query' => [
-                        'min' => 'no',
-                        'max' => 1280,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '610 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '610 right middle center'],
-                        3 => ['bg' => 3, 'position' => '610 right middle'],
-                        4 => ['bg' => 4, 'position' => '610 right bottom'],
-                    ],
-                ],
+            "backgrounds" => [
+                1 => ['key' => '0', 'class' => 'rt'],
+                2 => ['key' => '1', 'class' => 'rm'],
+                3 => ['key' => '2', 'class' => 'rb'],
+                4 => ['key' => '3', 'class' => 'lb'],
+                5 => ['key' => '4', 'class' => 'lm'],
+                6 => ['key' => '5', 'class' => 'ls'],
             ],
-            // "performance_bg_position" => [
-            //     1 => ["bg" => "1", "position" => ""],
-            // ],
+
         ],
     ],
     [
@@ -1252,73 +440,15 @@ return [
             "calendar_date_block_color" => "white",
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
-            "layouts" => [
-                1 => [
-                    'query' => [
-                        'min' => 1623,
-                        'max' => 1920,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '768 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '768 right middle center'],
-                        3 => ['bg' => 3, 'position' => '768 right bottom'],
-                        4 => ['bg' => 4, 'position' => '592 left bottom'],
-                        5 => ['bg' => 5, 'position' => '592 left middle'],
-                        6 => ['bg' => 6, 'position' => '304 side bottom'],
-                    ],
-                ],
-                2 => [
-                    'query' => [
-                        'min' => 1441,
-                        'max' => 1622,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '619 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '619 right middle center'],
-                        3 => ['bg' => 3, 'position' => '619 right bottom'],
-                        4 => ['bg' => 4, 'position' => '443 left bottom'],
-                        5 => ['bg' => 5, 'position' => '443 left middle'],
-                    ],
-                ],
-                3 => [
-                    'query' => [
-                        'min' => 1361,
-                        'max' => 1440,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '725 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '725 right middle center'],
-                        3 => ['bg' => 3, 'position' => '725 right bottom'],
-                    ],
-                ],
-                4 => [
-                    'query' => [
-                        'min' => 1281,
-                        'max' => 1360,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '648 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '648 right middle center'],
-                        3 => ['bg' => 3, 'position' => '648 right middle'],
-                        4 => ['bg' => 4, 'position' => '648 right bottom'],
-                    ],
-                ],
-                5 => [
-                    'query' => [
-                        'min' => 'no',
-                        'max' => 1280,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '610 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '610 right middle center'],
-                        3 => ['bg' => 3, 'position' => '610 right middle'],
-                        4 => ['bg' => 4, 'position' => '610 right bottom'],
-                    ],
-                ],
+            "backgrounds" => [
+                1 => ['key' => '0', 'class' => 'rt'],
+                2 => ['key' => '1', 'class' => 'rm'],
+                3 => ['key' => '2', 'class' => 'rb'],
+                4 => ['key' => '3', 'class' => 'lb'],
+                5 => ['key' => '4', 'class' => 'lm'],
+                6 => ['key' => '5', 'class' => 'ls'],
             ],
-            // "performance_bg_position" => [
-            //     1 => ["bg" => "1", "position" => ""],
-            // ],
+
         ],
     ],
     [
@@ -1340,73 +470,15 @@ return [
             "calendar_date_block_color" => "white",
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
-            "layouts" => [
-                1 => [
-                    'query' => [
-                        'min' => 1623,
-                        'max' => 1920,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '768 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '768 right middle center'],
-                        3 => ['bg' => 3, 'position' => '768 right bottom'],
-                        4 => ['bg' => 4, 'position' => '592 left bottom'],
-                        5 => ['bg' => 5, 'position' => '592 left middle'],
-                        6 => ['bg' => 6, 'position' => '304 side bottom'],
-                    ],
-                ],
-                2 => [
-                    'query' => [
-                        'min' => 1441,
-                        'max' => 1622,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '619 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '619 right middle center'],
-                        3 => ['bg' => 3, 'position' => '619 right bottom'],
-                        4 => ['bg' => 4, 'position' => '443 left bottom'],
-                        5 => ['bg' => 5, 'position' => '443 left middle'],
-                    ],
-                ],
-                3 => [
-                    'query' => [
-                        'min' => 1361,
-                        'max' => 1440,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '725 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '725 right middle center'],
-                        3 => ['bg' => 3, 'position' => '725 right bottom'],
-                    ],
-                ],
-                4 => [
-                    'query' => [
-                        'min' => 1281,
-                        'max' => 1360,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '648 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '648 right middle center'],
-                        3 => ['bg' => 3, 'position' => '648 right middle'],
-                        4 => ['bg' => 4, 'position' => '648 right bottom'],
-                    ],
-                ],
-                5 => [
-                    'query' => [
-                        'min' => 'no',
-                        'max' => 1280,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '610 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '610 right middle center'],
-                        3 => ['bg' => 3, 'position' => '610 right middle'],
-                        4 => ['bg' => 4, 'position' => '610 right bottom'],
-                    ],
-                ],
+            "backgrounds" => [
+                1 => ['key' => '0', 'class' => 'rt'],
+                2 => ['key' => '1', 'class' => 'rm'],
+                3 => ['key' => '2', 'class' => 'rb'],
+                4 => ['key' => '3', 'class' => 'lb'],
+                5 => ['key' => '4', 'class' => 'lm'],
+                6 => ['key' => '5', 'class' => 'ls'],
             ],
-            // "performance_bg_position" => [
-            //     1 => ["bg" => "1", "position" => ""],
-            // ],
+
         ],
     ],
     [
@@ -1428,73 +500,15 @@ return [
             "calendar_date_block_color" => "black",
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
-            "layouts" => [
-                1 => [
-                    'query' => [
-                        'min' => 1623,
-                        'max' => 1920,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '768 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '768 right middle center'],
-                        3 => ['bg' => 3, 'position' => '768 right bottom'],
-                        4 => ['bg' => 4, 'position' => '592 left bottom'],
-                        5 => ['bg' => 5, 'position' => '592 left middle'],
-                        6 => ['bg' => 6, 'position' => '304 side bottom'],
-                    ],
-                ],
-                2 => [
-                    'query' => [
-                        'min' => 1441,
-                        'max' => 1622,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '619 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '619 right middle center'],
-                        3 => ['bg' => 3, 'position' => '619 right bottom'],
-                        4 => ['bg' => 4, 'position' => '443 left bottom'],
-                        5 => ['bg' => 5, 'position' => '443 left middle'],
-                    ],
-                ],
-                3 => [
-                    'query' => [
-                        'min' => 1361,
-                        'max' => 1440,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '725 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '725 right middle center'],
-                        3 => ['bg' => 3, 'position' => '725 right bottom'],
-                    ],
-                ],
-                4 => [
-                    'query' => [
-                        'min' => 1281,
-                        'max' => 1360,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '648 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '648 right middle center'],
-                        3 => ['bg' => 3, 'position' => '648 right middle'],
-                        4 => ['bg' => 4, 'position' => '648 right bottom'],
-                    ],
-                ],
-                5 => [
-                    'query' => [
-                        'min' => 'no',
-                        'max' => 1280,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '610 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '610 right middle center'],
-                        3 => ['bg' => 3, 'position' => '610 right middle'],
-                        4 => ['bg' => 4, 'position' => '610 right bottom'],
-                    ],
-                ],
+            "backgrounds" => [
+                1 => ['key' => '0', 'class' => 'rt'],
+                2 => ['key' => '1', 'class' => 'rm'],
+                3 => ['key' => '2', 'class' => 'rb'],
+                4 => ['key' => '3', 'class' => 'lb'],
+                5 => ['key' => '4', 'class' => 'lm'],
+                6 => ['key' => '5', 'class' => 'ls'],
             ],
-            // "performance_bg_position" => [
-            //     1 => ["bg" => "1", "position" => ""],
-            // ],
+
         ],
     ],
     [
@@ -1516,73 +530,15 @@ return [
             "calendar_date_block_color" => "white",
             // "calendar_title" => "",
             "calendar_title_font_size" => "50px",
-            "layouts" => [
-                1 => [
-                    'query' => [
-                        'min' => 1623,
-                        'max' => 1920,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '768 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '768 right middle center'],
-                        3 => ['bg' => 3, 'position' => '768 right bottom'],
-                        4 => ['bg' => 4, 'position' => '592 left bottom'],
-                        5 => ['bg' => 5, 'position' => '592 left middle'],
-                        6 => ['bg' => 6, 'position' => '304 side bottom'],
-                    ],
-                ],
-                2 => [
-                    'query' => [
-                        'min' => 1441,
-                        'max' => 1622,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '619 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '619 right middle center'],
-                        3 => ['bg' => 3, 'position' => '619 right bottom'],
-                        4 => ['bg' => 4, 'position' => '443 left bottom'],
-                        5 => ['bg' => 5, 'position' => '443 left middle'],
-                    ],
-                ],
-                3 => [
-                    'query' => [
-                        'min' => 1361,
-                        'max' => 1440,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '725 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '725 right middle center'],
-                        3 => ['bg' => 3, 'position' => '725 right bottom'],
-                    ],
-                ],
-                4 => [
-                    'query' => [
-                        'min' => 1281,
-                        'max' => 1360,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '648 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '648 right middle center'],
-                        3 => ['bg' => 3, 'position' => '648 right middle'],
-                        4 => ['bg' => 4, 'position' => '648 right bottom'],
-                    ],
-                ],
-                5 => [
-                    'query' => [
-                        'min' => 'no',
-                        'max' => 1280,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '610 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '610 right middle center'],
-                        3 => ['bg' => 3, 'position' => '610 right middle'],
-                        4 => ['bg' => 4, 'position' => '610 right bottom'],
-                    ],
-                ],
+            "backgrounds" => [
+                1 => ['key' => '0', 'class' => 'rt'],
+                2 => ['key' => '1', 'class' => 'rm'],
+                3 => ['key' => '2', 'class' => 'rb'],
+                4 => ['key' => '3', 'class' => 'lb'],
+                5 => ['key' => '4', 'class' => 'lm'],
+                6 => ['key' => '5', 'class' => 'ls'],
             ],
-            // "performance_bg_position" => [
-            //     1 => ["bg" => "1", "position" => ""],
-            // ],
+
         ],
     ],
     [
@@ -1604,73 +560,15 @@ return [
             "calendar_date_block_color" => "white",
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
-            "layouts" => [
-                1 => [
-                    'query' => [
-                        'min' => 1623,
-                        'max' => 1920,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '768 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '768 right middle center'],
-                        3 => ['bg' => 3, 'position' => '768 right bottom'],
-                        4 => ['bg' => 4, 'position' => '592 left bottom'],
-                        5 => ['bg' => 5, 'position' => '592 left middle'],
-                        6 => ['bg' => 6, 'position' => '304 side bottom'],
-                    ],
-                ],
-                2 => [
-                    'query' => [
-                        'min' => 1441,
-                        'max' => 1622,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '619 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '619 right middle center'],
-                        3 => ['bg' => 3, 'position' => '619 right bottom'],
-                        4 => ['bg' => 4, 'position' => '443 left bottom'],
-                        5 => ['bg' => 5, 'position' => '443 left middle'],
-                    ],
-                ],
-                3 => [
-                    'query' => [
-                        'min' => 1361,
-                        'max' => 1440,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '725 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '725 right middle center'],
-                        3 => ['bg' => 3, 'position' => '725 right bottom'],
-                    ],
-                ],
-                4 => [
-                    'query' => [
-                        'min' => 1281,
-                        'max' => 1360,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '648 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '648 right middle center'],
-                        3 => ['bg' => 3, 'position' => '648 right middle'],
-                        4 => ['bg' => 4, 'position' => '648 right bottom'],
-                    ],
-                ],
-                5 => [
-                    'query' => [
-                        'min' => 'no',
-                        'max' => 1280,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '610 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '610 right middle center'],
-                        3 => ['bg' => 3, 'position' => '610 right middle'],
-                        4 => ['bg' => 4, 'position' => '610 right bottom'],
-                    ],
-                ],
+            "backgrounds" => [
+                1 => ['key' => '0', 'class' => 'rt'],
+                2 => ['key' => '1', 'class' => 'rm'],
+                3 => ['key' => '2', 'class' => 'rb'],
+                4 => ['key' => '3', 'class' => 'lb'],
+                5 => ['key' => '4', 'class' => 'lm'],
+                6 => ['key' => '5', 'class' => 'ls'],
             ],
-            // "performance_bg_position" => [
-            //     1 => ["bg" => "1", "position" => ""],
-            // ],
+
         ],
     ],
     [
@@ -1692,73 +590,15 @@ return [
             "calendar_date_block_color" => "white",
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
-            "layouts" => [
-                1 => [
-                    'query' => [
-                        'min' => 1623,
-                        'max' => 1920,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '768 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '768 right middle center'],
-                        3 => ['bg' => 3, 'position' => '768 right bottom'],
-                        4 => ['bg' => 4, 'position' => '592 left bottom'],
-                        5 => ['bg' => 5, 'position' => '592 left middle'],
-                        6 => ['bg' => 6, 'position' => '304 side bottom'],
-                    ],
-                ],
-                2 => [
-                    'query' => [
-                        'min' => 1441,
-                        'max' => 1622,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '619 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '619 right middle center'],
-                        3 => ['bg' => 3, 'position' => '619 right bottom'],
-                        4 => ['bg' => 4, 'position' => '443 left bottom'],
-                        5 => ['bg' => 5, 'position' => '443 left middle'],
-                    ],
-                ],
-                3 => [
-                    'query' => [
-                        'min' => 1361,
-                        'max' => 1440,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '725 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '725 right middle center'],
-                        3 => ['bg' => 3, 'position' => '725 right bottom'],
-                    ],
-                ],
-                4 => [
-                    'query' => [
-                        'min' => 1281,
-                        'max' => 1360,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '648 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '648 right middle center'],
-                        3 => ['bg' => 3, 'position' => '648 right middle'],
-                        4 => ['bg' => 4, 'position' => '648 right bottom'],
-                    ],
-                ],
-                5 => [
-                    'query' => [
-                        'min' => 'no',
-                        'max' => 1280,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '610 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '610 right middle center'],
-                        3 => ['bg' => 3, 'position' => '610 right middle'],
-                        4 => ['bg' => 4, 'position' => '610 right bottom'],
-                    ],
-                ],
+            "backgrounds" => [
+                1 => ['key' => '0', 'class' => 'rt'],
+                2 => ['key' => '1', 'class' => 'rm'],
+                3 => ['key' => '2', 'class' => 'rb'],
+                4 => ['key' => '3', 'class' => 'lb'],
+                5 => ['key' => '4', 'class' => 'lm'],
+                6 => ['key' => '5', 'class' => 'ls'],
             ],
-            // "performance_bg_position" => [
-            //     1 => ["bg" => "1", "position" => ""],
-            // ],
+
         ],
     ],
     [
@@ -1780,73 +620,15 @@ return [
             "calendar_date_block_color" => "white",
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
-            "layouts" => [
-                1 => [
-                    'query' => [
-                        'min' => 1623,
-                        'max' => 1920,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '768 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '768 right middle center'],
-                        3 => ['bg' => 3, 'position' => '768 right bottom'],
-                        4 => ['bg' => 4, 'position' => '592 left bottom'],
-                        5 => ['bg' => 5, 'position' => '592 left middle'],
-                        6 => ['bg' => 6, 'position' => '304 side bottom'],
-                    ],
-                ],
-                2 => [
-                    'query' => [
-                        'min' => 1441,
-                        'max' => 1622,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '619 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '619 right middle center'],
-                        3 => ['bg' => 3, 'position' => '619 right bottom'],
-                        4 => ['bg' => 4, 'position' => '443 left bottom'],
-                        5 => ['bg' => 5, 'position' => '443 left middle'],
-                    ],
-                ],
-                3 => [
-                    'query' => [
-                        'min' => 1361,
-                        'max' => 1440,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '725 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '725 right middle center'],
-                        3 => ['bg' => 3, 'position' => '725 right bottom'],
-                    ],
-                ],
-                4 => [
-                    'query' => [
-                        'min' => 1281,
-                        'max' => 1360,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '648 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '648 right middle center'],
-                        3 => ['bg' => 3, 'position' => '648 right middle'],
-                        4 => ['bg' => 4, 'position' => '648 right bottom'],
-                    ],
-                ],
-                5 => [
-                    'query' => [
-                        'min' => 'no',
-                        'max' => 1280,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '610 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '610 right middle center'],
-                        3 => ['bg' => 3, 'position' => '610 right middle'],
-                        4 => ['bg' => 4, 'position' => '610 right bottom'],
-                    ],
-                ],
+            "backgrounds" => [
+                1 => ['key' => '0', 'class' => 'rt'],
+                2 => ['key' => '1', 'class' => 'rm'],
+                3 => ['key' => '2', 'class' => 'rb'],
+                4 => ['key' => '3', 'class' => 'lb'],
+                5 => ['key' => '4', 'class' => 'lm'],
+                6 => ['key' => '5', 'class' => 'ls'],
             ],
-            // "performance_bg_position" => [
-            //     1 => ["bg" => "1", "position" => ""],
-            // ],
+
         ],
     ],
     [
@@ -1868,73 +650,15 @@ return [
             "calendar_date_block_color" => "white",
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
-            "layouts" => [
-                1 => [
-                    'query' => [
-                        'min' => 1623,
-                        'max' => 1920,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '768 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '768 right middle center'],
-                        3 => ['bg' => 3, 'position' => '768 right bottom'],
-                        4 => ['bg' => 4, 'position' => '592 left bottom'],
-                        5 => ['bg' => 5, 'position' => '592 left middle'],
-                        6 => ['bg' => 6, 'position' => '304 side bottom'],
-                    ],
-                ],
-                2 => [
-                    'query' => [
-                        'min' => 1441,
-                        'max' => 1622,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '619 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '619 right middle center'],
-                        3 => ['bg' => 3, 'position' => '619 right bottom'],
-                        4 => ['bg' => 4, 'position' => '443 left bottom'],
-                        5 => ['bg' => 5, 'position' => '443 left middle'],
-                    ],
-                ],
-                3 => [
-                    'query' => [
-                        'min' => 1361,
-                        'max' => 1440,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '725 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '725 right middle center'],
-                        3 => ['bg' => 3, 'position' => '725 right bottom'],
-                    ],
-                ],
-                4 => [
-                    'query' => [
-                        'min' => 1281,
-                        'max' => 1360,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '648 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '648 right middle center'],
-                        3 => ['bg' => 3, 'position' => '648 right middle'],
-                        4 => ['bg' => 4, 'position' => '648 right bottom'],
-                    ],
-                ],
-                5 => [
-                    'query' => [
-                        'min' => 'no',
-                        'max' => 1280,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '610 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '610 right middle center'],
-                        3 => ['bg' => 3, 'position' => '610 right middle'],
-                        4 => ['bg' => 4, 'position' => '610 right bottom'],
-                    ],
-                ],
+            "backgrounds" => [
+                1 => ['key' => '0', 'class' => 'rt'],
+                2 => ['key' => '1', 'class' => 'rm'],
+                3 => ['key' => '2', 'class' => 'rb'],
+                4 => ['key' => '3', 'class' => 'lb'],
+                5 => ['key' => '4', 'class' => 'lm'],
+                6 => ['key' => '5', 'class' => 'ls'],
             ],
-            // "performance_bg_position" => [
-            //     1 => ["bg" => "1", "position" => ""],
-            // ],
+
         ],
     ],
     [
@@ -1956,73 +680,15 @@ return [
             "calendar_date_block_color" => "black",
             // "calendar_title" => "",
             "calendar_title_font_size" => "56px",
-            "layouts" => [
-                1 => [
-                    'query' => [
-                        'min' => 1623,
-                        'max' => 1920,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '768 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '768 right middle center'],
-                        3 => ['bg' => 3, 'position' => '768 right bottom'],
-                        4 => ['bg' => 4, 'position' => '592 left bottom'],
-                        5 => ['bg' => 5, 'position' => '592 left middle'],
-                        6 => ['bg' => 6, 'position' => '304 side bottom'],
-                    ],
-                ],
-                2 => [
-                    'query' => [
-                        'min' => 1441,
-                        'max' => 1622,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '619 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '619 right middle center'],
-                        3 => ['bg' => 3, 'position' => '619 right bottom'],
-                        4 => ['bg' => 4, 'position' => '443 left bottom'],
-                        5 => ['bg' => 5, 'position' => '443 left middle'],
-                    ],
-                ],
-                3 => [
-                    'query' => [
-                        'min' => 1361,
-                        'max' => 1440,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '725 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '725 right middle center'],
-                        3 => ['bg' => 3, 'position' => '725 right bottom'],
-                    ],
-                ],
-                4 => [
-                    'query' => [
-                        'min' => 1281,
-                        'max' => 1360,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '648 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '648 right middle center'],
-                        3 => ['bg' => 3, 'position' => '648 right middle'],
-                        4 => ['bg' => 4, 'position' => '648 right bottom'],
-                    ],
-                ],
-                5 => [
-                    'query' => [
-                        'min' => 'no',
-                        'max' => 1280,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '610 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '610 right middle center'],
-                        3 => ['bg' => 3, 'position' => '610 right middle'],
-                        4 => ['bg' => 4, 'position' => '610 right bottom'],
-                    ],
-                ],
+            "backgrounds" => [
+                1 => ['key' => '0', 'class' => 'rt'],
+                2 => ['key' => '1', 'class' => 'rm'],
+                3 => ['key' => '2', 'class' => 'rb'],
+                4 => ['key' => '3', 'class' => 'lb'],
+                5 => ['key' => '4', 'class' => 'lm'],
+                6 => ['key' => '5', 'class' => 'ls'],
             ],
-            // "performance_bg_position" => [
-            //     1 => ["bg" => "1", "position" => ""],
-            // ],
+
         ],
     ],
     [
@@ -2044,73 +710,15 @@ return [
             "calendar_date_block_color" => "black",
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
-            "layouts" => [
-                1 => [
-                    'query' => [
-                        'min' => 1623,
-                        'max' => 1920,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '768 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '768 right middle center'],
-                        3 => ['bg' => 3, 'position' => '768 right bottom'],
-                        4 => ['bg' => 4, 'position' => '592 left bottom'],
-                        5 => ['bg' => 5, 'position' => '592 left middle'],
-                        6 => ['bg' => 6, 'position' => '304 side bottom'],
-                    ],
-                ],
-                2 => [
-                    'query' => [
-                        'min' => 1441,
-                        'max' => 1622,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '619 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '619 right middle center'],
-                        3 => ['bg' => 3, 'position' => '619 right bottom'],
-                        4 => ['bg' => 4, 'position' => '443 left bottom'],
-                        5 => ['bg' => 5, 'position' => '443 left middle'],
-                    ],
-                ],
-                3 => [
-                    'query' => [
-                        'min' => 1361,
-                        'max' => 1440,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '725 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '725 right middle center'],
-                        3 => ['bg' => 3, 'position' => '725 right bottom'],
-                    ],
-                ],
-                4 => [
-                    'query' => [
-                        'min' => 1281,
-                        'max' => 1360,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '648 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '648 right middle center'],
-                        3 => ['bg' => 3, 'position' => '648 right middle'],
-                        4 => ['bg' => 4, 'position' => '648 right bottom'],
-                    ],
-                ],
-                5 => [
-                    'query' => [
-                        'min' => 'no',
-                        'max' => 1280,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '610 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '610 right middle center'],
-                        3 => ['bg' => 3, 'position' => '610 right middle'],
-                        4 => ['bg' => 4, 'position' => '610 right bottom'],
-                    ],
-                ],
+            "backgrounds" => [
+                1 => ['key' => '0', 'class' => 'rt'],
+                2 => ['key' => '1', 'class' => 'rm'],
+                3 => ['key' => '2', 'class' => 'rb'],
+                4 => ['key' => '3', 'class' => 'lb'],
+                5 => ['key' => '4', 'class' => 'lm'],
+                6 => ['key' => '5', 'class' => 'ls'],
             ],
-            // "performance_bg_position" => [
-            //     1 => ["bg" => "1", "position" => ""],
-            // ],
+
         ],
     ],
     [
@@ -2132,73 +740,15 @@ return [
             "calendar_date_block_color" => "white",
             "calendar_title" => "Если поженились,<br>значит, жить придётся!",
             "calendar_title_font_size" => "50px",
-            "layouts" => [
-                1 => [
-                    'query' => [
-                        'min' => 1623,
-                        'max' => 1920,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '768 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '768 right middle center'],
-                        3 => ['bg' => 3, 'position' => '768 right bottom'],
-                        4 => ['bg' => 4, 'position' => '592 left bottom'],
-                        5 => ['bg' => 5, 'position' => '592 left middle'],
-                        6 => ['bg' => 6, 'position' => '304 side bottom'],
-                    ],
-                ],
-                2 => [
-                    'query' => [
-                        'min' => 1441,
-                        'max' => 1622,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '619 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '619 right middle center'],
-                        3 => ['bg' => 3, 'position' => '619 right bottom'],
-                        4 => ['bg' => 4, 'position' => '443 left bottom'],
-                        5 => ['bg' => 5, 'position' => '443 left middle'],
-                    ],
-                ],
-                3 => [
-                    'query' => [
-                        'min' => 1361,
-                        'max' => 1440,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '725 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '725 right middle center'],
-                        3 => ['bg' => 3, 'position' => '725 right bottom'],
-                    ],
-                ],
-                4 => [
-                    'query' => [
-                        'min' => 1281,
-                        'max' => 1360,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '648 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '648 right middle center'],
-                        3 => ['bg' => 3, 'position' => '648 right middle'],
-                        4 => ['bg' => 4, 'position' => '648 right bottom'],
-                    ],
-                ],
-                5 => [
-                    'query' => [
-                        'min' => 'no',
-                        'max' => 1280,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '610 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '610 right middle center'],
-                        3 => ['bg' => 3, 'position' => '610 right middle'],
-                        4 => ['bg' => 4, 'position' => '610 right bottom'],
-                    ],
-                ],
+            "backgrounds" => [
+                1 => ['key' => '0', 'class' => 'rt'],
+                2 => ['key' => '1', 'class' => 'rm'],
+                3 => ['key' => '2', 'class' => 'rb'],
+                4 => ['key' => '3', 'class' => 'lb'],
+                5 => ['key' => '4', 'class' => 'lm'],
+                6 => ['key' => '5', 'class' => 'ls'],
             ],
-            // "performance_bg_position" => [
-            //     1 => ["bg" => "1", "position" => ""],
-            // ],
+
         ],
     ],
     [
@@ -2220,73 +770,15 @@ return [
             "calendar_date_block_color" => "white",
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
-            "layouts" => [
-                1 => [
-                    'query' => [
-                        'min' => 1623,
-                        'max' => 1920,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '768 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '768 right middle center'],
-                        3 => ['bg' => 3, 'position' => '768 right bottom'],
-                        4 => ['bg' => 4, 'position' => '592 left bottom'],
-                        5 => ['bg' => 5, 'position' => '592 left middle'],
-                        6 => ['bg' => 6, 'position' => '304 side bottom'],
-                    ],
-                ],
-                2 => [
-                    'query' => [
-                        'min' => 1441,
-                        'max' => 1622,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '619 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '619 right middle center'],
-                        3 => ['bg' => 3, 'position' => '619 right bottom'],
-                        4 => ['bg' => 4, 'position' => '443 left bottom'],
-                        5 => ['bg' => 5, 'position' => '443 left middle'],
-                    ],
-                ],
-                3 => [
-                    'query' => [
-                        'min' => 1361,
-                        'max' => 1440,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '725 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '725 right middle center'],
-                        3 => ['bg' => 3, 'position' => '725 right bottom'],
-                    ],
-                ],
-                4 => [
-                    'query' => [
-                        'min' => 1281,
-                        'max' => 1360,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '648 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '648 right middle center'],
-                        3 => ['bg' => 3, 'position' => '648 right middle'],
-                        4 => ['bg' => 4, 'position' => '648 right bottom'],
-                    ],
-                ],
-                5 => [
-                    'query' => [
-                        'min' => 'no',
-                        'max' => 1280,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '610 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '610 right middle center'],
-                        3 => ['bg' => 3, 'position' => '610 right middle'],
-                        4 => ['bg' => 4, 'position' => '610 right bottom'],
-                    ],
-                ],
+            "backgrounds" => [
+                1 => ['key' => '0', 'class' => 'rt'],
+                2 => ['key' => '1', 'class' => 'rm'],
+                3 => ['key' => '2', 'class' => 'rb'],
+                4 => ['key' => '3', 'class' => 'lb'],
+                5 => ['key' => '4', 'class' => 'lm'],
+                6 => ['key' => '5', 'class' => 'ls'],
             ],
-            // "performance_bg_position" => [
-            //     1 => ["bg" => "1", "position" => ""],
-            // ],
+
         ],
     ],
     [
@@ -2308,73 +800,15 @@ return [
             "calendar_date_block_color" => "white",
             "calendar_title" => "Марлен,<br>рожденная для любви",
             "calendar_title_font_size" => "56px",
-            "layouts" => [
-                1 => [
-                    'query' => [
-                        'min' => 1623,
-                        'max' => 1920,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '768 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '768 right middle center'],
-                        3 => ['bg' => 3, 'position' => '768 right bottom'],
-                        4 => ['bg' => 4, 'position' => '592 left bottom'],
-                        5 => ['bg' => 5, 'position' => '592 left middle'],
-                        6 => ['bg' => 6, 'position' => '304 side bottom'],
-                    ],
-                ],
-                2 => [
-                    'query' => [
-                        'min' => 1441,
-                        'max' => 1622,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '619 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '619 right middle center'],
-                        3 => ['bg' => 3, 'position' => '619 right bottom'],
-                        4 => ['bg' => 4, 'position' => '443 left bottom'],
-                        5 => ['bg' => 5, 'position' => '443 left middle'],
-                    ],
-                ],
-                3 => [
-                    'query' => [
-                        'min' => 1361,
-                        'max' => 1440,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '725 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '725 right middle center'],
-                        3 => ['bg' => 3, 'position' => '725 right bottom'],
-                    ],
-                ],
-                4 => [
-                    'query' => [
-                        'min' => 1281,
-                        'max' => 1360,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '648 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '648 right middle center'],
-                        3 => ['bg' => 3, 'position' => '648 right middle'],
-                        4 => ['bg' => 4, 'position' => '648 right bottom'],
-                    ],
-                ],
-                5 => [
-                    'query' => [
-                        'min' => 'no',
-                        'max' => 1280,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '610 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '610 right middle center'],
-                        3 => ['bg' => 3, 'position' => '610 right middle'],
-                        4 => ['bg' => 4, 'position' => '610 right bottom'],
-                    ],
-                ],
+            "backgrounds" => [
+                1 => ['key' => '0', 'class' => 'rt'],
+                2 => ['key' => '1', 'class' => 'rm'],
+                3 => ['key' => '2', 'class' => 'rb'],
+                4 => ['key' => '3', 'class' => 'lb'],
+                5 => ['key' => '4', 'class' => 'lm'],
+                6 => ['key' => '5', 'class' => 'ls'],
             ],
-            // "performance_bg_position" => [
-            //     1 => ["bg" => "1", "position" => ""],
-            // ],
+
         ],
     ],
     [
@@ -2396,73 +830,15 @@ return [
             "calendar_date_block_color" => "white",
             // "calendar_title" => "",
             "calendar_title_font_size" => "50px",
-            "layouts" => [
-                1 => [
-                    'query' => [
-                        'min' => 1623,
-                        'max' => 1920,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '768 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '768 right middle center'],
-                        3 => ['bg' => 3, 'position' => '768 right bottom'],
-                        4 => ['bg' => 4, 'position' => '592 left bottom'],
-                        5 => ['bg' => 5, 'position' => '592 left middle'],
-                        6 => ['bg' => 6, 'position' => '304 side bottom'],
-                    ],
-                ],
-                2 => [
-                    'query' => [
-                        'min' => 1441,
-                        'max' => 1622,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '619 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '619 right middle center'],
-                        3 => ['bg' => 3, 'position' => '619 right bottom'],
-                        4 => ['bg' => 4, 'position' => '443 left bottom'],
-                        5 => ['bg' => 5, 'position' => '443 left middle'],
-                    ],
-                ],
-                3 => [
-                    'query' => [
-                        'min' => 1361,
-                        'max' => 1440,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '725 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '725 right middle center'],
-                        3 => ['bg' => 3, 'position' => '725 right bottom'],
-                    ],
-                ],
-                4 => [
-                    'query' => [
-                        'min' => 1281,
-                        'max' => 1360,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '648 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '648 right middle center'],
-                        3 => ['bg' => 3, 'position' => '648 right middle'],
-                        4 => ['bg' => 4, 'position' => '648 right bottom'],
-                    ],
-                ],
-                5 => [
-                    'query' => [
-                        'min' => 'no',
-                        'max' => 1280,
-                    ],
-                    'bgs' => [
-                        1 => ['bg' => 1, 'position' => '610 right top 0 100'],
-                        2 => ['bg' => 2, 'position' => '610 right middle center'],
-                        3 => ['bg' => 3, 'position' => '610 right middle'],
-                        4 => ['bg' => 4, 'position' => '610 right bottom'],
-                    ],
-                ],
+            "backgrounds" => [
+                1 => ['key' => '0', 'class' => 'rt'],
+                2 => ['key' => '1', 'class' => 'rm'],
+                3 => ['key' => '2', 'class' => 'rb'],
+                4 => ['key' => '3', 'class' => 'lb'],
+                5 => ['key' => '4', 'class' => 'lm'],
+                6 => ['key' => '5', 'class' => 'ls'],
             ],
-            // "performance_bg_position" => [
-            //     1 => ["bg" => "1", "position" => ""],
-            // ],
+
         ],
     ],
 

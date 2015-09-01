@@ -5,6 +5,9 @@
 # Model List Column configuration
 list: $/abnmt/theater/models/performance/columns.yaml
 
+# Filter
+filter: config_filter.yaml
+
 # Model Class name
 modelClass: Abnmt\Theater\Models\Performance
 
