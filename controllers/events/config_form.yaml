@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Event
+
+# Model Form Field configuration
+form: $/abnmt/theater/models/event/fields.yaml
+
+# Model Class name
+modelClass: Abnmt\Theater\Models\Event
+
+# Default redirect location
+defaultRedirect: abnmt/theater/events
+
+# Create page
+create:
+    title: Create Event
+    redirect: abnmt/theater/events/update/:id
+    redirectClose: abnmt/theater/events
+
+# Update page
+update:
+    title: Edit Event
+    redirect: abnmt/theater/events
+    redirectClose: abnmt/theater/events
+
+# Preview page
+preview:
+    title: Preview Event

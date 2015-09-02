@@ -3,7 +3,7 @@
 # ===================================
 
 # Record name
-name: Персона
+name: Person
 
 # Model Form Field configuration
 form: $/abnmt/theater/models/person/fields.yaml
@@ -16,16 +16,16 @@ defaultRedirect: abnmt/theater/people
 
 # Create page
 create:
-    title: Добавить персону
+    title: Create Person
     redirect: abnmt/theater/people/update/:id
     redirectClose: abnmt/theater/people
 
 # Update page
 update:
-    title: Изменить персону
+    title: Edit Person
     redirect: abnmt/theater/people
     redirectClose: abnmt/theater/people
 
 # Preview page
 preview:
-    title: Просмотр
+    title: Preview Person

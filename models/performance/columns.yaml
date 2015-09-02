@@ -9,37 +9,40 @@ columns:
         sortable: false
     title:
         label: Название спектакля
+        searchable: true
     author:
         label: Автор
+        searchable: true
     # state:
     #     label: Состояние
     # type:
     #     label: Тип
-    # duration:
-    #     label: Длительность
-    # entracte:
-    #     label: Антракт
+    duration:
+        label: Длительность
+    entracte:
+        label: Антракт
     premiere_date:
         label: Дата премьеры
-    # rate:
-    #     label: Возрастной рейтинг
-    playbill:
-        label: Афиша
-        type: partial
-        sortable: false
-    background_mobile:
-        label: Бэкграунды
-        type: partial
-        sortable: false
+        searchable: true
+    rate:
+        label: Возрастной рейтинг
+    # playbill:
+    #     label: Афиша
+    #     type: partial
+    #     sortable: false
+    # background_mobile:
+    #     label: Бэкграунды
+    #     type: partial
+    #     sortable: false
     # featured:
     #     label: Галерея
     #     type: partial
     #     sortable: false
     #     with: 100px
-    video:
-        label: Видео
-        type: partial
-        sortable: false
+    # video:
+    #     label: Видео
+    #     type: partial
+    #     sortable: false
     # published:
     #     label: Опубликовано
     #     type: switch

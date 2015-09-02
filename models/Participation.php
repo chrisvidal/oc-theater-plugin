@@ -11,7 +11,7 @@ class Participation extends Model
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'abnmt_theater_participation';
+    public $table = 'abnmt_theater_participations';
 
     /**
      * @var array Guarded fields
@@ -21,7 +21,7 @@ class Participation extends Model
     /**
      * @var array Fillable fields
      */
-    protected $fillable = ['title', 'performance', 'person', 'type', 'group'];
+    protected $fillable = ['title', 'performance', 'person', 'type', 'group', 'description', 'sort_order'];
 
     /**
      * @var array Relations

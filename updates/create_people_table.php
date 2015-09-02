@@ -23,9 +23,8 @@ class CreatePeopleTable extends Migration
             $table->string('gender')->nullable()->default(null);
 
             $table->string('grade')->nullable()->default(null);
-            // $table->string('state')->nullable()->default(null);
+
             $table->text('bio')->nullable()->default(null);
-            $table->text('bio_html')->nullable()->default(null);
 
             $table->boolean('published')->default(false);
             $table->timestamps();

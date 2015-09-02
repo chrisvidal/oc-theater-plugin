@@ -2,22 +2,34 @@
 #  Relation Behavior Config
 # ===================================
 
-participation:
-    label: Роли
-    view:
-        list: $/abnmt/theater/models/participation/performance_columns.yaml
-        toolbarButtons: create|delete
-    manage:
-        list: $/abnmt/theater/models/participation/performance_columns.yaml
-        form: $/abnmt/theater/models/participation/performance_fields.yaml
-        recordsPerPage: 25
+# roles:
+#     label: Роли
+#     view:
+#         list:
+#             columns:
+#                 title:
+#                     label: Имя
+#                 pivot[title]:
+#                     label: Название
+#                 pivot[type]:
+#                     label: Тип
+#                 pivot[group]:
+#                     label: Группа
+#     manage:
+#         list:
+#             columns:
+#                 title:
+#                     label: Имя
+#         showSearch: true
+#     pivot:
+#         form:
+#             fields:
+#                 pivot[title]:
+#                     label: Название
+#                 pivot[type]:
+#                     label: Тип
+#                 pivot[group]:
+#                     label: Группа
 
-categories:
-    label: Категории
-    view:
-        list: $/abnmt/theater/models/performancecategory/columns.yaml
-        toolbarButtons: add|create|delete
-    manage:
-        list: $/abnmt/theater/models/performancecategory/columns.yaml
-        form: $/abnmt/theater/models/performancecategory/fields.yaml
-        recordsPerPage: 25
+# meta:
+#     label: Дополнительные данные

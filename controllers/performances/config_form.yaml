@@ -3,7 +3,7 @@
 # ===================================
 
 # Record name
-name: Спектакль
+name: Performance
 
 # Model Form Field configuration
 form: $/abnmt/theater/models/performance/fields.yaml
@@ -16,16 +16,16 @@ defaultRedirect: abnmt/theater/performances
 
 # Create page
 create:
-    title: Добавить спектакль
+    title: Create Performance
     redirect: abnmt/theater/performances/update/:id
     redirectClose: abnmt/theater/performances
 
 # Update page
 update:
-    title: Редактировать спектакль
+    title: Edit Performance
     redirect: abnmt/theater/performances
     redirectClose: abnmt/theater/performances
 
 # Preview page
 preview:
-    title: Просмотр
+    title: Preview Performance

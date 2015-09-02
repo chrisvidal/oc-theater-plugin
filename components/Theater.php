@@ -1,13 +1,20 @@
 <?php namespace Abnmt\Theater\Components;
 
 use Cms\Classes\ComponentBase;
+
 use Cms\Classes\Page;
 use Cms\Classes\Content;
-use Abnmt\Theater\Models\Event as EventModel;
-use Abnmt\Theater\Models\Performance as PerformanceModel;
-use Abnmt\Theater\Models\Person as PersonModel;
-use Abnmt\Theater\Models\News as NewsModel;
-use Abnmt\Theater\Models\Press as PressModel;
+
+use Request;
+
+// use Abnmt\Theater\Models\Event         as EventModel;
+use Abnmt\Theater\Models\Article       as ArticleModel;
+use Abnmt\Theater\Models\Performance   as PerformanceModel;
+use Abnmt\Theater\Models\Person        as PersonModel;
+use Abnmt\Theater\Models\Taxonomy      as TaxonomyModel;
+// use Abnmt\Theater\Models\Participation as ParticipationModel;
+
+use \Clockwork\Support\Laravel\Facade as CW;
 
 class Theater extends ComponentBase
 {
@@ -15,385 +22,281 @@ class Theater extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name'        => 'Theater Component',
-            'description' => 'No description provided yet...'
+            'name'        => 'Театр',
+            'description' => 'Компонент для вывода Театральных данных'
         ];
     }
 
-    /**
-     * Define Component Properties
-     */
     public function defineProperties()
     {
         return [
-            // 'section' => [
-            //     'title'       => 'Раздел',
-            //     'description' => 'Переменная для URL',
-            //     'default'     => '{{ :section }}',
-            //     'type'        => 'string',
-            // ],
-            // 'subsection' => [
-            //     'title'       => 'Подраздел',
-            //     'description' => 'Переменная для URL',
-            //     'default'     => '{{ :subsection }}',
-            //     'type'        => 'string',
-            // ],
-            // 'item' => [
-            //     'title'       => 'Страница',
-            //     'description' => 'Переменная для URL',
-            //     'default'     => '{{ :item }}',
-            //     'type'        => 'string',
-            // ],
-            'testPage' => [
-                'title'       => 'Контент',
-                'description' => '??',
+            'type' => [
+                'title'       => 'Тип',
+                'description' => 'Выводит записи с выбранным типом',
                 'type'        => 'dropdown',
+                'default'     => 'person'
+            ],
+            'categories' => [
+                'title'       => 'Категории',
+                'description' => 'Выводит записи выбранных категории',
+                'type'        => 'dropdown',
+                'depends'     => ['type'],
+            ],
+            'sort' => [
+                'title'       => 'Сортировка',
+                'description' => 'Сортирует список записей',
+                'type'        => 'dropdown',
+                'depends'     => ['type'],
+            ],
+            'scopes' => [
+                'title'       => 'Наборы',
+                'description' => 'Загружает для записей дополнительные наборы данных',
+                'type'        => 'dropdown',
+                'depends'     => ['type'],
+            ],
+            'performancePage' => [
+                'title'       => 'Страница спектакля',
+                'description' => 'Шаблон страницы спектакля',
+                'type'        => 'dropdown',
+                'default'     => 'theater/performance',
+                'group'       => 'Страницы',
+            ],
+            'personPage' => [
+                'title'       => 'Страница персоналии',
+                'description' => 'Шаблон страницы персоналии',
+                'type'        => 'dropdown',
+                'default'     => 'theater/person',
+                'group'       => 'Страницы',
+            ],
+            'articlePage' => [
+                'title'       => 'Страница статьи',
+                'description' => 'Шаблон страницы статьи',
+                'type'        => 'dropdown',
+                'default'     => 'theater/article',
+                'group'       => 'Страницы',
+            ],
+            'pageNumber' => [
+                'title'             => 'Номер страницы',
+                'description'       => 'Переменная с номером страницы',
+                'type'              => 'string',
+                'default'           => '{{ :page }}',
+                'group'             => 'Пагинация',
+            ],
+            'postsPerPage' => [
+                'title'             => 'Количество записей на страницу',
+                'description'       => 'Переменная с количеством записей на страницу',
+                'type'              => 'string',
+                'validationPattern' => '^[0-9]+$',
+                'validationMessage' => 'Должно быть целым числом',
+                'default'           => '10',
+                'group'             => 'Пагинация',
             ],
         ];
     }
 
-    /*
-     * Get Properties
-     */
-    public function getTestPageOptions()
+    public function getPerformancePageOptions()
     {
-        return Content::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
+        return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
+    }
+    public function getPersonPageOptions()
+    {
+        return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
+    }
+    public function getArticlePageOptions()
+    {
+        return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
     }
 
-    /**
-     * Prepared Page vars
-     */
-    protected function prepareVars()
+    public function getTypeOptions()
     {
-        /**
-         * Template Links
-         */
-        // $this->performancePage = $this->page['performancePage'] = 'single/performance';
-        // $this->personPage      = $this->page['personPage']      = 'single/person';
-        // $this->newsPage        = $this->page['newsPage']        = 'single/news';
-        // $this->pressPage       = $this->page['pressPage']       = 'single/press';
-
-        // $this->repertoirePage  = $this->page['repertoirePage']  = 'pages/repertoire';
-        // $this->troupePage      = $this->page['troupePage']      = 'pages/troupe';
-        // $this->playbillPage    = $this->page['playbillPage']    = 'pages/playbill';
-
-        /**
-         * Models
-         */
-        $this->performance = PerformanceModel::isPublished();
-        $this->person      = PersonModel::isPublished();
-        $this->news        = NewsModel::isPublished();
-        $this->press       = PressModel::isPublished();
-
-        $this->models = [
-            'performance' => PerformanceModel::isPublished(),
-            'person'      => PersonModel::isPublished(),
-            'news'        => NewsModel::isPublished(),
-            'press'       => PressModel::isPublished(),
-            'events'      => EventModel::isPublished(),
+        $options = [
+            'person'      => 'Люди',
+            'performance' => 'Спектакли',
+            'article'     => 'Статьи',
+            // 'event'       => 'Афиша',
         ];
+        return $options;
+    }
 
-        /**
-         * Prepare Slug
-         */
-        $this->section = $this->page['section'] = $this->param('section');
-        $this->list    = $this->page['list']    = $this->param('list');
-        $this->single  = $this->page['single']  = $this->param('single');
+    public function getCategoriesOptions()
+    {
+        $type = Request::input('type');
+        $options = [
+            'person' => [
+                '{{ :category }}' => 'Из URL',
+                'actor'           => 'Актёры',
+                'cooperate'       => 'Приглашенные артисты',
+                'administration'  => 'Администрация',
+            ],
+            'performance' => [
+                '{{ :category }}' => 'Из URL',
+                'normal'          => 'Спектакли',
+                'child'           => 'Детские спектакли',
+                'archived'        => 'Архивные спектакли',
+            ],
+            'article' => [
+                '{{ :category }}' => 'Из URL',
+                'news'            => 'Новости',
+                'press'           => 'Пресса',
+                'journal'         => 'Журнал',
+            ],
+            // 'event' => [
+            //     '{{ :category }}' => 'Из URL',
+            //     'now'             => 'На текущий месяц',
+            //     'next'            => 'На следующий месяц',
+            //     'performance'     => 'Спектакль',
+            //     'concert'         => 'Концерт',
+            // ],
+        ];
+        return $options[$type];
+    }
 
+    public function getSortOptions()
+    {
+        $type = Request::input('type');
+        $options = [
+            'person'      => PersonModel::$allowedSortingOptions,
+            'performance' => PerformanceModel::$allowedSortingOptions,
+            'article'     => ArticleModel::$allowedSortingOptions,
+            // 'event'       => EventModel::$allowedSortingOptions,
+        ];
+        return $options[$type];
+    }
+
+    public function getScopesOptions()
+    {
+        $type = Request::input('type');
+        $options = [
+            'person'      => PersonModel::$allowedScopingOptions,
+            'performance' => PerformanceModel::$allowedScopingOptions,
+            'article'     => ArticleModel::$allowedScopingOptions,
+            // 'event'       => EventModel::$allowedScopingOptions,
+        ];
+        return $options[$type];
     }
 
     /**
-     * On Run
+     * A Params object
+     * @var array
+     */
+    public $params;
+
+    /**
+     * A Post object
+     * @var Model
+     */
+    // public $post;
+
+    /**
+     * A Post slug
+     * @var string
+     */
+    public $slug;
+
+    /**
+     * Reference to the page name for linking to posts.
+     * @var string
+     */
+    public $postPage;
+
+    /**
+     * A collection of posts to display
+     * @var Collection
+     */
+    public $posts;
+
+    /**
+     * If the post list should be filtered by a category, the model to use.
+     * @var Model
+     */
+    // public $category;
+
+    /**
+     * Parameter to use for the page number
+     * @var string
+     */
+    public $pageParam;
+
+
+    /**
+     *  onRun function
      */
     public function onRun()
     {
         $this->prepareVars();
 
-        // if ($this->single) {
-        //     $this->data = $this->page['data'] = $this->getSingle();
-        // }
+        $this->posts = $this->page['posts'] = $this->listPosts();
 
-        // if ($this->list) {
-        //     $this->list = $this->page['list'] = $this->getList();
-        // }
+        if ($this->slug = $this->param('slug'))
+            $this->post = $this->page['post'] = $this->loadPost();
 
-        // if ($this->list) {
-        //     $this->list = $this->page['list'] = $this->getData();
-        // }
 
-        /**
-         * Data
+
+        /*
+         * If the page number is not valid, redirect
          */
-        $this->data = $this->page['data'] = $this->getData();
+        // if ($pageNumberParam = $this->paramName('pageNumber')) {
+        //     $currentPage = $this->property('pageNumber');
 
-        /**
-         * Titles
-         */
-        $this->meta_title = $this->page->meta_title = $this->page->title = $this->title;
-
-        /**
-         * Test
-         */
-        $this->test = $this->page['test'] = '<pre>' . json_encode(['#DATA#' => $this->data, '#SUBMENU#' => $this->submenu, '#BYGROUP#' => $this->byGroup], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES ) . '</pre>';
+        //     if ($currentPage > ($lastPage = $this->posts->lastPage()) && $currentPage > 1)
+        //         return Redirect::to($this->currentPageUrl([$pageNumberParam => $lastPage]));
+        // }
     }
 
     /**
-     * On End
+     *  Prepare vars
      */
-    // public function onEnd()
-    // {
-    //     // $this->meta_title = $this->page->meta_title = $this->title;
-    //     $this->title = $this->page->title = $this->title;
-    // }
-
-    protected function getData()
+    protected function prepareVars()
     {
+        $this->params            = $this->getProperties();
 
-        $options = [
-            'news' => [
-                'default' => [
-                    'title' => 'Архив новостей',
-                    'model' => NewsModel::isPublished(),
-                    'sort'  => [['published_at', 'desc']],
-                ],
-                'press' => [
-                    'title' => 'Архив прессы',
-                    'model' => PressModel::isPublished(),
-                    'sort'  => [['source_date', 'desc']],
-                ],
-            ],
-            'press' => [
-                'default' => [
-                    'title' => 'Архив прессы',
-                    'model' => PressModel::isPublished(),
-                    'sort'  => [['source_date', 'desc']],
-                ],
-            ],
-            'playbill' => [
-                'default' => [
-                    'title' => $this->localeCurrentMonth(),
-                    'model' => EventModel::isPublished(),
-                    'sort'  => [['datetime', 'asc']],
-                    'with'  => ['performance'],
-                    'query' => [['datetime', '>=', \Carbon\Carbon::now()->startOfMonth()]],
-                ],
-                'next' => [
-                    'title' => $this->localeNextMonth(),
-                    'model' => EventModel::isPublished(),
-                    'sort'  => [['datetime', 'asc']],
-                    'with'  => ['performance'],
-                    'query' => [['datetime', '>=', \Carbon\Carbon::now()->startOfMonth()->addMonth()]],
-                ],
-                '#child' => [
-                    'title' => 'Детские спектакли',
-                ],
-            ],
-            'repertoire' => [
-                'default' => [
-                    'title' => 'Репертуар',
-                    'model' => PerformanceModel::isPublished(),
-                    'query' => [['state', '=', 'normal'], ['type', '=', 'normal']],
-                    'sort'  => [['premiere_date', 'desc']],
-                    'with'  => ['repertoire'],
-                ],
-                'child' => [
-                    'title' => 'Детские спектакли',
-                    'model' => PerformanceModel::isPublished(),
-                    'query' => [['state', '=', 'normal'], ['type', '=', 'child']],
-                    'sort'  => [['premiere_date', 'desc']],
-                    'with'  => ['repertoire'],
-                ],
-                'archive' => [
-                    'title' => 'Архивные спектакли',
-                    'model' => PerformanceModel::isPublished(),
-                    'query' => [['state', '=', 'archived']],
-                    'sort'  => [['premiere_date', 'desc']],
-                    'with'  => ['repertoire'],
-                ],
-            ],
-            'performance' => [],
-            'troupe' => [
-                'default' => [
-                    'title'   => 'Художественный руководитель',
-                    'content' => 'hudozhestvennyj-rukovoditel',
-                    'model'   => Content::get('0'), // TODO: Rewrite!
-                ],
-                'state' => [
-                    'title' => 'Актёры',
-                    'model' => PersonModel::isPublished(),
-                    'query' => [['state', '=', 'state']],
-                    'group' => 'grade',
-                    'sort'  => [['grade', 'desc'], ['family_name', 'asc']],
-                    'with'  => ['portrait'],
-                ],
-                'cooperate' => [
-                    'title' => 'Приглашенные артисты',
-                    'model' => PersonModel::isPublished(),
-                    'query' => [['state', '=', 'cooperate']],
-                    'sort'  => [['grade', 'desc'], ['family_name', 'asc']],
-                    'with'  => ['portrait'],
-                ],
-                'administration' => [
-                    'title' => 'Администрация',
-                    'model' => PersonModel::isPublished(),
-                    'query' => [['state', '=', 'administration']],
-                    'sort'  => [['family_name', 'asc']],
-                    'with'  => ['portrait'],
-                ],
-                'stage' => [
-                    'title' => 'Постановочный цех',
-                    'model' => PersonModel::isPublished(),
-                    'query' => [['state', '=', 'stage']],
-                    'sort'  => [['family_name', 'asc']],
-                    'with'  => ['portrait'],
-                ],
-            ],
-            'single' => [
-                'performance' => [
-                    'model' => PerformanceModel::isPublished(),
-                    'nav' => 'repertoire',
-                ],
-                'person' => [
-                    'model' => PersonModel::isPublished(),
-                    'nav' => 'troupe',
-                ],
-                'press' => [
-                    'model' => PressModel::isPublished(),
-                    'nav' => 'press',
-                ],
-                'news' => [
-                    'model' => NewsModel::isPublished(),
-                    'nav' => 'news',
-                ],
-            ],
-        ];
+        $this->pageParam         = $this->page['pageParam'] = $this->paramName('pageNumber');
+        $this->params['page']    = $this->property('pageNumber');
+        $this->params['perPage'] = $this->property('postsPerPage');
 
-        if (
-            array_key_exists($section = $this->section, $options) &&
-            array_key_exists($list = $this->list, $options[$section])
-        ) {
-
-            /**
-             * Gen Submenu
-             */
-            $submenu = [];
-            foreach ($options[$section] as $slug => $list) {
-
-                if (preg_match('/^\#/', $slug)) {
-                    $url = '/' . $section . $slug;
-                } elseif ($slug != 'default') {
-                    $url = '/' . $section . '/' . $slug;
-                } else {
-                    $url = '/' . $section;
-                }
-
-                $submenu[$slug] = [
-                    'title'  => $list['title'],
-                    'slug'   => $slug,
-                    'url'    => $url,
-                    'active' => ($slug == $this->list) ? 'active' : '',
-                ];
-            }
-            $this->submenu = $this->page['submenu'] = $submenu;
-
-            /**
-             * Extract Options
-             */
-            $params = $options[$this->section][$this->list];
-            extract($params);
-
-            /**
-             * Assign Title
-             */
-            $this->title = $title;
-
-
-
-            if (isset($with)) {
-                $model = $model->with($with);
-            }
-
-            if (isset($query)) {
-                foreach ($query as $key => $q) {
-                    $model = $model->where($q[0], $q[1], $q[2]);
-                }
-            }
-
-            if (isset($sort)) {
-                foreach ($sort as $key => $s) {
-                    $model = $model->orderBy($s[0], $s[1]);
-                }
-            }
-
-
-            /*  */
-            if (isset($content)) {
-                return $model;
-            }
-            /*  */
-
-            /**
-             * Group Events by Months
-             */
-            if ($section == 'playbill') {
-
-                $model = $model->get();
-
-                $byGroup = $model
-                    ->groupBy(function ($event) {
-                        return $event->performance->type;
-                    })
-                ;
-
-                $this->byGroup = $this->page['byGroup'] = $byGroup;
-                return $this->page[$section] = $model;
-
-            }
-
-
-            return $this->page[$section] = $model->get();
-        }
+        $this->params['slug']    = $this->param('slug');
+        // CW::info($this->params);
     }
 
-
-
-    protected function localeCurrentMonth()
+    protected function listPosts()
     {
-        setlocale(LC_ALL, 'Russian');
-        $month = \Carbon\Carbon::now()->startOfMonth()->formatLocalized('%B');
-        return mb_convert_encoding($month, "UTF-8", "CP1251");
+
+        extract($this->params);
+
+        $model = "Abnmt\\Theater\\Models\\" . ucfirst($type);
+
+        /*
+         * List all posts
+         */
+        $posts = $model::listFrontEnd($this->params);
+
+        $page = $type . 'Page';
+        $this->postPage = $$page;
+
+        $posts->each(function($post) {
+            $post->setUrl($this->postPage, $this->controller);
+        });
+
+        // CW::info($posts);
+
+        return $posts;
     }
-    protected function localeNextMonth()
+
+    protected function loadPost()
     {
-        setlocale(LC_ALL, 'Russian');
-        $month = \Carbon\Carbon::now()->startOfMonth()->addMonth()->formatLocalized('%B');
-        return mb_convert_encoding($month, "UTF-8", "CP1251");
+
+        extract($this->params);
+
+        $model = "Abnmt\\Theater\\Models\\" . ucfirst($type);
+
+        /*
+         * Load the posts
+         */
+        $post = $model::LoadPost($this->params);
+
+        // CW::info($post);
+
+        return $post;
     }
-
-    // protected function getSingle()
-    // {
-    //     /**
-    //      * Get Single
-    //      */
-    //     $data = 'Это контент и ниибёт!';
-
-    //     /**
-    //      * Return
-    //      */
-    //     return $data;
-    // }
-
-    // protected function getList()
-    // {
-    //     /**
-    //      * Get List
-    //      */
-    //     $data = 'Это контент и ниибёт!';
-
-    //     /**
-    //      * Return
-    //      */
-    //     return $data;
-    // }
 
 }

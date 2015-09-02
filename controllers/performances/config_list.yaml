@@ -4,13 +4,15 @@
 
 # Model List Column configuration
 list: $/abnmt/theater/models/performance/columns.yaml
+
+# Filter
 filter: config_filter.yaml
 
 # Model Class name
 modelClass: Abnmt\Theater\Models\Performance
 
 # List Title
-title: Управление спектаклями
+title: Manage Performances
 
 # Link URL for each record
 recordUrl: abnmt/theater/performances/update/:id
@@ -19,7 +21,7 @@ recordUrl: abnmt/theater/performances/update/:id
 noRecordsMessage: backend::lang.list.no_records
 
 # Records to display per page
-recordsPerPage: 100
+recordsPerPage: 20
 
 # Displays the list column set up button
 showSetup: true
@@ -28,10 +30,9 @@ showSetup: true
 showSorting: true
 
 # Default sorting column
-defaultSort:
-    column: premiere_date
-    direction: desc
-
+# defaultSort:
+#     column: created_at
+#     direction: desc
 
 # Display checkboxes next to each record
 # showCheckboxes: true

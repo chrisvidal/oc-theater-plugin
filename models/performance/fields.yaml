@@ -11,6 +11,9 @@ fields:
     title:
         label: Название спектакля
         span: left
+    # title[html]:
+    #     label: Название спектакля (HTML)
+    #     span: left
     slug:
         label: URL
         span: right
@@ -49,12 +52,12 @@ tabs:
             size: small
 
 
-        title_html:
-            tab: Дополнительно
-            label: Отформатированное название
-            type: codeeditor
-            size: small
-            language: html
+        # title_html:
+        #     tab: Дополнительно
+        #     label: Отформатированное название
+        #     type: codeeditor
+        #     size: small
+        #     language: html
         duration:
             tab: Дополнительно
             label: Длительность
@@ -109,12 +112,12 @@ tabs:
             mode: image
             span: left
             type: fileupload
-        background_mobile:
-            tab: Медиа
-            label: Бэкграунд для мобильных
-            mode: image
-            span: right
-            type: fileupload
+        # background_mobile:
+        #     tab: Медиа
+        #     label: Бэкграунд для мобильных
+        #     mode: image
+        #     span: right
+        #     type: fileupload
         featured:
             tab: Медиа
             label: Галерея
@@ -128,21 +131,157 @@ tabs:
             span: right
             type: fileupload
 
-        participation:
-            tab: Роли и исполнители
-            type: partial
-            path: $/abnmt/theater/models/performance/_list_participation.htm
+        # participation:
+        #     tab: Роли и исполнители
+        #     type: partial
+        #     path: $/abnmt/theater/models/performance/_list_participation.htm
 
-        press:
-            tab: Пресса
-            label: Пресса
-            type: relation
-            mode: dropdown
-            nameFrom: title
-            options:
-                nameColumn: title
+        # press:
+        #     tab: Пресса
+        #     label: Пресса
+        #     type: relation
+        #     mode: dropdown
+        #     nameFrom: title
+        #     options:
+        #         nameColumn: title
 
-        categories:
-            tab: Категории
-            type: partial
-            path: $/abnmt/theater/models/performance/_list_categories.htm
+        # categories:
+        #     tab: Категории
+        #     type: partial
+        #     path: $/abnmt/theater/models/performance/_list_categories.htm
+
+        # roles:
+        #     tab: Актеры и Создатели
+        #     # type: relation
+        #     type: partial
+        #     # nameFrom: title
+
+
+
+        meta[calendar_date_block_bg_color]:
+            tab: Meta
+            label: Цвет календарного блока на главной
+            # span: right
+            type: colorpicker
+        meta[calendar_date_block_color]:
+            tab: Meta
+            label: Цвет надписи календарного блока на главной
+            # span: right
+            type: colorpicker
+        meta[calendar_title]:
+            tab: Meta
+            label: Заголовок в HTML
+        meta[calendar_title_font_size]:
+            tab: Meta
+            label: Размер заголовка в календарном блоке на главной
+            # span: right
+
+
+        meta[backgrounds]:
+            tab: Бэкграунды
+            label: Бэкграунды
+            type: repeater
+            form:
+                fields:
+                    key:
+                        label: Номер бэкграунда
+                        type: dropdown
+                        span: left
+                        options:
+                            0: 01
+                            1: 02
+                            2: 03
+                            3: 04
+                            4: 05
+                            5: 06
+                    class:
+                        label: Позиция/Класс
+                        type: dropdown
+                        span: right
+                        options:
+                            rt: Right Top (01)
+                            rm: Right Middle (02)
+                            rb: Right Bottom (03)
+                            lb: Left Bottom (04)
+                            lm: Left Middle (05)
+                            ls: Left Side (06)
+                    query:
+                        label: Ширина макета (Медиазапрос)
+                        span: left
+                        default: all
+                    width:
+                        label: Ширина (px)
+                        span: right
+                    params:
+                        label: Параметры
+                        type: repeater
+                        span: full
+                        form:
+                            fields:
+                                param:
+                                    type: dropdown
+                                    span: left
+                                    options:
+                                        sort: Порядок
+                                        height: Высота
+                                        top: Положение сверху
+                                        bottom: Положение снизу
+                                        left: Положение слева
+                                        right: Положение справа
+                                        padding-left: Отступ слева
+                                        padding-right: Отступ справа
+                                        padding-top: Отступ сверху
+                                        padding-bottom: Отступ снизу
+                                        margin-left: Поле слева
+                                        margin-right: Поле справа
+                                        margin-top: Поле сверху
+                                        margin-bottom: Поле снизу
+                                        text-align: Выравнивание по горизонтали
+                                        vertical-align: Выравнивание по вертикали
+                                value:
+                                    span: right
+
+
+        # meta[layouts]:
+        #     tab: Meta
+        #     label: Макеты
+        #     type: repeater
+        #     form:
+        #         fields:
+        #             query[min]:
+        #                 label: Min Width
+        #                 type: dropdown
+        #                 span: left
+        #                 options:
+        #                     no: no
+        #                     1280: 1280
+        #                     1440: 1440
+        #                     1600: 1600
+        #                     1700: 1700
+        #                     1920: 1920
+        #             query[max]:
+        #                 label: MaxWidth
+        #                 type: dropdown
+        #                 span: right
+        #                 options:
+        #                     no: no
+        #                     1280: 1280
+        #                     1440: 1440
+        #                     1600: 1600
+        #                     1700: 1700
+        #                     1920: 1920
+        #             bgs:
+        #                 type: repeater
+        #                 span: full
+        #                 form:
+        #                     fields:
+        #                         bg:
+        #                             label: Номер картинки
+        #                             type: number
+        #                             span: auto
+        #                         position:
+        #                             label: Положение
+        #                             span: auto
+        #                             comment: :Width :Right|:Left|:Side :Top|:Middle|:Bottom
+
+

@@ -1,13 +1,13 @@
 <?php Block::put('breadcrumb') ?>
     <ul>
-        <li><a href="<?= Backend::url('abnmt/theater/performances') ?>">Спектакли</a></li>
+        <li><a href="<?= Backend::url('abnmt/theater/performances') ?>">Performances</a></li>
         <li><?= e($this->pageTitle) ?></li>
     </ul>
 <?php Block::endPut() ?>
 
 <?php if (!$this->fatalError): ?>
 
-    <?= Form::open(['class'=>'layout']) ?>
+    <?= Form::open(['class' => 'layout']) ?>
 
         <div class="layout-row">
             <?= $this->formRender() ?>
@@ -19,21 +19,21 @@
                     type="submit"
                     data-request="onSave"
                     data-hotkey="ctrl+s, cmd+s"
-                    data-load-indicator="Создание…"
+                    data-load-indicator="Creating Performance..."
                     class="btn btn-primary">
-                    Создать
+                    Create
                 </button>
                 <button
                     type="button"
                     data-request="onSave"
                     data-request-data="close:1"
                     data-hotkey="ctrl+enter, cmd+enter"
-                    data-load-indicator="Создание…"
+                    data-load-indicator="Creating Performance..."
                     class="btn btn-default">
-                    Создать и закрыть
+                    Create and Close
                 </button>
                 <span class="btn-text">
-                    или <a href="<?= Backend::url('abnmt/theater/performances') ?>">Отмена</a>
+                    or <a href="<?= Backend::url('abnmt/theater/performances') ?>">Cancel</a>
                 </span>
             </div>
         </div>
@@ -43,6 +43,6 @@
 <?php else: ?>
 
     <p class="flash-message static error"><?= e($this->fatalError) ?></p>
-    <p><a href="<?= Backend::url('abnmt/theater/performances') ?>" class="btn btn-default">Вернуться к списку…</a></p>
+    <p><a href="<?= Backend::url('abnmt/theater/performances') ?>" class="btn btn-default">Return to performances list</a></p>
 
 <?php endif ?>
