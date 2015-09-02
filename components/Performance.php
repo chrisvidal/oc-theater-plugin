@@ -134,9 +134,10 @@ class Performance extends ComponentBase
             $height = round($width/$image->sizes[0]*$image->sizes[1]);
             $ratio = $width/$height;
 
+            // Get classes for image from bg_data
             $image['class'] = join(' ', $bg_data->where('key', strval($key))->lists('class'));
 
-            // Read params
+            // Read params from bg_data
             $params = $bg_data->where('key', strval($key))->all();
 
             // Set dest array
@@ -145,7 +146,7 @@ class Performance extends ComponentBase
             // Clean temp var
             $this->rule_temp = [];
 
-            // Process image params for every rules (default turn)
+            // Process image params for every rules through default rules
             foreach ($this->rules as $query => $columns) {
                 $rules['q' . $query] = [];
                 foreach ($columns as $column => $rule) {
@@ -155,8 +156,8 @@ class Performance extends ComponentBase
 
             // CW::info(['Rules' => $rules]);
 
-            $image['width']  = $width;
-            $image['height'] = $height;
+            $image['width']  = $this->rule_temp['thumb_width'];
+            $image['height'] = round($image['width']/$ratio);
 
             $data = array_merge_recursive($data, $rules);
 
@@ -167,47 +168,63 @@ class Performance extends ComponentBase
             $key++;
         });
 
+
+        // Assign images in every rule a sizes and a position,
+        // according columns and queries
         foreach ($data as $query => $columns) {
             foreach ($columns as $column => $rule) {
                 if ($column == 'side')
                     continue;
 
+                // Get colls
                 $cols = collect($data[$query][$column]);
 
+                CW::info([$query . $column => $cols]);
+
+                // Sort colls
                 $sort = collect($data[$query][$column])->sortBy('sort')->values()->all();
+
+                // Equation a summ of heights in column scope
                 $summ = $cols->sum('height');
 
+                // Sort and summ if column is left
                 if ($column == 'left') {
                     $sort = collect($data[$query][$column])->sortBy('sort')->reverse()->values()->all();
                     $summ = $cols->sum('height') + 475;
                 }
 
+                // Define begin top position value
                 $top = 0;
 
+                // Assigning heights and top positions to every image rule
                 foreach ($sort as $key => &$value) {
 
+                    // Add top position correction for left column images
                     if ($column == 'left' & $key == 0 && array_key_exists('height', $value)) {
                         $value['height'] += 475;
-                        $value['padding_top'] = 475;
+                        $value['styles']['padding-top'] = '475px';
                     }
 
+                    // If rule don't consist height, skip rule
                     if (!array_key_exists('height', $value)) {
-                        CW::info($value);
+                        // CW::info($value);
                         continue;
                     }
 
-                    $value['height_perc'] = ($value['height'] / $summ * 100) . '%';
-                    $value['top'] = $top . '%';
-                    $top += $value['height_perc'];
+                    $value['styles']['height'] = ($value['height'] / $summ * 100) . '%';
+                    $value['styles']['top'] = $top . '%';
+
+                    // Add height to top position sequence
+                    $top += $value['styles']['height'];
                 }
 
+                // Return sorted and processed rules to data array
                 $data[$query][$column] = $sort;
-
-
             }
         }
 
-        $post->bg_query = collect($data)->groupBy('query');
+        // $post->bg_query = collect($data)->groupBy('query');
+        // Send image data to Post
         $post->bg_data = $data;
 
         CW::info(['Data' => $data]);
@@ -219,18 +236,31 @@ class Performance extends ComponentBase
     protected function processRule($query, $column, $width, $height, $rule, $params, $key, $ratio)
     {
 
+        // Define returning array
         $return = [];
 
+        // Check count of image params records
         $param_count = count($params);
 
+        // ITERATE PARAMS
+        // Iterate throgh params, assigned to image
         foreach ($params as $id => $param) {
 
-            // CW::info(['param' => $param]);
-            // return;
 
             // Clean param
             $param = array_filter($param);
 
+            // Set Classname of image rule
+            $class_name = '.bg-' . ($key+1) . '.' . $param['class'];
+
+
+            // Init TEMP
+            if ( !array_key_exists( $class_name, $this->rule_temp ) )
+                $this->rule_temp[$class_name] = [];
+
+
+
+            // Rebuild param array
             if ( array_key_exists('params', $param) ) {
                 $_params = [];
                 foreach ($param['params'] as $entry) {
@@ -241,11 +271,8 @@ class Performance extends ComponentBase
             }
 
 
-            if ( array_key_exists('query', $param) && $query > $param['query'] ) {
-                // CW::info(['reject' => [$param['query'], $query ]]);
-                continue;
-            }
-
+            // REJECT by COLUMN
+            // Check conformity of rule columns and image param class
             if (in_array($param['class'], ['rt', 'rm', 'rb']) & $column != 'right')
                 continue;
             if (in_array($param['class'], ['lt', 'lm', 'lb']) & $column != 'left')
@@ -253,98 +280,198 @@ class Performance extends ComponentBase
             if (in_array($param['class'], ['ls']) & $column != 'side')
                 continue;
 
-            if (array_key_exists('width', $this->rule_temp))
-                $width = $this->rule_temp['width'];
-            else
-                $rule_temp['width'] = $width;
 
 
+            // NONE in RULES
+            // If rule required hide image, set styles and return
             if ($rule == 'none') {
+
                 $return[] = [
-                    'class' => '.bg-' . ($key+1) . '.' . $param['class'],
-                    'display' => 'none',
+                    'class' => $class_name,
+                    'styles' => [
+                        'display' => 'none',
+                        '/* Rejected by' => 'RULE NONE */',
+                    ],
                 ];
-                $this->rule_temp['display'] = 'none';
+
                 continue;
             }
 
 
-            if (array_key_exists('delta', $this->rule_temp))
-                $delta = $this->rule_temp['delta'];
+            // WIDTH from TEMP
+            // If this a first round of process current image,
+            // set the width/temp_width/thumb_width (from filename),
+            // else -- read width from temp_width
+            if (array_key_exists('width', $this->rule_temp[$class_name]))
+                $width = $this->rule_temp[$class_name]['width'];
             else
-                $delta = $this->rule_temp['delta'] = $width / $rule['width'];
+                $this->rule_temp[$class_name]['width'] = $this->rule_temp['thumb_width'] =  $width;
 
+
+
+            // CW::info(['TEMP' => $this->rule_temp]);
+
+            // DEFAULT STYLES
+            // Load default styles and update from inheritance
+            if ( !array_key_exists('styles', $this->rule_temp[$class_name]) )
+                $this->rule_temp[$class_name]['styles'] = [];
+
+            if ( is_array($rule)  && !array_key_exists('styles', $rule) )
+                $rule['styles'] = [];
+
+            $default_styles = array_merge($this->rule_temp[$class_name]['styles'], $rule['styles']);
+
+            if (array_key_exists($param['class'], $rule))
+                $default_styles = array_merge($default_styles, $rule[$param['class']]);
+
+
+
+            // DELTA
+            // If this a first round of process current image,
+            // set the delta/temp_delta (from filename width),
+            // else -- read delta from temp_delta
+            if ( array_key_exists('delta', $this->rule_temp[$class_name]) )
+                $delta = $this->rule_temp[$class_name]['delta'];
+            else
+                $delta = $this->rule_temp[$class_name]['delta'] = $width / $rule['width'];
+
+
+            // SORT
+            // Read sort key from param or set from rule param id
             $sort = $id;
             if ( array_key_exists('sort', $param) )
                 $sort = intval($param['sort'], 10);
 
-            $display = 'block';
 
+
+            // WIDTH from PARAMs
+            // Set width from param, if exist,
+            // and test on inheritance from temp_width through temp_param_id
             if ( array_key_exists('width', $param) ) {
-                if ( !(array_key_exists('param_id', $this->rule_temp) && $this->rule_temp['param_id'] == $id) ) {
+                if ( !(array_key_exists('param_id', $this->rule_temp) && $this->rule_temp[$class_name]['param_id'] == $id) ) {
 
-                    if ($param['width'] > $width)
-                        $this->rule_temp['width'] = $param['width'];
+                    // Set thumb width, if necessary
+                    if ($param['width'] > $this->rule_temp['thumb_width'])
+                        $this->rule_temp['thumb_width'] = $param['width'];
 
-                    $delta = $this->rule_temp['delta'] = $param['width'] / $rule['width'];
-                    $this->rule_temp['param_id'] = $id;
-                    $display = $this->rule_temp['display'] = 'block';
+                    // Set delta from param width
+                    $delta = $this->rule_temp[$class_name]['delta'] = $param['width'] / $rule['width'];
+                    // Set param_id sign
+                    $this->rule_temp[$class_name]['param_id'] = $id;
+
                 }
             }
 
-            if ( array_key_exists('display', $this->rule_temp) )
-                $display = $this->rule_temp['display'];
 
+
+
+            // SIZES and PADDING
+            // For current query: delta = file_width| param_width / rule_width
+            // For inheritance delta loads from temp_delta
+            // Width/Height -- for current query and column
             $width = round($rule['width'] * $delta);
             $height = round($width / $ratio);
-            $padding = round($query * $rule['percent'] - $width);
+            $padding = round($query * $rule['percent'] - $width) . 'px';
 
-            // if ( $column == 'left' && in_array($query, ['1622'])) {
-            //     // CW::info([$width, $rule['width']]);
-            //     $padding = round($rule['width'] * $delta);
-            // }
 
+            // PARAM STYLES
+            // Load param styles
+            $param_styles = [];
+            foreach ($param as $name => $value) {
+                if ( in_array($name, $this->allowedStyles) )
+                    $param_styles[$name] = $value;
+            }
+
+            $calc_styles = [];
+            if ($rule['padding'] != 'none')
+                $calc_styles[$rule['padding']] = $padding;
+
+
+
+            // MERGE STYLES
+            $styles = $this->rule_temp[$class_name]['styles'] = array_merge($default_styles, $calc_styles, $param_styles);
+
+            // DISPLAY
+            $styles['display'] = 'block';
+
+            // NONE by not QUERY
+            // Check if the param query fit the rule query and return
+            if ( array_key_exists('query', $param) && $query > $param['query'] ) {
+
+                // REPLACE sign
+                $this->rule_temp['replace'] = [$class_name, $param['query']];
+
+                $return[] = [
+                    'class' => $class_name,
+                    'styles' => [
+                        'display' => 'none',
+                        '/* Rejected by' => 'QUERY */',
+                    ],
+                ];
+
+                continue;
+            }
+
+            if ( array_key_exists('replace', $this->rule_temp) && $class_name != $this->rule_temp['replace'][0] && $query <= $this->rule_temp['replace'][1] ) {
+                CW::info([$query . $class_name . 'Rejected by REPLACE' => [
+                    'Styles' => [$default_styles, $calc_styles, $param_styles],
+                    'Temp' => $this->rule_temp,
+                ]]);
+                continue;
+            }
+
+            // PREPARE RETURN DATA
             $_ret = [
                 'id'      => $id,
                 'class'   => '.bg-' . ($key+1) . '.' . $param['class'],
                 'width'   => $width,
                 'height'  => $height,
+                'ratio'   => $ratio,
                 'delta'   => $delta,
                 'sort'    => $sort,
-                'ratio'   => $ratio,
-                'display' => $display,
+                'styles'  => $styles,
             ];
 
-
-            switch ($column) {
-                case 'left':
-                    $_ret['padding_right'] = array_key_exists('padding_right', $rule) ? $rule['padding_right'] : $padding;
-                    break;
-                case 'side':
-                    $_ret['padding_right'] = $padding;
-                    break;
-                case 'right':
-                    $_ret['padding_left'] = $padding;
-                    break;
-            }
-
-            if ($param_count > 1) {
-                $_ret['clean'] = 'true';
-                if (array_key_exists('clean', $rule))
-                    $_ret = array_merge($rule['clean'], $_ret);
-            }
-
+            // RETURN DATA
             $return[] =  $_ret;
+
+            CW::info([$query . $class_name => [
+                'Styles' => [$default_styles, $calc_styles, $param_styles],
+                'Temp' => $this->rule_temp,
+                'RET' => $_ret,
+            ]]);
 
         }
 
+        // FILTER and RETURN DATA
         return array_filter($return);
 
-        // $return['width'] = $width; // width for thumb
-        // $return['delta'] = $width / $rule['width'];
     }
 
     protected $rule_temp = [];
+
+
+    protected $allowedStyles = [
+        'top',
+        'left',
+        'right',
+        'bottom',
+        'padding',
+        'padding-top',
+        'padding-left',
+        'padding-right',
+        'padding-bottom',
+        'margin',
+        'margin-top',
+        'margin-left',
+        'margin-right',
+        'margin-bottom',
+        'vertical-align',
+        'text-align',
+        'height',
+        'display',
+    ];
+
 
     protected $rules = [
         '1920' => [
@@ -352,23 +479,65 @@ class Performance extends ComponentBase
                 'width'   => 768,
                 'padding' => 192,
                 'percent' => 0.5,
-                'delta'   => 'width(file) / width(768)',
-                'padding' => '1920 * 50% - width(768) * delta',
+                'padding' => 'padding-left',
+                'styles' => [
+                    'left'          => '50%',
+                    'right'         => '0',
+                    'text-align'    => 'right',
+                    'padding-left'  => '192px',
+                    'padding-right' => '0',
+                ],
+                'rt' => [
+                    'vertical-align' => 'top',
+                ],
+                'rm' => [
+                    'vertical-align' => 'middle',
+                ],
+                'rb' => [
+                    'vertical-align' => 'bottom',
+                ],
             ],
             'left' => [
                 'width'   => 592,
                 'padding' => 368,
                 'percent' => 0.5,
-                'delta'   => 'width(file) / width(592)',
-                'padding' => '1920 * 50% - width(592) * delta',
+                'padding' => 'padding-right',
+                'styles' => [
+                    'left'          => '0',
+                    'right'         => '50%',
+                    'text-align'    => 'left',
+                    'padding-right' => '368px',
+                    'padding-left'  => '0',
+                ],
+                'lt' => [
+                    'vertical-align' => 'top',
+                ],
+                'lm' => [
+                    'vertical-align' => 'middle',
+                ],
+                'lb' => [
+                    'vertical-align' => 'bottom',
+                ],
             ],
             'side' => [
                 'width'   => 304,
                 'padding' => 656,
                 'percent' => 0.5,
-                'delta'   => 'width(file) / width(592)',
-                'padding' => '1920 * 50% - width(592) * delta',
+                'padding' => 'padding-right',
+                'styles' => [
+                    'top'            => '0',
+                    'left'           => '0',
+                    'right'          => '50%',
+                    'text-align'     => 'left',
+                    'vertical-align' => 'bottom',
+                    'height'         => '475px',
+                    'padding-right'  => '656px',
+                ],
+                'ls' => [
+                    'vertical-align' => 'bottom',
+                ],
             ],
+
         ],
         '1700' => [
             'side' => 'none',
@@ -378,15 +547,23 @@ class Performance extends ComponentBase
                 'width'   => 619,
                 'padding' => 1003,
                 'percent' => 1,
-                'delta'   => 'width(param) / width(619)',
-                'padding' => '1622 * 100% - width(619) * delta',
+                'padding' => 'padding-left',
+                'styles' => [
+                    'left'         => '0',
+                    'padding-left' => '1003px',
+                ],
             ],
             'left' => [
                 'width'   => 443,
                 'percent' => 0,
-                'padding_right' => 0,
-                'delta'   => 'width(param) / width(443)',
-                // 'width'   => 'width(443) * delta',
+                'padding' => 'none',
+                'styles' => [
+                    'left'          => '0',
+                    'right'         => 'auto',
+                    'text-align'    => 'left',
+                    'padding-right' => '0',
+                    'width'         => '443px' // ???
+                ],
             ],
         ],
         '1440' => [
@@ -394,15 +571,10 @@ class Performance extends ComponentBase
                 'width'   => 725,
                 'padding' => 715,
                 'percent' => 1,
-                'clean' => [
-                    'padding' => 0,
-                    'right' => 0,
-                    'left' => 0,
-                    'vertical_align' => 'middle',
-                    'text_align' => 'right',
+                'padding' => 'padding-left',
+                'styles' => [
+                    'padding-left' => '715px',
                 ],
-                'delta'   => 'width(param) / width(725)',
-                'padding' => '1440 * 100% - width(725) * delta',
             ],
             'left' => 'none',
         ],
@@ -411,8 +583,10 @@ class Performance extends ComponentBase
                 'width'   => 690,
                 'padding' => 670,
                 'percent' => 1,
-                'delta'   => 'width(param) / width(690)',
-                'padding' => '1360 * 100% - width(690) * delta',
+                'padding' => 'padding-left',
+                'styles' => [
+                    'padding-left' => '670px',
+                ],
             ],
         ],
         '1280' => [
@@ -420,8 +594,10 @@ class Performance extends ComponentBase
                 'width'   => 610,
                 'padding' => 670,
                 'percent' => 1,
-                'delta'   => 'width(param) / width(610)',
-                'padding' => '1280 * 100% - width(610) * delta',
+                'padding' => 'padding-left',
+                'styles' => [
+                    'padding-left' => '670px',
+                ],
             ],
         ],
     ];
