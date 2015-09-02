@@ -26,7 +26,6 @@ return [
                 3 => ['key' => '2', 'class' => 'rb'],
                 4 => ['key' => '3', 'class' => 'lb'],
                 5 => ['key' => '4', 'class' => 'lm'],
-                6 => ['key' => '5', 'class' => 'ls'],
             ],
 
         ],
@@ -52,11 +51,9 @@ return [
             "calendar_title_font_size" => "60px",
             "backgrounds" => [
                 1 => ['key' => '0', 'class' => 'rt'],
-                2 => ['key' => '1', 'class' => 'rm'],
-                3 => ['key' => '2', 'class' => 'rb'],
-                4 => ['key' => '3', 'class' => 'lb'],
-                5 => ['key' => '4', 'class' => 'lm'],
-                6 => ['key' => '5', 'class' => 'ls'],
+                2 => ['key' => '1', 'class' => 'rb'],
+                3 => ['key' => '2', 'class' => 'lb'],
+                4 => ['key' => '3', 'class' => 'lm'],
             ],
 
         ],
