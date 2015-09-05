@@ -160,7 +160,7 @@ return [
         "duration"      => "03:00:00",
         "entracte"      => "1",
         "premiere_date" => "2000-03-12",
-        "rate"          => "16+",
+        "rate"          => "12+",
         "published"     => "1",
         "meta"          => [
             "calendar_date_block_bg_color" => "#1B3971",
@@ -220,7 +220,7 @@ return [
         "duration"      => "02:45:00",
         "entracte"      => "1",
         "premiere_date" => "2000-09-08",
-        "rate"          => "6+",
+        "rate"          => "16+",
         "published"     => "1",
         "meta"          => [
             "calendar_date_block_bg_color" => "#9C1728",
@@ -250,7 +250,7 @@ return [
         "duration"      => "03:30:00",
         "entracte"      => "1",
         "premiere_date" => "2000-11-19",
-        "rate"          => "12+",
+        "rate"          => "16+",
         "published"     => "1",
         "meta"          => [
             "calendar_date_block_bg_color" => "#BB0028",
@@ -310,7 +310,7 @@ return [
         "duration"      => "02:30:00",
         "entracte"      => "1",
         "premiere_date" => "2003-03-06",
-        "rate"          => "12+",
+        "rate"          => "16+",
         "published"     => "1",
         "meta"          => [
             "calendar_date_block_bg_color" => "#D98F1B",
@@ -370,7 +370,7 @@ return [
         "duration"      => "03:00:00",
         "entracte"      => "1",
         "premiere_date" => "2006-12-15",
-        "rate"          => "12+",
+        "rate"          => "16+",
         "published"     => "1",
         "meta"          => [
             "calendar_date_block_bg_color" => "#1E52A5",
@@ -640,7 +640,7 @@ return [
         "duration"      => "03:30:00",
         "entracte"      => "1",
         "premiere_date" => "2012-12-08",
-        "rate"          => "12+",
+        "rate"          => "16+",
         "published"     => "1",
         "meta"          => [
             "calendar_date_block_bg_color" => "#0B3374",
@@ -670,7 +670,7 @@ return [
         "duration"      => "03:40:00",
         "entracte"      => "1",
         "premiere_date" => "2013-02-23",
-        "rate"          => "12+",
+        "rate"          => "16+",
         "published"     => "1",
         "meta"          => [
             "calendar_date_block_bg_color" => "#FFF5DA",
@@ -730,7 +730,7 @@ return [
         "duration"      => "01:50:00",
         "entracte"      => "1",
         "premiere_date" => "2014-12-17",
-        "rate"          => "12+",
+        "rate"          => "18+",
         "published"     => "1",
         "meta"          => [
             "calendar_date_block_bg_color" => "#76000E",
@@ -760,7 +760,7 @@ return [
         "duration"      => "02:40:00",
         "entracte"      => "1",
         "premiere_date" => "2014-03-27",
-        "rate"          => "12+",
+        "rate"          => "16+",
         "published"     => "1",
         "meta"          => [
             "calendar_date_block_bg_color" => "#151D69",
@@ -790,7 +790,7 @@ return [
         "duration"      => "03:30:00",
         "entracte"      => "1",
         "premiere_date" => "2014-11-20",
-        "rate"          => "12+",
+        "rate"          => "18+",
         "published"     => "1",
         "meta"          => [
             "calendar_date_block_bg_color" => "#A00042",

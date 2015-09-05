@@ -202,7 +202,7 @@ class Performance extends ComponentBase
                     // Add top position correction for left column images
                     if ($column == 'left' & $key == 0 && array_key_exists('height', $value)) {
                         $value['height'] += 475;
-                        $value['styles']['padding-top'] = '475px';
+                        $value['styles']['margin-top'] = '475px';
                     }
 
                     // If rule don't consist height, skip rule
@@ -369,9 +369,9 @@ class Performance extends ComponentBase
             // For current query: delta = file_width| param_width / rule_width
             // For inheritance delta loads from temp_delta
             // Width/Height -- for current query and column
-            $width = round($rule['width'] * $delta);
+            $width  = round($rule['width'] * $delta);
             $height = round($width / $ratio);
-            $padding = round($query * $rule['percent'] - $width) . 'px';
+            $margin = round($query * $rule['percent'] - $width) . 'px';
 
 
             // PARAM STYLES
@@ -383,8 +383,8 @@ class Performance extends ComponentBase
             }
 
             $calc_styles = [];
-            if ($rule['padding'] != 'none')
-                $calc_styles[$rule['padding']] = $padding;
+            if ($rule['margin'] != 'none')
+                $calc_styles[$rule['margin']] = $margin;
 
 
 
@@ -479,13 +479,13 @@ class Performance extends ComponentBase
                 'width'   => 768,
                 'padding' => 192,
                 'percent' => 0.5,
-                'padding' => 'padding-left',
-                'styles' => [
+                'margin'  => 'margin-left',
+                'styles'  => [
                     'left'          => '50%',
                     'right'         => '0',
                     'text-align'    => 'right',
-                    'padding-left'  => '192px',
-                    'padding-right' => '0',
+                    'margin-left'  => '192px',
+                    'margin-right' => '0',
                 ],
                 'rt' => [
                     'vertical-align' => 'top',
@@ -501,13 +501,13 @@ class Performance extends ComponentBase
                 'width'   => 592,
                 'padding' => 368,
                 'percent' => 0.5,
-                'padding' => 'padding-right',
-                'styles' => [
+                'margin'  => 'margin-right',
+                'styles'  => [
                     'left'          => '0',
                     'right'         => '50%',
                     'text-align'    => 'left',
-                    'padding-right' => '368px',
-                    'padding-left'  => '0',
+                    'margin-right' => '368px',
+                    'margin-left'  => '0',
                 ],
                 'lt' => [
                     'vertical-align' => 'top',
@@ -523,15 +523,15 @@ class Performance extends ComponentBase
                 'width'   => 304,
                 'padding' => 656,
                 'percent' => 0.5,
-                'padding' => 'padding-right',
-                'styles' => [
+                'margin'  => 'margin-right',
+                'styles'  => [
                     'top'            => '0',
                     'left'           => '0',
                     'right'          => '50%',
                     'text-align'     => 'left',
                     'vertical-align' => 'bottom',
                     'height'         => '475px',
-                    'padding-right'  => '656px',
+                    'margin-right'   => '656px',
                 ],
                 'ls' => [
                     'vertical-align' => 'bottom',
@@ -547,22 +547,22 @@ class Performance extends ComponentBase
                 'width'   => 619,
                 'padding' => 1003,
                 'percent' => 1,
-                'padding' => 'padding-left',
-                'styles' => [
+                'margin'  => 'margin-left',
+                'styles'  => [
                     'left'         => '0',
-                    'padding-left' => '1003px',
+                    'margin-left' => '1003px',
                 ],
             ],
             'left' => [
                 'width'   => 443,
                 'percent' => 0,
-                'padding' => 'none',
-                'styles' => [
-                    'left'          => '0',
-                    'right'         => 'auto',
-                    'text-align'    => 'left',
-                    'padding-right' => '0',
-                    'width'         => '443px' // ???
+                'margin'  => 'none',
+                'styles'  => [
+                    'left'         => '0',
+                    'right'        => 'auto',
+                    'text-align'   => 'left',
+                    'margin-right' => '0',
+                    'width'        => '443px' // ???
                 ],
             ],
         ],
@@ -571,9 +571,9 @@ class Performance extends ComponentBase
                 'width'   => 725,
                 'padding' => 715,
                 'percent' => 1,
-                'padding' => 'padding-left',
-                'styles' => [
-                    'padding-left' => '715px',
+                'margin'  => 'margin-left',
+                'styles'  => [
+                    'margin-left' => '715px',
                 ],
             ],
             'left' => 'none',
@@ -583,9 +583,9 @@ class Performance extends ComponentBase
                 'width'   => 690,
                 'padding' => 670,
                 'percent' => 1,
-                'padding' => 'padding-left',
-                'styles' => [
-                    'padding-left' => '670px',
+                'margin'  => 'margin-left',
+                'styles'  => [
+                    'margin-left' => '670px',
                 ],
             ],
         ],
@@ -594,9 +594,9 @@ class Performance extends ComponentBase
                 'width'   => 610,
                 'padding' => 670,
                 'percent' => 1,
-                'padding' => 'padding-left',
-                'styles' => [
-                    'padding-left' => '670px',
+                'margin'  => 'margin-left',
+                'styles'  => [
+                    'margin-left' => '670px',
                 ],
             ],
         ],
