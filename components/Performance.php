@@ -154,7 +154,7 @@ class Performance extends ComponentBase
                 }
             }
 
-            // CW::info(['Rules' => $rules]);
+            CW::info(['TEMP' => $this->rule_temp]);
 
             $image['width']  = $this->rule_temp['thumb_width'];
             $image['height'] = round($image['width']/$ratio);
@@ -191,6 +191,12 @@ class Performance extends ComponentBase
                 if ($column == 'left') {
                     $sort = collect($data[$query][$column])->sortBy('sort')->reverse()->values()->all();
                     $summ = $cols->sum('height') + 475;
+
+                    foreach ($sort as $key => &$value) {
+                        if (array_key_exists('styles', $value) && array_key_exists('margin-top', $value['styles']) ) {
+                            $summ += intval(str_replace('px', '', $value['styles']['margin-top']));
+                        }
+                    }
                 }
 
                 // Define begin top position value
@@ -199,11 +205,24 @@ class Performance extends ComponentBase
                 // Assigning heights and top positions to every image rule
                 foreach ($sort as $key => &$value) {
 
+                    // $_height = 0;
+                    // if ( array_key_exists('height', $value) ) {
+                    //     $_height = $value['height'];
+                    // }
+
                     // Add top position correction for left column images
                     if ($column == 'left' & $key == 0 && array_key_exists('height', $value)) {
                         $value['height'] += 475;
                         $value['styles']['padding-top'] = '475px';
                     }
+
+
+
+                    // if (array_key_exists('styles', $value) && array_key_exists('margin-top', $value['styles']) ) {
+                    //     $value['height'] += intval(str_replace('px', '', $value['styles']['margin-top']));
+                    // }
+
+
 
                     // If rule don't consist height, skip rule
                     if (!array_key_exists('height', $value)) {
@@ -211,11 +230,24 @@ class Performance extends ComponentBase
                         continue;
                     }
 
-                    $value['styles']['height'] = ($value['height'] / $summ * 100) . '%';
+                    $_height = ($value['height'] / $summ * 100) . '%';
+                    if ( array_key_exists('styles', $value) && array_key_exists('height', $value['styles']) && $value['styles']['height'] != 'auto' ) {
+                        $value['styles']['height'] = $_height;
+                    }
                     $value['styles']['top'] = $top . '%';
 
                     // Add height to top position sequence
-                    $top += $value['styles']['height'];
+                    // $top += $value['styles']['height'];
+                    $top += $_height;
+
+                    if (array_key_exists('styles', $value) && array_key_exists('margin-top', $value['styles']) ) {
+                        $top += ($value['styles']['margin-top'] / $summ * 100) . '%';
+                    }
+                    if (array_key_exists('styles', $value) && array_key_exists('margin-bottom', $value['styles']) ) {
+                        $top += ($value['styles']['margin-bottom'] / $summ * 100) . '%';
+                    }
+
+
                 }
 
                 // Return sorted and processed rules to data array
@@ -371,7 +403,8 @@ class Performance extends ComponentBase
             // Width/Height -- for current query and column
             $width = round($rule['width'] * $delta);
             $height = round($width / $ratio);
-            $padding = round($query * $rule['percent'] - $width) . 'px';
+            // $padding = round($query * $rule['percent'] - $width) . 'px';
+            $margin = 100 - ($delta * 100) . '%';
 
 
             // PARAM STYLES
@@ -382,9 +415,15 @@ class Performance extends ComponentBase
                     $param_styles[$name] = $value;
             }
 
+            if ( array_key_exists('text-align', $param_styles) && $param_styles['text-align'] == 'center' ) {
+                $margin = 0;
+            }
+
             $calc_styles = [];
-            if ($rule['padding'] != 'none')
-                $calc_styles[$rule['padding']] = $padding;
+            // if ($rule['padding'] != 'none')
+            //     $calc_styles[$rule['padding']] = $padding;
+            // if ($rule['margin'] != 'none')
+            //     $calc_styles[$rule['margin']] = $margin;
 
 
 
@@ -420,12 +459,18 @@ class Performance extends ComponentBase
                 continue;
             }
 
+            // if ( $width < $rule['width'] ) {
+            //     $width = $rule['width'];
+            //     $styles['text-align'] = 'center';
+            // }
+
             // PREPARE RETURN DATA
             $_ret = [
                 'id'      => $id,
                 'class'   => '.bg-' . ($key+1) . '.' . $param['class'],
                 'width'   => $width,
                 'height'  => $height,
+                'margin'  => [$rule['margin'] => $margin],
                 'ratio'   => $ratio,
                 'delta'   => $delta,
                 'sort'    => $sort,
@@ -480,6 +525,7 @@ class Performance extends ComponentBase
                 'padding' => 192,
                 'percent' => 0.5,
                 'padding' => 'padding-left',
+                'margin'  => 'margin-left',
                 'styles' => [
                     'left'          => '50%',
                     'right'         => '0',
@@ -495,6 +541,8 @@ class Performance extends ComponentBase
                 ],
                 'rb' => [
                     'vertical-align' => 'bottom',
+                    'bottom' => '0',
+                    'height' => 'auto',
                 ],
             ],
             'left' => [
@@ -502,6 +550,7 @@ class Performance extends ComponentBase
                 'padding' => 368,
                 'percent' => 0.5,
                 'padding' => 'padding-right',
+                'margin'  => 'margin-right',
                 'styles' => [
                     'left'          => '0',
                     'right'         => '50%',
@@ -517,6 +566,8 @@ class Performance extends ComponentBase
                 ],
                 'lb' => [
                     'vertical-align' => 'bottom',
+                    'bottom' => '0',
+                    'height' => 'auto',
                 ],
             ],
             'side' => [
@@ -524,6 +575,7 @@ class Performance extends ComponentBase
                 'padding' => 656,
                 'percent' => 0.5,
                 'padding' => 'padding-right',
+                'margin'  => 'margin-right',
                 'styles' => [
                     'top'            => '0',
                     'left'           => '0',
@@ -548,6 +600,7 @@ class Performance extends ComponentBase
                 'padding' => 1003,
                 'percent' => 1,
                 'padding' => 'padding-left',
+                'margin'  => 'margin-left',
                 'styles' => [
                     'left'         => '0',
                     'padding-left' => '1003px',
@@ -557,11 +610,13 @@ class Performance extends ComponentBase
                 'width'   => 443,
                 'percent' => 0,
                 'padding' => 'none',
+                'margin'  => 'none',
                 'styles' => [
                     'left'          => '0',
                     'right'         => 'auto',
                     'text-align'    => 'left',
                     'padding-right' => '0',
+                    'margin-right'  => '0',
                     'width'         => '443px' // ???
                 ],
             ],
@@ -572,6 +627,7 @@ class Performance extends ComponentBase
                 'padding' => 715,
                 'percent' => 1,
                 'padding' => 'padding-left',
+                'margin'  => 'margin-left',
                 'styles' => [
                     'padding-left' => '715px',
                 ],
@@ -584,6 +640,7 @@ class Performance extends ComponentBase
                 'padding' => 670,
                 'percent' => 1,
                 'padding' => 'padding-left',
+                'margin'  => 'margin-left',
                 'styles' => [
                     'padding-left' => '670px',
                 ],
@@ -595,6 +652,7 @@ class Performance extends ComponentBase
                 'padding' => 670,
                 'percent' => 1,
                 'padding' => 'padding-left',
+                'margin'  => 'margin-left',
                 'styles' => [
                     'padding-left' => '670px',
                 ],
