@@ -21,11 +21,41 @@ return [
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
             "backgrounds" => [
-                1 => ['key' => '0', 'class' => 'rt'],
-                2 => ['key' => '1', 'class' => 'rm'],
-                3 => ['key' => '2', 'class' => 'rb'],
-                4 => ['key' => '3', 'class' => 'lb'],
-                5 => ['key' => '4', 'class' => 'lm'],
+                1 => [
+                    'key' => '0',
+                    'class' => 'rt',
+                    'params' => [
+
+                    ],
+                ],
+                2 => [
+                    'key' => '1',
+                    'class' => 'rm',
+                    'params' => [
+
+                    ],
+                ],
+                3 => [
+                    'key' => '2',
+                    'class' => 'rb',
+                    'params' => [
+
+                    ],
+                ],
+                4 => [
+                    'key' => '3',
+                    'class' => 'lb',
+                    'params' => [
+
+                    ],
+                ],
+                5 => [
+                    'key' => '4',
+                    'class' => 'lm',
+                    'params' => [
+
+                    ],
+                ],
             ],
 
         ],
@@ -50,10 +80,34 @@ return [
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
             "backgrounds" => [
-                1 => ['key' => '0', 'class' => 'rt'],
-                2 => ['key' => '1', 'class' => 'rb'],
-                3 => ['key' => '2', 'class' => 'lb'],
-                4 => ['key' => '3', 'class' => 'lm'],
+                1 => [
+                    'key' => '0',
+                    'class' => 'rt',
+                    'params' => [
+
+                    ],
+                ],
+                2 => [
+                    'key' => '1',
+                    'class' => 'rb',
+                    'params' => [
+
+                    ],
+                ],
+                3 => [
+                    'key' => '2',
+                    'class' => 'lb',
+                    'params' => [
+
+                    ],
+                ],
+                4 => [
+                    'key' => '3',
+                    'class' => 'lm',
+                    'params' => [
+
+                    ],
+                ],
             ],
 
         ],
@@ -78,12 +132,48 @@ return [
             // "calendar_title" => "",
             "calendar_title_font_size" => "56px",
             "backgrounds" => [
-                1 => ['key' => '0', 'class' => 'rt'],
-                2 => ['key' => '1', 'class' => 'rm'],
-                3 => ['key' => '2', 'class' => 'rb'],
-                4 => ['key' => '3', 'class' => 'lb'],
-                5 => ['key' => '4', 'class' => 'lm'],
-                6 => ['key' => '5', 'class' => 'ls'],
+                1 => [
+                    'key' => '0',
+                    'class' => 'rt',
+                    'params' => [
+
+                    ],
+                ],
+                2 => [
+                    'key' => '1',
+                    'class' => 'rm',
+                    'params' => [
+
+                    ],
+                ],
+                3 => [
+                    'key' => '2',
+                    'class' => 'rb',
+                    'params' => [
+
+                    ],
+                ],
+                4 => [
+                    'key' => '3',
+                    'class' => 'lb',
+                    'params' => [
+
+                    ],
+                ],
+                5 => [
+                    'key' => '4',
+                    'class' => 'lm',
+                    'params' => [
+
+                    ],
+                ],
+                6 => [
+                    'key' => '5',
+                    'class' => 'ls',
+                    'params' => [
+
+                    ],
+                ],
             ],
 
         ],
@@ -108,12 +198,48 @@ return [
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
             "backgrounds" => [
-                1 => ['key' => '0', 'class' => 'rt'],
-                2 => ['key' => '1', 'class' => 'rm'],
-                3 => ['key' => '2', 'class' => 'rb'],
-                4 => ['key' => '3', 'class' => 'lb'],
-                5 => ['key' => '4', 'class' => 'lm'],
-                6 => ['key' => '5', 'class' => 'ls'],
+                1 => [
+                    'key' => '0',
+                    'class' => 'rt',
+                    'params' => [
+
+                    ],
+                ],
+                2 => [
+                    'key' => '1',
+                    'class' => 'rm',
+                    'params' => [
+
+                    ],
+                ],
+                3 => [
+                    'key' => '2',
+                    'class' => 'rb',
+                    'params' => [
+
+                    ],
+                ],
+                4 => [
+                    'key' => '3',
+                    'class' => 'lb',
+                    'params' => [
+
+                    ],
+                ],
+                5 => [
+                    'key' => '4',
+                    'class' => 'lm',
+                    'params' => [
+
+                    ],
+                ],
+                6 => [
+                    'key' => '5',
+                    'class' => 'ls',
+                    'params' => [
+
+                    ],
+                ],
             ],
 
         ],
@@ -138,12 +264,48 @@ return [
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
             "backgrounds" => [
-                1 => ['key' => '0', 'class' => 'rt'],
-                2 => ['key' => '1', 'class' => 'rm'],
-                3 => ['key' => '2', 'class' => 'rb'],
-                4 => ['key' => '3', 'class' => 'lb'],
-                5 => ['key' => '4', 'class' => 'lm'],
-                6 => ['key' => '5', 'class' => 'ls'],
+                1 => [
+                    'key' => '0',
+                    'class' => 'rt',
+                    'params' => [
+
+                    ],
+                ],
+                2 => [
+                    'key' => '1',
+                    'class' => 'rm',
+                    'params' => [
+
+                    ],
+                ],
+                3 => [
+                    'key' => '2',
+                    'class' => 'rb',
+                    'params' => [
+
+                    ],
+                ],
+                4 => [
+                    'key' => '3',
+                    'class' => 'lb',
+                    'params' => [
+
+                    ],
+                ],
+                5 => [
+                    'key' => '4',
+                    'class' => 'lm',
+                    'params' => [
+
+                    ],
+                ],
+                6 => [
+                    'key' => '5',
+                    'class' => 'ls',
+                    'params' => [
+
+                    ],
+                ],
             ],
 
         ],
@@ -168,12 +330,48 @@ return [
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
             "backgrounds" => [
-                1 => ['key' => '0', 'class' => 'rt'],
-                2 => ['key' => '1', 'class' => 'rm'],
-                3 => ['key' => '2', 'class' => 'rb'],
-                4 => ['key' => '3', 'class' => 'lb'],
-                5 => ['key' => '4', 'class' => 'lm'],
-                6 => ['key' => '5', 'class' => 'ls'],
+                1 => [
+                    'key' => '0',
+                    'class' => 'rt',
+                    'params' => [
+
+                    ],
+                ],
+                2 => [
+                    'key' => '1',
+                    'class' => 'rm',
+                    'params' => [
+
+                    ],
+                ],
+                3 => [
+                    'key' => '2',
+                    'class' => 'rb',
+                    'params' => [
+
+                    ],
+                ],
+                4 => [
+                    'key' => '3',
+                    'class' => 'lb',
+                    'params' => [
+
+                    ],
+                ],
+                5 => [
+                    'key' => '4',
+                    'class' => 'lm',
+                    'params' => [
+
+                    ],
+                ],
+                6 => [
+                    'key' => '5',
+                    'class' => 'ls',
+                    'params' => [
+
+                    ],
+                ],
             ],
 
         ],
@@ -198,12 +396,48 @@ return [
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
             "backgrounds" => [
-                1 => ['key' => '0', 'class' => 'rt'],
-                2 => ['key' => '1', 'class' => 'rm'],
-                3 => ['key' => '2', 'class' => 'rb'],
-                4 => ['key' => '3', 'class' => 'lb'],
-                5 => ['key' => '4', 'class' => 'lm'],
-                6 => ['key' => '5', 'class' => 'ls'],
+                1 => [
+                    'key' => '0',
+                    'class' => 'rt',
+                    'params' => [
+
+                    ],
+                ],
+                2 => [
+                    'key' => '1',
+                    'class' => 'rm',
+                    'params' => [
+
+                    ],
+                ],
+                3 => [
+                    'key' => '2',
+                    'class' => 'rb',
+                    'params' => [
+
+                    ],
+                ],
+                4 => [
+                    'key' => '3',
+                    'class' => 'lb',
+                    'params' => [
+
+                    ],
+                ],
+                5 => [
+                    'key' => '4',
+                    'class' => 'lm',
+                    'params' => [
+
+                    ],
+                ],
+                6 => [
+                    'key' => '5',
+                    'class' => 'ls',
+                    'params' => [
+
+                    ],
+                ],
             ],
 
         ],
@@ -228,12 +462,48 @@ return [
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
             "backgrounds" => [
-                1 => ['key' => '0', 'class' => 'rt'],
-                2 => ['key' => '1', 'class' => 'rm'],
-                3 => ['key' => '2', 'class' => 'rb'],
-                4 => ['key' => '3', 'class' => 'lb'],
-                5 => ['key' => '4', 'class' => 'lm'],
-                6 => ['key' => '5', 'class' => 'ls'],
+                1 => [
+                    'key' => '0',
+                    'class' => 'rt',
+                    'params' => [
+
+                    ],
+                ],
+                2 => [
+                    'key' => '1',
+                    'class' => 'rm',
+                    'params' => [
+
+                    ],
+                ],
+                3 => [
+                    'key' => '2',
+                    'class' => 'rb',
+                    'params' => [
+
+                    ],
+                ],
+                4 => [
+                    'key' => '3',
+                    'class' => 'lb',
+                    'params' => [
+
+                    ],
+                ],
+                5 => [
+                    'key' => '4',
+                    'class' => 'lm',
+                    'params' => [
+
+                    ],
+                ],
+                6 => [
+                    'key' => '5',
+                    'class' => 'ls',
+                    'params' => [
+
+                    ],
+                ],
             ],
 
         ],
@@ -258,12 +528,48 @@ return [
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
             "backgrounds" => [
-                1 => ['key' => '0', 'class' => 'rt'],
-                2 => ['key' => '1', 'class' => 'rm'],
-                3 => ['key' => '2', 'class' => 'rb'],
-                4 => ['key' => '3', 'class' => 'lb'],
-                5 => ['key' => '4', 'class' => 'lm'],
-                6 => ['key' => '5', 'class' => 'ls'],
+                1 => [
+                    'key' => '0',
+                    'class' => 'rt',
+                    'params' => [
+
+                    ],
+                ],
+                2 => [
+                    'key' => '1',
+                    'class' => 'rm',
+                    'params' => [
+
+                    ],
+                ],
+                3 => [
+                    'key' => '2',
+                    'class' => 'rb',
+                    'params' => [
+
+                    ],
+                ],
+                4 => [
+                    'key' => '3',
+                    'class' => 'lb',
+                    'params' => [
+
+                    ],
+                ],
+                5 => [
+                    'key' => '4',
+                    'class' => 'lm',
+                    'params' => [
+
+                    ],
+                ],
+                6 => [
+                    'key' => '5',
+                    'class' => 'ls',
+                    'params' => [
+
+                    ],
+                ],
             ],
 
         ],
@@ -288,12 +594,48 @@ return [
             // "calendar_title" => "",
             "calendar_title_font_size" => "50px",
             "backgrounds" => [
-                1 => ['key' => '0', 'class' => 'rt'],
-                2 => ['key' => '1', 'class' => 'rm'],
-                3 => ['key' => '2', 'class' => 'rb'],
-                4 => ['key' => '3', 'class' => 'lb'],
-                5 => ['key' => '4', 'class' => 'lm'],
-                6 => ['key' => '5', 'class' => 'ls'],
+                1 => [
+                    'key' => '0',
+                    'class' => 'rt',
+                    'params' => [
+
+                    ],
+                ],
+                2 => [
+                    'key' => '1',
+                    'class' => 'rm',
+                    'params' => [
+
+                    ],
+                ],
+                3 => [
+                    'key' => '2',
+                    'class' => 'rb',
+                    'params' => [
+
+                    ],
+                ],
+                4 => [
+                    'key' => '3',
+                    'class' => 'lb',
+                    'params' => [
+
+                    ],
+                ],
+                5 => [
+                    'key' => '4',
+                    'class' => 'lm',
+                    'params' => [
+
+                    ],
+                ],
+                6 => [
+                    'key' => '5',
+                    'class' => 'ls',
+                    'params' => [
+
+                    ],
+                ],
             ],
 
         ],
@@ -318,12 +660,48 @@ return [
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
             "backgrounds" => [
-                1 => ['key' => '0', 'class' => 'rt'],
-                2 => ['key' => '1', 'class' => 'rm'],
-                3 => ['key' => '2', 'class' => 'rb'],
-                4 => ['key' => '3', 'class' => 'lb'],
-                5 => ['key' => '4', 'class' => 'lm'],
-                6 => ['key' => '5', 'class' => 'ls'],
+                1 => [
+                    'key' => '0',
+                    'class' => 'rt',
+                    'params' => [
+
+                    ],
+                ],
+                2 => [
+                    'key' => '1',
+                    'class' => 'rm',
+                    'params' => [
+
+                    ],
+                ],
+                3 => [
+                    'key' => '2',
+                    'class' => 'rb',
+                    'params' => [
+
+                    ],
+                ],
+                4 => [
+                    'key' => '3',
+                    'class' => 'lb',
+                    'params' => [
+
+                    ],
+                ],
+                5 => [
+                    'key' => '4',
+                    'class' => 'lm',
+                    'params' => [
+
+                    ],
+                ],
+                6 => [
+                    'key' => '5',
+                    'class' => 'ls',
+                    'params' => [
+
+                    ],
+                ],
             ],
 
         ],
@@ -348,12 +726,48 @@ return [
             // "calendar_title" => "",
             "calendar_title_font_size" => "56px",
             "backgrounds" => [
-                1 => ['key' => '0', 'class' => 'rt'],
-                2 => ['key' => '1', 'class' => 'rm'],
-                3 => ['key' => '2', 'class' => 'rb'],
-                4 => ['key' => '3', 'class' => 'lb'],
-                5 => ['key' => '4', 'class' => 'lm'],
-                6 => ['key' => '5', 'class' => 'ls'],
+                1 => [
+                    'key' => '0',
+                    'class' => 'rt',
+                    'params' => [
+
+                    ],
+                ],
+                2 => [
+                    'key' => '1',
+                    'class' => 'rm',
+                    'params' => [
+
+                    ],
+                ],
+                3 => [
+                    'key' => '2',
+                    'class' => 'rb',
+                    'params' => [
+
+                    ],
+                ],
+                4 => [
+                    'key' => '3',
+                    'class' => 'lb',
+                    'params' => [
+
+                    ],
+                ],
+                5 => [
+                    'key' => '4',
+                    'class' => 'lm',
+                    'params' => [
+
+                    ],
+                ],
+                6 => [
+                    'key' => '5',
+                    'class' => 'ls',
+                    'params' => [
+
+                    ],
+                ],
             ],
 
         ],
@@ -378,12 +792,48 @@ return [
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
             "backgrounds" => [
-                1 => ['key' => '0', 'class' => 'rt'],
-                2 => ['key' => '1', 'class' => 'rm'],
-                3 => ['key' => '2', 'class' => 'rb'],
-                4 => ['key' => '3', 'class' => 'lb'],
-                5 => ['key' => '4', 'class' => 'lm'],
-                6 => ['key' => '5', 'class' => 'ls'],
+                1 => [
+                    'key' => '0',
+                    'class' => 'rt',
+                    'params' => [
+
+                    ],
+                ],
+                2 => [
+                    'key' => '1',
+                    'class' => 'rm',
+                    'params' => [
+
+                    ],
+                ],
+                3 => [
+                    'key' => '2',
+                    'class' => 'rb',
+                    'params' => [
+
+                    ],
+                ],
+                4 => [
+                    'key' => '3',
+                    'class' => 'lb',
+                    'params' => [
+
+                    ],
+                ],
+                5 => [
+                    'key' => '4',
+                    'class' => 'lm',
+                    'params' => [
+
+                    ],
+                ],
+                6 => [
+                    'key' => '5',
+                    'class' => 'ls',
+                    'params' => [
+
+                    ],
+                ],
             ],
 
         ],
@@ -408,12 +858,48 @@ return [
             // "calendar_title" => "",
             "calendar_title_font_size" => "56px",
             "backgrounds" => [
-                1 => ['key' => '0', 'class' => 'rt'],
-                2 => ['key' => '1', 'class' => 'rm'],
-                3 => ['key' => '2', 'class' => 'rb'],
-                4 => ['key' => '3', 'class' => 'lb'],
-                5 => ['key' => '4', 'class' => 'lm'],
-                6 => ['key' => '5', 'class' => 'ls'],
+                1 => [
+                    'key' => '0',
+                    'class' => 'rt',
+                    'params' => [
+
+                    ],
+                ],
+                2 => [
+                    'key' => '1',
+                    'class' => 'rm',
+                    'params' => [
+
+                    ],
+                ],
+                3 => [
+                    'key' => '2',
+                    'class' => 'rb',
+                    'params' => [
+
+                    ],
+                ],
+                4 => [
+                    'key' => '3',
+                    'class' => 'lb',
+                    'params' => [
+
+                    ],
+                ],
+                5 => [
+                    'key' => '4',
+                    'class' => 'lm',
+                    'params' => [
+
+                    ],
+                ],
+                6 => [
+                    'key' => '5',
+                    'class' => 'ls',
+                    'params' => [
+
+                    ],
+                ],
             ],
 
         ],
@@ -438,12 +924,48 @@ return [
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
             "backgrounds" => [
-                1 => ['key' => '0', 'class' => 'rt'],
-                2 => ['key' => '1', 'class' => 'rm'],
-                3 => ['key' => '2', 'class' => 'rb'],
-                4 => ['key' => '3', 'class' => 'lb'],
-                5 => ['key' => '4', 'class' => 'lm'],
-                6 => ['key' => '5', 'class' => 'ls'],
+                1 => [
+                    'key' => '0',
+                    'class' => 'rt',
+                    'params' => [
+
+                    ],
+                ],
+                2 => [
+                    'key' => '1',
+                    'class' => 'rm',
+                    'params' => [
+
+                    ],
+                ],
+                3 => [
+                    'key' => '2',
+                    'class' => 'rb',
+                    'params' => [
+
+                    ],
+                ],
+                4 => [
+                    'key' => '3',
+                    'class' => 'lb',
+                    'params' => [
+
+                    ],
+                ],
+                5 => [
+                    'key' => '4',
+                    'class' => 'lm',
+                    'params' => [
+
+                    ],
+                ],
+                6 => [
+                    'key' => '5',
+                    'class' => 'ls',
+                    'params' => [
+
+                    ],
+                ],
             ],
 
         ],
@@ -468,12 +990,48 @@ return [
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
             "backgrounds" => [
-                1 => ['key' => '0', 'class' => 'rt'],
-                2 => ['key' => '1', 'class' => 'rm'],
-                3 => ['key' => '2', 'class' => 'rb'],
-                4 => ['key' => '3', 'class' => 'lb'],
-                5 => ['key' => '4', 'class' => 'lm'],
-                6 => ['key' => '5', 'class' => 'ls'],
+                1 => [
+                    'key' => '0',
+                    'class' => 'rt',
+                    'params' => [
+
+                    ],
+                ],
+                2 => [
+                    'key' => '1',
+                    'class' => 'rm',
+                    'params' => [
+
+                    ],
+                ],
+                3 => [
+                    'key' => '2',
+                    'class' => 'rb',
+                    'params' => [
+
+                    ],
+                ],
+                4 => [
+                    'key' => '3',
+                    'class' => 'lb',
+                    'params' => [
+
+                    ],
+                ],
+                5 => [
+                    'key' => '4',
+                    'class' => 'lm',
+                    'params' => [
+
+                    ],
+                ],
+                6 => [
+                    'key' => '5',
+                    'class' => 'ls',
+                    'params' => [
+
+                    ],
+                ],
             ],
 
         ],
@@ -498,12 +1056,48 @@ return [
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
             "backgrounds" => [
-                1 => ['key' => '0', 'class' => 'rt'],
-                2 => ['key' => '1', 'class' => 'rm'],
-                3 => ['key' => '2', 'class' => 'rb'],
-                4 => ['key' => '3', 'class' => 'lb'],
-                5 => ['key' => '4', 'class' => 'lm'],
-                6 => ['key' => '5', 'class' => 'ls'],
+                1 => [
+                    'key' => '0',
+                    'class' => 'rt',
+                    'params' => [
+
+                    ],
+                ],
+                2 => [
+                    'key' => '1',
+                    'class' => 'rm',
+                    'params' => [
+
+                    ],
+                ],
+                3 => [
+                    'key' => '2',
+                    'class' => 'rb',
+                    'params' => [
+
+                    ],
+                ],
+                4 => [
+                    'key' => '3',
+                    'class' => 'lb',
+                    'params' => [
+
+                    ],
+                ],
+                5 => [
+                    'key' => '4',
+                    'class' => 'lm',
+                    'params' => [
+
+                    ],
+                ],
+                6 => [
+                    'key' => '5',
+                    'class' => 'ls',
+                    'params' => [
+
+                    ],
+                ],
             ],
 
         ],
@@ -528,12 +1122,48 @@ return [
             // "calendar_title" => "",
             "calendar_title_font_size" => "50px",
             "backgrounds" => [
-                1 => ['key' => '0', 'class' => 'rt'],
-                2 => ['key' => '1', 'class' => 'rm'],
-                3 => ['key' => '2', 'class' => 'rb'],
-                4 => ['key' => '3', 'class' => 'lb'],
-                5 => ['key' => '4', 'class' => 'lm'],
-                6 => ['key' => '5', 'class' => 'ls'],
+                1 => [
+                    'key' => '0',
+                    'class' => 'rt',
+                    'params' => [
+
+                    ],
+                ],
+                2 => [
+                    'key' => '1',
+                    'class' => 'rm',
+                    'params' => [
+
+                    ],
+                ],
+                3 => [
+                    'key' => '2',
+                    'class' => 'rb',
+                    'params' => [
+
+                    ],
+                ],
+                4 => [
+                    'key' => '3',
+                    'class' => 'lb',
+                    'params' => [
+
+                    ],
+                ],
+                5 => [
+                    'key' => '4',
+                    'class' => 'lm',
+                    'params' => [
+
+                    ],
+                ],
+                6 => [
+                    'key' => '5',
+                    'class' => 'ls',
+                    'params' => [
+
+                    ],
+                ],
             ],
 
         ],
@@ -558,12 +1188,48 @@ return [
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
             "backgrounds" => [
-                1 => ['key' => '0', 'class' => 'rt'],
-                2 => ['key' => '1', 'class' => 'rm'],
-                3 => ['key' => '2', 'class' => 'rb'],
-                4 => ['key' => '3', 'class' => 'lb'],
-                5 => ['key' => '4', 'class' => 'lm'],
-                6 => ['key' => '5', 'class' => 'ls'],
+                1 => [
+                    'key' => '0',
+                    'class' => 'rt',
+                    'params' => [
+
+                    ],
+                ],
+                2 => [
+                    'key' => '1',
+                    'class' => 'rm',
+                    'params' => [
+
+                    ],
+                ],
+                3 => [
+                    'key' => '2',
+                    'class' => 'rb',
+                    'params' => [
+
+                    ],
+                ],
+                4 => [
+                    'key' => '3',
+                    'class' => 'lb',
+                    'params' => [
+
+                    ],
+                ],
+                5 => [
+                    'key' => '4',
+                    'class' => 'lm',
+                    'params' => [
+
+                    ],
+                ],
+                6 => [
+                    'key' => '5',
+                    'class' => 'ls',
+                    'params' => [
+
+                    ],
+                ],
             ],
 
         ],
@@ -588,12 +1254,48 @@ return [
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
             "backgrounds" => [
-                1 => ['key' => '0', 'class' => 'rt'],
-                2 => ['key' => '1', 'class' => 'rm'],
-                3 => ['key' => '2', 'class' => 'rb'],
-                4 => ['key' => '3', 'class' => 'lb'],
-                5 => ['key' => '4', 'class' => 'lm'],
-                6 => ['key' => '5', 'class' => 'ls'],
+                1 => [
+                    'key' => '0',
+                    'class' => 'rt',
+                    'params' => [
+
+                    ],
+                ],
+                2 => [
+                    'key' => '1',
+                    'class' => 'rm',
+                    'params' => [
+
+                    ],
+                ],
+                3 => [
+                    'key' => '2',
+                    'class' => 'rb',
+                    'params' => [
+
+                    ],
+                ],
+                4 => [
+                    'key' => '3',
+                    'class' => 'lb',
+                    'params' => [
+
+                    ],
+                ],
+                5 => [
+                    'key' => '4',
+                    'class' => 'lm',
+                    'params' => [
+
+                    ],
+                ],
+                6 => [
+                    'key' => '5',
+                    'class' => 'ls',
+                    'params' => [
+
+                    ],
+                ],
             ],
 
         ],
@@ -618,12 +1320,48 @@ return [
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
             "backgrounds" => [
-                1 => ['key' => '0', 'class' => 'rt'],
-                2 => ['key' => '1', 'class' => 'rm'],
-                3 => ['key' => '2', 'class' => 'rb'],
-                4 => ['key' => '3', 'class' => 'lb'],
-                5 => ['key' => '4', 'class' => 'lm'],
-                6 => ['key' => '5', 'class' => 'ls'],
+                1 => [
+                    'key' => '0',
+                    'class' => 'rt',
+                    'params' => [
+
+                    ],
+                ],
+                2 => [
+                    'key' => '1',
+                    'class' => 'rm',
+                    'params' => [
+
+                    ],
+                ],
+                3 => [
+                    'key' => '2',
+                    'class' => 'rb',
+                    'params' => [
+
+                    ],
+                ],
+                4 => [
+                    'key' => '3',
+                    'class' => 'lb',
+                    'params' => [
+
+                    ],
+                ],
+                5 => [
+                    'key' => '4',
+                    'class' => 'lm',
+                    'params' => [
+
+                    ],
+                ],
+                6 => [
+                    'key' => '5',
+                    'class' => 'ls',
+                    'params' => [
+
+                    ],
+                ],
             ],
 
         ],
@@ -648,12 +1386,48 @@ return [
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
             "backgrounds" => [
-                1 => ['key' => '0', 'class' => 'rt'],
-                2 => ['key' => '1', 'class' => 'rm'],
-                3 => ['key' => '2', 'class' => 'rb'],
-                4 => ['key' => '3', 'class' => 'lb'],
-                5 => ['key' => '4', 'class' => 'lm'],
-                6 => ['key' => '5', 'class' => 'ls'],
+                1 => [
+                    'key' => '0',
+                    'class' => 'rt',
+                    'params' => [
+
+                    ],
+                ],
+                2 => [
+                    'key' => '1',
+                    'class' => 'rm',
+                    'params' => [
+
+                    ],
+                ],
+                3 => [
+                    'key' => '2',
+                    'class' => 'rb',
+                    'params' => [
+
+                    ],
+                ],
+                4 => [
+                    'key' => '3',
+                    'class' => 'lb',
+                    'params' => [
+
+                    ],
+                ],
+                5 => [
+                    'key' => '4',
+                    'class' => 'lm',
+                    'params' => [
+
+                    ],
+                ],
+                6 => [
+                    'key' => '5',
+                    'class' => 'ls',
+                    'params' => [
+
+                    ],
+                ],
             ],
 
         ],
@@ -678,12 +1452,48 @@ return [
             // "calendar_title" => "",
             "calendar_title_font_size" => "56px",
             "backgrounds" => [
-                1 => ['key' => '0', 'class' => 'rt'],
-                2 => ['key' => '1', 'class' => 'rm'],
-                3 => ['key' => '2', 'class' => 'rb'],
-                4 => ['key' => '3', 'class' => 'lb'],
-                5 => ['key' => '4', 'class' => 'lm'],
-                6 => ['key' => '5', 'class' => 'ls'],
+                1 => [
+                    'key' => '0',
+                    'class' => 'rt',
+                    'params' => [
+
+                    ],
+                ],
+                2 => [
+                    'key' => '1',
+                    'class' => 'rm',
+                    'params' => [
+
+                    ],
+                ],
+                3 => [
+                    'key' => '2',
+                    'class' => 'rb',
+                    'params' => [
+
+                    ],
+                ],
+                4 => [
+                    'key' => '3',
+                    'class' => 'lb',
+                    'params' => [
+
+                    ],
+                ],
+                5 => [
+                    'key' => '4',
+                    'class' => 'lm',
+                    'params' => [
+
+                    ],
+                ],
+                6 => [
+                    'key' => '5',
+                    'class' => 'ls',
+                    'params' => [
+
+                    ],
+                ],
             ],
 
         ],
@@ -708,12 +1518,48 @@ return [
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
             "backgrounds" => [
-                1 => ['key' => '0', 'class' => 'rt'],
-                2 => ['key' => '1', 'class' => 'rm'],
-                3 => ['key' => '2', 'class' => 'rb'],
-                4 => ['key' => '3', 'class' => 'lb'],
-                5 => ['key' => '4', 'class' => 'lm'],
-                6 => ['key' => '5', 'class' => 'ls'],
+                1 => [
+                    'key' => '0',
+                    'class' => 'rt',
+                    'params' => [
+                        1 => ['param' => 'margin-top', 'value' => '-100px'],
+                    ],
+                ],
+                2 => [
+                    'key' => '1',
+                    'class' => 'rm',
+                    'params' => [
+                        1 => ['param' => 'bottom', 'value' => '28%'],
+                    ],
+                ],
+                3 => [
+                    'key' => '2',
+                    'class' => 'rb',
+                    'params' => [
+                        1 => ['param' => 'margin-bottom', 'value' => '-30px'],
+                    ],
+                ],
+                4 => [
+                    'key' => '3',
+                    'class' => 'lb',
+                    'params' => [
+                        1 => ['param' => 'margin-bottom', 'value' => '-30px'],
+                    ],
+                ],
+                5 => [
+                    'key' => '4',
+                    'class' => 'lm',
+                    'params' => [
+                        1 => ['param' => 'bottom', 'value' => '25%'],
+                    ],
+                ],
+                6 => [
+                    'key' => '5',
+                    'class' => 'ls',
+                    'params' => [
+
+                    ],
+                ],
             ],
 
         ],
@@ -738,12 +1584,48 @@ return [
             "calendar_title" => "Если поженились,<br>значит, жить придётся!",
             "calendar_title_font_size" => "50px",
             "backgrounds" => [
-                1 => ['key' => '0', 'class' => 'rt'],
-                2 => ['key' => '1', 'class' => 'rm'],
-                3 => ['key' => '2', 'class' => 'rb'],
-                4 => ['key' => '3', 'class' => 'lb'],
-                5 => ['key' => '4', 'class' => 'lm'],
-                6 => ['key' => '5', 'class' => 'ls'],
+                1 => [
+                    'key' => '0',
+                    'class' => 'rt',
+                    'params' => [
+
+                    ],
+                ],
+                2 => [
+                    'key' => '1',
+                    'class' => 'rm',
+                    'params' => [
+
+                    ],
+                ],
+                3 => [
+                    'key' => '2',
+                    'class' => 'rb',
+                    'params' => [
+
+                    ],
+                ],
+                4 => [
+                    'key' => '3',
+                    'class' => 'lb',
+                    'params' => [
+
+                    ],
+                ],
+                5 => [
+                    'key' => '4',
+                    'class' => 'lm',
+                    'params' => [
+
+                    ],
+                ],
+                6 => [
+                    'key' => '5',
+                    'class' => 'ls',
+                    'params' => [
+
+                    ],
+                ],
             ],
 
         ],
@@ -768,12 +1650,55 @@ return [
             // "calendar_title" => "",
             "calendar_title_font_size" => "60px",
             "backgrounds" => [
-                1 => ['key' => '0', 'class' => 'rt'],
-                2 => ['key' => '1', 'class' => 'rm'],
-                3 => ['key' => '2', 'class' => 'rb'],
-                4 => ['key' => '3', 'class' => 'lb'],
-                5 => ['key' => '4', 'class' => 'lm'],
-                6 => ['key' => '5', 'class' => 'ls'],
+                1 => [
+                    'key' => '0',
+                    'class' => 'rt',
+                    'params' => [
+
+                    ],
+                ],
+                2 => [
+                    'key' => '1',
+                    'class' => 'rm',
+                    'params' => [
+
+                    ],
+                ],
+                3 => [
+                    'key' => '2',
+                    'class' => 'rm',
+                    'params' => [
+
+                    ],
+                ],
+                4 => [
+                    'key' => '3',
+                    'class' => 'rb',
+                    'params' => [
+
+                    ],
+                ],
+                5 => [
+                    'key' => '4',
+                    'class' => 'lb',
+                    'params' => [
+
+                    ],
+                ],
+                6 => [
+                    'key' => '5',
+                    'class' => 'lm',
+                    'params' => [
+
+                    ],
+                ],
+                7 => [
+                    'key' => '6',
+                    'class' => 'lm',
+                    'params' => [
+
+                    ],
+                ],
             ],
 
         ],
@@ -798,12 +1723,48 @@ return [
             "calendar_title" => "Марлен,<br>рожденная для любви",
             "calendar_title_font_size" => "56px",
             "backgrounds" => [
-                1 => ['key' => '0', 'class' => 'rt'],
-                2 => ['key' => '1', 'class' => 'rm'],
-                3 => ['key' => '2', 'class' => 'rb'],
-                4 => ['key' => '3', 'class' => 'lb'],
-                5 => ['key' => '4', 'class' => 'lm'],
-                6 => ['key' => '5', 'class' => 'ls'],
+                1 => [
+                    'key' => '0',
+                    'class' => 'rt',
+                    'params' => [
+                        1 => ['param' => 'margin-top', 'value' => '-100px'],
+                    ],
+                ],
+                2 => [
+                    'key' => '1',
+                    'class' => 'rm',
+                    'params' => [
+
+                    ],
+                ],
+                3 => [
+                    'key' => '2',
+                    'class' => 'rb',
+                    'params' => [
+
+                    ],
+                ],
+                4 => [
+                    'key' => '3',
+                    'class' => 'lb',
+                    'params' => [
+
+                    ],
+                ],
+                5 => [
+                    'key' => '4',
+                    'class' => 'lm',
+                    'params' => [
+                        1 => ['param' => 'bottom', 'value' => '31%'],
+                    ],
+                ],
+                6 => [
+                    'key' => '5',
+                    'class' => 'ls',
+                    'params' => [
+
+                    ],
+                ],
             ],
 
         ],
@@ -828,12 +1789,48 @@ return [
             // "calendar_title" => "",
             "calendar_title_font_size" => "50px",
             "backgrounds" => [
-                1 => ['key' => '0', 'class' => 'rt'],
-                2 => ['key' => '1', 'class' => 'rm'],
-                3 => ['key' => '2', 'class' => 'rb'],
-                4 => ['key' => '3', 'class' => 'lb'],
-                5 => ['key' => '4', 'class' => 'lm'],
-                6 => ['key' => '5', 'class' => 'ls'],
+                1 => [
+                    'key' => '0',
+                    'class' => 'rt',
+                    'params' => [
+
+                    ],
+                ],
+                2 => [
+                    'key' => '1',
+                    'class' => 'rm',
+                    'params' => [
+
+                    ],
+                ],
+                3 => [
+                    'key' => '2',
+                    'class' => 'rb',
+                    'params' => [
+
+                    ],
+                ],
+                4 => [
+                    'key' => '3',
+                    'class' => 'lb',
+                    'params' => [
+
+                    ],
+                ],
+                5 => [
+                    'key' => '4',
+                    'class' => 'lm',
+                    'params' => [
+
+                    ],
+                ],
+                6 => [
+                    'key' => '5',
+                    'class' => 'ls',
+                    'params' => [
+
+                    ],
+                ],
             ],
 
         ],

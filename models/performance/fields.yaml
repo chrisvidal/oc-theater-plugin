@@ -194,6 +194,10 @@ tabs:
                             3: 04
                             4: 05
                             5: 06
+                            6: 07
+                            7: 08
+                            8: 09
+                            9: 10
                     class:
                         label: Позиция/Класс
                         type: dropdown
@@ -224,20 +228,20 @@ tabs:
                                     options:
                                         sort: Порядок
                                         height: Высота
-                                        top: Положение сверху
-                                        bottom: Положение снизу
-                                        left: Положение слева
-                                        right: Положение справа
-                                        padding-left: Отступ слева
-                                        padding-right: Отступ справа
-                                        padding-top: Отступ сверху
-                                        padding-bottom: Отступ снизу
-                                        margin-left: Поле слева
-                                        margin-right: Поле справа
-                                        margin-top: Поле сверху
-                                        margin-bottom: Поле снизу
-                                        text-align: Выравнивание по горизонтали
-                                        vertical-align: Выравнивание по вертикали
+                                        top: Положение сверху (top)
+                                        bottom: Положение снизу (bottom)
+                                        left: Положение слева (left)
+                                        right: Положение справа (right)
+                                        padding-left: Поле слева (padding-left)
+                                        padding-right: Поле справа (padding-right)
+                                        padding-top: Поле сверху (padding-top)
+                                        padding-bottom: Поле снизу (padding-bottom)
+                                        margin-left: Отступ слева (margin-left)
+                                        margin-right: Отступ справа (margin-right)
+                                        margin-top: Отступ сверху (margin-top)
+                                        margin-bottom: Отступ снизу (margin-bottom)
+                                        text-align: Выравнивание по горизонтали (text-align)
+                                        vertical-align: Выравнивание по вертикали (vertical-align)
                                 value:
                                     span: right
 
