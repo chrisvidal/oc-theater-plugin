@@ -307,12 +307,12 @@ class SeedPeopleTable extends Seeder
                         case 'playbill':
                             $model->playbill()->save($file, null, ['title' => $model->title]);
                             break;
-                        case 'playbill_flat':
-                            $model->playbill_flat()->save($file);
-                            break;
-                        case 'playbill_mask':
-                            $model->playbill_mask()->save($file);
-                            break;
+                        // case 'playbill_flat':
+                        //     $model->playbill_flat()->save($file);
+                        //     break;
+                        // case 'playbill_mask':
+                        //     $model->playbill_mask()->save($file);
+                        //     break;
                         case 'video':
                             $model->video()->save($file, null, ['title' => $model->title]);
                             break;
@@ -374,13 +374,13 @@ class SeedPeopleTable extends Seeder
                         // }
 
 
-                        if ( $key == 'bg' && preg_match('/.+?_flat/', $filename) ) {
-                            $model->background_flat()->save($file);
-                        }
-                        elseif ( $key == 'bg' && preg_match('/.+?_mask/', $filename) ) {
-                            $model->background_mask()->save($file);
-                        }
-                        elseif ( $key == 'bg' ) {
+                        // if ( $key == 'bg' && preg_match('/.+?_flat/', $filename) ) {
+                        //     $model->background_flat()->save($file);
+                        // }
+                        // elseif ( $key == 'bg' && preg_match('/.+?_mask/', $filename) ) {
+                        //     $model->background_mask()->save($file);
+                        // }
+                        if ( $key == 'bg' ) {
                             $model->background()->save($file);
                         }
                         elseif ( $key == 'gallery' ) {

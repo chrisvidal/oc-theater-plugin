@@ -90,16 +90,16 @@ class Performance extends Model
 
     public $attachOne = [
         'playbill'          => ['System\Models\File'],
-        'playbill_flat'     => ['System\Models\File'],
-        'playbill_mask'     => ['System\Models\File'],
+        // 'playbill_flat'     => ['System\Models\File'],
+        // 'playbill_mask'     => ['System\Models\File'],
         'video'             => ['System\Models\File'],
         'repertoire'        => ['System\Models\File'],
         'cover'             => ['System\Models\File'],
     ];
     public $attachMany = [
         'background'        => ['System\Models\File'],
-        'background_flat'   => ['System\Models\File'],
-        'background_mask'   => ['System\Models\File'],
+        // 'background_flat'   => ['System\Models\File'],
+        // 'background_mask'   => ['System\Models\File'],
         'featured'          => ['System\Models\File'],
     ];
 
@@ -156,7 +156,7 @@ class Performance extends Model
     public function scopePerformance($query)
     {
         return $query
-            ->with(['background', 'cover', 'background_flat', 'background_mask', 'featured', 'video', 'participation.person'])
+            ->with(['background', 'cover', 'featured', 'video', 'participation.person'])
             ->with(
                 ['events' => function($q) {
                     $q

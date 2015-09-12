@@ -86,11 +86,16 @@ tabs:
             tab: Медиа
             label: Афиша
             mode: image
-            span: left
             type: fileupload
         repertoire:
             tab: Медиа
             label: Репертуар
+            mode: image
+            span: left
+            type: fileupload
+        video:
+            tab: Медиа
+            label: Видео
             mode: image
             span: right
             type: fileupload
@@ -98,20 +103,19 @@ tabs:
             tab: Медиа
             label: Бэкграунды
             mode: image
-            span: left
             type: fileupload
-        background_flat:
-            tab: Медиа
-            label: Бэкграунды (слитые)
-            mode: image
-            span: left
-            type: fileupload
-        background_mask:
-            tab: Медиа
-            label: Маски
-            mode: image
-            span: left
-            type: fileupload
+        # background_flat:
+        #     tab: Медиа
+        #     label: Бэкграунды (слитые)
+        #     mode: image
+        #     span: left
+        #     type: fileupload
+        # background_mask:
+        #     tab: Медиа
+        #     label: Маски
+        #     mode: image
+        #     span: left
+        #     type: fileupload
         # background_mobile:
         #     tab: Медиа
         #     label: Бэкграунд для мобильных
@@ -122,13 +126,6 @@ tabs:
             tab: Медиа
             label: Галерея
             mode: image
-            span: left
-            type: fileupload
-        video:
-            tab: Медиа
-            label: Видео
-            mode: image
-            span: right
             type: fileupload
 
         # participation:

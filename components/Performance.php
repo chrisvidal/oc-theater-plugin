@@ -129,7 +129,7 @@ class Performance extends ComponentBase
             $image['sizes'] = $sizes = getimagesize('./' . $image->getPath());
 
             // Width from filename
-            preg_match('/.+?_(\d+)\.png/', $image->file_name, $matches);
+            preg_match('/.+?_(\d+)\.jpg/', $image->file_name, $matches);
             $width = $matches[1];
             $height = round($width/$image->sizes[0]*$image->sizes[1]);
             $ratio = $width/$height;
