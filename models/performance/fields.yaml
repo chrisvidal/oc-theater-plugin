@@ -223,22 +223,23 @@ tabs:
                                     type: dropdown
                                     span: left
                                     options:
-                                        sort: Порядок
-                                        height: Высота
-                                        top: Положение сверху (top)
-                                        bottom: Положение снизу (bottom)
-                                        left: Положение слева (left)
-                                        right: Положение справа (right)
-                                        padding-left: Поле слева (padding-left)
-                                        padding-right: Поле справа (padding-right)
-                                        padding-top: Поле сверху (padding-top)
-                                        padding-bottom: Поле снизу (padding-bottom)
-                                        margin-left: Отступ слева (margin-left)
-                                        margin-right: Отступ справа (margin-right)
+                                        # height: Высота
+                                        # top: Положение сверху (top)
+                                        # bottom: Положение снизу (bottom)
+                                        # left: Положение слева (left)
+                                        # right: Положение справа (right)
+                                        # padding-left: Поле слева (padding-left)
+                                        # padding-right: Поле справа (padding-right)
+                                        # padding-top: Поле сверху (padding-top)
+                                        # padding-bottom: Поле снизу (padding-bottom)
+                                        # margin-left: Отступ слева (margin-left)
+                                        # margin-right: Отступ справа (margin-right)
                                         margin-top: Отступ сверху (margin-top)
                                         margin-bottom: Отступ снизу (margin-bottom)
-                                        text-align: Выравнивание по горизонтали (text-align)
-                                        vertical-align: Выравнивание по вертикали (vertical-align)
+                                        # text-align: Выравнивание по горизонтали (text-align)
+                                        # vertical-align: Выравнивание по вертикали (vertical-align)
+                                        transform: Отзеркалить ( scale(-1,1) )
+                                        sort: Порядок
                                 value:
                                     span: right
 

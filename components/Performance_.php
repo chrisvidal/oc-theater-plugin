@@ -122,13 +122,10 @@ class Performance extends ComponentBase
         $bg = $post->background;
         $bg_data = collect($post->meta['backgrounds']);
 
+        // $default = $this->$bg_default;
         $data = [];
 
-        CW::info(['BG_Data' => $bg_data]);
-
         $bg->each(function($image) use (&$key, $bg_data, &$data){
-
-            // Get image sizes
             $image['sizes'] = $sizes = getimagesize('./' . $image->getPath());
 
             // Width from filename
@@ -164,6 +161,10 @@ class Performance extends ComponentBase
 
             $data = array_merge_recursive($data, $rules);
 
+
+            // $data += $rules;
+            // $image['class'] = join(' ', $class_names);
+
             $key++;
         });
 
@@ -180,62 +181,71 @@ class Performance extends ComponentBase
 
                 CW::info([$query . $column => $cols]);
 
-                // Equation a summ of heights in column scope
-                $summ = $cols->sum('height') + $cols->sum('margin-top') + $cols->sum('margin-bottom');
-
                 // Sort colls
-                if ($column == 'right') {
-                    $sort = collect($data[$query][$column])->sortBy('sort')->values()->all();
-                }
+                $sort = collect($data[$query][$column])->sortBy('sort')->values()->all();
+
+                // Equation a summ of heights in column scope
+                $summ = $cols->sum('height');
+
+                // Sort and summ if column is left
                 if ($column == 'left') {
                     $sort = collect($data[$query][$column])->sortBy('sort')->reverse()->values()->all();
+                    $summ = $cols->sum('height') + 475;
+
+                    foreach ($sort as $key => &$value) {
+                        if (array_key_exists('styles', $value) && array_key_exists('margin-top', $value['styles']) ) {
+                            $summ += intval(str_replace('px', '', $value['styles']['margin-top']));
+                        }
+                    }
                 }
 
                 // Define begin top position value
                 $top = 0;
 
-                // Assigning top and bottom positions to every image rule
-                foreach ($sort as $key => &$item) {
+                // Assigning heights and top positions to every image rule
+                foreach ($sort as $key => &$value) {
+
+                    // $_height = 0;
+                    // if ( array_key_exists('height', $value) ) {
+                    //     $_height = $value['height'];
+                    // }
+
+                    // Add top position correction for left column images
+                    if ($column == 'left' & $key == 0 && array_key_exists('height', $value)) {
+                        $value['height'] += 475;
+                        $value['styles']['padding-top'] = '475px';
+                    }
+
+
+
+                    // if (array_key_exists('styles', $value) && array_key_exists('margin-top', $value['styles']) ) {
+                    //     $value['height'] += intval(str_replace('px', '', $value['styles']['margin-top']));
+                    // }
+
+
 
                     // If rule don't consist height, skip rule
-                    if (!array_key_exists('height', $item)) {
+                    if (!array_key_exists('height', $value)) {
                         // CW::info($value);
                         continue;
                     }
 
-                    $_item = [];
-                    $_item['top'] = ($top / $summ * 100) . '%';
-
-                    $_height = $item['height'];
-
-                    if (array_key_exists('margin-top', $item))
-                        $_height += $item['margin-top'];
-                    if (array_key_exists('margin-bottom', $item))
-                        $_height += $item['margin-bottom'];
-
-                    $_item['bottom'] = (($summ - $top - $_height) / $summ * 100) . '%';
-
-                    $top += $_height;
-
-
-                    $item['item_styles'] = array_merge($item['item_styles'], $_item);
-
-                    // $_height = ($value['height'] / $summ * 100) . '%';
-                    // if ( array_key_exists('styles', $value) && array_key_exists('height', $value['styles']) && $value['styles']['height'] != 'auto' ) {
-                    //     $value['styles']['height'] = $_height;
-                    // }
-                    // $value['styles']['top'] = $top . '%';
+                    $_height = ($value['height'] / $summ * 100) . '%';
+                    if ( array_key_exists('styles', $value) && array_key_exists('height', $value['styles']) && $value['styles']['height'] != 'auto' ) {
+                        $value['styles']['height'] = $_height;
+                    }
+                    $value['styles']['top'] = $top . '%';
 
                     // Add height to top position sequence
                     // $top += $value['styles']['height'];
-                    // $top += $_height;
+                    $top += $_height;
 
-                    // if (array_key_exists('styles', $value) && array_key_exists('margin-top', $value['styles']) ) {
-                    //     $top += ($value['styles']['margin-top'] / $summ * 100) . '%';
-                    // }
-                    // if (array_key_exists('styles', $value) && array_key_exists('margin-bottom', $value['styles']) ) {
-                    //     $top += ($value['styles']['margin-bottom'] / $summ * 100) . '%';
-                    // }
+                    if (array_key_exists('styles', $value) && array_key_exists('margin-top', $value['styles']) ) {
+                        $top += ($value['styles']['margin-top'] / $summ * 100) . '%';
+                    }
+                    if (array_key_exists('styles', $value) && array_key_exists('margin-bottom', $value['styles']) ) {
+                        $top += ($value['styles']['margin-bottom'] / $summ * 100) . '%';
+                    }
 
 
                 }
@@ -261,8 +271,11 @@ class Performance extends ComponentBase
         // Define returning array
         $return = [];
 
+        // // Check count of image params records
+        // $param_count = count($params);
+
         // ITERATE PARAMS
-        // Iterate throght params, assigned to image
+        // Iterate throgh params, assigned to image
         foreach ($params as $id => $param) {
 
 
@@ -307,7 +320,7 @@ class Performance extends ComponentBase
 
                 $return[] = [
                     'class' => $class_name,
-                    'container_styles' => [
+                    'styles' => [
                         'display' => 'none',
                         '/* Rejected by' => 'RULE NONE */',
                     ],
@@ -330,30 +343,18 @@ class Performance extends ComponentBase
 
             // CW::info(['TEMP' => $this->rule_temp]);
 
-            // CONTAINER STYLES
+            // DEFAULT STYLES
             // Load default styles and update from inheritance
-            if ( !array_key_exists('container_styles', $this->rule_temp[$class_name]) )
-                $this->rule_temp[$class_name]['container_styles'] = [];
+            if ( !array_key_exists('styles', $this->rule_temp[$class_name]) )
+                $this->rule_temp[$class_name]['styles'] = [];
 
-            if ( is_array($rule)  && !array_key_exists('container_styles', $rule) )
-                $rule['container_styles'] = [];
+            if ( is_array($rule)  && !array_key_exists('styles', $rule) )
+                $rule['styles'] = [];
 
-            $container_styles = array_merge($this->rule_temp[$class_name]['container_styles'], $rule['container_styles']);
-
-
-
-            // ITEM STYLES
-            // Load default styles and update from inheritance
-            if ( !array_key_exists('item_styles', $this->rule_temp[$class_name]) )
-                $this->rule_temp[$class_name]['item_styles'] = [];
-
-            if ( is_array($rule)  && !array_key_exists('item_styles', $rule) )
-                $rule['item_styles'] = [];
+            $default_styles = array_merge($this->rule_temp[$class_name]['styles'], $rule['styles']);
 
             if (array_key_exists($param['class'], $rule))
-                $item_styles = array_merge($this->rule_temp[$class_name]['item_styles'], $rule['item_styles'], $rule[$param['class']]);
-            else
-                $item_styles = array_merge($this->rule_temp[$class_name]['item_styles'], $rule['item_styles']);
+                $default_styles = array_merge($default_styles, $rule[$param['class']]);
 
 
 
@@ -379,8 +380,7 @@ class Performance extends ComponentBase
             // Set width from param, if exist,
             // and test on inheritance from temp_width through temp_param_id
             if ( array_key_exists('width', $param) ) {
-                // CW::info(['ParamWidth' =>  $param['width']]);
-                if ( !(array_key_exists('param_id', $this->rule_temp[$class_name]) && $this->rule_temp[$class_name]['param_id'] == $id) ) {
+                if ( !(array_key_exists('param_id', $this->rule_temp) && $this->rule_temp[$class_name]['param_id'] == $id) ) {
 
                     // Set thumb width, if necessary
                     if ($param['width'] > $this->rule_temp['thumb_width'])
@@ -397,47 +397,41 @@ class Performance extends ComponentBase
 
 
 
-            // SIZES and DELTA MARGIN
-            // For current query: delta = file_width|param_width / rule_width
+            // SIZES and PADDING
+            // For current query: delta = file_width| param_width / rule_width
             // For inheritance delta loads from temp_delta
             // Width/Height -- for current query and column
             $width = round($rule['width'] * $delta);
             $height = round($width / $ratio);
-
+            // $padding = round($query * $rule['percent'] - $width) . 'px';
             $margin = 100 - ($delta * 100) . '%';
 
 
             // PARAM STYLES
             // Load param styles
             $param_styles = [];
-            $_positions = [];
             foreach ($param as $name => $value) {
                 if ( in_array($name, $this->allowedStyles) )
                     $param_styles[$name] = $value;
             }
 
-            // !!!
-            if ( array_key_exists('margin-top', $param_styles) && !array_key_exists('margin-top', $this->rule_temp[$class_name]['item_styles']) ) {
-                $_positions['margin-top'] = $param_styles['margin-top'];
-                $item_styles['margin-top'] = $this->rule_temp[$class_name]['item_styles']['margin-top'] = ($param_styles['margin-top'] / $rule['width'] * 100) . '%';
-            }
-            if ( array_key_exists('margin-bottom', $param_styles) && !array_key_exists('margin-bottom', $this->rule_temp[$class_name]['item_styles']) ) {
-                $_positions['margin-bottom'] = $param_styles['margin-bottom'];
-                $item_styles['margin-bottom'] = $this->rule_temp[$class_name]['item_styles']['margin-bottom'] = ($param_styles['margin-bottom'] / $rule['width'] * 100) . '%';
+            if ( array_key_exists('text-align', $param_styles) && $param_styles['text-align'] == 'center' ) {
+                $margin = 0;
             }
 
-            if ( array_key_exists('transform', $param_styles) && !array_key_exists('transform', $this->rule_temp[$class_name]['item_styles']) ) {
-                $item_styles['transform'] = $this->rule_temp[$class_name]['item_styles']['transform'] = $param_styles['transform'];
-            }
+            $calc_styles = [];
+            // if ($rule['padding'] != 'none')
+            //     $calc_styles[$rule['padding']] = $padding;
+            // if ($rule['margin'] != 'none')
+            //     $calc_styles[$rule['margin']] = $margin;
 
 
 
-
-            // MERGE CONTAINER STYLES
-            $container_styles = $this->rule_temp[$class_name]['container_styles'] = $container_styles;
+            // MERGE STYLES
+            $styles = $this->rule_temp[$class_name]['styles'] = array_merge($default_styles, $calc_styles, $param_styles);
 
             // DISPLAY
-            $container_styles['display'] = 'block';
+            $styles['display'] = 'block';
 
             // NONE by not QUERY
             // Check if the param query fit the rule query and return
@@ -448,7 +442,7 @@ class Performance extends ComponentBase
 
                 $return[] = [
                     'class' => $class_name,
-                    'container_styles' => [
+                    'styles' => [
                         'display' => 'none',
                         '/* Rejected by' => 'QUERY */',
                     ],
@@ -459,17 +453,16 @@ class Performance extends ComponentBase
 
             if ( array_key_exists('replace', $this->rule_temp) && $class_name != $this->rule_temp['replace'][0] && $query <= $this->rule_temp['replace'][1] ) {
                 CW::info([$query . $class_name . 'Rejected by REPLACE' => [
-                    'Styles' => [$container_styles, $item_styles, $param_styles],
+                    'Styles' => [$default_styles, $calc_styles, $param_styles],
                     'Temp' => $this->rule_temp,
                 ]]);
                 continue;
             }
 
-
-            // PREPARE ITEM STYLES
-            $item_styles[$rule['margin']] = $margin;
-            $item_styles = $this->rule_temp[$class_name]['item_styles'] = $item_styles;
-
+            // if ( $width < $rule['width'] ) {
+            //     $width = $rule['width'];
+            //     $styles['text-align'] = 'center';
+            // }
 
             // PREPARE RETURN DATA
             $_ret = [
@@ -481,18 +474,14 @@ class Performance extends ComponentBase
                 'ratio'   => $ratio,
                 'delta'   => $delta,
                 'sort'    => $sort,
-                'container_styles' => $container_styles,
-                'item_styles'      => $item_styles,
-                'param_styles'     => $param_styles,
+                'styles'  => $styles,
             ];
-
-            $_ret = array_merge($_ret, $_positions);
 
             // RETURN DATA
             $return[] =  $_ret;
 
             CW::info([$query . $class_name => [
-                'Styles' => [$container_styles, $item_styles, $param_styles],
+                'Styles' => [$default_styles, $calc_styles, $param_styles],
                 'Temp' => $this->rule_temp,
                 'RET' => $_ret,
             ]]);
@@ -522,10 +511,10 @@ class Performance extends ComponentBase
         'margin-left',
         'margin-right',
         'margin-bottom',
-        'background-position',
+        'vertical-align',
+        'text-align',
         'height',
         'display',
-        'transform',
     ];
 
 
@@ -537,22 +526,23 @@ class Performance extends ComponentBase
                 'percent' => 0.5,
                 'padding' => 'padding-left',
                 'margin'  => 'margin-left',
-                'container_styles' => [
-                    'left'         => '50%',
-                    'right'        => '0',
-                    'margin-left'  => '192px',
-                    'margin-right' => '0',
-                    'margin-top'   => '64px',
-                    'width'        => 'auto',
+                'styles' => [
+                    'left'          => '50%',
+                    'right'         => '0',
+                    'text-align'    => 'right',
+                    'padding-left'  => '192px',
+                    'padding-right' => '0',
                 ],
                 'rt' => [
-                    'background-position' => 'right top',
+                    'vertical-align' => 'top',
                 ],
                 'rm' => [
-                    'background-position' => 'right center',
+                    'vertical-align' => 'middle',
                 ],
                 'rb' => [
-                    'background-position' => 'right bottom',
+                    'vertical-align' => 'bottom',
+                    'bottom' => '0',
+                    'height' => 'auto',
                 ],
             ],
             'left' => [
@@ -561,22 +551,23 @@ class Performance extends ComponentBase
                 'percent' => 0.5,
                 'padding' => 'padding-right',
                 'margin'  => 'margin-right',
-                'container_styles' => [
-                    'left'         => '0',
-                    'right'        => '50%',
-                    'margin-right' => '368px',
-                    'margin-left'  => '0',
-                    'margin-top'   => '475px',
-                    'width'        => 'auto',
+                'styles' => [
+                    'left'          => '0',
+                    'right'         => '50%',
+                    'text-align'    => 'left',
+                    'padding-right' => '368px',
+                    'padding-left'  => '0',
                 ],
                 'lt' => [
-                    'background-position' => 'left top',
+                    'vertical-align' => 'top',
                 ],
                 'lm' => [
-                    'background-position' => 'left bottom',
+                    'vertical-align' => 'middle',
                 ],
                 'lb' => [
-                    'background-position' => 'left bottom',
+                    'vertical-align' => 'bottom',
+                    'bottom' => '0',
+                    'height' => 'auto',
                 ],
             ],
             'side' => [
@@ -585,19 +576,17 @@ class Performance extends ComponentBase
                 'percent' => 0.5,
                 'padding' => 'padding-right',
                 'margin'  => 'margin-right',
-                'container_styles' => [
-                    'top'                 => '0',
-                    'left'                => '0',
-                    'right'               => '50%',
-                    'background-position' => 'bottom',
-                    'height'              => '475px',
-                    'margin-right'        => '656px',
-                    'width'               => 'auto',
+                'styles' => [
+                    'top'            => '0',
+                    'left'           => '0',
+                    'right'          => '50%',
+                    'text-align'     => 'left',
+                    'vertical-align' => 'bottom',
+                    'height'         => '475px',
+                    'padding-right'  => '656px',
                 ],
                 'ls' => [
-                    'background-position' => 'left top',
-                    'width'               => '100%',
-                    'height'              => '100%',
+                    'vertical-align' => 'bottom',
                 ],
             ],
 
@@ -612,11 +601,9 @@ class Performance extends ComponentBase
                 'percent' => 1,
                 'padding' => 'padding-left',
                 'margin'  => 'margin-left',
-                'container_styles' => [
+                'styles' => [
                     'left'         => '0',
-                    'margin-left'  => '1003px',
-                    'margin-right' => '0',
-                    'width'        => 'auto',
+                    'padding-left' => '1003px',
                 ],
             ],
             'left' => [
@@ -624,10 +611,11 @@ class Performance extends ComponentBase
                 'percent' => 0,
                 'padding' => 'none',
                 'margin'  => 'none',
-                'container_styles' => [
+                'styles' => [
                     'left'          => '0',
                     'right'         => 'auto',
-                    'margin-right' => '0',
+                    'text-align'    => 'left',
+                    'padding-right' => '0',
                     'margin-right'  => '0',
                     'width'         => '443px' // ???
                 ],
@@ -640,10 +628,8 @@ class Performance extends ComponentBase
                 'percent' => 1,
                 'padding' => 'padding-left',
                 'margin'  => 'margin-left',
-                'container_styles' => [
-                    'margin-left'  => '715px',
-                    'margin-right' => '0',
-                    'width'        => 'auto',
+                'styles' => [
+                    'padding-left' => '715px',
                 ],
             ],
             'left' => 'none',
@@ -655,22 +641,8 @@ class Performance extends ComponentBase
                 'percent' => 1,
                 'padding' => 'padding-left',
                 'margin'  => 'margin-left',
-                'container_styles' => [
-                    'margin-left'  => '670px',
-                    'margin-right' => '0',
-                    'width'        => 'auto',
-                ],
-                'item_styles' => [
-                    'margin-right' => '0',
-                ],
-                'rt' => [
-                    'background-position' => 'right top',
-                ],
-                'rm' => [
-                    'background-position' => 'right center',
-                ],
-                'rb' => [
-                    'background-position' => 'right bottom',
+                'styles' => [
+                    'padding-left' => '670px',
                 ],
             ],
         ],
@@ -681,10 +653,8 @@ class Performance extends ComponentBase
                 'percent' => 1,
                 'padding' => 'padding-left',
                 'margin'  => 'margin-left',
-                'container_styles' => [
-                    'margin-left'  => '670px',
-                    'margin-right' => '0',
-                    'width'        => 'auto',
+                'styles' => [
+                    'padding-left' => '670px',
                 ],
             ],
         ],
