@@ -3,25 +3,21 @@
 use October\Rain\Database\Updates\Migration;
 use Schema;
 
-class CreateEventsTable extends Migration
+class CreateBackgroundsTable extends Migration
 {
 
     public function up()
     {
-
-        Schema::dropIfExists('abnmt_theater_events');
-
-        Schema::create('abnmt_theater_events', function ($table) {
+        Schema::dropIfExists('abnmt_theater_backgrounds');
+        Schema::create('abnmt_theater_backgrounds', function ($table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
 
             $table->string('title');
+            $table->string('slug')->index();
             $table->string('description')->nullable();
 
-            $table->date('event_date');
-
-            $table->integer('relation_id')->unsigned()->nullable();
-            $table->string('relation_type')->nullable();
+            $table->json('meta')->nullable();
 
             $table->timestamps();
         });
@@ -29,7 +25,7 @@ class CreateEventsTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('abnmt_theater_events');
+        Schema::dropIfExists('abnmt_theater_backgrounds');
     }
 
 }

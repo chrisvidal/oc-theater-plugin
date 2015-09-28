@@ -1,0 +1,85 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    title:
+        label: Название
+    slug:
+        label: Слаг
+    description:
+        label: Описание
+tabs:
+    defaultTab: Медиа
+    fields:
+        images:
+            # tab: Медиа
+            # label: Бэкграунды
+            mode: image
+            imageHeight: 600
+            imageWidth: 400
+            useCaption: false
+            type: fileupload
+
+        meta[backgrounds]:
+            # tab: Мета
+            # label: Бэкграунды
+            type: repeater
+            form:
+                fields:
+                    key:
+                        label: Номер бэкграунда
+                        type: dropdown
+                        # span: left
+                        options: listImages
+                    queries:
+                        label: Макеты
+                        type: repeater
+                        span: full
+                        form:
+                            fields:
+                                query:
+                                    placeholder: Ширина макета (Медиазапрос)
+                                    type: dropdown
+                                    span: left
+                                    options: listQueries
+                                params:
+                                    type: repeater
+                                    span: right
+                                    form:
+                                        fields:
+                                            param:
+                                                type: dropdown
+                                                span: left
+                                                options:
+                                                    width: Ширина (width, px)
+                                                    # height: Высота
+                                                    # top: Положение сверху (top)
+                                                    # bottom: Положение снизу (bottom)
+                                                    # left: Положение слева (left)
+                                                    # right: Положение справа (right)
+                                                    # padding-left: Поле слева (padding-left)
+                                                    # padding-right: Поле справа (padding-right)
+                                                    # padding-top: Поле сверху (padding-top)
+                                                    # padding-bottom: Поле снизу (padding-bottom)
+                                                    # margin-left: Отступ слева (margin-left)
+                                                    # margin-right: Отступ справа (margin-right)
+                                                    margin-top: Отступ сверху (margin-top)
+                                                    margin-bottom: Отступ снизу (margin-bottom)
+                                                    # text-align: Выравнивание по горизонтали (text-align)
+                                                    # vertical-align: Выравнивание по вертикали (vertical-align)
+                                                    transform: Отзеркалить ( scale(-1,1) )
+                                                    sort: Порядок
+                                            value:
+                                                span: right
+                                position:
+                                    placeholder: Позиция/Класс
+                                    type: dropdown
+                                    span: left
+                                    options:
+                                        rt: Right Top (01)
+                                        rm: Right Middle (02)
+                                        rb: Right Bottom (03)
+                                        lb: Left Bottom (04)
+                                        lm: Left Middle (05)
+                                        lt: Left Top (06)

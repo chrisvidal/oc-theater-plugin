@@ -1,0 +1,72 @@
+
+{{ info(backgrounds) }}
+
+
+<div class="bg-block">
+    <style type="text/css">
+
+{% for query, data in backgrounds.styles %}
+    {% if query != '' %}
+
+        {% if query == '1920px' %}
+
+        {% for item in data %}
+
+        .bg-container .bg.{{ item.class_name }} {
+            {% for name, value in item.container_rules %}{{ name }}: {{value}};
+            {% endfor %}
+
+        }
+        .bg-container .bg.{{ item.class_name }} .bg-item {
+            {% for name, value in item.element_rules %}{{ name }}: {{value}};
+            {% endfor %}
+
+        }
+
+        {% endfor %}
+
+        {% else %}
+
+        @media screen and (max-width: {{ query }}) {
+            {% for item in data %}
+
+            .bg-container .bg.{{ item.class_name }} {
+                {% for name, value in item.container_rules %}{{ name }}: {{value}};
+                {% endfor %}
+
+            }
+            .bg-container .bg.{{ item.class_name }} .bg-item {
+                {% for name, value in item.element_rules %}{{ name }}: {{value}};
+                {% endfor %}
+
+            }
+
+            {% endfor %}
+
+        }
+
+        {% endif %}
+    {% endif %}
+{% endfor %}
+    </style>
+
+    <div class="bg-container">
+
+
+    {% for bg in backgrounds.images %}
+
+    {% set width  = bg.width %}
+    {% set height = bg.height %}
+    {% set class  = bg.class_name %}
+
+        <div class="bg {{ class }}">
+            <div class="bg-item" style="background-image: url('{{ bg.thumb(width, height, { quality: 80, extension: 'jpg' } ) }}');"></div>
+        </div>
+
+    {% endfor %}
+
+    </div>
+</div>
+
+
+

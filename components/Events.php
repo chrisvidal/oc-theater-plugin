@@ -1,16 +1,11 @@
 <?php namespace Abnmt\Theater\Components;
 
-use Cms\Classes\ComponentBase;
-
-use Cms\Classes\Page;
-use Cms\Classes\Content;
-
-use Abnmt\Theater\Models\Event         as EventModel;
-use Abnmt\Theater\Models\Article       as ArticleModel;
-use Abnmt\Theater\Models\Performance   as PerformanceModel;
-
-use \Clockwork\Support\Laravel\Facade as CW;
+use Abnmt\Theater\Models\Event as EventModel;
+use Abnmt\Theater\Models\Performance as PerformanceModel;
 use Carbon;
+use Cms\Classes\ComponentBase;
+use Cms\Classes\Page;
+use \Clockwork\Support\Laravel\Facade as CW;
 
 class Events extends ComponentBase
 {
@@ -19,27 +14,27 @@ class Events extends ComponentBase
     {
         return [
             'name'        => 'Афиша',
-            'description' => 'Компонент для вывода Афиши'
+            'description' => 'Компонент для вывода Афиши',
         ];
     }
 
     public function defineProperties()
     {
         return [
-            'scopes' => [
+            'scopes'          => [
                 'title'       => 'Наборы',
                 'description' => 'Загружает для записей дополнительные наборы данных',
                 'type'        => 'dropdown',
             ],
-            'sort' => [
+            'sort'            => [
                 'title'       => 'Сортировка',
                 'description' => 'Сортирует список записей',
                 'type'        => 'dropdown',
             ],
-            'date' => [
+            'date'            => [
                 'title'       => 'Дата',
                 'description' => 'Переменная с датой',
-                'default'     => '{{ :date }}'
+                'default'     => '{{ :date }}',
             ],
             'performancePage' => [
                 'title'       => 'Страница спектакля',
@@ -48,7 +43,7 @@ class Events extends ComponentBase
                 'default'     => 'theater/performance',
                 'group'       => 'Страницы',
             ],
-            'newsPage' => [
+            'newsPage'        => [
                 'title'       => 'Страница статьи прессы',
                 'description' => 'Шаблон страницы статьи',
                 'type'        => 'dropdown',
@@ -119,7 +114,7 @@ class Events extends ComponentBase
     {
         $this->prepareVars();
 
-        $this->posts = $this->page['posts'] = $this->listPosts();
+        $this->posts         = $this->page['posts']         = $this->listPosts();
         $this->page['group'] = $this->group;
     }
 
@@ -153,18 +148,21 @@ class Events extends ComponentBase
             extract($params);
             // if ($post->relation instanceof ArticleModel)
             //     $post->relation->setUrl($newsPage, $this->controller);
-            if ($post->relation instanceof PerformanceModel)
+            if ($post->relation instanceof PerformanceModel) {
                 $post->relation->setUrl($performancePage, $this->controller);
+            }
 
             $date = Carbon::parse($post->event_date);
-            if ( $active != 'active' && $date->gte($active) )
+            if ($active != 'active' && $date->gte($active)) {
                 $post->active = $active = 'active';
+            }
 
             // Grouping
-            if ( $this->inCollection($post->relation->taxonomy, 'title', 'Детский спектакль') )
+            if ($this->inCollection($post->relation->taxonomy, 'title', 'Детский спектакль')) {
                 $this->group['child'][] = $post;
-            else
+            } else {
                 $this->group['normal'][] = $post;
+            }
 
         });
 
@@ -178,10 +176,15 @@ class Events extends ComponentBase
      */
     protected static function inCollection($array, $key, $val)
     {
-        foreach ($array as $item)
-        {
-           if (is_array($item)) self::inCollection($item, $key, $val);
-           if (isset($item[$key]) && $item[$key] == $val) return true;
+        foreach ($array as $item) {
+            if (is_array($item)) {
+                self::inCollection($item, $key, $val);
+            }
+
+            if (isset($item[$key]) && $item[$key] == $val) {
+                return true;
+            }
+
         }
         return false;
     }
