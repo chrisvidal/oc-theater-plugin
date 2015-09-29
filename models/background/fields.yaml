@@ -41,11 +41,25 @@ tabs:
                                 query:
                                     placeholder: Ширина макета (Медиазапрос)
                                     type: dropdown
+                                    # type: checkboxlist
                                     span: left
                                     options: listQueries
+                                position:
+                                    placeholder: Позиция/Класс
+                                    type: dropdown
+                                    # span: left
+                                    span: right
+                                    options:
+                                        none: Скрыт
+                                        rt: Right Top (01)
+                                        rm: Right Middle (02)
+                                        rb: Right Bottom (03)
+                                        lb: Left Bottom (04)
+                                        lm: Left Middle (05)
+                                        lt: Left Top (06)
                                 params:
                                     type: repeater
-                                    span: right
+                                    # span: right
                                     form:
                                         fields:
                                             param:
@@ -66,20 +80,9 @@ tabs:
                                                     # margin-right: Отступ справа (margin-right)
                                                     margin-top: Отступ сверху (margin-top)
                                                     margin-bottom: Отступ снизу (margin-bottom)
-                                                    # text-align: Выравнивание по горизонтали (text-align)
+                                                    background-position: Выравнивание (background-position)
                                                     # vertical-align: Выравнивание по вертикали (vertical-align)
                                                     transform: Отзеркалить ( scale(-1,1) )
                                                     sort: Порядок
                                             value:
                                                 span: right
-                                position:
-                                    placeholder: Позиция/Класс
-                                    type: dropdown
-                                    span: left
-                                    options:
-                                        rt: Right Top (01)
-                                        rm: Right Middle (02)
-                                        rb: Right Bottom (03)
-                                        lb: Left Bottom (04)
-                                        lm: Left Middle (05)
-                                        lt: Left Top (06)

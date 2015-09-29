@@ -74,99 +74,34 @@ class Backgrounds extends ComponentBase
             return;
         }
 
+        // PREPARE RULES
         $rules = $this->prepareRules();
         // CW::info(['Rules' => $rules]);
 
+        // POCESS META
         $metas = $this->processMeta($layout->meta['backgrounds']);
         // CW::info(['Meta' => $metas]);
 
-        // Asiign sizes and ratio
+        // ASSIGN SIZES
+        // Asiign sizes and class
         $layout->images->each(function ($image) {
             $image->class_name = preg_replace('#\.(jpg|png|svg)#', '', $image->file_name);
             $this->getSizes($image);
         });
 
+        // ASSIGN IMAGES
         $images = $layout->images;
+
+        // PROCESS STYLES
         $styles = $this->processStyles($rules, $metas, $images);
 
+        // RETURN for POST
         return compact('styles', 'images');
     }
 
-    protected function processParams($styles)
-    {
-
-        $_styles = [];
-
-        foreach ($styles as $query => $entries) {
-            foreach ($entries as $class_name => $entry) {
-                $_styles[] = array_merge(['query' => $query], ['class_name' => $class_name], $entry);
-            }
-        }
-
-        CW::info($_styles);
-
-        $_styles = collect($_styles);
-
-        // CW::info(['temp' => $_styles->count()]);
-        // CW::info(['temp' => $_styles->where('column', 'right')->all()]);
-
-        $return = [];
-        foreach ($this->queries as $query) {
-            $return[$query . 'px'] = [];
-            foreach ($this->columns as $column) {
-                $$column = $_styles
-                    ->where('query', intval($query))
-                    ->where('column', $column)
-                    // ->all()
-                ;
-
-                $summ = $$column->sum(function ($entry) {
-                    return $entry['sizes']['height'];
-                });
-
-                $$column = $$column->all();
-
-                // Define begin top position value
-                $top = 0;
-
-                // Assigning top and bottom positions to every image rule
-                foreach ($$column as $key => &$item) {
-
-                    // If rule don't consist height, skip rule
-                    // if (!array_key_exists('height', $item)) {
-                    //     // CW::info($value);
-                    //     continue;
-                    // }
-
-                    $_item        = [];
-                    $_item['top'] = ($top / $summ * 100) . '%';
-
-                    $_height = $item['sizes']['height'];
-
-                    // if (array_key_exists('margin-top', $item)) {
-                    //     $_height += $item['margin-top'];
-                    // }
-
-                    // if (array_key_exists('margin-bottom', $item)) {
-                    //     $_height += $item['margin-bottom'];
-                    // }
-
-                    $_item['bottom'] = (($summ - $top - $_height) / $summ * 100) . '%';
-
-                    $top += $_height;
-
-                    $item['element_rules'] = array_merge($item['element_rules'], $_item);
-
-                    $return[$query . 'px'][$item['class_name']] = $item;
-
-                }
-
-                // CW::info([$column => $$column]);
-            }
-        }
-
-        return $return;
-    }
+    /**
+     * PROCESS STYLES
+     */
 
     /**
      * @param $rules
@@ -184,12 +119,15 @@ class Backgrounds extends ComponentBase
 
                 $_rules  = $rules[$query][$element];
                 $_styles = $this->selectMeta($metas, $query, $element);
-                // CW::info([$query . $element, $_rules, $_styles]);
+                CW::info(['After select Meta' . $query . $element, $_rules, $_styles]);
 
                 foreach ($_styles as $key => $entry) {
                     extract($entry);
 
                     if (array_key_exists($class_name, $styles[$query])) {
+                        continue;
+                    }
+                    if ($meta_params == 'none') {
                         continue;
                     }
 
@@ -208,11 +146,196 @@ class Backgrounds extends ComponentBase
             }
         }
 
-        CW::info(['Styles', $styles]);
+        CW::info(['Styles before compute' => $styles]);
 
         return $this->processParams($styles);
     }
 
+    /**
+     * @param $styles
+     * @return mixed
+     */
+    protected function processParams($styles)
+    {
+
+        $_styles = [];
+
+        // Prepare for collect
+        foreach ($styles as $query => $entries) {
+            foreach ($entries as $class_name => $entry) {
+                $_item     = array_merge(['query' => $query], ['class_name' => $class_name], $entry);
+                $_styles[] = $this->computeParams($_item);
+            }
+        }
+
+        CW::info(['Styles before assign positions' => $_styles]);
+
+        $_styles = collect($_styles);
+
+        // CW::info(['temp' => $_styles->count()]);
+        // CW::info(['temp' => $_styles->where('column', 'right')->all()]);
+
+        $return = [];
+        foreach ($this->queries as $query) {
+            $return[$query . 'px'] = [];
+            foreach ($this->columns as $column) {
+                $$column = $_styles
+                    ->where('query', intval($query))
+                    ->where('column', $column)
+                    // ->all()
+                ;
+
+                // Calculate SUMM
+                $padding = 5;
+                $count   = $$column->count();
+
+                $summ = $$column->sum(function ($item) {
+                    $_ret = $item['sizes']['height'];
+                    // if (array_key_exists('params', $item) && !is_null($item['params'])) {
+                    if (array_key_exists('params', $item) && !is_null($item['params']) && $item['params'] != 'none') {
+                        if (array_key_exists('margin-top', $item['params'])) {
+                            $_ret += $item['params']['margin-top'];
+                        }
+                        if (array_key_exists('margin-bottom', $item['params'])) {
+                            $_ret += $item['params']['margin-bottom'];
+                        }
+                    }
+                    return $_ret;
+                });
+
+                $summ += $count * $padding;
+
+                $$column = $$column->all();
+
+                // Define begin top position value
+                $top = 0;
+
+                // Assigning TOP/BOTTOM POSITIONS/MARGINS for image element
+                foreach ($$column as $key => &$item) {
+
+                    // If rule don't consist height, skip rule
+                    // if (!array_key_exists('height', $item)) {
+                    //     // CW::info($value);
+                    //     continue;
+                    // }
+
+                    $_item        = [];
+                    $_item['top'] = ($top / $summ * 100) . '%';
+
+                    $_height = $item['sizes']['height'];
+
+                    // if (array_key_exists('params', $item) && !is_null($item['params'])) {
+                    if (array_key_exists('params', $item) && !is_null($item['params']) && $item['params'] != 'none') {
+                        // Margin top
+                        if (array_key_exists('margin-top', $item['params'])) {
+                            $_height += $item['params']['margin-top'];
+                        }
+                        // Margin bottom
+                        if (array_key_exists('margin-bottom', $item['params'])) {
+                            $_height += $item['params']['margin-bottom'];
+                        }
+                    }
+
+                    $_item['bottom'] = (($summ - $top - $_height) / $summ * 100) . '%';
+
+                    $top += $_height + $padding;
+
+                    $item['element_rules'] = array_merge($item['element_rules'], $_item);
+
+                    $return[$query . 'px'][$item['class_name']] = $item;
+
+                }
+
+                // CW::info([$column => $$column]);
+            }
+        }
+
+        return $return;
+    }
+
+    protected $temp = [];
+
+    /**
+     * @param $item
+     */
+    protected function computeParams($item)
+    {
+
+        // Read or init  temp
+        if (!array_key_exists($item['class_name'], $this->temp)) {
+            $temp = $this->temp[$item['class_name']] = [
+                'query'  => $item['query'],
+                'column' => $item['column'],
+            ];
+        } else {
+            $temp = $this->temp[$item['class_name']];
+        }
+
+        // Reject by none
+        if ($item['rules'] == 'none') {
+            $item['container_rules'] = [
+                'display' => 'none',
+            ];
+            return $item;
+        }
+
+        // Width, Height & Ratio
+        $ratio = $item['sizes']['ratio'];
+
+        // COMPUTE DELTA
+        if (array_key_exists('delta', $temp) && $temp['column'] == $item['column']) {
+            // NEXT iterations -- DELTA from TEMP
+            $delta = $temp['delta'];
+            // RECOMPUTE SIZES with DELTA
+            $width  = round($item['rules']['width'] * $delta);
+            $height = round($width / $ratio);
+        } else {
+            // FIRST iteration
+            // Assign WIDTH/HEIGHT
+            if (is_null($item['params']) || !array_key_exists('width', $item['params'])) {
+                // SIZES from RULES
+                $width  = $item['rules']['width'];
+                $height = round($item['rules']['width'] / $ratio);
+            } else {
+                // SIZES from PARAMS
+                $width  = intval($item['params']['width']);
+                $height = round($item['params']['width'] / $ratio);
+            }
+
+            $delta = $temp['delta'] = $width / $item['rules']['width'];
+        }
+
+        // Delta Margin
+        $margin = 100 - ($delta * 100) . '%';
+
+        $item['element_rules']['margin']                 = 0; // Clear margin !!!
+        $item['element_rules'][$item['rules']['margin']] = $margin;
+
+        // Add params
+        // if (!is_null($item['params'])) {
+        if (!is_null($item['params']) && $item['params'] != 'none') {
+            foreach ($item['params'] as $name => $value) {
+                if (in_array($name, $this->allowedStyles)) {
+                    $item['element_rules'][$name] = $value;
+                }
+            }
+        }
+
+        // Return
+        $item['sizes'] = compact('width', 'height', 'ratio', 'delta');
+
+        // Write Temp
+        $this->temp[$item['class_name']] = $temp;
+
+        return $item;
+    }
+
+    /**
+     * @param $metas
+     * @param $query
+     * @param $element
+     * @return mixed
+     */
     protected static function selectMeta($metas, $query, $element)
     {
 
@@ -221,7 +344,11 @@ class Backgrounds extends ComponentBase
         foreach ($metas as $class_name => $queries) {
             foreach ($queries as $meta_query => $meta_params) {
 
-                if ($meta_query == $query || $meta_query == 'all') {
+                if ($meta_query >= $query || $meta_query == 'all') {
+                    CW::info($query);
+                    CW::info($meta_query);
+                    CW::info($element);
+                    CW::info($meta_params['position']);
                     if ($meta_params['position'] == $element) {
 
                         $return[] = [
@@ -229,10 +356,17 @@ class Backgrounds extends ComponentBase
                             'meta_params' => $meta_params['params'],
                         ];
 
-                        // CW::info($query);
-                        // CW::info($meta_query);
-                        // CW::info($element);
-                        // CW::info($meta_params['position']);
+                    }
+                    if ($meta_params['position'] == 'none') {
+                        // $return[] = [
+                        //     'class_name'  => $class_name,
+                        //     'meta_params' => 'none',
+                        // ];
+                        foreach ($return as $key => $item) {
+                            if ($item['class_name'] == $class_name) {
+                                unset($return[$key]);
+                            }
+                        }
                     }
                 }
 
@@ -243,11 +377,19 @@ class Backgrounds extends ComponentBase
 
     }
 
+    /**
+     * PROCESS META
+     */
+
+    /**
+     * @param $metas
+     * @return mixed
+     */
     protected static function processMeta($metas)
     {
         $return = [];
 
-        // CW::info($metas);
+        CW::info($metas);
 
         foreach ($metas as $meta) {
             $class_name = preg_replace('#\.(jpg|png|svg)#', '', $meta['key']);
@@ -277,6 +419,10 @@ class Backgrounds extends ComponentBase
     }
 
     /**
+     * UTIL: GET SIZES
+     */
+
+    /**
      * @param $image
      */
     protected static function getSizes(&$image)
@@ -293,6 +439,10 @@ class Backgrounds extends ComponentBase
         $image['sizes'] = compact('width', 'height', 'ratio');
 
     }
+
+    /**
+     * PREPARE RULES
+     */
 
     /**
      * @return mixed
@@ -391,6 +541,27 @@ class Backgrounds extends ComponentBase
         return $return;
     }
 
+    protected $allowedStyles = [
+        'top',
+        'left',
+        'right',
+        'bottom',
+        'padding',
+        'padding-top',
+        'padding-left',
+        'padding-right',
+        'padding-bottom',
+        'margin',
+        'margin-top',
+        'margin-left',
+        'margin-right',
+        'margin-bottom',
+        'background-position',
+        'height',
+        'display',
+        'transform',
+    ];
+
     protected $queries = ['1920', '1622', '1440', '1360', '1280'];
 
     protected $columns = ['right', 'left'];
@@ -401,12 +572,12 @@ class Backgrounds extends ComponentBase
         'all' => [
             'right' => [
                 'rt' => ['background-position' => 'right top'],
-                'rm' => ['background-position' => 'right bottom'],
+                'rm' => ['background-position' => 'right center'],
                 'rb' => ['background-position' => 'right bottom'],
             ],
             'left'  => [
                 'lt' => ['background-position' => 'left top'],
-                'lm' => ['background-position' => 'left bottom'],
+                'lm' => ['background-position' => 'left center'],
                 'lb' => ['background-position' => 'left bottom'],
             ],
         ],
@@ -442,9 +613,9 @@ class Backgrounds extends ComponentBase
             'left'  => [
                 'all' => [
                     'width'   => 443,
-                    'padding' => 'none',
-                    'percent' => 0,
-                    'margin'  => 'none',
+                    'padding' => 0,
+                    'percent' => 1,
+                    'margin'  => 'margin-right',
                 ],
             ],
         ],
@@ -491,7 +662,7 @@ class Backgrounds extends ComponentBase
                     'right'        => '0',
                     'margin-left'  => '192px',
                     'margin-right' => '0',
-                    'margin-top'   => '64px',
+                    // 'margin-top'   => '64px',
                     'width'        => 'auto',
                 ],
             ],
@@ -501,7 +672,7 @@ class Backgrounds extends ComponentBase
                     'right'        => '50%',
                     'margin-right' => '368px',
                     'margin-left'  => '0',
-                    'margin-top'   => '475px',
+                    // 'margin-top'   => '475px',
                     'width'        => 'auto',
                 ],
             ],

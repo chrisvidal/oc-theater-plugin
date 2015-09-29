@@ -158,7 +158,7 @@ class Events extends ComponentBase
             }
 
             // Grouping
-            if ($this->inCollection($post->relation->taxonomy, 'title', 'Детский спектакль')) {
+            if ($this->inCollection($post->relation->taxonomy, 'title', 'Детские спектакли')) {
                 $this->group['child'][] = $post;
             } else {
                 $this->group['normal'][] = $post;

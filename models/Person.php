@@ -1,14 +1,11 @@
 <?php namespace Abnmt\Theater\Models;
 
-use Model;
-
-use Str;
-use URL;
+use Abnmt\Theater\Models\Taxonomy as TaxonomyModel;
 use Cms\Classes\Page as CmsPage;
 use Cms\Classes\Theme;
-
-use Abnmt\Theater\Models\Taxonomy as TaxonomyModel;
-
+use Model;
+use Str;
+use URL;
 use \Clockwork\Support\Laravel\Facade as CW;
 
 /**
@@ -45,11 +42,11 @@ class Person extends Model
     /**
      * @var array Relations
      */
-    public $hasOne = [];
+    public $hasOne  = [];
     public $hasMany = [
         'participation' => ['Abnmt\Theater\Models\Participation'],
     ];
-    public $belongsTo = [];
+    public $belongsTo     = [];
     public $belongsToMany = [
         // 'roles' => [
         //     'Abnmt\Theater\Models\Performance',
@@ -58,9 +55,9 @@ class Person extends Model
         // ],
     ];
 
-    public $morphTo = [];
-    public $morphOne = [];
-    public $morphMany = [];
+    public $morphTo     = [];
+    public $morphOne    = [];
+    public $morphMany   = [];
     public $morphToMany = [
         // 'relation' => ['Abnmt\Theater\Models\Article',
         //     'table' => 'abnmt_theater_articles_relations',
@@ -107,8 +104,6 @@ class Person extends Model
         // Generate a URL slug for this model
         $this->slug = Str::slug($this->title);
     }
-
-
 
     /**
      * Scope IsPublished
@@ -157,7 +152,7 @@ class Person extends Model
     {
         $categories = TaxonomyModel::where('model', get_class())->select('id', 'title', 'slug')->get();
 
-        // CW::info($categories);
+        CW::info($categories);
         return $categories;
     }
 
@@ -181,14 +176,18 @@ class Person extends Model
 
         $searchableFields = ['title', 'slug'];
 
-        if (isset($published) && $published)
+        if (isset($published) && $published) {
             $query->isPublished();
+        }
 
         /*
          * With
          */
         if (isset($scopes)) {
-            if (!is_array($scopes)) $scopes = array_map('trim', explode(',', $scopes));
+            if (!is_array($scopes)) {
+                $scopes = array_map('trim', explode(',', $scopes));
+            }
+
             foreach ($scopes as $scope) {
                 switch ($scope) {
                     case 'Biography':
@@ -208,11 +207,17 @@ class Person extends Model
          * Sorting
          */
         if (isset($sort)) {
-            if (!is_array($sort)) $sort = array_map('trim', explode(',', $sort));
+            if (!is_array($sort)) {
+                $sort = array_map('trim', explode(',', $sort));
+            }
+
             foreach ($sort as $_sort) {
                 if (in_array($_sort, array_keys(self::$allowedSortingOptions))) {
                     $parts = explode(' ', $_sort);
-                    if (count($parts) < 2) array_push($parts, 'desc');
+                    if (count($parts) < 2) {
+                        array_push($parts, 'desc');
+                    }
+
                     list($sortField, $sortDirection) = $parts;
 
                     $query->orderBy($sortField, $sortDirection);
@@ -234,13 +239,18 @@ class Person extends Model
          * Categories
          */
         if (isset($categories)) {
-            if (!is_array($categories)) $categories = array_map('trim', explode(',', $categories));
-            $query->whereHas('taxonomy', function($q) use ($categories) {
+            if (!is_array($categories)) {
+                $categories = array_map('trim', explode(',', $categories));
+            }
+
+            $query->whereHas('taxonomy', function ($q) use ($categories) {
                 foreach ($categories as $key => $category) {
-                    if ($key == 0)
+                    if ($key == 0) {
                         $q->where('slug', '=', $category);
-                    else
+                    } else {
                         $q->orWhere('slug', '=', $category);
+                    }
+
                 }
             });
         }
@@ -267,16 +277,16 @@ class Person extends Model
             'slug'       => null,
         ], $options));
 
-        if (isset($published) && $published)
+        if (isset($published) && $published) {
             $query->isPublished();
+        }
 
-        if (isset($slug))
+        if (isset($slug)) {
             $query->where('slug', '=', $slug);
+        }
 
         return $query->first();
     }
-
-
 
     /**
      * Handler for the pages.menuitem.getTypeInfo event.
@@ -298,18 +308,19 @@ class Person extends Model
             $result = [
                 'references'   => $references,
                 'nesting'      => false,
-                'dynamicItems' => false
+                'dynamicItems' => false,
             ];
         }
 
         if ($result) {
             $theme = Theme::getActiveTheme();
 
-            $pages = CmsPage::listInTheme($theme, true);
+            $pages    = CmsPage::listInTheme($theme, true);
             $cmsPages = [];
             foreach ($pages as $page) {
-                if (!$page->hasComponent('theater'))
+                if (!$page->hasComponent('theater')) {
                     continue;
+                }
 
                 $cmsPages[] = $page;
             }
@@ -335,8 +346,9 @@ class Person extends Model
         // CW::info($item);
 
         if ($item->type == 'troupe') {
-            if (!$item->reference || !$item->cmsPage)
+            if (!$item->reference || !$item->cmsPage) {
                 return;
+            }
 
             $category = [
                 'slug' => $item->reference,
@@ -345,7 +357,6 @@ class Person extends Model
             $posts = self::ByCategory($item->reference)
                 ->select('title', 'slug')
                 ->get();
-            ;
 
             // CW::info($posts);
 
@@ -354,15 +365,15 @@ class Person extends Model
             });
             $postUrls = $posts->lists('url', 'slug');
 
-
             $pageUrl = self::getCategoryPageUrl($item->cmsPage, $category, $theme);
-            if (!$pageUrl)
+            if (!$pageUrl) {
                 return;
+            }
 
             $pageUrl = URL::to($pageUrl);
 
-            $result = [];
-            $result['url'] = $pageUrl;
+            $result             = [];
+            $result['url']      = $pageUrl;
             $result['isActive'] = $pageUrl == $url || in_array($url, $postUrls);
             // $result['mtime'] = $category->updated_at;
         }
@@ -376,14 +387,15 @@ class Person extends Model
     protected static function getCategoryPageUrl($pageCode, $category, $theme)
     {
         $page = CmsPage::loadCached($theme, $pageCode);
-        if (!$page) return;
+        if (!$page) {
+            return;
+        }
 
         $paramName = 'category';
-        $url = CmsPage::url($page->getBaseFileName(), [$paramName => $category['slug']]);
+        $url       = CmsPage::url($page->getBaseFileName(), [$paramName => $category['slug']]);
 
         return $url;
     }
-
 
     /**
      * Sets the "url" attribute with a URL to this object
