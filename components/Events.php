@@ -5,7 +5,6 @@ use Abnmt\Theater\Models\Performance as PerformanceModel;
 use Carbon;
 use Cms\Classes\ComponentBase;
 use Cms\Classes\Page;
-use \Clockwork\Support\Laravel\Facade as CW;
 
 class Events extends ComponentBase
 {
@@ -125,7 +124,7 @@ class Events extends ComponentBase
     {
         $this->params = $this->getProperties();
 
-        CW::info($this->params);
+        // CW::info($this->params);
     }
 
     protected function listPosts()
@@ -166,8 +165,8 @@ class Events extends ComponentBase
 
         });
 
-        CW::info($this->group);
-        CW::info($posts);
+        // CW::info($this->group);
+        // CW::info($posts);
         return $posts;
     }
 

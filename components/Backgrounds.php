@@ -76,11 +76,11 @@ class Backgrounds extends ComponentBase
 
         // PREPARE RULES
         $rules = $this->prepareRules();
-        // CW::info(['Rules' => $rules]);
+        CW::info(['Rules' => $rules]);
 
         // POCESS META
         $metas = $this->processMeta($layout->meta['backgrounds']);
-        // CW::info(['Meta' => $metas]);
+        CW::info(['Meta' => $metas]);
 
         // ASSIGN SIZES
         // Asiign sizes and class
@@ -119,7 +119,7 @@ class Backgrounds extends ComponentBase
 
                 $_rules  = $rules[$query][$element];
                 $_styles = $this->selectMeta($metas, $query, $element);
-                CW::info(['After select Meta' . $query . $element, $_rules, $_styles]);
+                // CW::info(['After select Meta' . $query . $element, $_rules, $_styles]);
 
                 foreach ($_styles as $key => $entry) {
                     extract($entry);
@@ -138,7 +138,7 @@ class Backgrounds extends ComponentBase
                         }
                     }
 
-                    $styles[$query][$class_name] = array_merge($_rules, ['params' => $meta_params], ['sizes' => $sizes]);
+                    $styles[$query][$class_name] = array_merge($_rules, ['params' => $meta_params], ['position' => $position], ['sizes' => $sizes]);
                     // CW::info([$query . $element . ' ' . $class_name, $_rules]);
 
                 }
@@ -146,7 +146,7 @@ class Backgrounds extends ComponentBase
             }
         }
 
-        CW::info(['Styles before compute' => $styles]);
+        // CW::info(['Styles before compute' => $styles]);
 
         return $this->processParams($styles);
     }
@@ -168,7 +168,7 @@ class Backgrounds extends ComponentBase
             }
         }
 
-        CW::info(['Styles before assign positions' => $_styles]);
+        // CW::info(['Styles before assign positions' => $_styles]);
 
         $_styles = collect($_styles);
 
@@ -191,8 +191,8 @@ class Backgrounds extends ComponentBase
 
                 $summ = $$column->sum(function ($item) {
                     $_ret = $item['sizes']['height'];
-                    // if (array_key_exists('params', $item) && !is_null($item['params'])) {
-                    if (array_key_exists('params', $item) && !is_null($item['params']) && $item['params'] != 'none') {
+                    if (array_key_exists('params', $item) && !is_null($item['params'])) {
+                        // if (array_key_exists('params', $item) && !is_null($item['params']) && $item['params'] != 'none') {
                         if (array_key_exists('margin-top', $item['params'])) {
                             $_ret += $item['params']['margin-top'];
                         }
@@ -223,16 +223,19 @@ class Backgrounds extends ComponentBase
                     $_item['top'] = ($top / $summ * 100) . '%';
 
                     $_height = $item['sizes']['height'];
+                    $_width  = $item['sizes']['width'];
 
-                    // if (array_key_exists('params', $item) && !is_null($item['params'])) {
-                    if (array_key_exists('params', $item) && !is_null($item['params']) && $item['params'] != 'none') {
+                    if (array_key_exists('params', $item) && !is_null($item['params'])) {
+                        // if (array_key_exists('params', $item) && !is_null($item['params']) && $item['params'] != 'none') {
                         // Margin top
                         if (array_key_exists('margin-top', $item['params'])) {
                             $_height += $item['params']['margin-top'];
+                            $_item['margin-top'] = ($item['params']['margin-top'] / $_width * 100) . '%';
                         }
                         // Margin bottom
                         if (array_key_exists('margin-bottom', $item['params'])) {
                             $_height += $item['params']['margin-bottom'];
+                            $_item['margin-bottom'] = ($item['params']['margin-bottom'] / $_width * 100) . '%';
                         }
                     }
 
@@ -312,11 +315,16 @@ class Backgrounds extends ComponentBase
         $item['element_rules'][$item['rules']['margin']] = $margin;
 
         // Add params
-        // if (!is_null($item['params'])) {
-        if (!is_null($item['params']) && $item['params'] != 'none') {
+        if (!is_null($item['params'])) {
+            // if (!is_null($item['params']) && $item['params'] != 'none') {
             foreach ($item['params'] as $name => $value) {
                 if (in_array($name, $this->allowedStyles)) {
-                    $item['element_rules'][$name] = $value;
+                    if (in_array($name, $this->sizes)) {
+                        // $item['element_rules'][$name] = $value . 'px';
+                        $item['element_rules'][$name] = $value;
+                    } else {
+                        $item['element_rules'][$name] = $value;
+                    }
                 }
             }
         }
@@ -345,23 +353,26 @@ class Backgrounds extends ComponentBase
             foreach ($queries as $meta_query => $meta_params) {
 
                 if ($meta_query >= $query || $meta_query == 'all') {
-                    CW::info($query);
-                    CW::info($meta_query);
-                    CW::info($element);
-                    CW::info($meta_params['position']);
+                    // CW::info($query);
+                    // CW::info($meta_query);
+                    // CW::info($element);
+                    // CW::info($meta_params['position']);
                     if ($meta_params['position'] == $element) {
 
                         $return[] = [
                             'class_name'  => $class_name,
+                            'position'    => $meta_params['position'],
                             'meta_params' => $meta_params['params'],
                         ];
 
                     }
                     if ($meta_params['position'] == 'none') {
-                        // $return[] = [
-                        //     'class_name'  => $class_name,
-                        //     'meta_params' => 'none',
-                        // ];
+                        $return[] = [
+                            'class_name'  => $class_name,
+                            'meta_params' => [
+                                'display' => 'none',
+                            ],
+                        ];
                         foreach ($return as $key => $item) {
                             if ($item['class_name'] == $class_name) {
                                 unset($return[$key]);
@@ -389,7 +400,7 @@ class Backgrounds extends ComponentBase
     {
         $return = [];
 
-        CW::info($metas);
+        // CW::info($metas);
 
         foreach ($metas as $meta) {
             $class_name = preg_replace('#\.(jpg|png|svg)#', '', $meta['key']);
@@ -461,7 +472,7 @@ class Backgrounds extends ComponentBase
 
                         $continue = false;
 
-                        // CW::info($query . ' ' . $column . ' ' . $element . ' ' . $q);
+                        CW::info($query . ' ' . $column . ' ' . $element . ' ' . $q);
 
                         $_query   = 'all';
                         $_column  = 'all';
@@ -532,7 +543,7 @@ class Backgrounds extends ComponentBase
                         $return[$query][$element] = compact('column', 'rules', 'container_rules', 'element_rules');
                     }
 
-                    // CW::info(['Return ' . $query . ' ' . $element => $return[$query][$element]]);
+                    CW::info(['Return ' . $query . ' ' . $element => $return[$query][$element]]);
 
                 }
             }
@@ -541,6 +552,23 @@ class Backgrounds extends ComponentBase
         return $return;
     }
 
+    protected $sizes = [
+        'top',
+        'left',
+        'right',
+        'bottom',
+        'padding',
+        'padding-top',
+        'padding-left',
+        'padding-right',
+        'padding-bottom',
+        'margin',
+        'margin-top',
+        'margin-left',
+        'margin-right',
+        'margin-bottom',
+        'height',
+    ];
     protected $allowedStyles = [
         'top',
         'left',
@@ -566,19 +594,30 @@ class Backgrounds extends ComponentBase
 
     protected $columns = ['right', 'left'];
 
-    protected $elements = ['rt', 'rm', 'rb', 'lt', 'lm', 'lb'];
+    protected $elements = ['rt', 'rm', 'rb', 'lt', 'lm', 'lb', 'none'];
 
     protected $element_rules = [
         'all' => [
             'right' => [
                 'rt' => ['background-position' => 'right top'],
-                'rm' => ['background-position' => 'right center'],
+                'rm' => [
+                    'background-position' => 'right center',
+                    'border-top'          => '50px solid #111',
+                    'border-bottom'       => '50px solid #111',
+                ],
                 'rb' => ['background-position' => 'right bottom'],
             ],
             'left'  => [
                 'lt' => ['background-position' => 'left top'],
-                'lm' => ['background-position' => 'left center'],
+                'lm' => [
+                    'background-position' => 'left center',
+                    'border-top'          => '50px solid #111',
+                    'border-bottom'       => '50px solid #111',
+                ],
                 'lb' => ['background-position' => 'left bottom'],
+            ],
+            'all'   => [
+                'none' => ['display' => 'none'],
             ],
         ],
     ];
@@ -601,6 +640,9 @@ class Backgrounds extends ComponentBase
                     'margin'  => 'margin-right',
                 ],
             ],
+            'all'   => [
+                'none' => 'none',
+            ],
         ],
         '1622' => [
             'right' => [
@@ -618,6 +660,9 @@ class Backgrounds extends ComponentBase
                     'margin'  => 'margin-right',
                 ],
             ],
+            'all'   => [
+                'none' => 'none',
+            ],
         ],
         '1440' => [
             'right' => [
@@ -628,6 +673,9 @@ class Backgrounds extends ComponentBase
             ],
             'left'  => [
                 'all' => 'none',
+            ],
+            'all'   => [
+                'none' => 'none',
             ],
         ],
         '1360' => [
@@ -640,6 +688,9 @@ class Backgrounds extends ComponentBase
             'left'  => [
                 'all' => 'none',
             ],
+            'all'   => [
+                'none' => 'none',
+            ],
         ],
         '1280' => [
             'right' => [
@@ -650,6 +701,9 @@ class Backgrounds extends ComponentBase
             ],
             'left'  => [
                 'all' => 'none',
+            ],
+            'all'   => [
+                'none' => 'none',
             ],
         ],
     ];
@@ -676,6 +730,9 @@ class Backgrounds extends ComponentBase
                     'width'        => 'auto',
                 ],
             ],
+            'all'   => [
+                'none' => 'none',
+            ],
         ],
         '1622' => [
             'right' => [
@@ -691,6 +748,9 @@ class Backgrounds extends ComponentBase
                     'width'        => '443px', // ???
                 ],
             ],
+            'all'   => [
+                'none' => 'none',
+            ],
         ],
         '1440' => [
             'right' => [
@@ -700,6 +760,9 @@ class Backgrounds extends ComponentBase
             ],
             'left'  => [
                 'all' => 'none',
+            ],
+            'all'   => [
+                'none' => 'none',
             ],
         ],
         '1360' => [
@@ -711,6 +774,9 @@ class Backgrounds extends ComponentBase
             'left'  => [
                 'all' => 'none',
             ],
+            'all'   => [
+                'none' => 'none',
+            ],
         ],
         '1280' => [
             'right' => [
@@ -720,6 +786,9 @@ class Backgrounds extends ComponentBase
             ],
             'left'  => [
                 'all' => 'none',
+            ],
+            'all'   => [
+                'none' => 'none',
             ],
         ],
     ];
