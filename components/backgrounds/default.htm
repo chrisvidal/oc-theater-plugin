@@ -5,7 +5,7 @@
 {% for query, data in backgrounds.styles %}
     {% if query != '' %}
 
-        {% if query == '1920px' %}
+        {% if query == 'allpx' %}
 
         {% for item in data %}
 
@@ -15,7 +15,7 @@
 
         }
         .bg-container .bg.{{ item.class_name }} .bg-item {
-            {% for name, value in item.element_rules %}{{ name }}: {{value}};
+            {% for name, value in item.position_rules %}{{ name }}: {{value}};
             {% endfor %}
 
         }
@@ -33,7 +33,7 @@
 
             }
             .bg-container .bg.{{ item.class_name }} .bg-item {
-                {% for name, value in item.element_rules %}{{ name }}: {{value}};
+                {% for name, value in item.position_rules %}{{ name }}: {{value}};
                 {% endfor %}
 
             }

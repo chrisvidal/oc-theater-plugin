@@ -79,7 +79,7 @@ class Backgrounds extends ComponentBase
         CW::info(['Rules' => $rules]);
 
         // POCESS META
-        $metas = $this->processMeta($layout->meta['backgrounds']);
+        $metas = $this->prepareMetas($layout->meta['backgrounds']);
         CW::info(['Meta' => $metas]);
 
         // ASSIGN SIZES
@@ -93,7 +93,9 @@ class Backgrounds extends ComponentBase
         $images = $layout->images;
 
         // PROCESS STYLES
-        $styles = $this->processStyles($rules, $metas, $images);
+        $styles = $this->processStyles($rules, $metas, $images, $params['layout']);
+
+        // return; // TEMP
 
         // RETURN for POST
         return compact('styles', 'images');
@@ -108,85 +110,86 @@ class Backgrounds extends ComponentBase
      * @param $meta
      * @param $images
      */
-    protected function processStyles($rules, $metas, $images)
+    protected function processStyles($rules, $metas, $images, $layout)
     {
         $styles = [];
-        // CW::info(['Images', $images]);
 
         foreach ($this->queries as $key => $query) {
-            $styles[$query] = [];
-            foreach ($this->elements as $element) {
+            foreach ($this->positions as $column => $positions) {
+                foreach ($positions as $position) {
 
-                $_rules  = $rules[$query][$element];
-                $_styles = $this->selectMeta($metas, $query, $element);
-                // CW::info(['After select Meta' . $query . $element, $_rules, $_styles]);
+                    CW::info($query . ' ' . $column . ' ' . $position);
 
-                foreach ($_styles as $key => $entry) {
-                    extract($entry);
+                    $_rules = $rules
+                        ->where('query', $query)
+                        ->where('position', $position)
+                        ->first()
+                    ;
 
-                    if (array_key_exists($class_name, $styles[$query])) {
-                        continue;
+                    // if ($_rules['common_rules']['visibility'] == 'hidden') {
+                    //     continue;
+                    // }
+
+                    CW::info(['rules' => $_rules]);
+
+                    $_metas = $this->selectMeta($metas, $query, $position);
+
+                    // CW::info(['After select Meta' . $query . $position, $_rules, $_metas]);
+                    CW::info(['meta' => $_metas]);
+
+                    foreach ($_metas as $_meta) {
+
+                        // if (array_key_exists($class_name, $styles[$query])) {
+                        //     continue;
+                        // }
+                        // if ($meta['params'] == 'none') {
+                        //     continue;
+                        // }
+
+                        $image = $images
+                            ->where('class_name', $_meta['class_name'])
+                            ->first()
+                        ;
+                        $_meta['sizes'] = $image['sizes'];
+
+                        // $styles[$query][$class_name] = array_merge($_rules, ['params' => $meta_params], ['position' => $position], ['sizes' => $sizes]);
+                        // $styles[$query][$_meta['class_name']] = array_merge($_rules, $_meta);
+                        $_styles  = array_merge($_rules, $_meta);
+                        $styles[] = $this->computeParams($_styles);
+
+                        // CW::info([$query . $element . ' ' . $class_name, $_rules]);
                     }
-                    if ($meta_params == 'none') {
-                        continue;
-                    }
-
-                    $sizes = [];
-                    foreach ($images as $key => $image) {
-                        if ($class_name == $image['class_name']) {
-                            $sizes = $image['sizes'];
-                        }
-                    }
-
-                    $styles[$query][$class_name] = array_merge($_rules, ['params' => $meta_params], ['position' => $position], ['sizes' => $sizes]);
-                    // CW::info([$query . $element . ' ' . $class_name, $_rules]);
 
                 }
-
             }
         }
 
-        // CW::info(['Styles before compute' => $styles]);
+        CW::info(['After Compute' => $styles]);
 
-        return $this->processParams($styles);
+        return $this->processParams(collect($styles), $layout);
     }
 
     /**
      * @param $styles
      * @return mixed
      */
-    protected function processParams($styles)
+    protected function processParams($styles, $layout)
     {
-
-        $_styles = [];
-
-        // Prepare for collect
-        foreach ($styles as $query => $entries) {
-            foreach ($entries as $class_name => $entry) {
-                $_item     = array_merge(['query' => $query], ['class_name' => $class_name], $entry);
-                $_styles[] = $this->computeParams($_item);
-            }
-        }
-
-        // CW::info(['Styles before assign positions' => $_styles]);
-
-        $_styles = collect($_styles);
-
-        // CW::info(['temp' => $_styles->count()]);
-        // CW::info(['temp' => $_styles->where('column', 'right')->all()]);
 
         $return = [];
         foreach ($this->queries as $query) {
             $return[$query . 'px'] = [];
-            foreach ($this->columns as $column) {
-                $$column = $_styles
-                    ->where('query', intval($query))
+            foreach ($this->positions as $column => $positions) {
+                $$column = $styles
+                    ->where('query', $query)
                     ->where('column', $column)
                     // ->all()
                 ;
 
+                CW::info([$column => $$column]);
+
                 // Calculate SUMM
-                $padding = 5;
+                $padding = 0;
                 $count   = $$column->count();
 
                 $summ = $$column->sum(function ($item) {
@@ -209,6 +212,15 @@ class Backgrounds extends ComponentBase
 
                 // Define begin top position value
                 $top = 0;
+
+                if ($layout != 'playbill' && $column == 'left') {
+                    $top = 475;
+                    $summ += $top;
+                }
+                if ($layout != 'playbill' && $column == 'right') {
+                    $top = 64;
+                    $summ += $top;
+                }
 
                 // Assigning TOP/BOTTOM POSITIONS/MARGINS for image element
                 foreach ($$column as $key => &$item) {
@@ -243,7 +255,7 @@ class Backgrounds extends ComponentBase
 
                     $top += $_height + $padding;
 
-                    $item['element_rules'] = array_merge($item['element_rules'], $_item);
+                    $item['position_rules'] = array_merge($item['position_rules'], $_item);
 
                     $return[$query . 'px'][$item['class_name']] = $item;
 
@@ -253,6 +265,7 @@ class Backgrounds extends ComponentBase
             }
         }
 
+        CW::info(['Process' => $return]);
         return $return;
     }
 
@@ -274,12 +287,19 @@ class Backgrounds extends ComponentBase
             $temp = $this->temp[$item['class_name']];
         }
 
+        CW::info(['Temp before' => $this->temp]);
+
         // Reject by none
-        if ($item['rules'] == 'none') {
-            $item['container_rules'] = [
-                'display' => 'none',
-            ];
+        if ($item['common_rules']['visibility'] == 'hidden') {
+
+            if (array_key_exists('reposition', $temp)) {
+                CW::info('Reposition');
+                return;
+            }
+
+            CW::info(['Hidden' => $item]);
             return $item;
+
         }
 
         // Width, Height & Ratio
@@ -287,32 +307,43 @@ class Backgrounds extends ComponentBase
 
         // COMPUTE DELTA
         if (array_key_exists('delta', $temp) && $temp['column'] == $item['column']) {
+
             // NEXT iterations -- DELTA from TEMP
             $delta = $temp['delta'];
             // RECOMPUTE SIZES with DELTA
-            $width  = round($item['rules']['width'] * $delta);
+            $width  = round($item['common_rules']['width'] * $delta);
             $height = round($width / $ratio);
+
         } else {
+
+            if (array_key_exists('delta', $temp) && $temp['column'] != $item['column']) {
+                $temp = $this->temp[$item['class_name']] = [
+                    'query'      => $item['query'],
+                    'column'     => $item['column'],
+                    'reposition' => 'changed',
+                ];
+            }
             // FIRST iteration
             // Assign WIDTH/HEIGHT
             if (is_null($item['params']) || !array_key_exists('width', $item['params'])) {
                 // SIZES from RULES
-                $width  = $item['rules']['width'];
-                $height = round($item['rules']['width'] / $ratio);
+                $width  = $item['common_rules']['width'];
+                $height = round($item['common_rules']['width'] / $ratio);
             } else {
                 // SIZES from PARAMS
                 $width  = intval($item['params']['width']);
                 $height = round($item['params']['width'] / $ratio);
             }
 
-            $delta = $temp['delta'] = $width / $item['rules']['width'];
+            $delta = $temp['delta'] = $width / $item['common_rules']['width'];
+
         }
 
         // Delta Margin
         $margin = 100 - ($delta * 100) . '%';
 
-        $item['element_rules']['margin']                 = 0; // Clear margin !!!
-        $item['element_rules'][$item['rules']['margin']] = $margin;
+        $item['position_rules']['margin']                        = 0; // Clear margin !!!
+        $item['position_rules'][$item['common_rules']['margin']] = $margin;
 
         // Add params
         if (!is_null($item['params'])) {
@@ -320,10 +351,10 @@ class Backgrounds extends ComponentBase
             foreach ($item['params'] as $name => $value) {
                 if (in_array($name, $this->allowedStyles)) {
                     if (in_array($name, $this->sizes)) {
-                        // $item['element_rules'][$name] = $value . 'px';
-                        $item['element_rules'][$name] = $value;
+                        // $item['position_rules'][$name] = $value . 'px';
+                        $item['position_rules'][$name] = $value;
                     } else {
-                        $item['element_rules'][$name] = $value;
+                        $item['position_rules'][$name] = $value;
                     }
                 }
             }
@@ -335,52 +366,39 @@ class Backgrounds extends ComponentBase
         // Write Temp
         $this->temp[$item['class_name']] = $temp;
 
+        CW::info(['Temp after' => $this->temp]);
+
+        CW::info(['Compute' => $item]);
+
         return $item;
     }
 
     /**
      * @param $metas
      * @param $query
-     * @param $element
+     * @param $position
      * @return mixed
      */
-    protected static function selectMeta($metas, $query, $element)
+    protected static function selectMeta($metas, $query, $position)
     {
 
         $return = [];
 
-        foreach ($metas as $class_name => $queries) {
-            foreach ($queries as $meta_query => $meta_params) {
-
-                if ($meta_query >= $query || $meta_query == 'all') {
-                    // CW::info($query);
-                    // CW::info($meta_query);
-                    // CW::info($element);
-                    // CW::info($meta_params['position']);
-                    if ($meta_params['position'] == $element) {
-
-                        $return[] = [
-                            'class_name'  => $class_name,
-                            'position'    => $meta_params['position'],
-                            'meta_params' => $meta_params['params'],
-                        ];
-
-                    }
-                    if ($meta_params['position'] == 'none') {
-                        $return[] = [
-                            'class_name'  => $class_name,
-                            'meta_params' => [
-                                'display' => 'none',
-                            ],
-                        ];
-                        foreach ($return as $key => $item) {
-                            if ($item['class_name'] == $class_name) {
-                                unset($return[$key]);
-                            }
+        foreach ($metas as $meta) {
+            if ($meta['query'] >= $query || $meta['query'] == 'all') {
+                $meta['query'] = $query;
+                if ($meta['position'] == $position) {
+                    $return[] = $meta;
+                }
+                if ($meta['position'] == 'none') {
+                    foreach ($return as $key => $item) {
+                        // CW::info($item);
+                        if ($item['class_name'] == $meta['class_name']) {
+                            unset($return[$key]);
                         }
                     }
+                    // $return[] = $meta;
                 }
-
             }
         }
 
@@ -396,7 +414,7 @@ class Backgrounds extends ComponentBase
      * @param $metas
      * @return mixed
      */
-    protected static function processMeta($metas)
+    protected static function prepareMetas($metas)
     {
         $return = [];
 
@@ -418,15 +436,15 @@ class Backgrounds extends ComponentBase
                     $params = $_params;
                 }
 
-                if (!array_key_exists($class_name, $return)) {
-                    $return[$class_name] = [];
-                }
+                // if (!array_key_exists($class_name, $return)) {
+                //     $return[$class_name] = [];
+                // }
 
-                $return[$class_name][$query] = compact('position', 'params');
+                $return[] = compact('class_name', 'query', 'position', 'params');
             }
         }
 
-        return $return;
+        return collect($return);
     }
 
     /**
@@ -455,101 +473,85 @@ class Backgrounds extends ComponentBase
      * PREPARE RULES
      */
 
+    protected $rules_temp = [];
+
     /**
      * @return mixed
      */
     protected function prepareRules()
     {
+
         $return = [];
+
+        foreach (['position_rules', 'common_rules', 'container_rules'] as $collection) {
+            $$collection = collect($this->$collection);
+        }
+
         foreach ($this->queries as $key => $query) {
-            // CW::info($query);
-            $return[$query] = [];
-            foreach ($this->columns as $column) {
-                // CW::info($column);
-                foreach ($this->elements as $element) {
-                    // CW::info($element);
-                    foreach (['rules', 'container_rules', 'element_rules'] as $q) {
+            foreach ($this->positions as $column => $positions) {
+                foreach ($positions as $position) {
 
-                        $continue = false;
+                    $_merge = compact('query', 'column', 'position');
 
-                        CW::info($query . ' ' . $column . ' ' . $element . ' ' . $q);
-
-                        $_query   = 'all';
-                        $_column  = 'all';
-                        $_element = 'all';
-
-                        $_array = $this->$q;
-                        // CW::info(['arr' => $_array]);
-                        // CW::info(['query' => $query]);
-
-                        if (array_key_exists($query, $_array)) {
-                            $_query = $query;
-                        } elseif (!array_key_exists($_query, $_array)) {
-                            // CW::info('continue');
-                            $continue = true;
-                            continue;
-                        }
-
-                        $_array = $_array[$_query];
-                        // CW::info(['_query' => $_array]);
-                        // CW::info(['column' => $column]);
-
-                        if (array_key_exists($column, $_array)) {
-                            $_column = $column;
-                        } elseif (!array_key_exists($_column, $_array)) {
-                            // CW::info('continue');
-                            $continue = true;
-                            continue;
-                        }
-
-                        $_array = $_array[$_column];
-                        // CW::info(['_column' => $_array]);
-                        // CW::info(['element' => $element]);
-
-                        if (array_key_exists($element, $_array)) {
-                            $_element = $element;
-                        } elseif (!array_key_exists($_element, $_array)) {
-                            // CW::info('continue');
-                            $continue = true;
-                            continue;
-                        }
-
-                        $_array = $_array[$_element];
-                        // CW::info(['_element' => $_array]);
-
-                        $$q = $_array;
-                        // CW::info(['$$q' => $$q]);
-
-                    }
-
-                    if ($continue) {
-                        continue;
-                    }
-
-                    if ($key > 0) {
-                        // CW::info($query);
-                        // CW::info($element);
-                        // CW::info($this->queries[$key - 1]);
-                        // CW::info($this->queries[$key]);
-
-                        $pre = $return[$this->queries[$key - 1]][$element];
-                        $cur = compact('column', 'rules', 'container_rules', 'element_rules');
-
-                        // CW::info([$pre, $cur]);
-                        // CW::info(array_replace_recursive($pre, $cur));
-
-                        $return[$query][$element] = array_replace_recursive($pre, $cur);
+                    // Read or init  temp
+                    if (!array_key_exists($position, $this->rules_temp)) {
+                        $temp          = $this->rules_temp[$position]          = $_merge;
+                        $temp['query'] = $this->rules_temp[$position]['query'] = ['all', $query];
                     } else {
-                        $return[$query][$element] = compact('column', 'rules', 'container_rules', 'element_rules');
+                        $temp            = $this->rules_temp[$position];
+                        $temp['query'][] = $this->rules_temp[$position]['query'][] = $query;
                     }
 
-                    CW::info(['Return ' . $query . ' ' . $element => $return[$query][$element]]);
+                    // CW::info($query . ' ' . $column . ' ' . $position);
+
+                    foreach (['common_rules', 'container_rules', 'position_rules'] as $q) {
+
+                        $_merge[$q] = [];
+
+                        // foreach (['all', $query] as $_q) {
+                        foreach ($temp['query'] as $_q) {
+                            foreach (['all', $column] as $_c) {
+                                foreach (['all', $position] as $_p) {
+                                    // echo $q . ' ' . $c . ' ' . $p . "\n";
+
+                                    $_ret = $$q
+                                        ->where('query', $_q)
+                                        ->where('column', $_c)
+                                        ->where('position', $_p)
+                                        ->first()
+                                    ;
+
+                                    if (!is_null($_ret)) {
+
+                                        // Read or init  temp
+                                        if (!array_key_exists($q, $this->rules_temp[$position])) {
+                                            $temp[$q] = $this->rules_temp[$position][$q] = [];
+                                        } else {
+                                            $temp[$q] = $this->rules_temp[$position][$q];
+                                        }
+
+                                        // CW::info([$_q . ' ' . $_c . ' ' . $_p . ' ' . $q, $_merge[$q], $_ret['rules'], array_replace($_merge[$q], $_ret['rules'])]);
+                                        $_merge[$q] = array_replace($_merge[$q], $_ret['rules']);
+                                        $_merge[$q] = $this->rules_temp[$position][$q] = array_replace($temp[$q], $_merge[$q]);
+                                    }
+
+                                }
+                            }
+                        }
+
+                    }
+
+                    // CW::info([$query . ' ' . $column . ' ' . $position . ' merge', $temp, $_merge, array_replace($temp, $_merge)]);
+                    // $_merge = $this->rules_temp[$position] = array_replace($temp, $_merge);
+
+                    $return[] = $_merge;
+                    // CW::info($_merge);
 
                 }
             }
         }
 
-        return $return;
+        return collect($return);
     }
 
     protected $sizes = [
@@ -590,206 +592,294 @@ class Backgrounds extends ComponentBase
         'transform',
     ];
 
-    protected $queries = ['1920', '1622', '1440', '1360', '1280'];
+    protected $queries = ['all', '1700', '1622', '1440', '1360', '1280'];
 
-    protected $columns = ['right', 'left'];
+    // protected $columns = ['right', 'left', 'side'];
 
-    protected $elements = ['rt', 'rm', 'rb', 'lt', 'lm', 'lb', 'none'];
+    // protected $positions = ['rt', 'rm', 'rb', 'lt', 'lm', 'lb', 'ls', 'none'];
 
-    protected $element_rules = [
-        'all' => [
-            'right' => [
-                'rt' => ['background-position' => 'right top'],
-                'rm' => [
-                    'background-position' => 'right center',
-                    'border-top'          => '50px solid #111',
-                    'border-bottom'       => '50px solid #111',
-                ],
-                'rb' => ['background-position' => 'right bottom'],
+    protected $positions = [
+        'right' => ['rt', 'rm', 'rb'],
+        'left'  => ['lt', 'lm', 'lb'],
+        'side'  => ['ls'],
+        'none'  => ['none'],
+    ];
+
+    // protected $column_rules = [
+    //     'right' => [],
+    //     'left' => [],
+    // ];
+
+    protected $position_rules = [
+        [
+            'query'    => 'all',
+            'column'   => 'all',
+            'position' => 'all',
+            'rules'    => ['display' => 'block'],
+        ],
+        [
+            'query'    => 'all',
+            'column'   => 'all',
+            'position' => 'none',
+            'rules'    => ['display' => 'none'],
+        ],
+        [
+            'query'    => 'all',
+            'column'   => 'right',
+            'position' => 'rt',
+            'rules'    => ['background-position' => 'right top'],
+        ],
+        [
+            'query'    => 'all',
+            'column'   => 'right',
+            'position' => 'rm',
+            'rules'    => [
+                'background-position' => 'right center',
+                'border-top'          => '50px solid #000',
+                'border-bottom'       => '50px solid #000',
             ],
-            'left'  => [
-                'lt' => ['background-position' => 'left top'],
-                'lm' => [
-                    'background-position' => 'left center',
-                    'border-top'          => '50px solid #111',
-                    'border-bottom'       => '50px solid #111',
-                ],
-                'lb' => ['background-position' => 'left bottom'],
+        ],
+        [
+            'query'    => 'all',
+            'column'   => 'right',
+            'position' => 'rb',
+            'rules'    => ['background-position' => 'right bottom'],
+        ],
+        [
+            'query'    => 'all',
+            'column'   => 'left',
+            'position' => 'lt',
+            'rules'    => ['background-position' => 'left top'],
+        ],
+        [
+            'query'    => 'all',
+            'column'   => 'left',
+            'position' => 'lm',
+            'rules'    => [
+                'background-position' => 'left center',
+                'border-top'          => '50px solid #000',
+                'border-bottom'       => '50px solid #000',
             ],
-            'all'   => [
-                'none' => ['display' => 'none'],
-            ],
+        ],
+        [
+            'query'    => 'all',
+            'column'   => 'left',
+            'position' => 'lb',
+            'rules'    => ['background-position' => 'left bottom'],
+        ],
+        [
+            'query'    => 'all',
+            'column'   => 'side',
+            'position' => 'ls',
+            'rules'    => ['background-position' => 'left top'],
         ],
     ];
 
-    protected $rules = [
-        '1920' => [
-            'right' => [
-                'all' => [
-                    'width'   => 768,
-                    'padding' => 192,
-                    'percent' => 0.5,
-                    'margin'  => 'margin-left',
-                ],
-            ],
-            'left'  => [
-                'all' => [
-                    'width'   => 592,
-                    'padding' => 368,
-                    'percent' => 0.5,
-                    'margin'  => 'margin-right',
-                ],
-            ],
-            'all'   => [
-                'none' => 'none',
+    protected $common_rules = [
+        [
+            'query'    => 'all',
+            'column'   => 'all',
+            'position' => 'all',
+            'rules'    => ['visibility' => 'visible'],
+        ],
+        [
+            'query'    => 'all',
+            'column'   => 'all',
+            'position' => 'none',
+            'rules'    => ['visibility' => 'hidden'],
+        ],
+        [
+            'query'    => 'all',
+            'column'   => 'right',
+            'position' => 'all',
+            'rules'    => [
+                'width'   => 768,
+                'padding' => 192,
+                'percent' => 0.5,
+                'margin'  => 'margin-left',
             ],
         ],
-        '1622' => [
-            'right' => [
-                'all' => [
-                    'width'   => 619,
-                    'padding' => 1003,
-                    'percent' => 1,
-                ],
-            ],
-            'left'  => [
-                'all' => [
-                    'width'   => 443,
-                    'padding' => 0,
-                    'percent' => 1,
-                    'margin'  => 'margin-right',
-                ],
-            ],
-            'all'   => [
-                'none' => 'none',
+        [
+            'query'    => 'all',
+            'column'   => 'left',
+            'position' => 'all',
+            'rules'    => [
+                'width'   => 592,
+                'padding' => 368,
+                'percent' => 0.5,
+                'margin'  => 'margin-right',
             ],
         ],
-        '1440' => [
-            'right' => [
-                'all' => [
-                    'width'   => 725,
-                    'padding' => 715,
-                ],
-            ],
-            'left'  => [
-                'all' => 'none',
-            ],
-            'all'   => [
-                'none' => 'none',
+        [
+            'query'    => 'all',
+            'column'   => 'side',
+            'position' => 'ls',
+            'rules'    => [
+                'width'   => 304,
+                'padding' => 656,
+                'percent' => 0.5,
+                'margin'  => 'margin-right',
             ],
         ],
-        '1360' => [
-            'right' => [
-                'all' => [
-                    'width'   => 690,
-                    'padding' => 670,
-                ],
-            ],
-            'left'  => [
-                'all' => 'none',
-            ],
-            'all'   => [
-                'none' => 'none',
+        [
+            'query'    => '1700',
+            'column'   => 'side',
+            'position' => 'ls',
+            'rules'    => ['visibility' => 'hidden'],
+        ],
+        [
+            'query'    => '1622',
+            'column'   => 'right',
+            'position' => 'all',
+            'rules'    => [
+                'width'   => 619,
+                'padding' => 1003,
+                'percent' => 1,
             ],
         ],
-        '1280' => [
-            'right' => [
-                'all' => [
-                    'width'   => 610,
-                    'padding' => 670,
-                ],
+        [
+            'query'    => '1622',
+            'column'   => 'left',
+            'position' => 'all',
+            'rules'    => [
+                'width'   => 443,
+                'padding' => 0,
+                'percent' => 1,
             ],
-            'left'  => [
-                'all' => 'none',
+        ],
+        [
+            'query'    => '1440',
+            'column'   => 'right',
+            'position' => 'all',
+            'rules'    => [
+                'width'   => 725,
+                'padding' => 715,
             ],
-            'all'   => [
-                'none' => 'none',
+        ],
+        [
+            'query'    => '1440',
+            'column'   => 'left',
+            'position' => 'all',
+            'rules'    => ['visibility' => 'hidden'],
+        ],
+        [
+            'query'    => '1360',
+            'column'   => 'right',
+            'position' => 'all',
+            'rules'    => [
+                'width'   => 690,
+                'padding' => 670,
+            ],
+        ],
+        [
+            'query'    => '1280',
+            'column'   => 'right',
+            'position' => 'all',
+            'rules'    => [
+                'width'   => 610,
+                'padding' => 670,
             ],
         ],
     ];
 
     protected $container_rules = [
-        '1920' => [
-            'right' => [
-                'all' => [
-                    'left'         => '50%',
-                    'right'        => '0',
-                    'margin-left'  => '192px',
-                    'margin-right' => '0',
-                    // 'margin-top'   => '64px',
-                    'width'        => 'auto',
-                ],
-            ],
-            'left'  => [
-                'all' => [
-                    'left'         => '0',
-                    'right'        => '50%',
-                    'margin-right' => '368px',
-                    'margin-left'  => '0',
-                    // 'margin-top'   => '475px',
-                    'width'        => 'auto',
-                ],
-            ],
-            'all'   => [
-                'none' => 'none',
+        [
+            'query'    => 'all',
+            'column'   => 'all',
+            'position' => 'all',
+            'rules'    => ['display' => 'block'],
+        ],
+        [
+            'query'    => 'all',
+            'column'   => 'all',
+            'position' => 'none',
+            'rules'    => ['display' => 'none'],
+        ],
+        [
+            'query'    => 'all',
+            'column'   => 'right',
+            'position' => 'all',
+            'rules'    => [
+                'left'         => '50%',
+                'right'        => '0',
+                'margin-left'  => '192px',
+                'margin-right' => '0',
+                'width'        => 'auto',
             ],
         ],
-        '1622' => [
-            'right' => [
-                'all' => [
-                    'left'        => '0',
-                    'margin-left' => '1003px',
-                ],
-            ],
-            'left'  => [
-                'all' => [
-                    'right'        => 'auto',
-                    'margin-right' => '0',
-                    'width'        => '443px', // ???
-                ],
-            ],
-            'all'   => [
-                'none' => 'none',
+        [
+            'query'    => 'all',
+            'column'   => 'left',
+            'position' => 'all',
+            'rules'    => [
+                'left'         => '0',
+                'right'        => '50%',
+                'margin-right' => '368px',
+                'margin-left'  => '0',
+                'width'        => 'auto',
             ],
         ],
-        '1440' => [
-            'right' => [
-                'all' => [
-                    'margin-left' => '715px',
-                ],
-            ],
-            'left'  => [
-                'all' => 'none',
-            ],
-            'all'   => [
-                'none' => 'none',
-            ],
-        ],
-        '1360' => [
-            'right' => [
-                'all' => [
-                    'margin-left' => '670px',
-                ],
-            ],
-            'left'  => [
-                'all' => 'none',
-            ],
-            'all'   => [
-                'none' => 'none',
+        [
+            'query'    => 'all',
+            'column'   => 'side',
+            'position' => 'ls',
+            'rules'    => [
+                'top'          => '0',
+                'left'         => '0',
+                'right'        => '50%',
+                'height'       => '475px',
+                'margin-right' => '656px',
+                'width'        => 'auto',
             ],
         ],
-        '1280' => [
-            'right' => [
-                'all' => [
-                    'margin-left' => '670px',
-                ],
+        [
+            'query'    => '1700',
+            'column'   => 'side',
+            'position' => 'ls',
+            'rules'    => ['display' => 'none'],
+        ],
+        [
+            'query'    => '1622',
+            'column'   => 'right',
+            'position' => 'all',
+            'rules'    => [
+                'left'        => '0',
+                'margin-left' => '1003px',
             ],
-            'left'  => [
-                'all' => 'none',
+        ],
+        [
+            'query'    => '1622',
+            'column'   => 'left',
+            'position' => 'all',
+            'rules'    => [
+                'right'        => 'auto',
+                'margin-right' => '0',
+                'width'        => '443px',
             ],
-            'all'   => [
-                'none' => 'none',
-            ],
+        ],
+        [
+            'query'    => '1440',
+            'column'   => 'right',
+            'position' => 'all',
+            'rules'    => ['margin-left' => '715px'],
+        ],
+        [
+            'query'    => '1440',
+            'column'   => 'left',
+            'position' => 'all',
+            'rules'    => ['display' => 'none'],
+        ],
+        [
+            'query'    => '1360',
+            'column'   => 'right',
+            'position' => 'all',
+            'rules'    => ['margin-left' => '670px'],
+        ],
+        [
+            'query'    => '1280',
+            'column'   => 'right',
+            'position' => 'all',
+            'rules'    => ['margin-left' => '670px'],
         ],
     ];
 
