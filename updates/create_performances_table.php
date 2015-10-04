@@ -33,6 +33,8 @@ class CreatePerformancesTable extends Migration
 
             $table->json('meta')->nullable();
 
+            $table->integer('sort_order')->unsigned()->nullable();
+
             $table->boolean('published')->default(false);
             $table->timestamps();
         });

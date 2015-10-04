@@ -25,7 +25,7 @@ return [
                             "query"    => "all",
                             "position" => "rm",
                             "params"   => [
-                                ["param" => "width", "value" => "768"],
+                                ["param" => "width", "value" => "817"],
                             ],
                         ],
                         [
@@ -40,6 +40,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "rm",
+                            "params"   => [
+                                ["param" => "width", "value" => "750"],
+                            ],
                         ],
                     ],
                 ],
@@ -51,6 +54,7 @@ return [
                             "position" => "rb",
                             "params"   => [
                                 ["param" => "margin-bottom", "value" => "-50"],
+                                ["param" => "width", "value" => "770"],
                             ],
                         ],
                     ],
@@ -62,7 +66,7 @@ return [
                             "query"    => "all",
                             "position" => "lb",
                             "params"   => [
-                                ["param" => "width", "value" => "665"],
+                                ["param" => "width", "value" => "640"],
                             ],
                         ],
                     ],
@@ -95,7 +99,7 @@ return [
                             "query"    => "all",
                             "position" => "lt",
                             "params"   => [
-                                ["param" => "width", "value" => "725"],
+                                ["param" => "width", "value" => "664"],
                             ],
                         ],
                     ],
@@ -116,6 +120,7 @@ return [
                             "position" => "rt",
                             "params"   => [
                                 ["param" => "margin-top", "value" => "-30"],
+                                ["param" => "width", "value" => "900"],
                             ],
                         ],
                     ],
@@ -126,6 +131,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "rm",
+                            "params"   => [
+                                ["param" => "width", "value" => "612"],
+                            ],
                         ],
                     ],
                 ],
@@ -149,7 +157,7 @@ return [
                             "query"    => "all",
                             "position" => "lb",
                             "params"   => [
-                                ["param" => "width", "value" => "600"],
+                                ["param" => "width", "value" => "597"],
                                 ["param" => "margin-bottom", "value" => "-30"],
                             ],
                         ],
@@ -183,6 +191,7 @@ return [
                             "position" => "rt",
                             "params"   => [
                                 ["param" => "margin-top", "value" => "-80"],
+                                ["param" => "width", "value" => "856"],
                             ],
                         ],
                     ],
@@ -204,6 +213,7 @@ return [
                             "position" => "rb",
                             "params"   => [
                                 ["param" => "margin-bottom", "value" => "-30"],
+                                ["param" => "width", "value" => "848"],
                             ],
                         ],
                     ],
@@ -216,6 +226,7 @@ return [
                             "position" => "lb",
                             "params"   => [
                                 ["param" => "margin-bottom", "value" => "-25"],
+                                ["param" => "width", "value" => "591"],
                             ],
                         ],
                     ],
@@ -226,6 +237,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "lm",
+                            "params"   => [
+                                ["param" => "width", "value" => "661"],
+                            ],
                         ],
                     ],
                 ],
@@ -245,6 +259,7 @@ return [
                             "position" => "rt",
                             "params"   => [
                                 ["param" => "margin-top", "value" => "-20"],
+                                ["param" => "width", "value" => "823"],
                             ],
                         ],
                     ],
@@ -255,6 +270,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "rm",
+                            "params"   => [
+                                ["param" => "width", "value" => "908"],
+                            ],
                         ],
                     ],
                 ],
@@ -266,6 +284,7 @@ return [
                             "position" => "rb",
                             "params"   => [
                                 ["param" => "margin-bottom", "value" => "-10"],
+                                ["param" => "width", "value" => "768"],
                             ],
                         ],
                     ],
@@ -278,6 +297,7 @@ return [
                             "position" => "lb",
                             "params"   => [
                                 ["param" => "margin-bottom", "value" => "-10"],
+                                ["param" => "width", "value" => "592"],
                             ],
                         ],
                     ],
@@ -288,6 +308,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "lm",
+                            "params"   => [
+                                ["param" => "width", "value" => "557"],
+                            ],
                         ],
                     ],
                 ],
@@ -307,6 +330,7 @@ return [
                             "position" => "rt",
                             "params"   => [
                                 ["param" => "margin-top", "value" => "-120"],
+                                ["param" => "width", "value" => "829"],
                             ],
                         ],
                     ],
@@ -331,6 +355,7 @@ return [
                             "position" => "rb",
                             "params"   => [
                                 ["param" => "margin-bottom", "value" => "-40"],
+                                ["param" => "width", "value" => "816"],
                             ],
                         ],
                     ],
@@ -343,6 +368,7 @@ return [
                             "position" => "lb",
                             "params"   => [
                                 ["param" => "margin-bottom", "value" => "-40"],
+                                ["param" => "width", "value" => "500"],
                             ],
                         ],
                     ],
@@ -376,6 +402,7 @@ return [
                             "position" => "rt",
                             "params"   => [
                                 ["param" => "margin-top", "value" => "-160"],
+                                ["param" => "width", "value" => "1007"],
                             ],
                         ],
                     ],
@@ -388,6 +415,7 @@ return [
                             "position" => "rb",
                             "params"   => [
                                 ["param" => "margin-bottom", "value" => "-30"],
+                                ["param" => "width", "value" => "900"],
                             ],
                         ],
                     ],
@@ -400,6 +428,7 @@ return [
                             "position" => "lb",
                             "params"   => [
                                 ["param" => "margin-bottom", "value" => "-40"],
+                                ["param" => "width", "value" => "592"],
                             ],
                         ],
                     ],
@@ -410,6 +439,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "lm",
+                            "params"   => [
+                                ["param" => "width", "value" => "562"],
+                            ],
                         ],
                     ],
                 ],
@@ -422,37 +454,44 @@ return [
         'meta'  => [
             "backgrounds" => [
                 [
-                    "key"     => "bg/bg_01_1030.jpg",
+                    "key"     => "bg_01_1030.jpg",
                     "queries" => [
                         [
                             "query"    => "all",
                             "position" => "rt",
                             "params"   => [
                                 ["param" => "margin-top", "value" => "-80"],
+                                ["param" => "width", "value" => "1030"],
                             ],
                         ],
                     ],
                 ],
                 [
-                    "key"     => "bg/bg_02_857.jpg",
+                    "key"     => "bg_02_857.jpg",
                     "queries" => [
                         [
                             "query"    => "all",
                             "position" => "rm",
+                            "params"   => [
+                                ["param" => "width", "value" => "857"],
+                            ],
                         ],
                     ],
                 ],
                 [
-                    "key"     => "bg/bg_03_744.jpg",
+                    "key"     => "bg_03_744.jpg",
                     "queries" => [
                         [
                             "query"    => "all",
                             "position" => "rb",
+                            "params"   => [
+                                ["param" => "width", "value" => "744"],
+                            ],
                         ],
                     ],
                 ],
                 [
-                    "key"     => "bg/bg_04_598.jpg",
+                    "key"     => "bg_04_598.jpg",
                     "queries" => [
                         [
                             "query"    => "all",
@@ -464,13 +503,14 @@ return [
                     ],
                 ],
                 [
-                    "key"     => "bg/bg_05_672.jpg",
+                    "key"     => "bg_05_672.jpg",
                     "queries" => [
                         [
                             "query"    => "all",
                             "position" => "lm",
                             "params"   => [
                                 ["param" => "margin-top", "value" => "-200"],
+                                ["param" => "width", "value" => "672"],
                             ],
                         ],
                     ],
@@ -517,6 +557,7 @@ return [
                             "position" => "rb",
                             "params"   => [
                                 ["param" => "margin-bottom", "value" => "-25"],
+                                ["param" => "width", "value" => "768"],
                             ],
                         ],
                     ],
@@ -529,6 +570,7 @@ return [
                             "position" => "lb",
                             "params"   => [
                                 ["param" => "margin-bottom", "value" => "-25"],
+                                ["param" => "width", "value" => "592"],
                             ],
                         ],
                     ],
@@ -541,6 +583,7 @@ return [
                             "position" => "lm",
                             "params"   => [
                                 ["param" => "margin-top", "value" => "-120"],
+                                ["param" => "width", "value" => "638"],
                             ],
                         ],
                     ],
@@ -617,6 +660,7 @@ return [
                             "position" => "rt",
                             "params"   => [
                                 ["param" => "margin-top", "value" => "-120"],
+                                ["param" => "width", "value" => "750"],
                             ],
                         ],
                     ],
@@ -627,6 +671,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "rm",
+                            "params"   => [
+                                ["param" => "width", "value" => "695"],
+                            ],
                         ],
                     ],
                 ],
@@ -638,6 +685,7 @@ return [
                             "position" => "rb",
                             "params"   => [
                                 ["param" => "margin-bottom", "value" => "-20"],
+                                ["param" => "width", "value" => "755"],
                             ],
                         ],
                     ],
@@ -650,6 +698,7 @@ return [
                             "position" => "lb",
                             "params"   => [
                                 ["param" => "margin-bottom", "value" => "-20"],
+                                ["param" => "width", "value" => "638"],
                             ],
                         ],
                     ],
@@ -660,6 +709,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "lm",
+                            "params"   => [
+                                ["param" => "width", "value" => "640"],
+                            ],
                         ],
                     ],
                 ],
@@ -679,6 +731,7 @@ return [
                             "position" => "rt",
                             "params"   => [
                                 ["param" => "margin-top", "value" => "-90"],
+                                ["param" => "width", "value" => "1039"],
                             ],
                         ],
                     ],
@@ -689,6 +742,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "rm",
+                            "params"   => [
+                                ["param" => "width", "value" => "657"],
+                            ],
                         ],
                     ],
                 ],
@@ -700,6 +756,7 @@ return [
                             "position" => "rb",
                             "params"   => [
                                 ["param" => "margin-bottom", "value" => "-25"],
+                                ["param" => "width", "value" => "764"],
                             ],
                         ],
                     ],
@@ -712,6 +769,7 @@ return [
                             "position" => "lb",
                             "params"   => [
                                 ["param" => "margin-bottom", "value" => "-25"],
+                                ["param" => "width", "value" => "590"],
                             ],
                         ],
                     ],
@@ -722,6 +780,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "lm",
+                            "params"   => [
+                                ["param" => "width", "value" => "494"],
+                            ],
                         ],
                     ],
                 ],
@@ -741,6 +802,7 @@ return [
                             "position" => "rt",
                             "params"   => [
                                 ["param" => "margin-top", "value" => "-35"],
+                                ["param" => "width", "value" => "866"],
                             ],
                         ],
                     ],
@@ -751,6 +813,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "rm",
+                            "params"   => [
+                                ["param" => "width", "value" => "783"],
+                            ],
                         ],
                     ],
                 ],
@@ -762,6 +827,7 @@ return [
                             "position" => "rb",
                             "params"   => [
                                 ["param" => "margin-bottom", "value" => "-20"],
+                                ["param" => "width", "value" => "800"],
                             ],
                         ],
                     ],
@@ -774,6 +840,7 @@ return [
                             "position" => "lb",
                             "params"   => [
                                 ["param" => "margin-bottom", "value" => "-5"],
+                                ["param" => "width", "value" => "590"],
                             ],
                         ],
                     ],
@@ -784,6 +851,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "lm",
+                            "params"   => [
+                                ["param" => "width", "value" => "585"],
+                            ],
                         ],
                     ],
                 ],
@@ -793,6 +863,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "ls",
+                            "params"   => [
+                                ["param" => "width", "value" => "275"],
+                            ],
                         ],
                     ],
                 ],
@@ -811,7 +884,7 @@ return [
                             "query"    => "all",
                             "position" => "rt",
                             "params"   => [
-                                ["param" => "margin-top", "value" => "-60"],
+                                ["param" => "width", "value" => "816"],
                             ],
                         ],
                     ],
@@ -822,6 +895,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "rm",
+                            "params"   => [
+                                ["param" => "width", "value" => "595"],
+                            ],
                         ],
                     ],
                 ],
@@ -831,6 +907,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "rb",
+                            "params"   => [
+                                ["param" => "width", "value" => "520"],
+                            ],
                         ],
                     ],
                 ],
@@ -840,6 +919,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "lb",
+                            "params"   => [
+                                ["param" => "width", "value" => "524"],
+                            ],
                         ],
                     ],
                 ],
@@ -849,6 +931,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "lm",
+                            "params"   => [
+                                ["param" => "width", "value" => "478"],
+                            ],
                         ],
                     ],
                 ],
@@ -858,6 +943,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "ls",
+                            "params"   => [
+                                ["param" => "width", "value" => "260"],
+                            ],
                         ],
                     ],
                 ],
@@ -877,6 +965,7 @@ return [
                             "position" => "rt",
                             "params"   => [
                                 ["param" => "margin-top", "value" => "-60"],
+                                ["param" => "width", "value" => "915"],
                             ],
                         ],
                     ],
@@ -887,6 +976,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "rm",
+                            "params"   => [
+                                ["param" => "width", "value" => "535"],
+                            ],
                         ],
                     ],
                 ],
@@ -898,6 +990,7 @@ return [
                             "position" => "rb",
                             "params"   => [
                                 ["param" => "margin-bottom", "value" => "-30"],
+                                ["param" => "width", "value" => "763"],
                             ],
                         ],
                     ],
@@ -910,6 +1003,7 @@ return [
                             "position" => "lb",
                             "params"   => [
                                 ["param" => "margin-bottom", "value" => "-20"],
+                                ["param" => "width", "value" => "547"],
                             ],
                         ],
                     ],
@@ -920,6 +1014,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "lm",
+                            "params"   => [
+                                ["param" => "width", "value" => "570"],
+                            ],
                         ],
                     ],
                 ],
@@ -939,6 +1036,7 @@ return [
                             "position" => "rt",
                             "params"   => [
                                 ["param" => "margin-top", "value" => "-80"],
+                                ["param" => "width", "value" => "889"],
                             ],
                         ],
                     ],
@@ -949,6 +1047,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "rm",
+                            "params"   => [
+                                ["param" => "width", "value" => "784"],
+                            ],
                         ],
                     ],
                 ],
@@ -960,6 +1061,7 @@ return [
                             "position" => "rb",
                             "params"   => [
                                 ["param" => "margin-bottom", "value" => "-8"],
+                                ["param" => "width", "value" => "743"],
                             ],
                         ],
                     ],
@@ -972,6 +1074,7 @@ return [
                             "position" => "lb",
                             "params"   => [
                                 ["param" => "margin-bottom", "value" => "-25"],
+                                ["param" => "width", "value" => "614"],
                             ],
                         ],
                     ],
@@ -982,6 +1085,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "lm",
+                            "params"   => [
+                                ["param" => "width", "value" => "433"],
+                            ],
                         ],
                     ],
                 ],
@@ -1001,6 +1107,7 @@ return [
                             "position" => "rt",
                             "params"   => [
                                 ["param" => "margin-top", "value" => "-30"],
+                                ["param" => "width", "value" => "825"],
                             ],
                         ],
                     ],
@@ -1011,6 +1118,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "rm",
+                            "params"   => [
+                                ["param" => "width", "value" => "623"],
+                            ],
                         ],
                     ],
                 ],
@@ -1020,6 +1130,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "rb",
+                            "params"   => [
+                                ["param" => "width", "value" => "628"],
+                            ],
                         ],
                     ],
                 ],
@@ -1031,6 +1144,7 @@ return [
                             "position" => "lb",
                             "params"   => [
                                 ["param" => "margin-bottom", "value" => "-30"],
+                                ["param" => "width", "value" => "617"],
                             ],
                         ],
                     ],
@@ -1041,6 +1155,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "lm",
+                            "params"   => [
+                                ["param" => "width", "value" => "592"],
+                            ],
                         ],
                     ],
                 ],
@@ -1116,6 +1233,7 @@ return [
                             "position" => "rt",
                             "params"   => [
                                 ["param" => "margin-top", "value" => "-150"],
+                                ["param" => "width", "value" => "1008"],
                             ],
                         ],
                     ],
@@ -1137,6 +1255,7 @@ return [
                             "position" => "rb",
                             "params"   => [
                                 ["param" => "margin-bottom", "value" => "-60"],
+                                ["param" => "width", "value" => "800"],
                             ],
                         ],
                     ],
@@ -1149,6 +1268,7 @@ return [
                             "position" => "lb",
                             "params"   => [
                                 ["param" => "margin-bottom", "value" => "-40"],
+                                ["param" => "width", "value" => "706"],
                             ],
                         ],
                     ],
@@ -1159,6 +1279,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "lm",
+                            "params"   => [
+                                ["param" => "width", "value" => "661"],
+                            ],
                         ],
                     ],
                 ],
@@ -1178,6 +1301,7 @@ return [
                             "position" => "rt",
                             "params"   => [
                                 ["param" => "margin-top", "value" => "-60"],
+                                ["param" => "width", "value" => "906"],
                             ],
                         ],
                     ],
@@ -1188,6 +1312,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "rm",
+                            "params"   => [
+                                ["param" => "width", "value" => "692"],
+                            ],
                         ],
                     ],
                 ],
@@ -1197,6 +1324,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "rb",
+                            "params"   => [
+                                ["param" => "width", "value" => "741"],
+                            ],
                         ],
                     ],
                 ],
@@ -1208,6 +1338,7 @@ return [
                             "position" => "lb",
                             "params"   => [
                                 ["param" => "margin-bottom", "value" => "-20"],
+                                ["param" => "width", "value" => "526"],
                             ],
                         ],
                     ],
@@ -1218,6 +1349,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "lm",
+                            "params"   => [
+                                ["param" => "width", "value" => "547"],
+                            ],
                         ],
                     ],
                 ],
@@ -1237,6 +1371,7 @@ return [
                             "position" => "rt",
                             "params"   => [
                                 ["param" => "margin-top", "value" => "-60"],
+                                ["param" => "width", "value" => "1023"],
                             ],
                         ],
                     ],
@@ -1247,6 +1382,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "rm",
+                            "params"   => [
+                                ["param" => "width", "value" => "821"],
+                            ],
                         ],
                     ],
                 ],
@@ -1258,6 +1396,7 @@ return [
                             "position" => "rb",
                             "params"   => [
                                 ["param" => "margin-bottom", "value" => "-40"],
+                                ["param" => "width", "value" => "726"],
                             ],
                         ],
                     ],
@@ -1268,6 +1407,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "lb",
+                            "params"   => [
+                                ["param" => "width", "value" => "509"],
+                            ],
                         ],
                     ],
                 ],
@@ -1277,6 +1419,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "lm",
+                            "params"   => [
+                                ["param" => "width", "value" => "617"],
+                            ],
                         ],
                     ],
                 ],
@@ -1296,6 +1441,7 @@ return [
                             "position" => "rt",
                             "params"   => [
                                 ["param" => "margin-top", "value" => "-80"],
+                                ["param" => "width", "value" => "850"],
                             ],
                         ],
                     ],
@@ -1317,6 +1463,7 @@ return [
                             "position" => "rb",
                             "params"   => [
                                 ["param" => "margin-bottom", "value" => "-55"],
+                                ["param" => "width", "value" => "762"],
                             ],
                         ],
                     ],
@@ -1329,6 +1476,7 @@ return [
                             "position" => "lb",
                             "params"   => [
                                 ["param" => "margin-bottom", "value" => "-25"],
+                                ["param" => "width", "value" => "594"],
                             ],
                         ],
                     ],
@@ -1339,6 +1487,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "lm",
+                            "params"   => [
+                                ["param" => "width", "value" => "590"],
+                            ],
                         ],
                     ],
                 ],
@@ -1358,6 +1509,7 @@ return [
                             "position" => "rt",
                             "params"   => [
                                 ["param" => "margin-top", "value" => "-40"],
+                                ["param" => "width", "value" => "875"],
                             ],
                         ],
                     ],
@@ -1368,6 +1520,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "rm",
+                            "params"   => [
+                                ["param" => "width", "value" => "875"],
+                            ],
                         ],
                     ],
                 ],
@@ -1379,6 +1534,7 @@ return [
                             "position" => "rb",
                             "params"   => [
                                 ["param" => "margin-bottom", "value" => "-30"],
+                                ["param" => "width", "value" => "761"],
                             ],
                         ],
                     ],
@@ -1402,6 +1558,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "lm",
+                            "params"   => [
+                                ["param" => "width", "value" => "578"],
+                            ],
                         ],
                     ],
                 ],
@@ -1411,6 +1570,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "ls",
+                            "params"   => [
+                                ["param" => "width", "value" => "262"],
+                            ],
                         ],
                     ],
                 ],
@@ -1430,6 +1592,7 @@ return [
                             "position" => "rt",
                             "params"   => [
                                 ["param" => "margin-top", "value" => "-150"],
+                                ["param" => "width", "value" => "973"],
                             ],
                         ],
                     ],
@@ -1440,6 +1603,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "rm",
+                            "params"   => [
+                                ["param" => "width", "value" => "664"],
+                            ],
                         ],
                     ],
                 ],
@@ -1449,6 +1615,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "rb",
+                            "params"   => [
+                                ["param" => "width", "value" => "762"],
+                            ],
                         ],
                     ],
                 ],
@@ -1458,6 +1627,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "lb",
+                            "params"   => [
+                                ["param" => "width", "value" => "644"],
+                            ],
                         ],
                     ],
                 ],
@@ -1467,6 +1639,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "lm",
+                            "params"   => [
+                                ["param" => "width", "value" => "536"],
+                            ],
                         ],
                     ],
                 ],
@@ -1476,6 +1651,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "ls",
+                            "params"   => [
+                                ["param" => "width", "value" => "279"],
+                            ],
                         ],
                     ],
                 ],
@@ -1495,6 +1673,7 @@ return [
                             "position" => "rt",
                             "params"   => [
                                 ["param" => "margin-top", "value" => "-100"],
+                                ["param" => "width", "value" => "856"],
                             ],
                         ],
                     ],
@@ -1505,6 +1684,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "rm",
+                            "params"   => [
+                                ["param" => "width", "value" => "678"],
+                            ],
                         ],
                     ],
                 ],
@@ -1514,6 +1696,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "rm",
+                            "params"   => [
+                                ["param" => "width", "value" => "826"],
+                            ],
                         ],
                     ],
                 ],
@@ -1525,6 +1710,7 @@ return [
                             "position" => "rb",
                             "params"   => [
                                 ["param" => "margin-bottom", "value" => "-25"],
+                                ["param" => "width", "value" => "768"],
                             ],
                         ],
                     ],
@@ -1537,6 +1723,7 @@ return [
                             "position" => "lb",
                             "params"   => [
                                 ["param" => "margin-bottom", "value" => "-10"],
+                                ["param" => "width", "value" => "553"],
                             ],
                         ],
                     ],
@@ -1547,6 +1734,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "lm",
+                            "params"   => [
+                                ["param" => "width", "value" => "600"],
+                            ],
                         ],
                     ],
                 ],
@@ -1556,6 +1746,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "lm",
+                            "params"   => [
+                                ["param" => "width", "value" => "600"],
+                            ],
                         ],
                     ],
                 ],
@@ -1575,6 +1768,7 @@ return [
                             "position" => "rt",
                             "params"   => [
                                 ["param" => "margin-top", "value" => "-120"],
+                                ["param" => "width", "value" => "1066"],
                             ],
                         ],
                     ],
@@ -1585,6 +1779,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "rm",
+                            "params"   => [
+                                ["param" => "width", "value" => "1028"],
+                            ],
                         ],
                     ],
                 ],
@@ -1596,6 +1793,7 @@ return [
                             "position" => "rb",
                             "params"   => [
                                 ["param" => "margin-bottom", "value" => "-20"],
+                                ["param" => "width", "value" => "677"],
                             ],
                         ],
                     ],
@@ -1608,6 +1806,7 @@ return [
                             "position" => "lb",
                             "params"   => [
                                 ["param" => "margin-bottom", "value" => "-20"],
+                                ["param" => "width", "value" => "600"],
                             ],
                         ],
                     ],
@@ -1618,6 +1817,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "lm",
+                            "params"   => [
+                                ["param" => "width", "value" => "611"],
+                            ],
                         ],
                     ],
                 ],
@@ -1627,6 +1829,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "ls",
+                            "params"   => [
+                                ["param" => "width", "value" => "305"],
+                            ],
                         ],
                     ],
                 ],
@@ -1646,6 +1851,7 @@ return [
                             "position" => "rt",
                             "params"   => [
                                 ["param" => "margin-top", "value" => "-50"],
+                                ["param" => "width", "value" => "868"],
                             ],
                         ],
                     ],
@@ -1656,6 +1862,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "rm",
+                            "params"   => [
+                                ["param" => "width", "value" => "775"],
+                            ],
                         ],
                     ],
                 ],
@@ -1667,6 +1876,7 @@ return [
                             "position" => "rb",
                             "params"   => [
                                 ["param" => "margin-bottom", "value" => "-15"],
+                                ["param" => "width", "value" => "796"],
                             ],
                         ],
                     ],
@@ -1679,6 +1889,7 @@ return [
                             "position" => "lb",
                             "params"   => [
                                 ["param" => "margin-bottom", "value" => "-10"],
+                                ["param" => "width", "value" => "657"],
                             ],
                         ],
                     ],
@@ -1689,6 +1900,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "lm",
+                            "params"   => [
+                                ["param" => "width", "value" => "612"],
+                            ],
                         ],
                     ],
                 ],
@@ -1698,6 +1912,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "ls",
+                            "params"   => [
+                                ["param" => "width", "value" => "304"],
+                            ],
                         ],
                     ],
                 ],

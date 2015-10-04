@@ -26,6 +26,8 @@ columns:
         searchable: true
     rate:
         label: Возрастной рейтинг
+    sort_order:
+        label: Порядок
     # playbill:
     #     label: Афиша
     #     type: partial
