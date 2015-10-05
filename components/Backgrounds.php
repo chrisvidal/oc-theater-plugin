@@ -130,12 +130,12 @@ class Backgrounds extends ComponentBase
                     //     continue;
                     // }
 
-                    CW::info(['rules' => $_rules]);
+                    CW::info(['_rules' => $_rules]);
 
                     $_metas = $this->selectMeta($metas, $query, $position);
 
                     // CW::info(['After select Meta' . $query . $position, $_rules, $_metas]);
-                    CW::info(['meta' => $_metas]);
+                    CW::info(['_meta' => $_metas]);
 
                     foreach ($_metas as $_meta) {
 
@@ -154,7 +154,8 @@ class Backgrounds extends ComponentBase
 
                         // $styles[$query][$class_name] = array_merge($_rules, ['params' => $meta_params], ['position' => $position], ['sizes' => $sizes]);
                         // $styles[$query][$_meta['class_name']] = array_merge($_rules, $_meta);
-                        $_styles  = array_merge($_rules, $_meta);
+                        $_styles = array_merge($_rules, $_meta);
+                        CW::info(['Compute' => $_styles]);
                         $styles[] = $this->computeParams($_styles);
 
                         // CW::info([$query . $element . ' ' . $class_name, $_rules]);
@@ -390,7 +391,7 @@ class Backgrounds extends ComponentBase
                 if ($meta['position'] == $position) {
                     $return[] = $meta;
                 }
-                if ($meta['position'] == 'none') {
+                if ($position != 'none' && $meta['position'] == 'none') {
                     foreach ($return as $key => $item) {
                         // CW::info($item);
                         if ($item['class_name'] == $meta['class_name']) {

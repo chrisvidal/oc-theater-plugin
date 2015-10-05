@@ -20,6 +20,8 @@ class CreateEventsTable extends Migration
 
             $table->date('event_date');
 
+            $table->string('bileter_id')->nullable();
+
             $table->integer('relation_id')->unsigned()->nullable();
             $table->string('relation_type')->nullable();
 

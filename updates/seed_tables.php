@@ -235,6 +235,7 @@ class SeedPeopleTable extends Seeder
         $data = [
             'title'       => $event['title'],
             'event_date'  => $event['event_date'],
+            'bileter_id'  => array_key_exists('bileter_id', $event) ? $event['bileter_id'] : null,
             // 'description' => array_key_exists('description', $event) ? $event['description'] : NULL,
             'description' => array_key_exists('description', $event) ? $event['description'] : (!is_null($relation)) ? $relation->description : null,
             // 'relation'    => $relation,

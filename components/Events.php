@@ -5,6 +5,7 @@ use Abnmt\Theater\Models\Performance as PerformanceModel;
 use Carbon;
 use Cms\Classes\ComponentBase;
 use Cms\Classes\Page;
+use CW;
 
 class Events extends ComponentBase
 {
@@ -166,7 +167,7 @@ class Events extends ComponentBase
         });
 
         // CW::info($this->group);
-        // CW::info($posts);
+        CW::info(['Events' => $posts]);
         return $posts;
     }
 
