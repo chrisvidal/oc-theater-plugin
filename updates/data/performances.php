@@ -1588,6 +1588,7 @@ return [
         "rate"          => "18+",
         "published"     => "1",
         "meta"          => [
+            "premiere"                     => true,
             "calendar_date_block_bg_color" => "#76000E",
             "calendar_date_block_color"    => "white",
             "calendar_title"               => "Если поженились,<br>значит, жить придётся!",
@@ -1732,6 +1733,7 @@ return [
         "rate"          => "18+",
         "published"     => "1",
         "meta"          => [
+            "premiere"                     => true,
             "calendar_date_block_bg_color" => "#1c025d",
             "calendar_date_block_color"    => "white",
             "calendar_authors"             => "М. Левшин, Н. Мещанинова, Б. Шарова",
@@ -1802,6 +1804,7 @@ return [
         "rate"          => "16+",
         "published"     => "1",
         "meta"          => [
+            "premiere"                  => true,
             // "calendar_date_block_bg_color" => "",
             "calendar_date_block_color" => "white",
             // "calendar_title" => "",

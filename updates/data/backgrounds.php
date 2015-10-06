@@ -1452,6 +1452,9 @@ return [
                         [
                             "query"    => "all",
                             "position" => "rm",
+                            "params"   => [
+                                ["param" => "width", "value" => "900"],
+                            ],
                         ],
                     ],
                 ],
