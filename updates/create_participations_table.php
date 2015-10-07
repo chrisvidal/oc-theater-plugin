@@ -27,7 +27,6 @@ class CreateParticipationsTable extends Migration
 
             $table->text('description')->nullable()->default(null);
 
-
             $table->timestamps();
         });
     }

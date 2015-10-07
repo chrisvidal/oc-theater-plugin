@@ -1,0 +1,17 @@
+# ===================================
+#  Reorder Behavior Config
+# ===================================
+
+# Reorder Title
+title: Сортировка спектаклей
+
+# Attribute name
+nameFrom: title
+
+# Model Class name
+modelClass: Abnmt\Theater\Models\Performance
+
+# Toolbar widget configuration
+toolbar:
+    # Partial for toolbar buttons
+    buttons: reorder_toolbar

@@ -1,7 +1,7 @@
 <?php namespace Abnmt\Theater\Updates;
 
-use Schema;
 use October\Rain\Database\Updates\Migration;
+use Schema;
 
 class CreateEventsTable extends Migration
 {
@@ -11,8 +11,7 @@ class CreateEventsTable extends Migration
 
         Schema::dropIfExists('abnmt_theater_events');
 
-        Schema::create('abnmt_theater_events', function($table)
-        {
+        Schema::create('abnmt_theater_events', function ($table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
 
@@ -20,6 +19,8 @@ class CreateEventsTable extends Migration
             $table->string('description')->nullable();
 
             $table->date('event_date');
+
+            $table->string('bileter_id')->nullable();
 
             $table->integer('relation_id')->unsigned()->nullable();
             $table->string('relation_type')->nullable();

@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: abnmt.theater::lang.background.label
+
+# Model Form Field configuration
+form: $/abnmt/theater/models/background/fields.yaml
+
+# Model Class name
+modelClass: Abnmt\Theater\Models\Background
+
+# Default redirect location
+defaultRedirect: abnmt/theater/backgrounds
+
+# Create page
+create:
+    title: abnmt.theater::lang.background.create_title
+    redirect: abnmt/theater/backgrounds/update/:id
+    redirectClose: abnmt/theater/backgrounds
+
+# Update page
+update:
+    title: abnmt.theater::lang.background.update_title
+    redirect: abnmt/theater/backgrounds
+    redirectClose: abnmt/theater/backgrounds
+
+# Preview page
+preview:
+    title: abnmt.theater::lang.background.preview_title

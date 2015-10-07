@@ -1,18 +1,12 @@
 <?php namespace Abnmt\Theater\Updates;
 
-use System\Models\File as File;
-
-use Abnmt\Theater\Models\Person;
-use Abnmt\Theater\Models\Performance;
-use Abnmt\Theater\Models\Article;
-use Abnmt\Theater\Models\Participation;
 use Abnmt\Theater\Models\Event;
+use Abnmt\Theater\Models\Participation;
+use Abnmt\Theater\Models\Performance;
+use Abnmt\Theater\Models\Person;
 use Abnmt\Theater\Models\Taxonomy;
-
-use Abnmt\Theater\Models\News;
-use Abnmt\Theater\Models\Press;
-
 use October\Rain\Database\Updates\Seeder;
+use System\Models\File as File;
 
 class SeedPeopleTable extends Seeder
 {
@@ -22,12 +16,12 @@ class SeedPeopleTable extends Seeder
 
         // Models
         $data = [
-            'Abnmt\Theater\Models\Person'      => $this->MultiSort( require_once 'data/people.php',       [ 'family_name'   => [SORT_ASC, SORT_STRING] ] ),
-            'Abnmt\Theater\Models\Performance' => $this->MultiSort( require_once 'data/performances.php', [ 'premiere_date' => [SORT_ASC, SORT_NUMERIC] ] ),
+            'Abnmt\Theater\Models\Person'      => $this->MultiSort(require_once 'data/people.php', ['family_name' => [SORT_ASC, SORT_STRING]]),
+            'Abnmt\Theater\Models\Performance' => $this->MultiSort(require_once 'data/performances.php', ['premiere_date' => [SORT_ASC, SORT_NUMERIC]]),
         ];
 
-        $path = "./storage/app/images";
-        $fileData = $this->fillArrayWithFileNodes( new \DirectoryIterator( $path ), ["jpg", "png"] );
+        $path     = "./storage/app/images";
+        $fileData = $this->fillArrayWithFileNodes(new \DirectoryIterator($path), ["jpg", "png"]);
 
         // print_r($fileData);
 
@@ -60,7 +54,7 @@ class SeedPeopleTable extends Seeder
 
         // Sort files
         $files = File::get();
-        $files->each(function($file){
+        $files->each(function ($file) {
 
             preg_match("~^(\d+)~", $file->file_name, $matches);
 
@@ -73,7 +67,6 @@ class SeedPeopleTable extends Seeder
         // print_r($files);
 
     }
-
 
     private function createModel($modelName, $model)
     {
@@ -95,7 +88,6 @@ class SeedPeopleTable extends Seeder
             unset($model['state']);
         }
 
-
         unset($model['source']);
         // unset($model['source_author']);
         unset($model['source_date']);
@@ -106,15 +98,16 @@ class SeedPeopleTable extends Seeder
 
         $model = $modelName::create($model);
 
-        if (isset($relations))
+        if (isset($relations)) {
             $this->createRelation($relations, $model);
+        }
 
-        if (isset($categories))
+        if (isset($categories)) {
             $this->addTaxonomy($categories, $model);
+        }
 
         return $model;
     }
-
 
     private function createParticipation($participation, $performance_id)
     {
@@ -128,13 +121,13 @@ class SeedPeopleTable extends Seeder
                     $person_id = $this->findPerson($item['name'])->id;
 
                     $role = [
-                        'title'             => array_key_exists('role', $item)        ? $item['role'] : '',
-                        'performance_id'    => $performance_id,
-                        'person_id'         => $person_id,
-                        'description'       => array_key_exists('description', $item) ? $item['description'] : NULL,
-                        'group'             => array_key_exists('group', $item)       ? $item['group'] : NULL,
-                        'type'              => $type,
-                        'sort_order'        => $sort_order,
+                        'title'          => array_key_exists('role', $item) ? $item['role'] : '',
+                        'performance_id' => $performance_id,
+                        'person_id'      => $person_id,
+                        'description'    => array_key_exists('description', $item) ? $item['description'] : null,
+                        'group'          => array_key_exists('group', $item) ? $item['group'] : null,
+                        'type'           => $type,
+                        'sort_order'     => $sort_order,
                     ];
 
                     Participation::create($role);
@@ -162,7 +155,9 @@ class SeedPeopleTable extends Seeder
 
     private function addTaxonomy($categories, $model)
     {
-        if (!is_array($categories)) $categories = [$categories];
+        if (!is_array($categories)) {
+            $categories = [$categories];
+        }
 
         foreach ($categories as $key => $category) {
             $taxonomy = Taxonomy::where('title', '=', $category)->first();
@@ -179,7 +174,6 @@ class SeedPeopleTable extends Seeder
         }
 
     }
-
 
     private function findPerson($name)
     {
@@ -226,13 +220,13 @@ class SeedPeopleTable extends Seeder
 
         foreach ($models as $model) {
             $post = $model::where('title', '=', $name)->first();
-            if (!is_null($post)){
+            if (!is_null($post)) {
                 return $post;
             }
         }
 
-        echo "Not find relation for " . $name . "\n" ;
-        return NULL;
+        echo "Not find relation for " . $name . "\n";
+        return null;
     }
 
     private function createEvent($event, $relation)
@@ -241,6 +235,7 @@ class SeedPeopleTable extends Seeder
         $data = [
             'title'       => $event['title'],
             'event_date'  => $event['event_date'],
+            'bileter_id'  => array_key_exists('bileter_id', $event) ? $event['bileter_id'] : null,
             // 'description' => array_key_exists('description', $event) ? $event['description'] : NULL,
             'description' => array_key_exists('description', $event) ? $event['description'] : (!is_null($relation)) ? $relation->description : null,
             // 'relation'    => $relation,
@@ -250,39 +245,35 @@ class SeedPeopleTable extends Seeder
 
         if (!is_null($relation)) {
             $relation->events()->add($post, null);
-        }
-        else {
-            echo "Not find relation for " . $event['title'] . "\n" ;
+        } else {
+            echo "Not find relation for " . $event['title'] . "\n";
             $post->save();
         }
 
         return $post;
     }
 
-
     private function assignImages($model, $fileData)
     {
 
-        if ( array_key_exists($model->slug, $fileData) ) {
+        if (array_key_exists($model->slug, $fileData)) {
 
             $images = $fileData[$model->slug];
 
             echo $model->slug . " [";
             // echo get_class($model) . "\n";
 
-            foreach ($images as $key => $filePath)
-            {
+            foreach ($images as $key => $filePath) {
 
-                if ( !is_array($filePath) )
-                {
+                if (!is_array($filePath)) {
                     $pathinfo = pathinfo($filePath);
-                    $check = File::where('attachment_id', '=', $model->id)
+                    $check    = File::where('attachment_id', '=', $model->id)
                         ->where('attachment_type', '=', get_class($model))
                         ->where('file_name', '=', $pathinfo['basename'])
                         // ->where('field', '=', $pathinfo['filename'])
                         ->first();
 
-                    if ( !is_null($check) ) {
+                    if (!is_null($check)) {
                         // echo $filePath . " ";
                         // echo filemtime($filePath) . " ";
                         // echo $check->updated_at->timestamp . "\n";
@@ -307,12 +298,12 @@ class SeedPeopleTable extends Seeder
                         case 'playbill':
                             $model->playbill()->save($file, null, ['title' => $model->title]);
                             break;
-                        case 'playbill_flat':
-                            $model->playbill_flat()->save($file);
-                            break;
-                        case 'playbill_mask':
-                            $model->playbill_mask()->save($file);
-                            break;
+                        // case 'playbill_flat':
+                        //     $model->playbill_flat()->save($file);
+                        //     break;
+                        // case 'playbill_mask':
+                        //     $model->playbill_mask()->save($file);
+                        //     break;
                         case 'video':
                             $model->video()->save($file, null, ['title' => $model->title]);
                             break;
@@ -331,13 +322,10 @@ class SeedPeopleTable extends Seeder
                             echo ' Image ' . $filePath . ' not saved.' . "\n";
                             break;
                     }
-                }
-                elseif ( is_array($filePath) )
-                {
-                    foreach ($filePath as $filename => $filePath)
-                    {
+                } elseif (is_array($filePath)) {
+                    foreach ($filePath as $filename => $filePath) {
                         $pathinfo = pathinfo($filePath);
-                        $check = File::where('attachment_id', '=', $model->id)
+                        $check    = File::where('attachment_id', '=', $model->id)
                             ->where('attachment_type', '=', get_class($model))
                             ->where('file_name', '=', $pathinfo['basename'])
                             // ->where('field', '=', $pathinfo['filename'])
@@ -346,7 +334,7 @@ class SeedPeopleTable extends Seeder
                         // preg_match("~^(\d+)~", $filename, $matches);
                         // print_r($matches);
 
-                        if ( !is_null($check) ) {
+                        if (!is_null($check)) {
                             // echo $filePath . " ";
                             // echo filemtime($filePath) . " ";
                             // echo $check->updated_at->timestamp . "\n";
@@ -373,20 +361,17 @@ class SeedPeopleTable extends Seeder
                         //     print_r($file);
                         // }
 
-
-                        if ( $key == 'bg' && preg_match('/.+?_flat/', $filename) ) {
-                            $model->background_flat()->save($file);
-                        }
-                        elseif ( $key == 'bg' && preg_match('/.+?_mask/', $filename) ) {
-                            $model->background_mask()->save($file);
-                        }
-                        elseif ( $key == 'bg' ) {
+                        // if ( $key == 'bg' && preg_match('/.+?_flat/', $filename) ) {
+                        //     $model->background_flat()->save($file);
+                        // }
+                        // elseif ( $key == 'bg' && preg_match('/.+?_mask/', $filename) ) {
+                        //     $model->background_mask()->save($file);
+                        // }
+                        if ($key == 'bg') {
                             $model->background()->save($file);
-                        }
-                        elseif ( $key == 'gallery' ) {
+                        } elseif ($key == 'gallery') {
                             $model->featured()->save($file);
-                        }
-                        else {
+                        } else {
                             echo $filePath . ' not saved.' . "\n";
                         }
 
@@ -398,48 +383,45 @@ class SeedPeopleTable extends Seeder
 
     }
 
-
-
-
     /**
      *  Utils
      */
 
     private function MultiSort($data, $sortCriteria, $caseInSensitive = true)
     {
-        if( !is_array($data) || !is_array($sortCriteria))
+        if (!is_array($data) || !is_array($sortCriteria)) {
             return false;
+        }
+
         $args = array();
-        $i = 0;
-        foreach($sortCriteria as $sortColumn => $sortAttributes)
-        {
+        $i    = 0;
+        foreach ($sortCriteria as $sortColumn => $sortAttributes) {
             $colList = array();
-            foreach ($data as $key => $row)
-            {
-                $convertToLower = $caseInSensitive && (in_array(SORT_STRING, $sortAttributes) || in_array(SORT_REGULAR, $sortAttributes));
-                $rowData = $convertToLower ? strtolower($row[$sortColumn]) : $row[$sortColumn];
+            foreach ($data as $key => $row) {
+                $convertToLower              = $caseInSensitive && (in_array(SORT_STRING, $sortAttributes) || in_array(SORT_REGULAR, $sortAttributes));
+                $rowData                     = $convertToLower ? strtolower($row[$sortColumn]) : $row[$sortColumn];
                 $colLists[$sortColumn][$key] = $rowData;
             }
             $args[] = &$colLists[$sortColumn];
 
-            foreach($sortAttributes as $sortAttribute)
-            {
+            foreach ($sortAttributes as $sortAttribute) {
                 $tmp[$i] = $sortAttribute;
-                $args[] = &$tmp[$i];
+                $args[]  = &$tmp[$i];
                 $i++;
-             }
+            }
         }
         $args[] = &$data;
         call_user_func_array('array_multisort', $args);
         return end($args);
     }
 
-    private function Shuffle($data) {
+    private function Shuffle($data)
+    {
         $keys = array_keys($data);
 
         shuffle($keys);
 
-        foreach($keys as $key) {
+        foreach ($keys as $key) {
             $new[$key] = $data[$key];
         }
 
@@ -448,17 +430,13 @@ class SeedPeopleTable extends Seeder
         return $data;
     }
 
-    private function fillArrayWithFileNodes( \DirectoryIterator $dir, $ext = ["jpg", "png"] )
+    private function fillArrayWithFileNodes(\DirectoryIterator $dir, $ext = ["jpg", "png"])
     {
         $data = array();
-        foreach ( $dir as $node )
-        {
-            if ( $node->isDir() && !$node->isDot() )
-            {
-                $data[$node->getFilename()] = self::fillArrayWithFileNodes( new \DirectoryIterator( $node->getPathname() ) );
-            }
-            elseif ( $node->isFile() && in_array($node->getExtension(), $ext) )
-            {
+        foreach ($dir as $node) {
+            if ($node->isDir() && !$node->isDot()) {
+                $data[$node->getFilename()] = self::fillArrayWithFileNodes(new \DirectoryIterator($node->getPathname()));
+            } elseif ($node->isFile() && in_array($node->getExtension(), $ext)) {
                 $data[$node->getBasename('.' . $node->getExtension())] = $node->getPathname();
             }
         }

@@ -1,7 +1,7 @@
 <?php namespace Abnmt\Theater\Updates;
 
-use Schema;
 use October\Rain\Database\Updates\Migration;
+use Schema;
 
 class CreateTaxonomiesTable extends Migration
 {
@@ -11,8 +11,7 @@ class CreateTaxonomiesTable extends Migration
         Schema::dropIfExists('abnmt_theater_taxonomies');
         Schema::dropIfExists('abnmt_theater_taxonomies_relations');
 
-        Schema::create('abnmt_theater_taxonomies', function($table)
-        {
+        Schema::create('abnmt_theater_taxonomies', function ($table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
 
@@ -29,8 +28,7 @@ class CreateTaxonomiesTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('abnmt_theater_taxonomies_relations', function($table)
-        {
+        Schema::create('abnmt_theater_taxonomies_relations', function ($table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
 

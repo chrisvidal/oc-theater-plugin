@@ -1,15 +1,11 @@
 <?php namespace Abnmt\Theater\Models;
 
-use Model;
-
-use Str;
-use Cms\Classes\Theme;
-use Cms\Classes\Page as CmsPage;
-
-use \Carbon\Carbon as Carbon;
-use \Clockwork\Support\Laravel\Facade as CW;
-
 use Abnmt\Theater\Plugin as Plugin;
+use Carbon;
+use Cms\Classes\Page as CmsPage;
+use Cms\Classes\Theme;
+use Model;
+use Str;
 
 /**
  * Event Model
@@ -40,16 +36,16 @@ class Event extends Model
     /**
      * @var array Relations
      */
-    public $hasOne = [];
-    public $hasMany = [];
-    public $belongsTo = [];
+    public $hasOne        = [];
+    public $hasMany       = [];
+    public $belongsTo     = [];
     public $belongsToMany = [];
-    public $morphTo = [
+    public $morphTo       = [
         'relation' => [],
     ];
-    public $morphOne = [];
-    public $morphMany = [];
-    public $attachOne = [];
+    public $morphOne   = [];
+    public $morphMany  = [];
+    public $attachOne  = [];
     public $attachMany = [];
 
     /**
@@ -57,8 +53,8 @@ class Event extends Model
      * @var array
      */
     public static $allowedSortingOptions = [
-        'event_date asc'     => 'По дате (вверх)',
-        'event_date desc'    => 'По дате (вниз)',
+        'event_date asc'  => 'По дате (вверх)',
+        'event_date desc' => 'По дате (вниз)',
     ];
 
     /**
@@ -163,15 +159,18 @@ class Event extends Model
          * Default options
          */
         extract(array_merge([
-            'sort'       => 'event_date asc',
-            'scopes'     => null,
+            'sort'   => 'event_date asc',
+            'scopes' => null,
         ], $options));
 
         /*
          * With
          */
         if (isset($scopes)) {
-            if (!is_array($scopes)) $scopes = array_map('trim', explode(',', $scopes));
+            if (!is_array($scopes)) {
+                $scopes = array_map('trim', explode(',', $scopes));
+            }
+
             foreach ($scopes as $scope) {
                 switch ($scope) {
                     case 'Now':
@@ -197,11 +196,17 @@ class Event extends Model
          * Sorting
          */
         if (isset($sort)) {
-            if (!is_array($sort)) $sort = array_map('trim', explode(',', $sort));
+            if (!is_array($sort)) {
+                $sort = array_map('trim', explode(',', $sort));
+            }
+
             foreach ($sort as $_sort) {
                 if (in_array($_sort, array_keys(self::$allowedSortingOptions))) {
                     $parts = explode(' ', $_sort);
-                    if (count($parts) < 2) array_push($parts, 'desc');
+                    if (count($parts) < 2) {
+                        array_push($parts, 'desc');
+                    }
+
                     list($sortField, $sortDirection) = $parts;
 
                     $query->orderBy($sortField, $sortDirection);
@@ -223,26 +228,28 @@ class Event extends Model
 
         if ($type == 'playbill') {
             $result = [
-                'dynamicItems' => true
+                'dynamicItems' => true,
             ];
         }
 
         if ($result) {
             $theme = Theme::getActiveTheme();
 
-            $pages = CmsPage::listInTheme($theme, true);
+            $pages    = CmsPage::listInTheme($theme, true);
             $cmsPages = [];
             foreach ($pages as $page) {
-                if (!$page->hasComponent('theaterEvents'))
+                if (!$page->hasComponent('theaterEvents')) {
                     continue;
+                }
 
                 /*
                  * Component must use a category filter with a routing parameter
                  * eg: categoryFilter = "{{ :somevalue }}"
                  */
                 $properties = $page->getComponentProperties('theaterEvents');
-                if (!isset($properties['date']) || !preg_match('/{{\s*:/', $properties['date']))
+                if (!isset($properties['date']) || !preg_match('/{{\s*:/', $properties['date'])) {
                     continue;
+                }
 
                 $cmsPages[] = $page;
             }
@@ -269,32 +276,31 @@ class Event extends Model
         if ($item->type == 'playbill') {
 
             $result = [
-                'items' => []
+                'items' => [],
             ];
 
-            $date = Carbon::parse('now');
+            $date         = Carbon::parse('now');
             $lastDateInDb = Carbon::parse(self::max('event_date'));
 
             // CW::info(['last' => $lastDateInDb]);
 
             if (preg_match('~/afisha/\d+-\d+~', $url)) {
-                $slug = explode('/', $url);
+                $slug      = explode('/', $url);
                 $slug_date = Carbon::parse(array_pop($slug))->startOfMonth();
                 // CW::info(['slug' => $slug]);
-                if ( $slug_date->lt($date->startOfMonth()) ) {
+                if ($slug_date->lt($date->startOfMonth())) {
                     $result['items'][] = [
-                        'title' => Plugin::dateLocale($slug_date->format('Y-m'), '%B %Y'),
+                        'title'    => Plugin::dateLocale($slug_date->format('Y-m'), '%B %Y'),
                         'isActive' => true,
                     ];
                 }
             }
 
-            $i = 1;
-            $limit = 3;
+            $i      = 1;
+            $limit  = 3;
             $counts = self::Date($date->format('Y-m'))->count();
 
-
-            while ( $i <= $limit ) {
+            while ($i <= $limit) {
 
                 // CW::info(['date' => $date, 'counts' => $counts]);
 
@@ -305,16 +311,18 @@ class Event extends Model
 
                 $reference['isActive'] = $reference['url'] == $url;
 
-                if ( $counts > 0 ) {
+                if ($counts > 0) {
                     $result['items'][] = $reference;
                     $i++;
                 }
 
-                $date = $date->addMonth();
+                $date   = $date->addMonth();
                 $counts = self::Date($date->format('Y-m'))->count();
 
-                if ($date->gt($lastDateInDb))
+                if ($date->gt($lastDateInDb)) {
                     break;
+                }
+
             }
 
         }
@@ -330,7 +338,9 @@ class Event extends Model
     protected static function getReferencePageUrl($pageCode, $slug, $theme)
     {
         $page = CmsPage::loadCached($theme, $pageCode);
-        if (!$page) return;
+        if (!$page) {
+            return;
+        }
 
         $properties = $page->getComponentProperties('theaterEvents');
         if (!isset($properties['date'])) {
@@ -346,7 +356,7 @@ class Event extends Model
         }
 
         $paramName = substr(trim($matches[1]), 1);
-        $url = CmsPage::url($page->getBaseFileName(), [$paramName => $slug]);
+        $url       = CmsPage::url($page->getBaseFileName(), [$paramName => $slug]);
 
         return $url;
     }
