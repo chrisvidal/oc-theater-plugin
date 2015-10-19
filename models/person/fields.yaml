@@ -60,21 +60,21 @@ tabs:
             label: Галерея
             type: fileupload
 
-        participation:
-            tab: Занятость в спектаклях
-            type: partial
-            path: $/abnmt/theater/models/person/_list_participation.htm
+        # participation:
+        #     tab: Занятость в спектаклях
+        #     type: relation
+        #     # path: $/abnmt/theater/models/person/_list_participation.htm
 
-        press:
-            label: Пресса
-            tab: Пресса
-            type: relation
-            mode: dropdown
-            nameFrom: title
-            options:
-                nameColumn: title
+        # press:
+        #     label: Пресса
+        #     tab: Пресса
+        #     type: relation
+        #     mode: dropdown
+        #     nameFrom: title
+        #     options:
+        #         nameColumn: title
 
-        categories:
-            tab: Категории
-            type: partial
-            path: $/abnmt/theater/models/person/_list_categories.htm
+        # categories:
+        #     tab: Категории
+        #     type: partial
+        #     path: $/abnmt/theater/models/person/_list_categories.htm

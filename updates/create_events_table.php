@@ -18,7 +18,7 @@ class CreateEventsTable extends Migration
             $table->string('title');
             $table->string('description')->nullable();
 
-            $table->date('event_date');
+            $table->datetime('event_date');
 
             $table->string('bileter_id')->nullable();
 

@@ -1,0 +1,35 @@
+# ===================================
+#  Relation Behavior Config
+# ===================================
+
+# roles:
+#     label: Роли
+#     view:
+#         list:
+#             columns:
+#                 title:
+#                     label: Имя
+#                 pivot[title]:
+#                     label: Название
+#                 pivot[type]:
+#                     label: Тип
+#                 pivot[group]:
+#                     label: Группа
+#     manage:
+#         list:
+#             columns:
+#                 title:
+#                     label: Имя
+#         showSearch: true
+#     pivot:
+#         form:
+#             fields:
+#                 pivot[title]:
+#                     label: Название
+#                 pivot[type]:
+#                     label: Тип
+#                 pivot[group]:
+#                     label: Группа
+
+# meta:
+#     label: Дополнительные данные
