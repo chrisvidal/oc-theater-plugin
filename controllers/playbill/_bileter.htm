@@ -1,0 +1,36 @@
+
+            <tr id="<?= $data["bileter_id"] ?>">
+                <td>
+                    <h2><?= $data["event_date"]->format("d") ?></h2>
+                    <div><?= $data["event_date"]->format("M") ?></div>
+                </td>
+
+                <? if (!is_null($data["relation"])): ?>
+
+                <td>
+                    <h3><?= $data["relation"]["title"] ?></h3>
+                </td>
+                <td class="column-button nolink">
+                    <?= Form::ajax("onSave", ["data" => $data, "confirm" => "Save?"]) ?>
+                        <?= Form::submit("Save", ["class" => "btn btn-default btn-sm btn-info"]) ?>
+                    <?= Form::close() ?>
+                </td>
+
+                <? else: ?>
+
+                <td>
+                    <h3><?= $data["search_string"] ?></h3>
+                </td>
+                <td class="column-button nolink">
+                    <button
+                        type="button"
+                        data-request="onCreate"
+                        class="btn btn-default btn-sm btn-warning">
+                        Create
+                    </button>
+                </td>
+
+                <? endif ?>
+
+            </tr>
+

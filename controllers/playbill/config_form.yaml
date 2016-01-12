@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: abnmt.theater::lang.playbill.label
+
+# Model Form Field configuration
+form: $/abnmt/theater/models/playbill/fields.yaml
+
+# Model Class name
+modelClass: Abnmt\Theater\Models\Playbill
+
+# Default redirect location
+defaultRedirect: abnmt/theater/playbill
+
+# Create page
+create:
+    title: abnmt.theater::lang.playbill.create_title
+    redirect: abnmt/theater/playbill/update/:id
+    redirectClose: abnmt/theater/playbill
+
+# Update page
+update:
+    title: abnmt.theater::lang.playbill.update_title
+    redirect: abnmt/theater/playbill
+    redirectClose: abnmt/theater/playbill
+
+# Preview page
+preview:
+    title: abnmt.theater::lang.playbill.preview_title

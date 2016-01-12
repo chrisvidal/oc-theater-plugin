@@ -26,7 +26,7 @@ class Event extends Model
     /**
      * @var array Fillable fields
      */
-    protected $fillable = [];
+    protected $fillable = ['title', 'description', 'event_date', 'bileter_id'];
 
     /**
      * @var array With fields

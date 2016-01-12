@@ -270,7 +270,7 @@ class SeedPeopleTable extends Seeder
                     $check    = File::where('attachment_id', '=', $model->id)
                         ->where('attachment_type', '=', get_class($model))
                         ->where('file_name', '=', $pathinfo['basename'])
-                    // ->where('field', '=', $pathinfo['filename'])
+                        // ->where('field', '=', $pathinfo['filename'])
                         ->first();
 
                     if (!is_null($check)) {
@@ -328,7 +328,7 @@ class SeedPeopleTable extends Seeder
                         $check    = File::where('attachment_id', '=', $model->id)
                             ->where('attachment_type', '=', get_class($model))
                             ->where('file_name', '=', $pathinfo['basename'])
-                        // ->where('field', '=', $pathinfo['filename'])
+                            // ->where('field', '=', $pathinfo['filename'])
                             ->first();
 
                         // preg_match("~^(\d+)~", $filename, $matches);
